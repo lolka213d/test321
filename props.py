@@ -1,0 +1,996 @@
+import bpy
+import requests
+from . import glob_vars
+import xml.etree.ElementTree as ET
+
+
+def has_internet_connection(test_url="https://github.com", timeout=5):
+    try:
+        requests.get(test_url, timeout=timeout)
+        return True
+    except (requests.ConnectionError, requests.Timeout):
+        return False
+    
+
+def get_name_and_ver(url): 
+    try:
+        full_xml = requests.get(url, allow_redirects=True).text
+    except:
+        print(f"ERROR getting info from: {url}")
+        return None
+    else:
+        # Parse the XML data
+        namespace = {"atom": "http://www.w3.org/2005/Atom"}  # Namespace mapping
+        root = ET.fromstring(full_xml)
+        # Get the latest entry (first one)
+        latest_entry = root.find("atom:entry", namespace)
+        # Extract title
+        latest_title = latest_entry.find("atom:title", namespace).text
+        # Extract tag from the link URL
+        link = latest_entry.find("atom:link", namespace).attrib["href"]
+        latest_tag = link.split("/")[-1]  # Extract last part of URL
+    return latest_title, latest_tag
+
+
+
+class PROPERTIES_RBX(bpy.types.PropertyGroup):
+
+    name : bpy.props.StringProperty(name= "ver", default="", maxlen=40) #Not in use, key in data      # type: ignore        
+
+
+
+    ##### HDRI & SKY #####
+    rbx_hdri_enum : bpy.props.EnumProperty(
+        name = "HDRI",
+        description = "Set HDRI",
+        default='OP1',
+        items = [('OP1', "Blender Default", ""),
+                 ('OP2', "City", ""),
+                 ('OP3', "Courtyard", ""),
+                 ('OP4', "Forest", ""),
+                 ('OP5', "Interior", ""),
+                 ('OP6', "Night", ""),
+                 ('OP7', "Studio", ""),
+                 ('OP8', "Sunrise", ""),
+                 ('OP9', "Sunset", "")   
+                ]
+        )  # type: ignore
+        
+    rbx_sky_enum : bpy.props.EnumProperty(
+        name = "Sky",
+        description = "Set Sky",
+        default='OP1',
+        items = [('OP1', "Sky 1", ""),
+                 ('OP2', "Sky 2", ""),
+                 ('OP3', "Sky 3", "") 
+                ]
+        )  # type: ignore
+
+
+
+
+
+    #######################
+    #### RBX IMPORT V2 ####
+    #######################
+
+    ### Item Type Selector (import) ###    
+    rbx_item_field_type_selector : bpy.props.EnumProperty(
+        name = "Item Type",
+        description = "Item Type Selector",
+        default='OP1',
+        items = [('OP1', "Accessory", ""),
+                 ('OP2', "Bundle (Characters)", ""),
+                 ('OP3', "Bundle (Shoes)", ""),
+                 ('OP4', "Layered Cloth", ""),
+                 ('OP5', "Store Model", "")
+                ]
+        )     # type: ignore
+    
+    ### Import Character ###
+    rbx_item_field_entry: bpy.props.StringProperty(
+        name="Item Field Entry",
+        description="Username, URL or Item ID entered in the field",
+        default="ID or URL",
+        maxlen=100,
+    ) # type: ignore
+
+    rbx_bndl_char_choice_at_origin : bpy.props.BoolProperty(
+    name="Spawn at Origin",
+    description="Spawn at Origin property",
+    default = True
+    ) # type: ignore
+
+    def update_mesh_dependencies(self, context):
+        """
+        Update callback to enforce checkbox dependencies.
+        If Meshes are disabled, Textures should be disabled (and unchecked).
+        If Meshes AND Cages are disabled, Vertex Colors should be disabled (and unchecked).
+        """
+        # If Meshes are unchecked, uncheck Textures
+        if not self.rbx_bndl_char_choice_add_meshes:
+            self.rbx_bndl_char_choice_add_textures = False
+            
+        # If both Meshes and Cages are unchecked, uncheck Vertex Colors
+        if not self.rbx_bndl_char_choice_add_meshes and not self.rbx_bndl_char_choice_add_cages:
+            self.rbx_bndl_char_choice_add_ver_col = False
+
+    rbx_bndl_char_choice_add_meshes : bpy.props.BoolProperty(
+    name="Meshes",
+    description="Meshes property",
+    default = True,
+    update = update_mesh_dependencies
+    ) # type: ignore
+
+    rbx_bndl_char_choice_add_textures : bpy.props.BoolProperty(
+    name="Textures",
+    description="Textures property",
+    default = False
+    ) # type: ignore
+
+    rbx_bndl_char_choice_add_cages : bpy.props.BoolProperty(
+    name="Cages",
+    description="Cages property",
+    default = False,
+    update = update_mesh_dependencies
+    ) # type: ignore
+
+    rbx_bndl_char_choice_add_attachment : bpy.props.BoolProperty(
+    name="Body Attachments",
+    description="Body Attachments property",
+    default = False
+    ) # type: ignore
+
+    rbx_bndl_char_choice_add_motor6d_attachment : bpy.props.BoolProperty(
+    name="Motor6D Attachments",
+    description="Motor6D Attachments property",
+    default = False
+    ) # type: ignore
+
+    rbx_bndl_char_choice_add_bones : bpy.props.BoolProperty(
+    name="Armature",
+    description="Armature property",
+    default = False
+    ) # type: ignore
+
+    rbx_bndl_char_choice_armature_at_origin : bpy.props.BoolProperty(
+    name="Armature at Origin",
+    description="Spawn Armature at Origin property",
+    default = True
+    ) # type: ignore
+
+    rbx_bndl_char_choice_armature_link_meshes : bpy.props.BoolProperty(
+    name="Link Armature to Meshes",
+    description="Apply skin weights to existing body part meshes when importing armature",
+    default = True
+    ) # type: ignore
+
+    rbx_bndl_char_choice_add_ver_col : bpy.props.BoolProperty(
+    name="Vertex Colors",
+    description="Vertex Colors property",
+    default = False
+    ) # type: ignore
+
+    rbx_bndl_char_choice_clean_tmp_meshes : bpy.props.BoolProperty(
+    name="Cleanup tmp files (rbxm)",
+    description="Cleanup tmp files property",
+    default = False
+    ) # type: ignore
+
+    ### Dynamic Heads Properties ###
+    def update_dyn_head_dependencies(self, context):
+        """
+        Update callback to enforce checkbox dependencies for Dynamic Heads.
+        """
+        # If Meshes are unchecked, uncheck Textures
+        if not self.rbx_dyn_heads_choice_add_meshes:
+            self.rbx_dyn_heads_choice_add_textures = False
+            
+        # If both Meshes and Cages are unchecked, uncheck Vertex Colors
+        if not self.rbx_dyn_heads_choice_add_meshes and not self.rbx_dyn_heads_choice_add_cages:
+            self.rbx_dyn_heads_choice_add_ver_col = False
+
+    rbx_dyn_heads_choice_at_origin : bpy.props.BoolProperty(
+    name="Spawn at Origin",
+    description="Spawn at Origin property",
+    default = True
+    ) # type: ignore
+
+    rbx_dyn_heads_choice_add_meshes : bpy.props.BoolProperty(
+    name="Meshes",
+    description="Meshes property",
+    default = True,
+    update = update_dyn_head_dependencies
+    ) # type: ignore
+
+    rbx_dyn_heads_choice_add_textures : bpy.props.BoolProperty(
+    name="Textures",
+    description="Textures property",
+    default = False
+    ) # type: ignore
+
+    rbx_dyn_heads_choice_add_cages : bpy.props.BoolProperty(
+    name="Cages",
+    description="Cages property",
+    default = False,
+    update = update_dyn_head_dependencies
+    ) # type: ignore
+
+    rbx_dyn_heads_choice_add_attachment : bpy.props.BoolProperty(
+    name="Accessory Attachments",
+    description="Accessory Attachments property",
+    default = False
+    ) # type: ignore
+
+    rbx_dyn_heads_choice_add_motor6d_attachment : bpy.props.BoolProperty(
+    name="Motor6D Attachments",
+    description="Motor6D Attachments property",
+    default = False
+    ) # type: ignore
+
+    rbx_dyn_heads_choice_add_ver_col : bpy.props.BoolProperty(
+    name="Vertex Colors",
+    description="Vertex Colors property",
+    default = False
+    ) # type: ignore
+
+    rbx_dyn_heads_choice_clean_tmp_meshes : bpy.props.BoolProperty(
+    name="Cleanup tmp files (rbxm)",
+    description="Cleanup tmp files property",
+    default = False
+    ) # type: ignore
+
+    ### Accessory Properties ###
+    def update_accessory_dependencies(self, context):
+        """
+        Update callback to enforce checkbox dependencies for Accessories.
+        """
+        # If Meshes are unchecked, uncheck Textures
+        if not self.rbx_accessory_choice_add_meshes:
+            self.rbx_accessory_choice_add_textures = False
+            
+        # If Meshes are unchecked, uncheck Vertex Colors (Accessories don't have cages usually)
+        if not self.rbx_accessory_choice_add_meshes:
+            self.rbx_accessory_choice_add_ver_col = False
+
+    rbx_accessory_choice_at_origin : bpy.props.BoolProperty(
+    name="Spawn at Origin",
+    description="Spawn at Origin property",
+    default = True
+    ) # type: ignore
+
+    rbx_accessory_choice_add_meshes : bpy.props.BoolProperty(
+    name="Meshes",
+    description="Meshes property",
+    default = True,
+    update = update_accessory_dependencies
+    ) # type: ignore
+
+    rbx_accessory_choice_add_textures : bpy.props.BoolProperty(
+    name="Textures",
+    description="Textures property",
+    default = True
+    ) # type: ignore
+
+    rbx_accessory_choice_add_attachment : bpy.props.BoolProperty(
+    name="Accessory Attachments",
+    description="Accessory Attachments property",
+    default = True
+    ) # type: ignore
+
+    rbx_accessory_choice_add_ver_col : bpy.props.BoolProperty(
+    name="Vertex Colors",
+    description="Vertex Colors property",
+    default = False
+    ) # type: ignore
+
+    rbx_accessory_choice_clean_tmp_meshes : bpy.props.BoolProperty(
+    name="Cleanup tmp files (rbxm)",
+    description="Cleanup tmp files property",
+    default = False
+    ) # type: ignore
+
+
+    ### Layered Cloth Properties ###
+    def update_lc_dependencies(self, context):
+        """
+        Update callback to enforce checkbox dependencies for Layered Cloth.
+        """
+        # If Meshes are unchecked, uncheck Textures
+        if not self.rbx_lc_choice_add_meshes:
+            self.rbx_lc_choice_add_textures = False
+            
+        # If Meshes AND Cages are unchecked, uncheck Vertex Colors
+    # If Meshes AND Cages are unchecked, uncheck Vertex Colors
+        if not self.rbx_lc_choice_add_meshes and not self.rbx_lc_choice_add_cages:
+            self.rbx_lc_choice_add_ver_col = False
+
+    rbx_lc_choice_at_origin : bpy.props.BoolProperty(
+    name="Spawn at Origin",
+    description="Spawn at Origin property",
+    default = True
+    ) # type: ignore
+
+    rbx_lc_choice_add_meshes : bpy.props.BoolProperty(
+    name="Meshes",
+    description="Meshes property",
+    default = True,
+    update = update_lc_dependencies
+    ) # type: ignore
+
+    rbx_lc_choice_add_textures : bpy.props.BoolProperty(
+    name="Textures",
+    description="Textures property",
+    default = True
+    ) # type: ignore
+
+    rbx_lc_choice_add_cages : bpy.props.BoolProperty(
+    name="Cages",
+    description="Cages property",
+    default = True,
+    update = update_lc_dependencies
+    ) # type: ignore
+
+    rbx_lc_choice_add_attachment : bpy.props.BoolProperty(
+    name="Attachments",
+    description="Attachments property",
+    default = True
+    ) # type: ignore
+
+
+    rbx_lc_choice_add_ver_col : bpy.props.BoolProperty(
+    name="Vertex Colors",
+    description="Vertex Colors property",
+    default = False
+    ) # type: ignore
+
+    rbx_lc_choice_clean_tmp_meshes : bpy.props.BoolProperty(
+    name="Cleanup tmp files (rbxm)",
+    description="Cleanup tmp files property",
+    default = False
+    ) # type: ignore
+
+
+    ### Face Parts Properties ###
+    def update_fp_dependencies(self, context):
+        """
+        Update callback to enforce checkbox dependencies for Face Parts.
+        """
+        # If Meshes are unchecked, uncheck Textures
+        if not self.rbx_fp_choice_add_meshes:
+            self.rbx_fp_choice_add_textures = False
+            
+        # If Meshes AND Cages are unchecked, uncheck Vertex Colors
+        if not self.rbx_fp_choice_add_meshes and not self.rbx_fp_choice_add_cages:
+            self.rbx_fp_choice_add_ver_col = False
+
+    rbx_fp_choice_at_origin : bpy.props.BoolProperty(
+    name="Spawn at Origin",
+    description="Spawn at Origin property",
+    default = True
+    ) # type: ignore
+
+    rbx_fp_choice_add_meshes : bpy.props.BoolProperty(
+    name="Meshes",
+    description="Meshes property",
+    default = True,
+    update = update_fp_dependencies
+    ) # type: ignore
+
+    rbx_fp_choice_add_textures : bpy.props.BoolProperty(
+    name="Textures",
+    description="Textures property",
+    default = True
+    ) # type: ignore
+
+    rbx_fp_choice_add_cages : bpy.props.BoolProperty(
+    name="Cages",
+    description="Cages property",
+    default = True,
+    update = update_fp_dependencies
+    ) # type: ignore
+
+    rbx_fp_choice_add_attachment : bpy.props.BoolProperty(
+    name="Attachments",
+    description="Attachments property",
+    default = True
+    ) # type: ignore
+
+    rbx_fp_choice_add_ver_col : bpy.props.BoolProperty(
+    name="Vertex Colors",
+    description="Vertex Colors property",
+    default = False
+    ) # type: ignore
+
+    rbx_fp_choice_clean_tmp_meshes : bpy.props.BoolProperty(
+    name="Cleanup tmp files (rbxm)",
+    description="Cleanup tmp files property",
+    default = False
+    ) # type: ignore
+
+
+
+
+
+
+
+
+
+
+
+
+    ### Gears Properties ###
+    def update_gears_dependencies(self, context):
+        """
+        Update callback to enforce checkbox dependencies for Gears.
+        """
+        # If Meshes are unchecked, uncheck Textures
+        if not self.rbx_gears_choice_add_meshes:
+            self.rbx_gears_choice_add_textures = False
+
+    rbx_gears_choice_at_origin : bpy.props.BoolProperty(
+    name="Spawn at Origin",
+    description="Spawn at Origin property",
+    default = True
+    ) # type: ignore
+
+    rbx_gears_choice_add_meshes : bpy.props.BoolProperty(
+    name="Meshes",
+    description="Meshes property",
+    default = True,
+    update = update_gears_dependencies
+    ) # type: ignore
+
+    rbx_gears_choice_add_textures : bpy.props.BoolProperty(
+    name="Textures",
+    description="Textures property",
+    default = True
+    ) # type: ignore
+
+    rbx_gears_choice_clean_tmp_meshes : bpy.props.BoolProperty(
+    name="Cleanup tmp files (rbxm)",
+    description="Cleanup tmp files property",
+    default = False
+    ) # type: ignore
+
+
+    ### Model Import Properties ###
+    rbx_model_choice_at_origin : bpy.props.BoolProperty(
+    name="Spawn at Origin",
+    description="Move imported model to world origin (preserving part offsets)",
+    default = True
+    ) # type: ignore
+
+    rbx_model_choice_add_textures : bpy.props.BoolProperty(
+    name="Import Textures / Colors",
+    description="Apply part colors and material properties (roughness, metallic) to imported parts",
+    default = True
+    ) # type: ignore
+
+
+
+
+    ### Import Character ###
+    rbx_username_entered: bpy.props.StringProperty(
+        name="Username Entered",
+        description="Username of the character entered in the field",
+        default="papa_boss332",
+        maxlen=100,
+    ) # type: ignore
+
+    rbx_split : bpy.props.BoolProperty(
+    name="Split accessories",
+    description="Split accessories property",
+    default = False
+    ) # type: ignore
+
+    ### Import Accessory ###
+    rbx_accessory_entered: bpy.props.StringProperty(
+        name="Accessory Entered",
+        description="Accessory entered in the field",
+        default="11996887739",
+        maxlen=100,
+    ) # type: ignore
+
+    rbx_incl_cages : bpy.props.BoolProperty(
+    name="Include Cages",
+    description="Include Cages property",
+    default = False
+    ) # type: ignore 
+
+
+
+
+
+
+    ##### BOUNDS #####
+    ## UGC Boundaries: Hide Dummy ##
+    rbx_bnds_hide : bpy.props.BoolProperty(
+    name="Hide Dummy",
+    description="Hide Dummy property",
+    default = True
+    )  # type: ignore
+    
+    ### UGC Boundaries ###    
+    rbx_bnds_enum : bpy.props.EnumProperty(
+        name = "Boundaries",
+        description = "Boundaries spawn",
+        default='OP1',
+        items = [('OP1', "Hat", ""),
+                 ('OP2', "Hair", ""),
+                 ('OP3', "Face Center", ""),
+                 ('OP4', "Face Front", ""),
+                 ('OP5', "Neck", ""),
+                 ('OP6', "Front", ""),
+                 ('OP7', "Back", ""),
+                 ('OP8', "Shoulder Right", ""),
+                 ('OP9', "Shoulder Left", ""),
+                 ('OP10', "Shoulder Neck", ""),
+                 ('OP11', "Waist Back", ""),
+                 ('OP12', "Waist Front", ""),
+                 ('OP13', "Waist Center", "")
+                ]
+        )  # type: ignore
+        
+    ### Avatars Boundaries ###    
+    rbx_bnds_avatar_enum : bpy.props.EnumProperty(
+        name = "Avatars Boundaries",
+        description = "Boundaries spawn",
+        default='OP1',
+        items = [('OP1', "Classic Avatars", ""),
+                 ('OP2', "Rthro Avatars", ""),
+                 ('OP3', "Slender Avatars", ""),
+                 ('OP4', "Minimum Sizes", "")
+                ]
+        )     # type: ignore
+
+    ### LC Boundaries ###    
+    rbx_bnds_lc_enum : bpy.props.EnumProperty(
+        name = "LC Boundaries",
+        description = "Boundaries spawn",
+        default='OP1',
+        items = [('OP1', "LC Max Sizes", "")
+                ]
+        )  # type: ignore
+
+
+
+
+
+    ##### DUMMIES #####
+    rbx_dum_enum : bpy.props.EnumProperty(
+        name = "Dummies",
+        description = "Dummies",
+        default='OP1',
+        items = [('OP1', "R15: Blocky", ""),
+                 ('OP2', "R15: Boy", ""),
+                 ('OP3', "R15: Girl", ""),
+                 ('OP4', "R15: Woman", ""),
+                 ('OP5', "4.0: Lin", ""),
+                 ('OP6', "4.0: Oakley", ""),
+                 ('OP7', "3.0: Man", ""),
+                 ('OP8', "3.0: Woman", ""),
+                 ('OP9', "2.0: Robloxian 2.0", ""),
+                 ('OP10', "Neoclassic: Skyler", ""),
+                 ('OP11', "R6: Blocky", ""),
+                 ('OP12', "Anime", "")
+                ]
+        )  # type: ignore
+
+    ### WEAR R6 RIG ###
+    ## Import Face ##
+    rbx_face: bpy.props.StringProperty( 
+        name="Accessory Face",
+        description="Accessory Face ID to import",
+        default="7987180607",
+        maxlen=100,
+    ) # type: ignore
+    
+    ## Import Shirt ##
+    rbx_shirt: bpy.props.StringProperty(
+        name="Accessory Shirt",
+        description="Accessory Shirt ID to import",
+        default="4047884046",
+        maxlen=100,
+    ) # type: ignore
+
+    ## Import Pants ##
+    rbx_pants: bpy.props.StringProperty(
+        name="Accessory Pants",
+        description="Accessory Pants ID to import",
+        default="398635338",
+        maxlen=100,
+    )  # type: ignore
+
+
+
+
+
+    ##### HAIRS #####
+    ### Dummies Heads ###    
+    rbx_dum_hd_enum : bpy.props.EnumProperty(
+        name = "Dummies Heads",
+        description = "Dummies Heads",
+        default='OP1',
+        items = [('OP1', "Classic Head", ""),
+                 ('OP2', "Woman Head", ""),
+                 ('OP3', "Woman Head v2", ""),
+                 ('OP4', "Man Head", ""),
+                 ('OP5', "R6 Head", "")
+                ]
+        )   # type: ignore
+    
+
+
+
+
+    ##### LC #####
+    ### Layered Cloth Dummies ###    
+    rbx_lc_dum_enum : bpy.props.EnumProperty(
+        name = "LC Dummies",
+        description = "Layered Cloth Dummies",
+        default='OP1',
+        items = [('OP1', "Default Mannequin", ""),
+                 ('OP2', "Default Mannequin (separated)", ""),
+                 ('OP3', "Roblox Boy", ""),
+                 ('OP4', "Roblox Girl", ""),
+                 ('OP5', "Roblox Man", ""),
+                 ('OP6', "Roblox Woman", ""),
+                 ('OP7', "Classic Male", ""),
+                 ('OP8', "Classic Female", ""),
+                 ('OP9', "Roblox Blocky", ""),
+                 ('OP10', "Roblox Korblox", ""),
+                 ('OP11', "Roblox Deathwalker", "")
+                ]
+        ) # type: ignore
+        
+    ### Layered Cloth Samples ###    
+    rbx_lc_spl_enum : bpy.props.EnumProperty(
+        name = "LC Samples",
+        description = "Layered Cloth Samples",
+        default='OP1',
+        items = [('OP1', "Hair: Female Hair", ""),
+                 ('OP2', "Jacket: Hoodie", ""),
+                 ('OP3', "Pants: Cargo Pants", ""),
+                 ('OP4', "Shoe: Skate", ""),
+                 ('OP5', "Skirt: Tennis", "")
+                ]
+        ) # type: ignore
+        
+    ### Layered Cloth Animation Dummies ###    
+    rbx_lc_dum_anim_enum : bpy.props.EnumProperty(
+        name = "LC Animation Dummies",
+        description = "Layered Cloth Dummies",
+        default='OP1',
+        items = [('OP1', "Roblox Woman", ""),
+                 ('OP2', "Roblox Blocky", "")
+                ]
+        ) # type: ignore
+    ### Layered Cloth Animations ###    
+    rbx_lc_anim_enum : bpy.props.EnumProperty(
+        name = "LC Animations",
+        description = "Layered Cloth Animations",
+        default='OP1',
+        items = [('OP1', "No Animation", ""),
+                 ('OP2', "Chapa-Giratoria", ""),
+                 ('OP3', "Hokey Pokey", ""),
+                 ('OP4', "Rumba Dancing", "")
+                ]
+        ) # type: ignore                     
+
+    ### LC Animation V2 - Rig Selector ###
+    ### To add more rigs, add a new entry below and update RIG_MAP in func_lc_animations.py
+    rbx_lc_anim_v2_rig_enum : bpy.props.EnumProperty(
+        name = "LC Anim Rig",
+        description = "Select Rig for LC Animation",
+        default='OP1',
+        items = [
+                 ('OP1', "R15 Blocky Rig", ""),        # Rig 1
+                 ('OP2', "R15 Woman Rig", ""),          # Rig 2
+                 #('OP3', "Plushie Template", ""),      # Rig 3 (add when ready)
+                 #('OP4', "Multirig", ""),              # Rig 4 (add when ready)
+                 #('OP5', "Multirig Faceless", ""),     # Rig 5 (add when ready)
+                ]
+        ) # type: ignore
+
+    ### LC Animation V2 - Animation Type ###
+    ### Bone direction (_B_ variant) is auto-detected at runtime
+    rbx_lc_anim_v2_type_enum : bpy.props.EnumProperty(
+        name = "LC Animation Type",
+        description = "Select Animation Type",
+        default='OP1',
+        items = [
+                 ('OP1', "Walk", ""),
+                 ('OP2', "Run", ""),
+                 ('OP3', "Move", ""),
+                 ('OP4', "Idle", ""),
+                ]
+        ) # type: ignore
+
+
+
+
+
+    ##### AVATARS #####   
+    rbx_ava_enum : bpy.props.EnumProperty(
+        name = "Avatars",
+        description = "Avatars",
+        default='OP1',
+        items = [('OP1', "Blocky", ""),
+                 ('OP2', "Round Male", ""),
+                 ('OP3', "Anime", "")
+                ]
+        ) # type: ignore
+    
+
+
+
+    ##### ARMATURES #####    
+    rbx_arma_enum : bpy.props.EnumProperty(
+        name = "Armatures",
+        description = "Armatures",
+        default='OP1',
+        items = [('OP1', "R15: Blocky Armature", ""),
+                 ('OP2', "R15: Boy Armature", ""),
+                 ('OP3', "R15: Girl Armature", ""),
+                 ('OP4', "R15: Woman Armature", ""),
+                 ('OP5', "Rthro: Boy Armature", ""),
+                 ('OP6', "Rthro: Girl Armature", ""),
+                 ('OP7', "Rthro: Normal Armature", ""),
+                ]
+        ) # type: ignore
+
+
+    ### Import Beta (Discovery) ###
+    rbx_import_beta_active : bpy.props.BoolProperty(
+    name="Import Beta Active",
+    description="Import Beta Active property",
+    default = False
+    ) # type: ignore
+
+    # Cache for dynamic EnumProperty items to prevent Blender GC from
+    # collecting the Python strings between draw calls (causes flickering).
+    _enum_items_cache = {}
+
+    def get_items_callback(self, context, category):
+        items = []
+        
+        if category == "Armature":
+            # List specific items: "Body Parts" (Bundle) and "Dynamic Head"
+            # Format: "ID_CATEGORY": "Name - Armature"
+            
+            # 1. Body Parts
+            # 1. Body Parts
+            if "Body Parts" in glob_vars.discovered_items_data and glob_vars.discovered_items_data["Body Parts"]:
+                # Use the Bundle ID (glob_vars.rbx_asset_id) if available, or fall back to first item?
+                # Ideally, rbx_asset_id is the bundle ID.
+                # However, if user searched for single asset, rbx_asset_id is that asset.
+                # If "Body Parts" list is populated, we treat it as a single entity (the Cluster/Bundle).
+                
+                bund_id = getattr(glob_vars, 'rbx_asset_id', None)
+                bund_name = getattr(glob_vars, 'rbx_asset_name', "Unknown Bundle")
+                
+                if not bund_id:
+                     # Fallback to first item's ID if global var not set (should be set now)
+                     bund_id = glob_vars.discovered_items_data["Body Parts"][0]['id']
+                
+                identifier = f"BODYPART_{bund_id}"
+                name = f"{bund_name} - Armature"
+                desc = f"Generate Armature from Body Parts bundle: {bund_name}"
+                items.append((identifier, name, desc))
+
+            # 2. Dynamic Heads
+            if "Dynamic Head" in glob_vars.discovered_items_data:
+                seen_ids = set() # Reset for new category
+                for item in glob_vars.discovered_items_data["Dynamic Head"]:
+                    if item['id'] in seen_ids:
+                        continue
+                    seen_ids.add(item['id'])
+                    
+                    # ID format: "DYNHEAD_AssetID"
+                    identifier = f"DYNHEAD_{item['id']}"
+                    name = f"{item['name']} - Armature"
+                    desc = f"Generate Armature from Dynamic Head: {item['name']}"
+                    items.append((identifier, name, desc))
+            
+            # No aggregation of Layered Cloth/Accessories as standalone armature sources usually
+            # unless requested. Focusing on Body Parts and Heads as requested.
+        
+        elif category in glob_vars.discovered_items_data:
+            for item in glob_vars.discovered_items_data[category]:
+                # Identifier (Asset ID), Name (Asset Name), Description
+                items.append((str(item['id']), item['name'], f"Asset ID: {item['id']}"))
+        
+        # Add "All Items" if there are multiple items (but NOT for Animations)
+        if len(items) > 1 and category != "Animations":
+            items.append(('ALL', "All Items", "Process all items in this category"))
+            
+        if not items:
+            items.append(('NONE', "None", "No items found"))
+
+        # Cache the items list on the class so Python keeps a reference alive.
+        # Without this, Blender's GC can free the temporary strings between
+        # UI draw calls, causing enum labels to flicker/disappear.
+        PROPERTIES_RBX._enum_items_cache[category] = items
+        return items
+
+    rbx_enum_body_parts : bpy.props.EnumProperty(
+        name = "Body Parts",
+        description = "Discovered Body Parts",
+        items = lambda self, context: PROPERTIES_RBX.get_items_callback(self, context, "Body Parts")
+    ) # type: ignore
+
+    rbx_enum_accessory : bpy.props.EnumProperty(
+        name = "Accessory",
+        description = "Discovered Accessories",
+        items = lambda self, context: PROPERTIES_RBX.get_items_callback(self, context, "Accessory")
+    ) # type: ignore
+
+    rbx_enum_dynamic_head : bpy.props.EnumProperty(
+        name = "Dynamic Head",
+        description = "Discovered Dynamic Heads",
+        items = lambda self, context: PROPERTIES_RBX.get_items_callback(self, context, "Dynamic Head")
+    ) # type: ignore
+
+    rbx_enum_layered_cloth : bpy.props.EnumProperty(
+        name = "Layered Cloth",
+        description = "Discovered Layered Clothing",
+        items = lambda self, context: PROPERTIES_RBX.get_items_callback(self, context, "Layered Cloth")
+    ) # type: ignore
+    
+    rbx_enum_face_parts : bpy.props.EnumProperty(
+        name = "Face Parts",
+        description = "Discovered Face Parts",
+        items = lambda self, context: PROPERTIES_RBX.get_items_callback(self, context, "Face Parts")
+    ) # type: ignore
+    
+    rbx_enum_classics : bpy.props.EnumProperty(
+        name = "Classics",
+        description = "Discovered Classics",
+        items = lambda self, context: PROPERTIES_RBX.get_items_callback(self, context, "Classics")
+    ) # type: ignore
+    
+    rbx_enum_gear : bpy.props.EnumProperty(
+        name = "Gear",
+        description = "Discovered Gear",
+        items = lambda self, context: PROPERTIES_RBX.get_items_callback(self, context, "Gear")
+    ) # type: ignore
+
+    rbx_arma_enum : bpy.props.EnumProperty(
+        name = "Armature",
+        description = "Discovered Armature Items",
+        items = lambda self, context: PROPERTIES_RBX.get_items_callback(self, context, "Armature")
+    ) # type: ignore
+
+    rbx_enum_models : bpy.props.EnumProperty(
+        name = "Models",
+        description = "Discovered Models",
+        items = lambda self, context: PROPERTIES_RBX.get_items_callback(self, context, "Models")
+    ) # type: ignore
+
+
+    ### Animations Properties ###
+
+    rbx_enum_animations : bpy.props.EnumProperty(
+        name = "Animations",
+        description = "Discovered Animations",
+        items = lambda self, context: PROPERTIES_RBX.get_items_callback(self, context, "Animations")
+    ) # type: ignore
+
+    def poll_armature(self, obj):
+        """Filter for armature objects only."""
+        return obj.type == 'ARMATURE'
+
+    rbx_anim_armature_target : bpy.props.PointerProperty(
+        name = "Target Armature",
+        description = "Select armature to apply animation to",
+        type = bpy.types.Object,
+        poll = poll_armature
+    ) # type: ignore
+
+    def get_anim_sub_callback(self, context):
+        """Dynamically list sub-animations (KeyframeSequences) from glob_vars."""
+        items = []
+        anim_subs = getattr(glob_vars, 'rbx_anim_sub_items', [])
+        for idx, sub in enumerate(anim_subs):
+            identifier = str(idx)
+            name = sub.get('name', f"Animation {idx}")
+            desc = f"Sub-animation: {name}"
+            items.append((identifier, name, desc))
+        if not items:
+            items.append(('NONE', "No Sub-Animations", "Download animation first"))
+        PROPERTIES_RBX._enum_items_cache["anim_sub"] = items
+        return items
+
+    rbx_anim_sub_enum : bpy.props.EnumProperty(
+        name = "Sub-Animation",
+        description = "Select which animation to import from the file",
+        items = get_anim_sub_callback
+    ) # type: ignore
+
+    ##### OTHER FUNCTIONS ##### 
+    ### NORMALS ###    
+    rbx_face_enum : bpy.props.EnumProperty(
+        name = "Faces",
+        description = "Recalculate Faces",
+        default='OP1',
+        items = [('OP1', "Selected Only", ""),
+                 ('OP2', "All Faces", "")
+                ]
+        ) # type: ignore
+    
+        ## Other Functions: Origin to Geometry ##
+    rbx_of_orig : bpy.props.BoolProperty(
+    name="Origin to Geometry",
+    description="Origin to Geometry property",
+    default = True
+    ) # type: ignore
+    
+    ## Other Functions: Apply all Transforms ##
+    rbx_of_trsf : bpy.props.BoolProperty(
+    name="Apply all Transforms",
+    description="Apply all Transforms property",
+    default = True
+    )  # type: ignore
+
+
+
+
+
+    ####   Check for update addon  ####
+    '''rbx_url = 'https://github.com/Gl2imm/RBX_Toolbox/releases.atom'
+    try:
+        full_text = requests.get(rbx_url, allow_redirects=True).text
+    except:
+        pass
+    else:
+        split_1 = full_text.split('536450223/')[1]
+        glob_vars.lts_ver = split_1.split('</id>')[0]'''
+
+    if has_internet_connection():
+        rbx_url = 'https://github.com/Gl2imm/RBX_Toolbox/releases.atom'
+        rbx_result = get_name_and_ver(rbx_url)
+        if rbx_result is not None:
+            rbx_latest_title, rbx_latest_tag = rbx_result
+            #latest_tag = rbx_latest_tag.split("v.")[1]
+            if glob_vars.update_test == True:
+                glob_vars.lts_ver = "v.999.0"
+                glob_vars.lts_title = rbx_latest_title
+            else:
+                glob_vars.lts_ver = rbx_latest_tag
+                glob_vars.lts_title = rbx_latest_title
+    else:
+        print("No internet connection. Skipping RBX Toolbox update check.")
+
+
+
+
+    ####   Check for update AEPBR  ####
+    if has_internet_connection():
+        aepbr_url = 'https://github.com/paribeshere/AEPBR/releases.atom'
+        result = get_name_and_ver(aepbr_url)
+        if result is not None:
+            latest_title, latest_tag = result
+            latest_tag = latest_tag.split("v.")[1]
+            glob_vars.aepbr_lts_ver = latest_tag
+            glob_vars.aepbr_lts_title = latest_title
+    else:
+        print("No internet connection. Skipping AEPBR update check.")
+
+
+
+
+    ## not in use just show disabled bones in LC dummies##
+    rbx_bn_disabled : bpy.props.BoolProperty(
+    name="Bones",
+    description="Shows Disabled Bones",
+    default = False
+    ) # type: ignore
+        
+    ## not in use just for display in test mode ##
+    recolor_folder: bpy.props.StringProperty(name="Folder",
+                                        description="Select Recolor textures folder",
+                                        default="",
+                                        maxlen=1024,
+                                        subtype="DIR_PATH") # type: ignore
+    
