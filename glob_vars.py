@@ -24,7 +24,7 @@ lts_title = None
 
 ## Tests
 update_test = False # Set to True to test out update process without uploading new version to Github (nothing else need change)
-rbx_update_test_down_link = "https://github.com/lolka213d/test321/releases/download/v.6.1/RBX_Toolbox_v.6.1.zip"
+rbx_update_test_down_link = "https://github.com/lolka213d/test321/"
 need_restart_blender = False
 
 ## Client Info ##
@@ -32,9 +32,9 @@ def get_addon_preferences():
     """Safely retrieves the addon's preferences object."""
     try:
         # The addon name must match the bl_idname in the preferences class
-        return bpy.context.preferences.addons["RBX_Toolbox"].preferences
+        return bpy.context.preferences.addons["test321"].preferences
     except (AttributeError, KeyError):
-        print("Warning: Could not access RBX_Toolbox preferences.")
+        print("Warning: Could not access test321 preferences.")
         return None
 
 

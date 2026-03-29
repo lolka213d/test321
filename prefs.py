@@ -17,7 +17,7 @@ print("**********************************************")
 class RBXToolsPreferences(bpy.types.AddonPreferences):
     bl_idname = __package__
 
-    bl_idname = "RBX_Toolbox"
+    bl_idname = "test321"
 
 
 
