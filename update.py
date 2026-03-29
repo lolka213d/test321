@@ -10,11 +10,8 @@ import asyncio
 from . import glob_vars
 
 
-if glob_vars.update_test == True:
-    UPDATE_URL = glob_vars.rbx_update_test_down_link
-else:
-    # Override computed GitHub download link with the provided release URL
-    UPDATE_URL = "https://github.com/lolka213d/test321/releases/tag/7.4"
+# Centralized update URL (use the release zip URL configured in glob_vars)
+UPDATE_URL = glob_vars.rbx_update_test_down_link
 
 
 # Global variables to track the state of the operator

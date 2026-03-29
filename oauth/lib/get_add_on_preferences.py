@@ -19,7 +19,7 @@
 # SPDX-License-Identifier: MIT
 
 # The add on is named after the root folder, so we need to step up the tree
-ADDON_NAME = "RBX_Toolbox"
+ADDON_NAME = "test321"
 
 
 def get_add_on_preferences(preferences):

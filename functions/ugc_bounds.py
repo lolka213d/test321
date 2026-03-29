@@ -1,5 +1,5 @@
 import bpy
-from RBX_Toolbox import glob_vars
+from test321 import glob_vars
 
 
 
@@ -20,7 +20,7 @@ class BUTTON_BNDS(bpy.types.Operator):
         if mode == 0:
             rbx_asset_folder = rbx_ast_fldr
         else:
-            rbx_asset_folder = bpy.context.preferences.addons['RBX_Toolbox'].preferences.rbx_asset_folder
+            rbx_asset_folder = bpy.context.preferences.addons['test321'].preferences.rbx_asset_folder
         '''
         
         rbx_bnds_list = [

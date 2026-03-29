@@ -2,7 +2,7 @@
 import bpy
 import mathutils
 import os
-from RBX_Toolbox import glob_vars
+from test321 import glob_vars
 
 from . import func_blndr_api # Ensure we have access to blender api helpers
 ### Debug prints

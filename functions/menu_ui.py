@@ -3,16 +3,16 @@ import bpy
 import os
 import glob
 import bmesh
-from RBX_Toolbox import glob_vars
+from test321 import glob_vars
 from glob_vars import addon_path
 from . import menu_pie
-from RBX_Toolbox import update
-from RBX_Toolbox import update_aepbr
-from RBX_Toolbox import props
+from test321 import update
+from test321 import update_aepbr
+from test321 import props
+from test321 import addon_version, addon_label
 
 
 
-from RBX_Toolbox import addon_version, addon_label
 #clean public lib, pycache and imports folder
 #set debug to false
 
@@ -42,7 +42,7 @@ class RBX_OT_terms_of_use(bpy.types.Operator):
 
     def invoke(self, context, event):
         if self.action == "ACCEPT":
-            prefs = context.preferences.addons["RBX_Toolbox"].preferences
+            prefs = context.preferences.addons["test321"].preferences
             prefs.accepted_terms_of_use = True
             bpy.ops.wm.save_userpref()
             self.report({'INFO'}, "Terms of Use accepted.")
@@ -83,7 +83,7 @@ class RBX_OT_terms_of_use(bpy.types.Operator):
 
     def execute(self, context):
         # "OK" button on the dialog acts as Accept
-        prefs = context.preferences.addons["RBX_Toolbox"].preferences
+        prefs = context.preferences.addons["test321"].preferences
         prefs.accepted_terms_of_use = True
         bpy.ops.wm.save_userpref()
         self.report({'INFO'}, "Terms of Use accepted.")
@@ -381,7 +381,7 @@ class TOOLBOX_MENU(bpy.types.Panel):
             # some data on the subpanel
             if context.scene.subpanel_imp_beta:
                 # Terms of Use gate: must accept before using Import (Beta)
-                addon_prefs = context.preferences.addons["RBX_Toolbox"].preferences
+                addon_prefs = context.preferences.addons["test321"].preferences
                 if not addon_prefs.accepted_terms_of_use:
                     box = layout.box()
                     box.label(text="Please accept the Terms of Use", icon='INFO')
@@ -442,7 +442,7 @@ class TOOLBOX_MENU(bpy.types.Panel):
                                     pass
                                 
                                 # Import the configuration
-                                from RBX_Toolbox.func_import_v2 import rbx_import_discovery as discovery_config
+                                from test321.func_import_v2 import rbx_import_discovery as discovery_config
 
                                 # Helper to draw a category box
                                 def draw_discovery_category(layout, category_name, icon, enum_prop, download_operator_text):
@@ -970,7 +970,7 @@ class TOOLBOX_MENU(bpy.types.Panel):
                 box.separator()
                 # Play/Pause toggle + Delete Rig
                 row = box.row()
-                play_icon = 'PAUSE' if _is_rig_spawned() and __import__('RBX_Toolbox.func_import_v2.func_lc_animations', fromlist=['_LC_Anim_V2_Globals'])._LC_Anim_V2_Globals.animationIsPlaying else 'PLAY'
+                play_icon = 'PAUSE' if _is_rig_spawned() and __import__('test321.func_import_v2.func_lc_animations', fromlist=['_LC_Anim_V2_Globals'])._LC_Anim_V2_Globals.animationIsPlaying else 'PLAY'
                 row.operator('object.rbx_lc_anim_v2_play', text="Play / Pause", icon=play_icon)
                 row.operator('object.rbx_lc_anim_v2_delete', text="Delete Rig", icon='TRASH')
 

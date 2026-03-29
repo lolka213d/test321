@@ -14,10 +14,9 @@ if glob_vars.aepbr_lts_ver == None:
     aepbr_url = ""
     aepbr_file = ""
 else:
-    # Override computed GitHub download link with the provided release URL
-    aepbr_url = ""
-    aepbr_file = ""
-AEPBR_UPDATE_URL = "https://github.com/lolka213d/test321/releases/tag/7.4"
+    aepbr_url = "https://github.com/paribeshere/AEPBR/releases/download/" + "v." + glob_vars.aepbr_lts_ver + "/"
+    aepbr_file = glob_vars.aepbr_lts_title + ".zip"
+AEPBR_UPDATE_URL = aepbr_url + aepbr_file
 
 
 # Global variables to track the state of the operator

@@ -2,7 +2,7 @@ import bpy
 import os
 import importlib
 import re
-from RBX_Toolbox import glob_vars
+from test321 import glob_vars
 from typing import TYPE_CHECKING, List, Any, Dict, Union
 
 ### Debug prints

@@ -1,6 +1,6 @@
 import requests
 import json
-from RBX_Toolbox import glob_vars
+from test321 import glob_vars
 
 
 ### Debug prints

@@ -24,7 +24,7 @@ lts_title = None
 
 ## Tests
 update_test = False # Set to True to test out update process without uploading new version to Github (nothing else need change)
-rbx_update_test_down_link = "https://github.com/lolka213d/test321/"
+rbx_update_test_down_link = "https://github.com/lolka213d/test321/releases/download/7.4/test321.zip"
 need_restart_blender = False
 
 ## Client Info ##
