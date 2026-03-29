@@ -17,7 +17,7 @@ Conditions:
 
 Attribution:
 Project Repository:
-https://github.com/Gl2imm/RBX_Toolbox
+https://github.com/lolka213d/test321
 
 This Draco decoder was created with the assistance of AI
 (Claude Opus 4.6 Thinking) and with reference to the documentation:

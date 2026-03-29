@@ -13,13 +13,8 @@ from . import glob_vars
 if glob_vars.update_test == True:
     UPDATE_URL = glob_vars.rbx_update_test_down_link
 else:
-    if glob_vars.lts_ver == None:
-        rbx_toolbox_url = ""
-        rbx_toolbox_file = ""
-    else:
-        rbx_toolbox_url = "https://github.com/Gl2imm/RBX_Toolbox/releases/download/" + glob_vars.lts_ver + "/"
-        rbx_toolbox_file = glob_vars.lts_title + ".zip"
-    UPDATE_URL = rbx_toolbox_url + rbx_toolbox_file
+    # Override computed GitHub download link with the provided release URL
+    UPDATE_URL = "https://github.com/lolka213d/test321/releases/tag/7.4"
 
 
 # Global variables to track the state of the operator

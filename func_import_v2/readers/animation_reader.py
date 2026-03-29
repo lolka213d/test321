@@ -17,7 +17,7 @@ Conditions:
 
 Attribution:
 Project Repository:
-https://github.com/Gl2imm/RBX_Toolbox
+https://github.com/lolka213d/test321
 
 This animation reader was created by reverse engineering with the assistance
 of AI (Claude Opus 4.6 Thinking). Some structural reference and flow ideas

@@ -17,7 +17,7 @@ Conditions:
 
 Attribution:
 Project Repository:
-https://github.com/Gl2imm/RBX_Toolbox
+https://github.com/lolka213d/test321
 
 This curve animation reader was created through reverse engineering
 with the assistance of AI (Claude Opus 4.6 Thinking) and extensive

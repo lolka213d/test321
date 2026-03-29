@@ -17,37 +17,37 @@ class URL_HANDLER(bpy.types.Operator):
         rbx_guides = ['Credits and Instructions','Version_log','Guide_Armature']
                     
         if rbx_link == "update":
-            webbrowser.open_new("https://github.com/Gl2imm/RBX_Toolbox/releases")
+            webbrowser.open_new("https://github.com/lolka213d/test321/releases")
             
         if rbx_link == "discord":
-            webbrowser.open_new("https://discord.gg/gFa4mY7")   
+            webbrowser.open_new("")   
             
         if rbx_link == "mixamo":
-            webbrowser.open_new("https://www.mixamo.com/") 
+            webbrowser.open_new("") 
             
         if rbx_link == "rbx github":
             webbrowser.open_new("https://github.com/Roblox/avatar") 
         
         if rbx_link == "rbx nuke":
-            webbrowser.open_new("https://www.youtube.com/watch?v=ggqvqwYQUSc")
+            webbrowser.open_new("")
                 
         if rbx_link == "zeb twitter":
-            webbrowser.open_new("https://twitter.com/Zeblyno")
+            webbrowser.open_new("")
             
         if rbx_link == "buy coffee":
-            webbrowser.open_new("https://donate.stripe.com/fZe5op0W1fjg2nC002") 
+            webbrowser.open_new("") 
 
         if rbx_link == "tips 10":
-            webbrowser.open_new("https://www.roblox.com/game-pass/1292957634/RBX-Toolbox-Tips-Supporter")   
+            webbrowser.open_new("")   
 
         if rbx_link == "tips 50":
-            webbrowser.open_new("https://www.roblox.com/game-pass/132720885/RBX-Toolbox-tips-Hero") 
+            webbrowser.open_new("") 
 
         if rbx_link == "tips 500":
-            webbrowser.open_new("https://www.roblox.com/game-pass/132688311/RBX-Toolbox-Tips-Legend") 
+            webbrowser.open_new("") 
 
         if rbx_link == "tips 1000":
-            webbrowser.open_new("https://www.roblox.com/game-pass/1292117937/RBX-Toolbox-Tips-Epic")                                              
+            webbrowser.open_new("")                                              
 
         for x in range(len(rbx_guides)):
             if rbx_link == rbx_guides[x]:
@@ -69,9 +69,9 @@ class URL_HANDLER(bpy.types.Operator):
 
 
         if rbx_link == "aepbr discord":
-            webbrowser.open_new("https://discord.gg/qSuEemywG2")
+            webbrowser.open_new("")
         if rbx_link == "aepbr notes":
-            rbx_aepbr_notes_url = "https://github.com/paribeshere/AEPBR/releases/tag/v." + glob_vars.aepbr_lts_ver
+            rbx_aepbr_notes_url = "" + glob_vars.aepbr_lts_ver
             webbrowser.open_new(rbx_aepbr_notes_url)
 
         if rbx_link == "dotnet_download":

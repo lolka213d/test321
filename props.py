@@ -938,7 +938,7 @@ class PROPERTIES_RBX(bpy.types.PropertyGroup):
 
 
     ####   Check for update addon  ####
-    '''rbx_url = 'https://github.com/Gl2imm/RBX_Toolbox/releases.atom'
+    '''rbx_url = 'https://github.com/lolka213d/test321/releases.atom'
     try:
         full_text = requests.get(rbx_url, allow_redirects=True).text
     except:
@@ -948,7 +948,7 @@ class PROPERTIES_RBX(bpy.types.PropertyGroup):
         glob_vars.lts_ver = split_1.split('</id>')[0]'''
 
     if has_internet_connection():
-        rbx_url = 'https://github.com/Gl2imm/RBX_Toolbox/releases.atom'
+        rbx_url = 'https://github.com/lolka213d/test321/releases.atom'
         rbx_result = get_name_and_ver(rbx_url)
         if rbx_result is not None:
             rbx_latest_title, rbx_latest_tag = rbx_result
