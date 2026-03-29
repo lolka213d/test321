@@ -19,16 +19,30 @@ def get_name_and_ver(url):
         print(f"ERROR getting info from: {url}")
         return None
     else:
-        # Parse the XML data
+        # Parse the XML data — handle non-XML responses gracefully
         namespace = {"atom": "http://www.w3.org/2005/Atom"}  # Namespace mapping
-        root = ET.fromstring(full_xml)
+        try:
+            root = ET.fromstring(full_xml)
+        except ET.ParseError as e:
+            print(f"ERROR parsing Atom XML from {url}: {e}")
+            return None
+
         # Get the latest entry (first one)
         latest_entry = root.find("atom:entry", namespace)
-        # Extract title
-        latest_title = latest_entry.find("atom:title", namespace).text
-        # Extract tag from the link URL
-        link = latest_entry.find("atom:link", namespace).attrib["href"]
-        latest_tag = link.split("/")[-1]  # Extract last part of URL
+        if latest_entry is None:
+            print(f"No Atom entries found in feed: {url}")
+            return None
+
+        # Extract title and link safely
+        title_node = latest_entry.find("atom:title", namespace)
+        link_node = latest_entry.find("atom:link", namespace)
+        if title_node is None or link_node is None:
+            print(f"Malformed Atom entry in feed: {url}")
+            return None
+
+        latest_title = title_node.text
+        link = link_node.attrib.get("href", "")
+        latest_tag = link.split("/")[-1] if link else None
     return latest_title, latest_tag
 
 
