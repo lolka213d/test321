@@ -1,5 +1,5 @@
 import bpy
-from test321 import glob_vars
+from test321 import glob_vars, i18n
 
 rbx_anim_error = None
 unhide_store = []
@@ -8,7 +8,7 @@ unhide_store = []
 
 ######### Avatar Buttons ########### 
 class RBX_BUTTON_AVA(bpy.types.Operator):
-    bl_label = "RBX_BUTTON_AVA"
+    bl_label = i18n.t('rbx_button_ava')
     bl_idname = "object.rbx_button_ava"
     bl_options = {'REGISTER', 'UNDO'}
     rbx_ava : bpy.props.StringProperty(name= "Added") # type: ignore
@@ -78,12 +78,12 @@ class RBX_BUTTON_AVA(bpy.types.Operator):
             selected = bpy.context.selected_objects
             
             if len(selected) != 1:
-                self.report({'ERROR'}, "Select exactly 1 Head Mesh")
+                self.report({'ERROR'}, i18n.t('select_exactly_1_head_mesh'))
                 return {'FINISHED'}
             
             obj = selected[0]
             if 'Head' not in obj.name:
-                self.report({'ERROR'}, "Head Mesh should be selected")
+                self.report({'ERROR'}, i18n.t('head_mesh_should_be_selected'))
                 return {'FINISHED'}
             
             facs_properties = [
@@ -214,7 +214,7 @@ class RBX_BUTTON_AVA(bpy.types.Operator):
             selected = bpy.context.selected_objects
             
             if len(selected) != 1 or selected[0].type != 'ARMATURE':
-                self.report({'ERROR'}, "Select exactly 1 Armature")
+                self.report({'ERROR'}, i18n.t('select_exactly_1_armature'))
                 return {'FINISHED'}
                 
             target_rig = selected[0]
@@ -226,7 +226,7 @@ class RBX_BUTTON_AVA(bpy.types.Operator):
             try:
                 bpy.ops.wm.append(directory = glob_vars.addon_path + glob_vars.rbx_blend_file + "/Collection/", filename = ava_spwn)
             except Exception as e:
-                self.report({'ERROR'}, f"Failed to append: {e}")
+                self.report({'ERROR'}, i18n.t('failed_to_append_e', e=e))
                 return {'FINISHED'}
                 
             new_objs = set(bpy.data.objects) - objs_before
@@ -277,7 +277,7 @@ class RBX_BUTTON_AVA(bpy.types.Operator):
                     else:
                         # Only SOME FACS bones are missing
                         glob_vars.rbx_facs_anim_error = "Some bones are missing in face armature."
-                    print(f"DEBUG FACS ANIMATION: Missing bones: {missing_bones}")
+                    print(i18n.t('debug_facs_animation_missing_bones_missi', missing_bones=missing_bones))
                 else:
                     glob_vars.rbx_facs_anim_error = None
                 
@@ -310,9 +310,9 @@ class RBX_BUTTON_AVA(bpy.types.Operator):
                             
                 target_rig.animation_data.action = new_action
                 
-                self.report({'INFO'}, "FACS Animation applied!")
+                self.report({'INFO'}, i18n.t('facs_animation_applied'))
             else:
-                self.report({'ERROR'}, "Could not find animation data in template")
+                self.report({'ERROR'}, i18n.t('could_not_find_animation_data_in_templat'))
                 
             # Clean up the appended items
             bpy.ops.object.select_all(action='DESELECT')

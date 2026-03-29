@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RBX Toolbox - Авторизация</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      text-align: center;
+      padding: 2rem;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    a {
+      color: #007bff;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h2>Авторизация...</h2>
+
+  <!-- This will only be shown if code is present -->
+  <div id="fallback" class="hidden">
+    <p>Если перенаправление не произошло, <a id="manualLink" href="#">нажмите здесь</a>, чтобы продолжить.</p>
+  </div>
+
+  <noscript>
+    <p><strong>Требуется JavaScript.</strong><br />
+    Пожалуйста, вернитесь в приложение RBX Toolbox.</p>
+  </noscript>
+
+  <div id="error" class="hidden"></div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get("code");
+    const state = params.get("state");
+
+    if (code) {
+      const target = `http://localhost:8000/callback?code=${encodeURIComponent(code)}&state=${encodeURIComponent(state)}`;
+      document.getElementById("manualLink").href = target;
+      document.getElementById("fallback").classList.remove("hidden");
+      window.location.href = target;
+    } else {
+      const errorBox = document.getElementById("error");
+      errorBox.classList.remove("hidden");
+      errorBox.innerHTML = "<p><strong>Ошибка:</strong> Код авторизации не был найден. Пожалуйста, повторно запустите вход из аддона.</p>";
+    }
+  </script>
+</body>
+</html>

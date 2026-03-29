@@ -1,5 +1,5 @@
 import bpy
-from test321 import glob_vars
+from test321 import glob_vars, i18n
 
 
 
@@ -24,7 +24,7 @@ def find_user_keyconfig(key):
 #### MAIN MENU ####
 class RBX_MT_MENU(bpy.types.Menu):
     bl_idname = "RBX_MT_MENU"
-    bl_label = "RBX Toolbox Menu"
+    bl_label = i18n.t('rbx_toolbox_menu')
 
     @classmethod
     def poll(cls, context):
@@ -32,10 +32,10 @@ class RBX_MT_MENU(bpy.types.Menu):
 
     def draw(self, context):
         layout = self.layout.menu_pie()
-        op = layout.prop(bpy.context.space_data.overlay, 'show_face_orientation', text='Show Face Orientation', icon='NORMALS_FACE') 
-        layout.menu('RBX_MT_MENU3', text='Set Origin', icon='LAYER_ACTIVE')
-        layout.menu('RBX_MT_MENU2', text='Recalculate Normals', icon='FACESEL')
-        layout.menu('RBX_MT_MENU4', text='Shading', icon='SHADING_TEXTURE')
+        op = layout.prop(bpy.context.space_data.overlay, 'show_face_orientation', text=i18n.t('show_face_orientation'), icon='NORMALS_FACE') 
+        layout.menu('RBX_MT_MENU3', text=i18n.t('set_origin'), icon='LAYER_ACTIVE')
+        layout.menu('RBX_MT_MENU2', text=i18n.t('recalculate_normals'), icon='FACESEL')
+        layout.menu('RBX_MT_MENU4', text=i18n.t('shading'), icon='SHADING_TEXTURE')
         
 
            
@@ -53,9 +53,9 @@ class RBX_MT_MENU2(bpy.types.Menu):
         rbx_prefs = scene.rbx_prefs
         layout = self.layout.column_flow(columns=1)
         layout.operator_context = "INVOKE_DEFAULT"
-        layout.menu('RBX_MT_MENU2_1', text='Recalc Outside', icon_value=0)
-        layout.menu('RBX_MT_MENU2_2', text='Recalc Inside', icon_value=0)
-        layout.menu('RBX_MT_MENU2_3', text='Flip Normals', icon_value=0)
+        layout.menu('RBX_MT_MENU2_1', text=i18n.t('recalc_outside'), icon_value=0)
+        layout.menu('RBX_MT_MENU2_2', text=i18n.t('recalc_inside'), icon_value=0)
+        layout.menu('RBX_MT_MENU2_3', text=i18n.t('flip_normals'), icon_value=0)
 
 
 #### Recalculate SUBMENU Recalc Outside ####        
@@ -72,8 +72,8 @@ class RBX_MT_MENU2_1(bpy.types.Menu):
         rbx_prefs = scene.rbx_prefs
         layout = self.layout.column_flow(columns=1)
         layout.operator_context = "INVOKE_DEFAULT"
-        op = layout.operator("object.rbx_button_of", text = "All Faces").rbx_of = 'pie_outside_all'
-        op = layout.operator("object.rbx_button_of", text = "Selected Faces").rbx_of = 'pie_outside'
+        op = layout.operator("object.rbx_button_of", text = i18n.t('all_faces')).rbx_of = 'pie_outside_all'
+        op = layout.operator("object.rbx_button_of", text = i18n.t('selected_faces')).rbx_of = 'pie_outside'
 
 
 #### Recalculate SUBMENU Recalc Inside ####        
@@ -90,8 +90,8 @@ class RBX_MT_MENU2_2(bpy.types.Menu):
         rbx_prefs = scene.rbx_prefs
         layout = self.layout.column_flow(columns=1)
         layout.operator_context = "INVOKE_DEFAULT"
-        op = layout.operator("object.rbx_button_of", text = "All Faces").rbx_of = 'pie_inside_all'
-        op = layout.operator("object.rbx_button_of", text = "Selected Faces").rbx_of = 'pie_inside'
+        op = layout.operator("object.rbx_button_of", text = i18n.t('all_faces')).rbx_of = 'pie_inside_all'
+        op = layout.operator("object.rbx_button_of", text = i18n.t('selected_faces')).rbx_of = 'pie_inside'
         
 
 #### Recalculate SUBMENU Recalc Flip Normals ####        
@@ -108,8 +108,8 @@ class RBX_MT_MENU2_3(bpy.types.Menu):
         rbx_prefs = scene.rbx_prefs
         layout = self.layout.column_flow(columns=1)
         layout.operator_context = "INVOKE_DEFAULT"
-        op = layout.operator("object.rbx_button_of", text = "All Faces").rbx_of = 'pie_flip_all'
-        op = layout.operator("object.rbx_button_of", text = "Selected Faces").rbx_of = 'pie_flip'
+        op = layout.operator("object.rbx_button_of", text = i18n.t('all_faces')).rbx_of = 'pie_flip_all'
+        op = layout.operator("object.rbx_button_of", text = i18n.t('selected_faces')).rbx_of = 'pie_flip'
         
 
 #### Origin MENU #### 
@@ -126,8 +126,8 @@ class RBX_MT_MENU3(bpy.types.Menu):
         rbx_prefs = scene.rbx_prefs
         layout = self.layout.column_flow(columns=1)
         layout.operator_context = "INVOKE_DEFAULT"
-        op = layout.operator("object.rbx_button_of", text = "To Geometry").rbx_of = 'orig_to_geo'
-        op = layout.operator("object.rbx_button_of", text = "To 3D Cursor").rbx_of = 'orig_to_3d'
+        op = layout.operator("object.rbx_button_of", text = i18n.t('to_geometry')).rbx_of = 'orig_to_geo'
+        op = layout.operator("object.rbx_button_of", text = i18n.t('to_3d_cursor')).rbx_of = 'orig_to_3d'
 
         
 #### Shading MENU #### 
@@ -144,7 +144,7 @@ class RBX_MT_MENU4(bpy.types.Menu):
         rbx_prefs = scene.rbx_prefs
         layout = self.layout.column_flow(columns=1)
         layout.operator_context = "INVOKE_DEFAULT"
-        op = layout.operator("object.rbx_button_of", text = "Shade Flat").rbx_of = 'shd_flat'
-        op = layout.operator("object.rbx_button_of", text = "Shade Smooth").rbx_of = 'shd_smooth'
-        op = layout.operator("object.rbx_button_of", text = "Shade Auto Smooth").rbx_of = 'shd_aut_smooth'
+        op = layout.operator("object.rbx_button_of", text = i18n.t('shade_flat')).rbx_of = 'shd_flat'
+        op = layout.operator("object.rbx_button_of", text = i18n.t('shade_smooth')).rbx_of = 'shd_smooth'
+        op = layout.operator("object.rbx_button_of", text = i18n.t('shade_auto_smooth')).rbx_of = 'shd_aut_smooth'
         #op = layout.prop(bpy.context.object.data.auto_smooth_angle,"default_value", text = "")

@@ -10,197 +10,133 @@ from test321 import update
 from test321 import update_aepbr
 from test321 import props
 from test321 import addon_version, addon_label
-
-
-
-#clean public lib, pycache and imports folder
-#set debug to false
-
-
+from test321 import i18n
 
 def get_aepbr_cur_ver():
     rbx_aepbr_fldr_path = os.path.join(addon_path, glob_vars.rbx_aepbr_fldr)
     try:
         rbx_aepbr_blend = os.listdir(rbx_aepbr_fldr_path)[0]
-        rbx_aepbr_filename = rbx_aepbr_blend.split(".bl")[0]    #split away .blend extension
-        aepbr_cur_ver = rbx_aepbr_filename.split("v.")[1]
+        rbx_aepbr_filename = rbx_aepbr_blend.split('.bl')[0]
+        aepbr_cur_ver = rbx_aepbr_filename.split('v.')[1]
     except:
-        aepbr_cur_ver = "0" #leave it at 0, will not trigger error during update of AEPBR
+        aepbr_cur_ver = '0'
     return aepbr_cur_ver
 
-
-####################################
-# Terms of Use Operator (Import Beta)
-####################################
 class RBX_OT_terms_of_use(bpy.types.Operator):
     """Terms of Use for Import (Beta)"""
-    bl_idname = "object.rbx_terms_of_use"
-    bl_label = "Terms of Use"
+    bl_idname = 'object.rbx_terms_of_use'
+    bl_label = i18n.t('terms_of_use')
     bl_options = {'REGISTER', 'INTERNAL'}
-
-    action: bpy.props.StringProperty(default="SHOW") # type: ignore
+    action: bpy.props.StringProperty(default='SHOW')
 
     def invoke(self, context, event):
-        if self.action == "ACCEPT":
-            prefs = context.preferences.addons["test321"].preferences
+        if self.action == 'ACCEPT':
+            prefs = context.preferences.addons['test321'].preferences
             prefs.accepted_terms_of_use = True
             bpy.ops.wm.save_userpref()
-            self.report({'INFO'}, "Terms of Use accepted.")
+            self.report({'INFO'}, i18n.t('terms_of_use_accepted'))
             return {'FINISHED'}
-        elif self.action == "DECLINE":
-            self.report({'WARNING'}, "Terms of Use declined.")
+        elif self.action == 'DECLINE':
+            self.report({'WARNING'}, i18n.t('terms_of_use_declined'))
             return {'CANCELLED'}
-        # SHOW: open the dialog
         return context.window_manager.invoke_props_dialog(self, width=420)
 
     def draw(self, context):
         layout = self.layout
-
-        # Agreement section
         box = layout.box()
-        box.label(text="Agreement:", icon='BOOKMARKS')
+        box.label(text=i18n.t('agreement'), icon='BOOKMARKS')
         col = box.column(align=True)
-        col.label(text="By using this tool, you agree that anything you")
-        col.label(text="download is strictly for your personal use, reference,")
-        col.label(text="and research purposes only. You hereby make a")
-        col.label(text="completely serious, legally-binding-in-spirit Pinky")
-        col.label(text="Promise not to reupload, redistribute, resell, or claim")
-        col.label(text="the downloaded content as your own.")
-
+        col.label(text=i18n.t('by_using_this_tool_you_agree_that_anythi'))
+        col.label(text=i18n.t('download_is_strictly_for_your_personal_u'))
+        col.label(text=i18n.t('and_research_purposes_only_you_hereby_ma'))
+        col.label(text=i18n.t('completely_serious_legallybindinginspiri'))
+        col.label(text=i18n.t('promise_not_to_reupload_redistribute_res'))
+        col.label(text=i18n.t('the_downloaded_content_as_your_own'))
         layout.separator()
-
-        # Warning section
         box = layout.box()
         box.alert = True
-        box.label(text="WARNING!", icon='ERROR')
+        box.label(text=i18n.t('warning'), icon='ERROR')
         col = box.column(align=True)
-        col.label(text="Roblox is actively tracking asset access and related")
-        col.label(text="activity. This includes hashes, device information, IP")
-        col.label(text="addresses, and usage patterns. They can technically")
-        col.label(text="pinpoint the source of misuse. Abuse of this tool may")
-        col.label(text="result in account suspension, termination, or further")
-        col.label(text="action. Use responsibly.")
+        col.label(text=i18n.t('roblox_is_actively_tracking_asset_access'))
+        col.label(text=i18n.t('activity_this_includes_hashes_device_inf'))
+        col.label(text=i18n.t('addresses_and_usage_patterns_they_can_technically'))
+        col.label(text=i18n.t('pinpoint_the_source_of_misuse_abuse_of_this_tool_m'))
+        col.label(text=i18n.t('result_in_account_suspension_termination_or_furthe'))
+        col.label(text=i18n.t('action_use_responsibly'))
 
     def execute(self, context):
-        # "OK" button on the dialog acts as Accept
-        prefs = context.preferences.addons["test321"].preferences
+        prefs = context.preferences.addons['test321'].preferences
         prefs.accepted_terms_of_use = True
         bpy.ops.wm.save_userpref()
-        self.report({'INFO'}, "Terms of Use accepted.")
+        self.report({'INFO'}, i18n.t('terms_of_use_accepted'))
         return {'FINISHED'}
 
-
-    #PANEL UI
-####################################
 class TOOLBOX_MENU(bpy.types.Panel):
     bl_label = addon_label
-    bl_idname = "RBX_PT_panel"
+    bl_idname = 'RBX_PT_panel'
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
-    bl_category = "RBX Tools"
-
+    bl_category = 'RBX Tools'
 
     def draw(self, context):
         layout = self.layout
         scene = context.scene
         rbx_prefs = scene.rbx_prefs
-
-        #print(glob_vars.get_login_info())
-        ######## Update Notifier ########
-        #print("lts_ver: ", glob_vars.lts_ver)
-        #print("addon_version: ", addon_version)
         if glob_vars.lts_ver is not None:
             if glob_vars.lts_ver > addon_version:
                 box = layout.box()
-                box.label(text = "Update Available: " + glob_vars.lts_ver)
-                box.operator('object.url_handler', text = "Release Notes " + glob_vars.lts_ver, icon='DOCUMENTS').rbx_link = "update"
-                if update.operator_state == "IDLE" and not glob_vars.need_restart_blender:
-                    box.operator("wm.install_update", text="Install Update", icon='IMPORT')
-                    '''elif update.operator_state == "DOWNLOADING":
-                    box.label(text=f"Downloading... {update.download_progress:.2f}%")'''
-                elif update.operator_state == "DOWNLOADING":
-                    # Display the progress bar
-                    box.prop(update.current_operator, "progress", text="Downloading", slider=True)
-                elif update.operator_state == "INSTALLING":
-                    box.label(text="Installing...")
-                elif update.operator_state == "FINISHED":
+                box.label(text=f"{i18n.t('update_available')} {glob_vars.lts_ver}")
+                box.operator('object.url_handler', text=f"{i18n.t('release_notes')} {glob_vars.lts_ver}", icon='DOCUMENTS').rbx_link = 'update'
+                if update.operator_state == 'IDLE' and (not glob_vars.need_restart_blender):
+                    box.operator('wm.check_update', text=i18n.t('check_for_updates'), icon='FILE_REFRESH')
+                    box.operator('wm.install_update', text=i18n.t('install_update'), icon='IMPORT')
+                    'elif update.operator_state == "DOWNLOADING":\n                    box.label(text=f"Downloading... {update.download_progress:.2f}%")'
+                elif update.operator_state == 'DOWNLOADING':
+                    box.prop(update.current_operator, 'progress', text=i18n.t('downloading'), slider=True)
+                elif update.operator_state == 'INSTALLING':
+                    box.label(text=i18n.t('installing'))
+                elif update.operator_state == 'FINISHED':
                     box = layout.box()
-                    box.alert = True  # 🔴 Makes the button red
-                    box.operator("wm.install_update", text="Restart Blender")
-                elif update.operator_state == "ERROR":
+                    box.alert = True
+                    box.operator('wm.install_update', text=i18n.t('restart_blender'))
+                elif update.operator_state == 'ERROR':
                     box = layout.box()
-                    box.alert = True  # 🔴 Makes the button red
-                    box.label(text=f"Error: {update.error_message}", icon='ERROR')
+                    box.alert = True
+                    box.label(text=i18n.t('error_updateerror_message', update=update), icon='ERROR')
                 if glob_vars.need_restart_blender:
-                    box.row().label(text="Logging out complete!", icon="CHECKMARK")
-                    box.alert = True  # 🔴 Makes the button red
-                    box.operator("wm.install_update", text="Restart Blender").restart_only = True
-
-
-
-
-
-        ######## oAuth Login ########
+                    box.row().label(text=i18n.t('logging_out_complete'), icon='CHECKMARK')
+                    box.alert = True
+                    box.operator('wm.install_update', text=i18n.t('restart_blender')).restart_only = True
         row = layout.row()
-        row.label(text = "Roblox Authorization", icon= "USER")
+        row.label(text=i18n.t('roblox_authorization'), icon='USER')
         box = layout.box()
         rbx = context.window_manager.rbx
         rbx_installed_dependencies = False
-
-        # 2. Dependency Installation
-        from oauth.lib import install_dependencies  # Local import
+        from oauth.lib import install_dependencies
         if not rbx.is_finished_installing_dependencies:
-            box.row().label(
-                text=f"This plugin requires installation of",
-                icon="INFO",
-            )
-            box.row().label(
-                text=f"dependencies the first time it is run.",
-            )
-            box.row().operator(
-                install_dependencies.RBX_OT_install_dependencies.bl_idname,
-                text="Installing..." if rbx.is_installing_dependencies else "Install Dependencies",
-            )
-            #return
+            box.row().label(text=i18n.t('this_plugin_requires_installation_of'), icon='INFO')
+            box.row().label(text=i18n.t('dependencies_the_first_time_it_is_run'))
+            box.row().operator(install_dependencies.RBX_OT_install_dependencies.bl_idname, text=i18n.t('installing') if rbx.is_installing_dependencies else i18n.t('install_dependencies'))
         else:
             rbx_installed_dependencies = True
-
         if rbx.needs_restart:
-            box.row().label(text="Installation complete!", icon="CHECKMARK")
-            box.alert = True  # 🔴 Makes the button red
-            box.operator("wm.install_update", text="Restart Blender").restart_only = True
-            #layout.row().label(text="Restart Blender to continue.")
-            #return
-
-        if rbx_installed_dependencies == True and not rbx.needs_restart:
-            # 3. Load Creator Details (if not done)
-            # Blender does not provide an API for us to hook into to read the creator details when
-            # the plugin loads. Instead, we will fetch this information on the first draw of the
-            # main panel
+            box.row().label(text=i18n.t('installation_complete'), icon='CHECKMARK')
+            box.alert = True
+            box.operator('wm.install_update', text=i18n.t('restart_blender')).restart_only = True
+        if rbx_installed_dependencies == True and (not rbx.needs_restart):
             if not rbx.has_called_load_creator:
-                from oauth.lib import creator_details  # Local import
-                creator_details.load_creator_details(
-                    context.window_manager, context.preferences)
-
-            # 4. Main UI Content: Login or Creator/Upload sections
+                from oauth.lib import creator_details
+                creator_details.load_creator_details(context.window_manager, context.preferences)
             if not rbx.is_logged_in:
-                # Login UI Section
-                from oauth.lib import oauth2_login_operators  # Local import
-
-                button_text_login = "Logging in..." if rbx.is_processing_login_or_logout else "Log in"
-                box.row().operator(
-                    oauth2_login_operators.RBX_OT_oauth2_login.bl_idname, text=button_text_login)
-
-                # This cancel button renders for logins requiring the browser, but not for automatic logins via refreshing a remembered token
-                if bpy.ops.rbx.oauth2_cancel_login.poll():  # poll() is a classmethod of the operator
+                from oauth.lib import oauth2_login_operators
+                button_text_login = 'Logging in...' if rbx.is_processing_login_or_logout else i18n.t('log_in')
+                box.row().operator(oauth2_login_operators.RBX_OT_oauth2_login.bl_idname, text=button_text_login)
+                if bpy.ops.rbx.oauth2_cancel_login.poll():
                     box.row().operator(oauth2_login_operators.RBX_OT_oauth2_cancel_login.bl_idname)
             else:
-                # Logged In State: Creator Section
-
-                # Avatar thumbnail — schedule fetch once, display when ready
                 try:
                     from oauth.lib import user_thumbnail
-                    _uid = glob_vars.get_login_info().get("user_id")
+                    _uid = glob_vars.get_login_info().get('user_id')
                     if _uid:
                         user_thumbnail.schedule_fetch(_uid)
                     _icon_id = user_thumbnail.get_icon_id()
@@ -208,507 +144,341 @@ class TOOLBOX_MENU(bpy.types.Panel):
                         box.template_icon(_icon_id, scale=3.0)
                 except Exception:
                     pass
-
                 top_row_creator = box.row(align=True)
                 try:
-                    from oauth.lib.oauth2_client import RbxOAuth2Client  # Local import
-                    oauth2_client = RbxOAuth2Client(rbx)  # rbx is already defined
-                    top_row_creator.label(text=f"Hello, {rbx.name}!")
+                    from oauth.lib.oauth2_client import RbxOAuth2Client
+                    oauth2_client = RbxOAuth2Client(rbx)
+                    top_row_creator.label(text=i18n.t('hello_rbxname', rbx=rbx))
                 except Exception as exception:
-                    self.report(
-                        {"ERROR"}, f"Failed to display user name: {str(exception)}\n{traceback.format_exc()}")
-                    top_row_creator.label(
-                        text="Hello, User (Error)", icon="ERROR")  # Fallback
-
-                from oauth.lib import oauth2_login_operators  # Local import
-                button_text_logout = "Working..." if rbx.is_processing_login_or_logout else "Log out"
-                top_row_creator.operator(
-                    oauth2_login_operators.RBX_OT_oauth2_logout.bl_idname, text=button_text_logout)
-
-
-
-
-
-        ######### Readme ###########
+                    self.report({'ERROR'}, f'Failed to display user name: {str(exception)}\n{traceback.format_exc()}')
+                    top_row_creator.label(text=i18n.t('hello_user_error'), icon='ERROR')
+                from oauth.lib import oauth2_login_operators
+                button_text_logout = 'Working...' if rbx.is_processing_login_or_logout else i18n.t('log_out')
+                top_row_creator.operator(oauth2_login_operators.RBX_OT_oauth2_logout.bl_idname, text=button_text_logout)
         row = layout.row()
         icon = 'DOWNARROW_HLT' if context.scene.subpanel_readme else 'RIGHTARROW'
         row.prop(context.scene, 'subpanel_readme', icon=icon, icon_only=True)
-        row.label(text = "Readme", icon= "ASSET_MANAGER")
-        # some data on the subpanel
+        row.label(text=i18n.t('readme'), icon='ASSET_MANAGER')
         if context.scene.subpanel_readme:
             box = layout.box()
-            box.operator('object.url_handler', text = "Read Instructions, Credits", icon='ARMATURE_DATA').rbx_link = "Credits and Instructions"
-            box.operator('object.url_handler', text = "Read Version Log", icon='CON_ARMATURE').rbx_link = "Version_log" 
-            
-            
+            box.operator('object.url_handler', text=i18n.t('read_instructions_credits'), icon='ARMATURE_DATA').rbx_link = 'Credits and Instructions'
+            box.operator('object.url_handler', text=i18n.t('read_version_log'), icon='CON_ARMATURE').rbx_link = 'Version_log'
             box = layout.box()
-            box.label(text = 'R15 rigs are taken from here:')
-            box.operator('object.url_handler', text = "Roblox Github", icon='URL').rbx_link = "rbx github"
-            box.label(text = 'R6 Rig taken from here:')
-            box.operator('object.url_handler', text = "Nuke Youtube", icon='URL').rbx_link = "rbx nuke"
-            box.label(text = 'You can see here how to link')
-            box.label(text = 'texture to R6 rig')
-            
-            '''
-            if rbx_assets_set != 1:
-                box.label(text = "To unlock additional features")
-                box.label(text = "Specify folder with UGC")
-                box.label(text = "blend file 'Bounds.blend'")
-            row = layout.row()
-            box.prop(addon_assets, rbx_folder)
-            if rbx_assets_set == 1:
-                box.label(text = "'Bounds.blend' linked to addon")
-            if rbx_assets_set == 2:
-                box.label(text = "'Bounds.blend' not found")
-            '''
-
-
-
-
-
-        ######### HDRI ###########
-        # subpanel
+            box.label(text=i18n.t('r15_rigs_are_taken_from_here'))
+            box.operator('object.url_handler', text=i18n.t('roblox_github'), icon='URL').rbx_link = 'rbx github'
+            box.label(text=i18n.t('r6_rig_taken_from_here'))
+            box.operator('object.url_handler', text=i18n.t('nuke_youtube'), icon='URL').rbx_link = 'rbx nuke'
+            box.label(text=i18n.t('you_can_see_here_how_to_link'))
+            box.label(text=i18n.t('texture_to_r6_rig'))
+            '\n            if rbx_assets_set != 1:\n                box.label(text = "To unlock additional features")\n                box.label(text = "Specify folder with UGC")\n                box.label(text = "blend file \'Bounds.blend\'")\n            row = layout.row()\n            box.prop(addon_assets, rbx_folder)\n            if rbx_assets_set == 1:\n                box.label(text = "\'Bounds.blend\' linked to addon")\n            if rbx_assets_set == 2:\n                box.label(text = "\'Bounds.blend\' not found")\n            '
         row = layout.row()
         icon = 'DOWNARROW_HLT' if context.scene.subpanel_hdri else 'RIGHTARROW'
         row.prop(context.scene, 'subpanel_hdri', icon=icon, icon_only=True)
-        row.label(text = "HDRI & Templates", icon= "WORLD")
-        # some data on the subpanel
+        row.label(text=i18n.t('hdri_templates'), icon='WORLD')
         if context.scene.subpanel_hdri:
             box = layout.box()
-            box.label(text = "Blender built-in HDRIs", icon ='NODE_MATERIAL')
+            box.label(text=i18n.t('blender_builtin_hdris'), icon='NODE_MATERIAL')
             box.prop(rbx_prefs, 'rbx_hdri_enum')
-            split = box.split(factor = 0.5)
-            col = split.column(align = True)
-            col.label(text = "")
-            split.operator("object.rbx_button_hdrifull", text = "Set as HDRI").rbx_hdri = 'hdri'
+            split = box.split(factor=0.5)
+            col = split.column(align=True)
+            col.label(text='')
+            split.operator('object.rbx_button_hdrifull', text=i18n.t('set_as_hdri')).rbx_hdri = 'hdri'
             try:
                 wrld = bpy.context.scene.world.name
             except:
                 pass
             else:
-                box.label(text='** Current World Controls: **')
+                box.label(text=i18n.t('current_world_controls'))
                 wrld_0 = bpy.data.worlds[wrld].node_tree.nodes['Background'].inputs['Strength']
                 wrld_1 = None
                 if wrld == 'HDRI':
-                    wrld_1 = bpy.data.worlds[wrld].node_tree.nodes['Mapping'].inputs['Rotation'] 
-                split = box.split(factor = 0.5)
-                col = split.column(align = True)
-                col.label(text='Brightness:')
-                split.prop(wrld_0, "default_value", text = "")
+                    wrld_1 = bpy.data.worlds[wrld].node_tree.nodes['Mapping'].inputs['Rotation']
+                split = box.split(factor=0.5)
+                col = split.column(align=True)
+                col.label(text=i18n.t('brightness'))
+                split.prop(wrld_0, 'default_value', text='')
                 if wrld == 'HDRI':
-                    split = box.split(factor = 0.5)
-                    col = split.column(align = True)
-                    col.label(text='Rotationn:')
-                    split.prop(wrld_1, "default_value", text = "") 
-                    
-                    
-            #### Set Sky ####  
-            box = layout.box()      
-            box.label(text = "Simple Skybox", icon ='WORLD_DATA')
+                    split = box.split(factor=0.5)
+                    col = split.column(align=True)
+                    col.label(text=i18n.t('rotationn'))
+                    split.prop(wrld_1, 'default_value', text='')
+            box = layout.box()
+            box.label(text=i18n.t('simple_skybox'), icon='WORLD_DATA')
             box.prop(rbx_prefs, 'rbx_sky_enum')
-            split = box.split(factor = 0.5)
-            col = split.column(align = True)
-            col.label(text = "")
-            split.operator("object.rbx_button_hdrifull", text = "Set Sky").rbx_hdri = 'sky'
+            split = box.split(factor=0.5)
+            col = split.column(align=True)
+            col.label(text='')
+            split.operator('object.rbx_button_hdrifull', text=i18n.t('set_sky')).rbx_hdri = 'sky'
             try:
                 sky = bpy.data.objects['Sky Sphere']
             except:
                 pass
             else:
-                box.label(text='** Skybox Controls: **') 
+                box.label(text=i18n.t('skybox_controls'))
                 sky_0 = bpy.data.objects['Sky Sphere'].active_material.node_tree.nodes['Mapping'].inputs['Location']
-                split = box.split(factor = 0.5)
-                col = split.column(align = True)
-                col.label(text='Rotation:')
-                split.prop(sky_0, 'default_value', text = "")
-            box.label(text='*You may setup your own')
-            box.label(text=' Skybox in Shading tab')                  
-
-
-            ##### Animated Staging #####
+                split = box.split(factor=0.5)
+                col = split.column(align=True)
+                col.label(text=i18n.t('rotation'))
+                split.prop(sky_0, 'default_value', text='')
+            box.label(text=i18n.t('you_may_setup_your_own'))
+            box.label(text=' Skybox in Shading tab')
             box = layout.box()
-            box.operator('object.button_cmr', text = "Add Animated Staging", icon='IMPORT').cmr = 'staging'                        
+            box.operator('object.button_cmr', text=i18n.t('add_animated_staging'), icon='IMPORT').cmr = 'staging'
             try:
                 bpy.data.objects['Staging Camera']
             except:
                 pass
-            else:               
-                #box = layout.box()
-                split = box.split(factor = 0.5)
-                col = split.column(align = True)
-                col.label(text='Camera:')
-                split.operator('object.button_cmr', text = "Set Active").cmr = 'staging-active'
+            else:
+                split = box.split(factor=0.5)
+                col = split.column(align=True)
+                col.label(text=i18n.t('camera'))
+                split.operator('object.button_cmr', text=i18n.t('set_active')).cmr = 'staging-active'
             try:
                 bkdrp = bpy.data.objects['Floor Plane']
             except:
                 pass
             else:
                 bkdrp_0 = bpy.data.objects['Floor Plane'].active_material.node_tree.nodes['Principled BSDF'].inputs['Base Color']
-                split = box.split(factor = 0.5)
-                col = split.column(align = True)
-                col.label(text='Backdrop:')
-                split.prop(bkdrp_0, 'default_value', text = "")
-
-            ##### Avatar Editor Room (New) #####
+                split = box.split(factor=0.5)
+                col = split.column(align=True)
+                col.label(text=i18n.t('backdrop'))
+                split.prop(bkdrp_0, 'default_value', text='')
             box = layout.box()
-            box.operator('object.button_cmr', text = "Add Avatar Editor Room", icon='IMPORT').cmr = 'edtr_append'                        
+            box.operator('object.button_cmr', text=i18n.t('add_avatar_editor_room'), icon='IMPORT').cmr = 'edtr_append'
             try:
                 bpy.data.objects['Avatar Editor Camera']
             except:
                 pass
-            else:               
-                #box = layout.box()
-                split = box.split(factor = 0.5)
-                col = split.column(align = True)
-                col.label(text='Camera:')
-                split.operator('object.button_cmr', text = "Set Active").cmr = 'edtr-active'
-                
-                
-            ##### Roblox Baseplate #####
+            else:
+                split = box.split(factor=0.5)
+                col = split.column(align=True)
+                col.label(text=i18n.t('camera'))
+                split.operator('object.button_cmr', text=i18n.t('set_active')).cmr = 'edtr-active'
             box = layout.box()
-            box.operator('object.button_cmr', text = "Add Roblox Baseplate", icon='IMPORT').cmr = 'bsplt_append' 
-
-
-
-
-
-        ######### Import (Beta) #########
+            box.operator('object.button_cmr', text=i18n.t('add_roblox_baseplate'), icon='IMPORT').cmr = 'bsplt_append'
         if rbx.is_logged_in:
             row = layout.row()
             icon = 'DOWNARROW_HLT' if context.scene.subpanel_imp_beta else 'RIGHTARROW'
             row.prop(context.scene, 'subpanel_imp_beta', icon=icon, icon_only=True)
-            row.label(text='Import (Beta)', icon='IMPORT')
-            # some data on the subpanel
+            row.label(text=i18n.t('import_beta'), icon='IMPORT')
             if context.scene.subpanel_imp_beta:
-                # Terms of Use gate: must accept before using Import (Beta)
-                addon_prefs = context.preferences.addons["test321"].preferences
+                addon_prefs = context.preferences.addons['test321'].preferences
                 if not addon_prefs.accepted_terms_of_use:
                     box = layout.box()
-                    box.label(text="Please accept the Terms of Use", icon='INFO')
-                    box.label(text="before using Import (Beta).")
-                    box.operator('object.rbx_terms_of_use', text="Terms of Use", icon='BOOKMARKS').action = "SHOW"
+                    box.label(text=i18n.t('please_accept_the_terms_of_use'), icon='INFO')
+                    box.label(text=i18n.t('before_using_import_beta'))
+                    box.operator('object.rbx_terms_of_use', text=i18n.t('terms_of_use'), icon='BOOKMARKS').action = 'SHOW'
                 else:
                     box = layout.box()
-                    
                     row_title = box.row()
-                    row_title.label(text='Enter ID or URL')
-                    row_title.operator('object.rbx_import_discovery_info_popup', text="", icon='INFO')
-                    
+                    row_title.label(text=i18n.t('enter_id_or_url'))
+                    row_title.operator('object.rbx_import_discovery_info_popup', text='', icon='INFO')
                     row = box.row()
                     row.enabled = not rbx_prefs.rbx_import_beta_active
-                    row.prop(rbx_prefs, 'rbx_item_field_entry', text ='')
-
+                    row.prop(rbx_prefs, 'rbx_item_field_entry', text='')
                     row = box.row()
                     row.enabled = not rbx_prefs.rbx_import_beta_active
-                    row.operator('object.rbx_import_discovery', text = "Asset Discovery")
-                    
+                    row.operator('object.rbx_import_discovery', text=i18n.t('asset_discovery'))
                     box_reset = box.box()
                     if rbx_prefs.rbx_import_beta_active:
-                         box_reset.alert = True
-                    box_reset.operator('object.rbx_import_reset', text = "Reset")
-                    
+                        box_reset.alert = True
+                    box_reset.operator('object.rbx_import_reset', text=i18n.t('reset'))
                     if glob_vars.rbx_imp_error:
-                        for idx, error_line in enumerate(glob_vars.rbx_imp_error.split('\n')):
+                        for (idx, error_line) in enumerate(glob_vars.rbx_imp_error.split('\n')):
                             if idx == 0:
                                 box_reset.label(text=error_line, icon='ERROR')
                             else:
                                 box_reset.label(text=error_line)
-
-                    # Discovered Items UI
                     if hasattr(glob_vars, 'discovered_items_data') and glob_vars.discovered_items_data:
-                            # Check if any category has items
-                            has_items = any(glob_vars.discovered_items_data.values())
-                            
-                            if has_items:
+                        has_items = any(glob_vars.discovered_items_data.values())
+                        if has_items:
+                            box = layout.box()
+                            box.label(text=i18n.t('discovered_items'), icon='PREFERENCES')
+                            if glob_vars.rbx_asset_name:
+                                box.label(text=i18n.t('name_glob_varsrbx_asset_name', glob_vars=glob_vars))
+                            if glob_vars.rbx_asset_type:
+                                box.label(text=i18n.t('type_glob_varsrbx_asset_type', glob_vars=glob_vars))
+                            if glob_vars.rbx_asset_creator:
+                                box.label(text=i18n.t('creator_glob_varsrbx_asset_creator', glob_vars=glob_vars))
+                            try:
+                                if glob_vars.rbx_asset_name_clean:
+                                    rbx_asset_img_prev = bpy.data.images.get(glob_vars.rbx_asset_name_clean + '.png')
+                                    if rbx_asset_img_prev:
+                                        rbx_asset_img_prev.preview_ensure()
+                                        box.template_icon(rbx_asset_img_prev.preview.icon_id, scale=10.0)
+                            except:
+                                pass
+                            from test321.func_import_v2 import rbx_import_discovery as discovery_config
+
+                            def draw_discovery_category(layout, category_name, icon, enum_prop, download_operator_text):
                                 box = layout.box()
-                                box.label(text="Discovered Items:", icon='PREFERENCES')
-                                
-                                # Asset Details
-                                if glob_vars.rbx_asset_name:
-                                    box.label(text=f"Name: {glob_vars.rbx_asset_name}")
-                                if glob_vars.rbx_asset_type:
-                                    box.label(text=f"Type: {glob_vars.rbx_asset_type}")
-                                if glob_vars.rbx_asset_creator:
-                                    box.label(text=f"Creator: {glob_vars.rbx_asset_creator}")
-
-                                # Thumbnail Preview
-                                try:
-                                    if glob_vars.rbx_asset_name_clean:
-                                        rbx_asset_img_prev = bpy.data.images.get(glob_vars.rbx_asset_name_clean + ".png")
-                                        if rbx_asset_img_prev:
-                                            rbx_asset_img_prev.preview_ensure()
-                                            box.template_icon(rbx_asset_img_prev.preview.icon_id, scale=10.0)
-                                except:
-                                    pass
-                                
-                                # Import the configuration
-                                from test321.func_import_v2 import rbx_import_discovery as discovery_config
-
-                                # Helper to draw a category box
-                                def draw_discovery_category(layout, category_name, icon, enum_prop, download_operator_text):
-                                    box = layout.box()
-                                    
-                                    # Header Row: Label + Options Button
-                                    row_header = box.row()
-                                    row_header.alert = True
-                                    row_header.label(text=category_name, icon=icon)
-                                    
-                                    if category_name != "Classics":
-                                        row_header.operator("object.rbx_import_discovery_options", text="", icon='PREFERENCES').category = category_name
-                                    
+                                row_header = box.row()
+                                row_header.alert = True
+                                row_header.label(text=category_name, icon=icon)
+                                if category_name != 'Classics':
+                                    row_header.operator('object.rbx_import_discovery_options', text='', icon='PREFERENCES').category = category_name
+                                box.separator()
+                                box.prop(rbx_prefs, enum_prop, text='')
+                                if category_name == 'Dynamic Head' and getattr(glob_vars, 'rbx_default_head_used', False):
+                                    col_info = box.column(align=True)
+                                    col_info.label(text=i18n.t('dynamic_head_not_found_in_bundle'), icon='INFO')
+                                    col_info.label(text=i18n.t('default_is_used'))
+                                box.separator()
+                                box.separator()
+                                box.operator('object.rbx_import_discovery_download', text=download_operator_text).category = category_name
+                                if category_name not in ('Armature', 'Models'):
+                                    box.operator('object.rbx_import_discovery_open_folder', text=i18n.t('open_folder')).category = category_name
+                                elif getattr(glob_vars, 'rbx_armature_warning_active', False):
+                                    col_info = box.column(align=True)
+                                    col_info.label(text=i18n.t('armatures_for_older_meshes'), icon='ERROR')
+                                    col_info.label(text=i18n.t('below_v400_are_not_supported'))
+                            categories_to_draw = []
+                            if glob_vars.discovered_items_data.get('Body Parts'):
+                                categories_to_draw.append(('Body Parts', 'OUTLINER_OB_ARMATURE', 'rbx_enum_body_parts', 'Download Body Parts'))
+                            if glob_vars.discovered_items_data.get('Accessory'):
+                                categories_to_draw.append(('Accessory', 'MOD_CLOTH', 'rbx_enum_accessory', 'Download Accessories'))
+                            if glob_vars.discovered_items_data.get('Dynamic Head'):
+                                categories_to_draw.append(('Dynamic Head', 'MONKEY', 'rbx_enum_dynamic_head', 'Download Dynamic Head'))
+                            if glob_vars.discovered_items_data.get('Layered Cloth'):
+                                categories_to_draw.append(('Layered Cloth', 'MOD_CLOTH', 'rbx_enum_layered_cloth', 'Download Layered Cloth'))
+                            if glob_vars.discovered_items_data.get('Face Parts'):
+                                categories_to_draw.append(('Face Parts', 'FACESEL', 'rbx_enum_face_parts', 'Download Face Parts'))
+                            if glob_vars.discovered_items_data.get('Classics'):
+                                categories_to_draw.append(('Classics', 'MOD_CLOTH', 'rbx_enum_classics', 'Download Classics'))
+                            if glob_vars.discovered_items_data.get('Gear'):
+                                categories_to_draw.append(('Gear', 'MODIFIER', 'rbx_enum_gear', 'Download Gear'))
+                            armature_relevant_cats = ['Body Parts', 'Dynamic Head', 'Layered Cloth', 'Face Parts']
+                            if any((glob_vars.discovered_items_data.get(cat) for cat in armature_relevant_cats)):
+                                categories_to_draw.append(('Armature', 'OUTLINER_OB_ARMATURE', 'rbx_arma_enum', 'Download Armature'))
+                            if glob_vars.discovered_items_data.get('Models'):
+                                categories_to_draw.append(('Models', 'MESH_CUBE', 'rbx_enum_models', 'Download Model'))
+                            if glob_vars.discovered_items_data.get('Places'):
+                                categories_to_draw.append(('Places', 'WORLD', 'rbx_enum_places', 'Download Place'))
+                            for (cat_name, icon, enum, dl_text) in categories_to_draw:
+                                draw_discovery_category(layout, cat_name, icon, enum, dl_text)
+                            if glob_vars.discovered_items_data.get('Animations'):
+                                box = layout.box()
+                                row_header = box.row()
+                                row_header.alert = True
+                                row_header.label(text=i18n.t('animations'), icon='ACTION')
+                                box.separator()
+                                box.label(text=i18n.t('target_armature'))
+                                box.prop(rbx_prefs, 'rbx_anim_armature_target', text='')
+                                box.separator()
+                                box.prop(rbx_prefs, 'rbx_enum_animations', text='')
+                                box.operator('object.rbx_import_discovery_download', text=i18n.t('check_alt_animations')).category = 'Animations'
+                                anim_subs = getattr(glob_vars, 'rbx_anim_sub_items', [])
+                                if anim_subs:
                                     box.separator()
-                                    
-                                    box.prop(rbx_prefs, enum_prop, text="")
-                                    
-                                    if category_name == "Dynamic Head" and getattr(glob_vars, 'rbx_default_head_used', False):
-                                        # Manual text wrapping for info message
-                                        col_info = box.column(align=True)
-                                        col_info.label(text="Dynamic head not found in bundle,", icon='INFO')
-                                        col_info.label(text="Default is used.")
-                                    
-                                    # Checkboxes and options are now handling in the pop-up operator
-                                    
-                                    box.separator()
-                                    box.separator()
-                                    box.operator('object.rbx_import_discovery_download', text=download_operator_text).category = category_name
-                                    
-                                    # User Request: Remove open folder button for Armature box
-                                    if category_name not in ("Armature", "Models"):
-                                        box.operator('object.rbx_import_discovery_open_folder', text="Open Folder").category = category_name
-                                    else:
-                                        if getattr(glob_vars, 'rbx_armature_warning_active', False):
-                                            col_info = box.column(align=True)
-                                            col_info.label(text="Armatures for older meshes", icon='ERROR')
-                                            col_info.label(text="(below v4.00) are not supported.")
-
-                                # Define categories to display
-                                categories_to_draw = []
-                                if glob_vars.discovered_items_data.get("Body Parts"):
-                                    categories_to_draw.append(("Body Parts", 'OUTLINER_OB_ARMATURE', "rbx_enum_body_parts", "Download Body Parts"))
-                                if glob_vars.discovered_items_data.get("Accessory"):
-                                    categories_to_draw.append(("Accessory", 'MOD_CLOTH', "rbx_enum_accessory", "Download Accessories"))
-                                if glob_vars.discovered_items_data.get("Dynamic Head"):
-                                    categories_to_draw.append(("Dynamic Head", 'MONKEY', "rbx_enum_dynamic_head", "Download Dynamic Head"))
-                                if glob_vars.discovered_items_data.get("Layered Cloth"):
-                                    categories_to_draw.append(("Layered Cloth", 'MOD_CLOTH', "rbx_enum_layered_cloth", "Download Layered Cloth"))
-                                if glob_vars.discovered_items_data.get("Face Parts"):
-                                    categories_to_draw.append(("Face Parts", 'FACESEL', "rbx_enum_face_parts", "Download Face Parts"))
-                                if glob_vars.discovered_items_data.get("Classics"):
-                                    categories_to_draw.append(("Classics", 'MOD_CLOTH', "rbx_enum_classics", "Download Classics"))
-                                if glob_vars.discovered_items_data.get("Gear"):
-                                    categories_to_draw.append(("Gear", 'MODIFIER', "rbx_enum_gear", "Download Gear"))
-                                
-                                # Check if Armature category should be shown (if any mesh-containing category exists)
-                                armature_relevant_cats = ["Body Parts", "Dynamic Head", "Layered Cloth", "Face Parts"]
-                                if any(glob_vars.discovered_items_data.get(cat) for cat in armature_relevant_cats):
-                                     categories_to_draw.append(("Armature", 'OUTLINER_OB_ARMATURE', "rbx_arma_enum", "Download Armature"))
-
-                                # Models category
-                                if glob_vars.discovered_items_data.get("Models"):
-                                    categories_to_draw.append(("Models", 'MESH_CUBE', "rbx_enum_models", "Download Model"))
-
-                                # Places category
-                                if glob_vars.discovered_items_data.get("Places"):
-                                    categories_to_draw.append(("Places", 'WORLD', "rbx_enum_places", "Download Place"))
-
-                                # Stack Layout (Vertical)
-                                for cat_name, icon, enum, dl_text in categories_to_draw:
-                                    draw_discovery_category(layout, cat_name, icon, enum, dl_text)
-                                
-                                # ── Animations Box (custom, separate from categories_to_draw) ──
-                                if glob_vars.discovered_items_data.get("Animations"):
-                                    box = layout.box()
-                                    row_header = box.row()
-                                    row_header.alert = True
-                                    row_header.label(text="Animations", icon='ACTION')
-                                    
-                                    box.separator()
-                                    
-                                    # Armature selector (dropper)
-                                    box.label(text="Target Armature:")
-                                    box.prop(rbx_prefs, 'rbx_anim_armature_target', text="")
-                                    
-                                    box.separator()
-                                    
-                                    # Animation item selector
-                                    box.prop(rbx_prefs, 'rbx_enum_animations', text="")
-                                    
-                                    # Check alt animations button (fetches + parses sub-animations)
-                                    box.operator(
-                                        'object.rbx_import_discovery_download',
-                                        text="Check alt animations"
-                                    ).category = "Animations"
-                                    
-                                    # Animation buttons (visible after download)
-                                    anim_subs = getattr(glob_vars, 'rbx_anim_sub_items', [])
-                                    if anim_subs:
-                                        box.separator()
-                                        box.label(text=f"Found {len(anim_subs)} animation(s):")
-                                        for idx, sub in enumerate(anim_subs):
-                                            box.operator(
-                                                'object.rbx_import_discovery_download',
-                                                text=sub.get('name', f"Animation {idx}"),
-                                                icon='PLAY'
-                                            ).category = f"Animations_Apply_{idx}"
-
-                                # Download Everything Button - Only show if more than one category
-                                # NOTE: Animations are excluded from Download Everything per user request
-                                if len(categories_to_draw) > 1:
-                                    box_dl_all = layout.box()
-                                    box_dl_all.label(text="Process All:", icon='IMPORT')
-                                    box_dl_all.label(text="Select checkboxes in above menus")
-                                    box_dl_all.operator('object.rbx_import_discovery_download', text="Download Everything").category = "ALL_CATEGORIES"
-
+                                    box.label(text=i18n.t('found_lenanim_subs_animations'))
+                                    for (idx, sub) in enumerate(anim_subs):
+                                        box.operator('object.rbx_import_discovery_download', text=sub.get('name', f'Animation {idx}'), icon='PLAY').category = f'Animations_Apply_{idx}'
+                            if len(categories_to_draw) > 1:
+                                box_dl_all = layout.box()
+                                box_dl_all.label(text=i18n.t('process_all'), icon='IMPORT')
+                                box_dl_all.label(text=i18n.t('select_checkboxes_in_above_menus'))
+                                box_dl_all.operator('object.rbx_import_discovery_download', text=i18n.t('download_everything')).category = 'ALL_CATEGORIES'
                     box_tmp = layout.box()
-                    box_tmp.operator('object.rbx_open_tmp_folder', text="Open Junk (tmp) Folder", icon='FILE_FOLDER')
-
-        ######### Bounds #########
-        #if rbx_assets_set == 1:
+                    box_tmp.operator('object.rbx_open_tmp_folder', text=i18n.t('open_junk_tmp_folder'), icon='FILE_FOLDER')
         row = layout.row()
         icon = 'DOWNARROW_HLT' if context.scene.subpanel_bounds else 'RIGHTARROW'
         row.prop(context.scene, 'subpanel_bounds', icon=icon, icon_only=True)
-        row.label(text='Accessory Bounds', icon='CUBE')
-        # some data on the subpanel
+        row.label(text=i18n.t('accessory_bounds'), icon='CUBE')
         if context.scene.subpanel_bounds:
             box = layout.box()
-            box.prop(rbx_prefs, 'rbx_bnds_enum', text ='UGC')
-            box.prop(rbx_prefs, 'rbx_bnds_hide')                
-            split = box.split(factor = 0.5)
-            col = split.column(align = True)            
-            col.label(text = "")
-            split.operator('object.button_bnds', text = "Spawn").bnds = "UGC"
-            
+            box.prop(rbx_prefs, 'rbx_bnds_enum', text=i18n.t('ugc'))
+            box.prop(rbx_prefs, 'rbx_bnds_hide')
+            split = box.split(factor=0.5)
+            col = split.column(align=True)
+            col.label(text='')
+            split.operator('object.button_bnds', text=i18n.t('spawn')).bnds = 'UGC'
             box = layout.box()
-            box.prop(rbx_prefs, 'rbx_bnds_avatar_enum', text ='Avatars')             
-            split = box.split(factor = 0.5)
-            col = split.column(align = True)            
-            col.label(text = "")
-            split.operator('object.button_bnds', text = "Spawn").bnds = "AVA"
-            
+            box.prop(rbx_prefs, 'rbx_bnds_avatar_enum', text=i18n.t('avatars'))
+            split = box.split(factor=0.5)
+            col = split.column(align=True)
+            col.label(text='')
+            split.operator('object.button_bnds', text=i18n.t('spawn')).bnds = 'AVA'
             box = layout.box()
-            box.prop(rbx_prefs, 'rbx_bnds_lc_enum', text ='LC')              
-            split = box.split(factor = 0.5)
-            col = split.column(align = True)            
-            col.label(text = "")
-            split.operator('object.button_bnds', text = "Spawn").bnds = "LC"
-
-
-
-
-        ######### Dummies #########
-        row = layout.row()     
+            box.prop(rbx_prefs, 'rbx_bnds_lc_enum', text=i18n.t('lc_6907b869'))
+            split = box.split(factor=0.5)
+            col = split.column(align=True)
+            col.label(text='')
+            split.operator('object.button_bnds', text=i18n.t('spawn')).bnds = 'LC'
+        row = layout.row()
         icon = 'DOWNARROW_HLT' if context.scene.subpanel_dummy else 'RIGHTARROW'
         row.prop(context.scene, 'subpanel_dummy', icon=icon, icon_only=True)
-        row.label(text='Dummy', icon='OUTLINER_OB_ARMATURE')
-        # some data on the subpanel
+        row.label(text=i18n.t('dummy'), icon='OUTLINER_OB_ARMATURE')
         if context.scene.subpanel_dummy:
             box = layout.box()
-            box.label(text = 'Dummies')
-            box.prop(rbx_prefs, 'rbx_dum_enum', text ='')
-            split = box.split(factor = 0.5)
-            col = split.column(align = True)            
-            col.label(text = "")            
-            split.operator('object.button_dmmy', text = "Spawn").dmy = 'Dummy'
-            
-
-
-
-
-
-        ######### Rigs #########
-        row = layout.row()     
+            box.label(text=i18n.t('dummies'))
+            box.prop(rbx_prefs, 'rbx_dum_enum', text='')
+            split = box.split(factor=0.5)
+            col = split.column(align=True)
+            col.label(text='')
+            split.operator('object.button_dmmy', text=i18n.t('spawn')).dmy = 'Dummy'
+        row = layout.row()
         icon = 'DOWNARROW_HLT' if context.scene.subpanel_rigs else 'RIGHTARROW'
         row.prop(context.scene, 'subpanel_rigs', icon=icon, icon_only=True)
-        row.label(text='Rigs', icon='OUTLINER_DATA_ARMATURE')
-        # some data on the subpanel
+        row.label(text=i18n.t('rigs'), icon='OUTLINER_DATA_ARMATURE')
         if context.scene.subpanel_rigs:
             box = layout.box()
-            box.label(text = 'Roblox Rigged Models')
-            box.operator('object.button_dmmy', text = "R15 Blocky Rig").dmy = 'R15 Blocky Rig'
-            box.operator('object.button_dmmy', text = "R15 Woman Rig").dmy = 'R15 Woman Rig'
-            box.operator('object.button_dmmy', text = "Plushie Template").dmy = 'Plushie Template'
-            
-            
-            ######### iiXenix Rigs #########
+            box.label(text=i18n.t('roblox_rigged_models'))
+            box.operator('object.button_dmmy', text=i18n.t('r15_blocky_rig')).dmy = 'R15 Blocky Rig'
+            box.operator('object.button_dmmy', text=i18n.t('r15_woman_rig')).dmy = 'R15 Woman Rig'
+            box.operator('object.button_dmmy', text=i18n.t('plushie_template')).dmy = 'Plushie Template'
             box = layout.box()
-            box.label(text = 'iiXenix Rigs')
-            box.operator('object.button_dmmy', text = "Multirig").dmy = 'Multirig'
-            box.operator('object.button_dmmy', text = "Multirig Faceless").dmy = 'Multirig_faceless'
-
-
-
-            ######### Paribes Rigs #########
+            box.label(text=i18n.t('iixenix_rigs'))
+            box.operator('object.button_dmmy', text=i18n.t('multirig')).dmy = 'Multirig'
+            box.operator('object.button_dmmy', text=i18n.t('multirig_faceless')).dmy = 'Multirig_faceless'
             box = layout.box()
-            box.label(text = 'Paribes Rig')
-
-            # Check if folder exists
-            #addon_path = os.path.dirname(os.path.abspath(__file__))
-            #addon_path = os.path.dirname(os.path.realpath(__file__))
+            box.label(text=i18n.t('paribes_rig'))
             aepbr_path = os.path.join(addon_path, glob_vars.rbx_aepbr_fldr)
             folder_exists = os.path.exists(aepbr_path)
-            blend_files = glob.glob(os.path.join(aepbr_path, "*.blend"))
+            blend_files = glob.glob(os.path.join(aepbr_path, '*.blend'))
             if folder_exists and blend_files:
-                #insert dummy operator
-                box.operator('object.button_dmmy', text = "AEPBR").dmy = 'aepbr'
-                ######## Update Notifier ########
+                box.operator('object.button_dmmy', text=i18n.t('aepbr')).dmy = 'aepbr'
                 if glob_vars.aepbr_lts_ver is not None:
                     aepbr_cur_ver = get_aepbr_cur_ver()
                     if glob_vars.aepbr_lts_ver > aepbr_cur_ver:
-                        box.label(text = '')
-                        box.label(text = '- - - - - - - ')
-                        box.label(text = f"Update Available:  ({aepbr_cur_ver} -> {glob_vars.aepbr_lts_ver})")
-                        box.label(text = glob_vars.aepbr_lts_title)
-                        #box.operator('object.url_handler', text = "Release Notes " + glob_vars.lts_ver, icon='DOCUMENTS').rbx_link = "update"
-                        if update_aepbr.aepbr_operator_state == "IDLE":
-                            box.operator("wm.update_aepbr", text="Install Update", icon='IMPORT')
-                            box.operator('object.url_handler', text = f"Release Notes v.{glob_vars.aepbr_lts_ver}", icon='DOCUMENTS').rbx_link = "aepbr notes"
-                        elif update_aepbr.aepbr_operator_state == "DOWNLOADING":
-                            # Display the progress bar
-                            box.prop(update_aepbr.aepbr_current_operator, "progress", text="Downloading", slider=True)
-                        elif update_aepbr.aepbr_operator_state == "INSTALLING":
-                            box.label(text="Installing...")
-                        elif update_aepbr.aepbr_operator_state == "ERROR":
+                        box.label(text='')
+                        box.label(text='- - - - - - - ')
+                        box.label(text=i18n.t('update_available_aepbr_cur_ver_glob_vars', aepbr_cur_ver=aepbr_cur_ver, glob_vars=glob_vars))
+                        box.label(text=glob_vars.aepbr_lts_title)
+                        if update_aepbr.aepbr_operator_state == 'IDLE':
+                            box.operator('wm.update_aepbr', text=i18n.t('install_update'), icon='IMPORT')
+                            box.operator('object.url_handler', text=i18n.t('release_notes_vglob_varsaepbr_lts_ver', glob_vars=glob_vars), icon='DOCUMENTS').rbx_link = 'aepbr notes'
+                        elif update_aepbr.aepbr_operator_state == 'DOWNLOADING':
+                            box.prop(update_aepbr.aepbr_current_operator, 'progress', text=i18n.t('downloading'), slider=True)
+                        elif update_aepbr.aepbr_operator_state == 'INSTALLING':
+                            box.label(text=i18n.t('installing'))
+                        elif update_aepbr.aepbr_operator_state == 'ERROR':
                             box = layout.box()
-                            box.alert = True  # 🔴 Makes the button red
-                            box.label(text=f"Error: {update_aepbr.aepbr_error_message}", icon='ERROR')
-            ### download rig if not installed
-            else:
-                if update_aepbr.aepbr_operator_state == "IDLE":
-                    if glob_vars.aepbr_lts_ver is None:
-                        box.enabled = False
-                        box.operator("wm.update_aepbr", text=f"Dowload rig (v.{glob_vars.aepbr_lts_ver})", icon='IMPORT')
-                        box.label(text="No inernet Connection", icon='ERROR')
-                    else:
-                        box.operator("wm.update_aepbr", text=f"Dowload rig (v.{glob_vars.aepbr_lts_ver})", icon='IMPORT')
-                elif update_aepbr.aepbr_operator_state == "DOWNLOADING":
-                    # Display the progress bar
-                    box.prop(update_aepbr.aepbr_current_operator, "progress", text="Downloading", slider=True)
-                elif update_aepbr.aepbr_operator_state == "INSTALLING":
-                    box.label(text="Installing...")
-                elif update_aepbr.aepbr_operator_state == "ERROR":
-                    box = layout.box()
-                    box.alert = True  # 🔴 Makes the button red
-                    box.label(text=f"Error: {update_aepbr.aepbr_error_message}", icon='ERROR')
-
-            box = layout.box()    
-            box.operator('object.url_handler', text = "AEPBR Discord", icon='URL').rbx_link = "aepbr discord"
-                
-
-
-
-
-
-
-            ######### R6 Rig #########
+                            box.alert = True
+                            box.label(text=i18n.t('error_update_aepbraepbr_error_message', update_aepbr=update_aepbr), icon='ERROR')
+            elif update_aepbr.aepbr_operator_state == 'IDLE':
+                if glob_vars.aepbr_lts_ver is None:
+                    box.enabled = False
+                    box.operator('wm.update_aepbr', text=i18n.t('dowload_rig_vglob_varsaepbr_lts_ver', glob_vars=glob_vars), icon='IMPORT')
+                    box.label(text=i18n.t('no_inernet_connection'), icon='ERROR')
+                else:
+                    box.operator('wm.update_aepbr', text=i18n.t('dowload_rig_vglob_varsaepbr_lts_ver', glob_vars=glob_vars), icon='IMPORT')
+            elif update_aepbr.aepbr_operator_state == 'DOWNLOADING':
+                box.prop(update_aepbr.aepbr_current_operator, 'progress', text=i18n.t('downloading'), slider=True)
+            elif update_aepbr.aepbr_operator_state == 'INSTALLING':
+                box.label(text=i18n.t('installing'))
+            elif update_aepbr.aepbr_operator_state == 'ERROR':
+                box = layout.box()
+                box.alert = True
+                box.label(text=i18n.t('error_update_aepbraepbr_error_message', update_aepbr=update_aepbr), icon='ERROR')
             box = layout.box()
-            box.label(text = 'R6 from Nuke (YT)')
-            box.operator('object.button_dmmy', text = "Rigged R6").dmy = 'Rigged R6'
-            ######### Wear Clothing #########
-            box.label(text = '')
-            box.label(text = 'Wear Character (Select Armature)')
-            box.label(text = 'Currently Only R6 Rig is supported')
-            box.operator('object.button_wear', text = "Modify Character").rbx_cloth = 'mod'
-            
+            box.operator('object.url_handler', text=i18n.t('aepbr_discord'), icon='URL').rbx_link = 'aepbr discord'
+            box = layout.box()
+            box.label(text=i18n.t('r6_from_nuke_yt'))
+            box.operator('object.button_dmmy', text=i18n.t('rigged_r6')).dmy = 'Rigged R6'
+            box.label(text='')
+            box.label(text=i18n.t('wear_character_select_armature'))
+            box.label(text=i18n.t('currently_only_r6_rig_is_supported'))
+            box.operator('object.button_wear', text=i18n.t('modify_character')).rbx_cloth = 'mod'
             cloth_panel = False
             try:
                 rbx_object = bpy.context.selected_objects
@@ -724,129 +494,104 @@ class TOOLBOX_MENU(bpy.types.Panel):
                 else:
                     cloth_panel = False
             except:
-                pass 
+                pass
             if cloth_panel == True:
                 box = layout.box()
-                box.label(text = '- - - - - - - - - - - HEAD - - - - - - - - - - -')
-                #box.label(text = 'Head')
-                rbx_cloth_head = bpy.data.materials[f"R6 Head_{rbx_object.name}"].node_tree.nodes['R6 Cloth']
+                box.label(text=i18n.t('head'))
+                rbx_cloth_head = bpy.data.materials[f'R6 Head_{rbx_object.name}'].node_tree.nodes['R6 Cloth']
                 cloth_head = rbx_cloth_head.inputs['Skin Tone']
-                split = box.split(factor = 0.5)
-                col = split.column(align = True)
-                col.label(text='Skin Tone:')
-                split.prop(cloth_head, "default_value", text = "")
+                split = box.split(factor=0.5)
+                col = split.column(align=True)
+                col.label(text=i18n.t('skin_tone'))
+                split.prop(cloth_head, 'default_value', text='')
                 if glob_vars.rbx_face_filename == None:
-                    box.label(text = 'Loaded Face: None')
+                    box.label(text=i18n.t('loaded_face_none'))
                 else:
-                    box.label(text = f'Loaded Face: {glob_vars.rbx_face_name}')
-                box.label(text = 'Enter Face ID or URL')
-                box.prop(rbx_prefs, 'rbx_face', text ='')
-                box.operator('object.button_wear', text = "Import").rbx_cloth = 'face'
+                    box.label(text=i18n.t('loaded_face_glob_varsrbx_face_name', glob_vars=glob_vars))
+                box.label(text=i18n.t('enter_face_id_or_url'))
+                box.prop(rbx_prefs, 'rbx_face', text='')
+                box.operator('object.button_wear', text=i18n.t('import')).rbx_cloth = 'face'
                 if glob_vars.rbx_face_netw_error != None:
-                    box.label(text = glob_vars.rbx_face_netw_error, icon='ERROR') 
-                #box.label(text = '')
-                
-                
+                    box.label(text=glob_vars.rbx_face_netw_error, icon='ERROR')
                 box = layout.box()
-                box.label(text = '- - - - - - - - - - - SHIRT - - - - - - - - - - -')
-                #box.label(text = 'Shirt')
-                rbx_cloth_shirt = bpy.data.materials[f"R6 Shirt_{rbx_object.name}"].node_tree.nodes['R6 Cloth']
+                box.label(text=i18n.t('shirt'))
+                rbx_cloth_shirt = bpy.data.materials[f'R6 Shirt_{rbx_object.name}'].node_tree.nodes['R6 Cloth']
                 cloth_shirt = rbx_cloth_shirt.inputs['Skin Tone']
-                split = box.split(factor = 0.5)
-                col = split.column(align = True)
-                col.label(text='Skin Tone:')
-                split.prop(cloth_shirt, "default_value", text = "")
+                split = box.split(factor=0.5)
+                col = split.column(align=True)
+                col.label(text=i18n.t('skin_tone'))
+                split.prop(cloth_shirt, 'default_value', text='')
                 if glob_vars.rbx_shirt_filename == None:
-                    box.label(text = 'Loaded Shirt: None')
+                    box.label(text=i18n.t('loaded_shirt_none'))
                 else:
-                    box.label(text = f'Loaded Shirt: {glob_vars.rbx_shirt_name}')
-                box.label(text = 'Enter Shirt ID or URL')
-                box.prop(rbx_prefs, 'rbx_shirt', text ='')
-                box.operator('object.button_wear', text = "Import").rbx_cloth = 'shirt'
+                    box.label(text=i18n.t('loaded_shirt_glob_varsrbx_shirt_name', glob_vars=glob_vars))
+                box.label(text=i18n.t('enter_shirt_id_or_url'))
+                box.prop(rbx_prefs, 'rbx_shirt', text='')
+                box.operator('object.button_wear', text=i18n.t('import')).rbx_cloth = 'shirt'
                 if glob_vars.rbx_shirt_netw_error != None:
-                    box.label(text = glob_vars.rbx_shirt_netw_error, icon='ERROR') 
-                #box.label(text = '')
-                
-                
+                    box.label(text=glob_vars.rbx_shirt_netw_error, icon='ERROR')
                 box = layout.box()
-                box.label(text = '- - - - - - - - - - - TORSO - - - - - - - - - -')
-                #box.label(text = 'Torso')
-                rbx_cloth_torso = bpy.data.materials[f"R6 Torso_{rbx_object.name}"].node_tree.nodes['R6 Cloth']
+                box.label(text=i18n.t('torso'))
+                rbx_cloth_torso = bpy.data.materials[f'R6 Torso_{rbx_object.name}'].node_tree.nodes['R6 Cloth']
                 cloth_torso = rbx_cloth_torso.inputs['Skin Tone']
-                split = box.split(factor = 0.5)
-                col = split.column(align = True)
-                col.label(text='Skin Tone:')
-                split.prop(cloth_torso, "default_value", text = "")
+                split = box.split(factor=0.5)
+                col = split.column(align=True)
+                col.label(text=i18n.t('skin_tone'))
+                split.prop(cloth_torso, 'default_value', text='')
                 if glob_vars.rbx_shirt_filename == None:
-                    box.label(text = 'Loaded Shirt: None')
+                    box.label(text=i18n.t('loaded_shirt_none'))
                 else:
-                    box.label(text = f'Loaded Shirt: {glob_vars.rbx_shirt_name}')
+                    box.label(text=i18n.t('loaded_shirt_glob_varsrbx_shirt_name', glob_vars=glob_vars))
                 if glob_vars.rbx_pants_filename == None:
-                    box.label(text = 'Loaded Pants: None')
+                    box.label(text=i18n.t('loaded_pants_none'))
                 else:
-                    box.label(text = f'Loaded Pants: {glob_vars.rbx_pants_name}')
-                #box.label(text = '')
-                
-                
+                    box.label(text=i18n.t('loaded_pants_glob_varsrbx_pants_name', glob_vars=glob_vars))
                 box = layout.box()
-                box.label(text = '- - - - - - - - - - - PANTS - - - - - - - - - - -')
-                #box.label(text = 'Pants')
-                rbx_cloth_pants = bpy.data.materials[f"R6 Pants_{rbx_object.name}"].node_tree.nodes['R6 Cloth']
+                box.label(text=i18n.t('pants'))
+                rbx_cloth_pants = bpy.data.materials[f'R6 Pants_{rbx_object.name}'].node_tree.nodes['R6 Cloth']
                 cloth_pants = rbx_cloth_pants.inputs['Skin Tone']
-                split = box.split(factor = 0.5)
-                col = split.column(align = True)
-                col.label(text='Skin Tone:')
-                split.prop(cloth_pants, "default_value", text = "")
+                split = box.split(factor=0.5)
+                col = split.column(align=True)
+                col.label(text=i18n.t('skin_tone'))
+                split.prop(cloth_pants, 'default_value', text='')
                 if glob_vars.rbx_pants_filename == None:
-                    box.label(text = 'Loaded Pants: None')
+                    box.label(text=i18n.t('loaded_pants_none'))
                 else:
-                    box.label(text = f'Loaded Pants: {glob_vars.rbx_pants_name}')
-                box.label(text = 'Enter Pants ID or URL')
-                box.prop(rbx_prefs, 'rbx_pants', text ='')
-                box.operator('object.button_wear', text = "Import").rbx_cloth = 'pants'
+                    box.label(text=i18n.t('loaded_pants_glob_varsrbx_pants_name', glob_vars=glob_vars))
+                box.label(text=i18n.t('enter_pants_id_or_url'))
+                box.prop(rbx_prefs, 'rbx_pants', text='')
+                box.operator('object.button_wear', text=i18n.t('import')).rbx_cloth = 'pants'
                 if glob_vars.rbx_pants_netw_error != None:
-                    box.label(text = glob_vars.rbx_pants_netw_error, icon='ERROR') 
-                
-                box.label(text = '')
-                box.operator('object.button_wear', text = "Textures Folder").rbx_cloth = "folder"
-                
-
-
-
-
-        ######### Hairs #########
-        row = layout.row()     
+                    box.label(text=glob_vars.rbx_pants_netw_error, icon='ERROR')
+                box.label(text='')
+                box.operator('object.button_wear', text=i18n.t('textures_folder')).rbx_cloth = 'folder'
+        row = layout.row()
         icon = 'DOWNARROW_HLT' if context.scene.subpanel_hair else 'RIGHTARROW'
         row.prop(context.scene, 'subpanel_hair', icon=icon, icon_only=True)
-        row.label(text='Hairs', icon='OUTLINER_OB_FORCE_FIELD')
-        # some data on the subpanel
+        row.label(text=i18n.t('hairs'), icon='OUTLINER_OB_FORCE_FIELD')
         if context.scene.subpanel_hair:
             box = layout.box()
-            box.label(text = 'Dummie Heads Only')
-            box.prop(rbx_prefs, 'rbx_dum_hd_enum', text ='')
-            split = box.split(factor = 0.5)
-            col = split.column(align = True)            
-            col.label(text = "")            
-            split.operator('object.button_hair', text = "Spawn").rbx_hair = 'Dummy_head' 
-            
+            box.label(text=i18n.t('dummie_heads_only'))
+            box.prop(rbx_prefs, 'rbx_dum_hd_enum', text='')
+            split = box.split(factor=0.5)
+            col = split.column(align=True)
+            col.label(text='')
+            split.operator('object.button_hair', text=i18n.t('spawn')).rbx_hair = 'Dummy_head'
             box.separator()
-            split = box.split(factor = 0.7)
-            col = split.column(align = True)
-            col.label(text='Starter Hair Template:')
-            split.operator('object.button_hair', text = "Add").rbx_hair = 'hair_template'
-            
-            box = layout.box() 
-            box.label(text = 'Bake Hair Texture')
-            box.operator('object.button_hair', text = "Add Hair Shader").rbx_hair = 'hair_shader'
-
-
+            split = box.split(factor=0.7)
+            col = split.column(align=True)
+            col.label(text=i18n.t('starter_hair_template'))
+            split.operator('object.button_hair', text=i18n.t('add')).rbx_hair = 'hair_template'
+            box = layout.box()
+            box.label(text=i18n.t('bake_hair_texture'))
+            box.operator('object.button_hair', text=i18n.t('add_hair_shader')).rbx_hair = 'hair_shader'
             try:
                 rbx_hair_color = bpy.data.objects['Hair Color']
             except:
                 pass
             else:
                 rbx_hair_cntrl = rbx_hair_color.active_material.node_tree.nodes['Hair shader v.2.0']
-                box.label(text='** Hair Color Controls: **')
+                box.label(text=i18n.t('hair_color_controls'))
                 hrs_0 = rbx_hair_cntrl.inputs['Hair Color']
                 hrs_1 = rbx_hair_cntrl.inputs['Hair Strands']
                 hrs_2 = rbx_hair_cntrl.inputs['Strands Color']
@@ -855,311 +600,237 @@ class TOOLBOX_MENU(bpy.types.Panel):
                 hrs_5 = rbx_hair_cntrl.inputs['Top Position']
                 hrs_6 = rbx_hair_cntrl.inputs['Bottom Position']
                 hrs_7 = rbx_hair_cntrl.inputs['Bumps']
-                
-                split = box.split(factor = 0.5)
-                col = split.column(align = True)
-                col.label(text='Hair Color:')
-                split.prop(hrs_0, "default_value", text = "")
-                split = box.split(factor = 0.5)
-                col = split.column(align = True)
-                col.label(text='Hair Strands:')
-                split.prop(hrs_1, "default_value", text = "")
-                split = box.split(factor = 0.5)
-                col = split.column(align = True)
-                col.label(text='Strands Color:')
-                split.prop(hrs_2, "default_value", text = "")
-                split = box.split(factor = 0.5)
-                col = split.column(align = True)
-                col.label(text='Highlight Color:')
-                split.prop(hrs_3, "default_value", text = "")
-                split = box.split(factor = 0.5)
-                col = split.column(align = True)
-                col.label(text='Highlight Scale:')
-                split.prop(hrs_4, "default_value", text = "")
-                split = box.split(factor = 0.5)
-                col = split.column(align = True)
-                col.label(text='Top Position:')
-                split.prop(hrs_5, "default_value", text = "")
-                split = box.split(factor = 0.5)
-                col = split.column(align = True)
-                col.label(text='Bottom Position:')
-                split.prop(hrs_6, "default_value", text = "")
-                split = box.split(factor = 0.5)
-                col = split.column(align = True)
-                col.label(text='Bumps:')
-                split.prop(hrs_7, "default_value", text = "")
-            
+                split = box.split(factor=0.5)
+                col = split.column(align=True)
+                col.label(text=i18n.t('hair_color'))
+                split.prop(hrs_0, 'default_value', text='')
+                split = box.split(factor=0.5)
+                col = split.column(align=True)
+                col.label(text=i18n.t('hair_strands'))
+                split.prop(hrs_1, 'default_value', text='')
+                split = box.split(factor=0.5)
+                col = split.column(align=True)
+                col.label(text=i18n.t('strands_color'))
+                split.prop(hrs_2, 'default_value', text='')
+                split = box.split(factor=0.5)
+                col = split.column(align=True)
+                col.label(text=i18n.t('highlight_color'))
+                split.prop(hrs_3, 'default_value', text='')
+                split = box.split(factor=0.5)
+                col = split.column(align=True)
+                col.label(text=i18n.t('highlight_scale'))
+                split.prop(hrs_4, 'default_value', text='')
+                split = box.split(factor=0.5)
+                col = split.column(align=True)
+                col.label(text=i18n.t('top_position'))
+                split.prop(hrs_5, 'default_value', text='')
+                split = box.split(factor=0.5)
+                col = split.column(align=True)
+                col.label(text=i18n.t('bottom_position'))
+                split.prop(hrs_6, 'default_value', text='')
+                split = box.split(factor=0.5)
+                col = split.column(align=True)
+                col.label(text=i18n.t('bumps'))
+                split.prop(hrs_7, 'default_value', text='')
                 box.separator()
-                split = box.split(factor = 0.3)
-                col = split.column(align = True)
+                split = box.split(factor=0.3)
+                col = split.column(align=True)
                 col.label(text='')
-                split.operator('object.button_hair', text = "Bake Texture").rbx_hair = 'hair_bake'
-
-                box.operator('object.button_hair', text = "View Image").rbx_hair = 'hair_save'
-
-
-
-
-
-        ######### Layered Cloth Dummies #########
-        row = layout.row()   
+                split.operator('object.button_hair', text=i18n.t('bake_texture')).rbx_hair = 'hair_bake'
+                box.operator('object.button_hair', text=i18n.t('view_image')).rbx_hair = 'hair_save'
+        row = layout.row()
         icon = 'DOWNARROW_HLT' if context.scene.subpanel_lc else 'RIGHTARROW'
         row.prop(context.scene, 'subpanel_lc', icon=icon, icon_only=True)
-        row.label(text='Layered Cloth', icon='MATCLOTH')
-        # some data on the subpanel
+        row.label(text=i18n.t('layered_cloth'), icon='MATCLOTH')
         if context.scene.subpanel_lc:
             box = layout.box()
-            box.label(text = 'Cages')
-            box.prop(rbx_prefs, 'rbx_lc_dum_enum', text ='')
-            split = box.split(factor = 0.5)
-            col = split.column(align = True) 
-            col.operator('object.rbx_button_lc', text = "Cages").rbx_lc = "_Cage"           
-            split.operator('object.rbx_button_lc', text = "Armature").rbx_lc = "_Arma"
-
-
+            box.label(text=i18n.t('cages'))
+            box.prop(rbx_prefs, 'rbx_lc_dum_enum', text='')
+            split = box.split(factor=0.5)
+            col = split.column(align=True)
+            col.operator('object.rbx_button_lc', text=i18n.t('cages')).rbx_lc = '_Cage'
+            split.operator('object.rbx_button_lc', text=i18n.t('armature')).rbx_lc = '_Arma'
             box = layout.box()
             try:
-                if len(bpy.context.selected_objects) == 1: 
+                if len(bpy.context.selected_objects) == 1:
                     for i in bpy.context.selected_objects:
                         if i.type == 'ARMATURE':
-                            box.prop(bpy.context.object, 'show_in_front', text ='Show Bones Infront')
-                            box.prop(bpy.context.object.data, 'show_names', text ='Show Bone Names')
+                            box.prop(bpy.context.object, 'show_in_front', text=i18n.t('show_bones_infront'))
+                            box.prop(bpy.context.object.data, 'show_names', text=i18n.t('show_bone_names'))
                 else:
-                    box.enabled=False
-                    box.prop(rbx_prefs, 'rbx_bn_disabled', text ='Show Bones Infront')
-                    box.prop(rbx_prefs, 'rbx_bn_disabled', text ='Show Bone Names')  
+                    box.enabled = False
+                    box.prop(rbx_prefs, 'rbx_bn_disabled', text=i18n.t('show_bones_infront'))
+                    box.prop(rbx_prefs, 'rbx_bn_disabled', text=i18n.t('show_bone_names'))
             except:
-                box.enabled=False
-                box.prop(rbx_prefs, 'rbx_bn_disabled', text ='Show Bones Infront')
-                box.prop(rbx_prefs, 'rbx_bn_disabled', text ='Show Bone Names')   
-                
-            
-
-
-            ###### LC ANIMATION TEST ######
+                box.enabled = False
+                box.prop(rbx_prefs, 'rbx_bn_disabled', text=i18n.t('show_bones_infront'))
+                box.prop(rbx_prefs, 'rbx_bn_disabled', text=i18n.t('show_bone_names'))
             box = layout.box()
             row_title = box.row()
-            row_title.label(text='LC Animation Test')
-            row_title.operator('object.rbx_lc_anim_test_info_popup', text="", icon='INFO')
-            box.label(text = '1. Select LC Armature')
-            box.prop_search(scene, "rbx_lc_anim_armature", scene, "objects")
-            box.label(text = '2. Select Rig to spawn')
-            box.prop(rbx_prefs, 'rbx_lc_anim_v2_rig_enum', text = '')
+            row_title.label(text=i18n.t('lc_animation_test'))
+            row_title.operator('object.rbx_lc_anim_test_info_popup', text='', icon='INFO')
+            box.label(text=i18n.t('1_select_lc_armature'))
+            box.prop_search(scene, 'rbx_lc_anim_armature', scene, 'objects')
+            box.label(text=i18n.t('2_select_rig_to_spawn'))
+            box.prop(rbx_prefs, 'rbx_lc_anim_v2_rig_enum', text='')
             box.separator()
-            box.operator('object.rbx_lc_anim_v2', text = "Spawn Rig", icon='ARMATURE_DATA')
-
-            # Show animation controls only when rig is spawned
+            box.operator('object.rbx_lc_anim_v2', text=i18n.t('spawn_rig'), icon='ARMATURE_DATA')
             from ..func_import_v2.func_lc_animations import _is_rig_spawned
             if _is_rig_spawned():
                 box.separator()
-                box.label(text = 'Animations:')
-                # 2x2 grid: Idle Walk / Move Run
+                box.label(text=i18n.t('animations_6c85be98'))
                 row = box.row(align=True)
-                row.operator('object.rbx_lc_anim_v2_add_anim', text="Idle", icon='ARMATURE_DATA').anim_type = "IDLE"
-                row.operator('object.rbx_lc_anim_v2_add_anim', text="Walk", icon='ARMATURE_DATA').anim_type = "WALK"
+                row.operator('object.rbx_lc_anim_v2_add_anim', text=i18n.t('idle'), icon='ARMATURE_DATA').anim_type = 'IDLE'
+                row.operator('object.rbx_lc_anim_v2_add_anim', text=i18n.t('walk'), icon='ARMATURE_DATA').anim_type = 'WALK'
                 row = box.row(align=True)
-                row.operator('object.rbx_lc_anim_v2_add_anim', text="Move", icon='ARMATURE_DATA').anim_type = "MOVE"
-                row.operator('object.rbx_lc_anim_v2_add_anim', text="Run", icon='ARMATURE_DATA').anim_type = "RUN"
+                row.operator('object.rbx_lc_anim_v2_add_anim', text=i18n.t('move'), icon='ARMATURE_DATA').anim_type = 'MOVE'
+                row.operator('object.rbx_lc_anim_v2_add_anim', text=i18n.t('run'), icon='ARMATURE_DATA').anim_type = 'RUN'
                 row = box.row(align=True)
-                row.operator('object.rbx_lc_anim_v2_add_anim', text="Swim", icon='ARMATURE_DATA').anim_type = "SWIM"
-                row.operator('object.rbx_lc_anim_v2_add_anim', text="Climb", icon='ARMATURE_DATA').anim_type = "CLIMB"
+                row.operator('object.rbx_lc_anim_v2_add_anim', text=i18n.t('swim'), icon='ARMATURE_DATA').anim_type = 'SWIM'
+                row.operator('object.rbx_lc_anim_v2_add_anim', text=i18n.t('climb'), icon='ARMATURE_DATA').anim_type = 'CLIMB'
                 row = box.row(align=True)
-                row.operator('object.rbx_lc_anim_v2_add_anim', text="Jump", icon='ARMATURE_DATA').anim_type = "JUMP"
-                row.operator('object.rbx_lc_anim_v2_add_anim', text="Fall", icon='ARMATURE_DATA').anim_type = "FALL"
-
+                row.operator('object.rbx_lc_anim_v2_add_anim', text=i18n.t('jump'), icon='ARMATURE_DATA').anim_type = 'JUMP'
+                row.operator('object.rbx_lc_anim_v2_add_anim', text=i18n.t('fall'), icon='ARMATURE_DATA').anim_type = 'FALL'
                 box.separator()
-                # Play/Pause toggle + Delete Rig
                 row = box.row()
                 play_icon = 'PAUSE' if _is_rig_spawned() and __import__('test321.func_import_v2.func_lc_animations', fromlist=['_LC_Anim_V2_Globals'])._LC_Anim_V2_Globals.animationIsPlaying else 'PLAY'
-                row.operator('object.rbx_lc_anim_v2_play', text="Play / Pause", icon=play_icon)
-                row.operator('object.rbx_lc_anim_v2_delete', text="Delete Rig", icon='TRASH')
-
-                # Animation scrub slider (0-100% mapped to frame range)
-                box.prop(scene, "rbx_lc_anim_scrub", text="Scrub", slider=True)
-
-                # Speed control
+                row.operator('object.rbx_lc_anim_v2_play', text=i18n.t('play_pause'), icon=play_icon)
+                row.operator('object.rbx_lc_anim_v2_delete', text=i18n.t('delete_rig'), icon='TRASH')
+                box.prop(scene, 'rbx_lc_anim_scrub', text=i18n.t('scrub'), slider=True)
                 from ..func_import_v2.func_lc_animations import _LC_Anim_V2_Globals
                 cur_speed = round(_LC_Anim_V2_Globals.currentSpeed, 2)
-                box.label(text = 'Speed:')
+                box.label(text=i18n.t('speed'))
                 row = box.row(align=True)
-                op = row.operator('object.rbx_lc_anim_v2_speed', text="0.1x", depress=(cur_speed == 0.10))
+                op = row.operator('object.rbx_lc_anim_v2_speed', text=i18n.t('01x_07c8fdc8'), depress=cur_speed == 0.1)
                 op.speed = 0.1
-                op = row.operator('object.rbx_lc_anim_v2_speed', text="0.25x", depress=(cur_speed == 0.25))
+                op = row.operator('object.rbx_lc_anim_v2_speed', text=i18n.t('025x_a505df0a'), depress=cur_speed == 0.25)
                 op.speed = 0.25
-                op = row.operator('object.rbx_lc_anim_v2_speed', text="0.5x", depress=(cur_speed == 0.50))
+                op = row.operator('object.rbx_lc_anim_v2_speed', text=i18n.t('05x_60c9b4d8'), depress=cur_speed == 0.5)
                 op.speed = 0.5
-                op = row.operator('object.rbx_lc_anim_v2_speed', text="1x", depress=(cur_speed == 1.00))
+                op = row.operator('object.rbx_lc_anim_v2_speed', text=i18n.t('1x_38684612'), depress=cur_speed == 1.0)
                 op.speed = 1.0
-
-
-
-        ######### Layered Cloth Samples #########
             box = layout.box()
-            box.label(text = 'Roblox Samples from Github')
-            box.prop(rbx_prefs, 'rbx_lc_spl_enum', text ='')
-            split = box.split(factor = 0.5)
-            col = split.column(align = True)            
-            col.label(text = "")
-            split.operator('object.rbx_button_lc', text = "Spawn").rbx_lc = "sample" 
-            
+            box.label(text=i18n.t('roblox_samples_from_github'))
+            box.prop(rbx_prefs, 'rbx_lc_spl_enum', text='')
+            split = box.split(factor=0.5)
+            col = split.column(align=True)
+            col.label(text='')
+            split.operator('object.rbx_button_lc', text=i18n.t('spawn')).rbx_lc = 'sample'
             box = layout.box()
-            box.operator('object.url_handler', text = "Roblox Github", icon='URL').rbx_link = "rbx github"  
-
-
-
-
-
-        ######### Avatars #########
+            box.operator('object.url_handler', text=i18n.t('roblox_github'), icon='URL').rbx_link = 'rbx github'
         row = layout.row()
         icon = 'DOWNARROW_HLT' if context.scene.subpanel_ava else 'RIGHTARROW'
         row.prop(context.scene, 'subpanel_ava', icon=icon, icon_only=True)
-        row.label(text='Avatars', icon='COMMUNITY')
-        # some data on the subpanel
+        row.label(text=i18n.t('avatars'), icon='COMMUNITY')
         if context.scene.subpanel_ava:
-            # Avatar templates:
             box = layout.box()
-            box.label(text = 'Avatar Templates')
-            box.prop(rbx_prefs, 'rbx_ava_enum', text ='')
-            split = box.split(factor = 0.5)
-            col = split.column(align = True)            
-            col.label(text = "")            
-            split.operator('object.rbx_button_ava', text = "Spawn").rbx_ava = 'avatar'
-                
-            # Clean props:
-            box = layout.box()                  
-            box.label(text = "Mesh Custom Properties")
-            box.operator('object.rbx_button_ava', text="Clean Up All").rbx_ava = "clear" 
+            box.label(text=i18n.t('avatar_templates'))
+            box.prop(rbx_prefs, 'rbx_ava_enum', text='')
+            split = box.split(factor=0.5)
+            col = split.column(align=True)
+            col.label(text='')
+            split.operator('object.rbx_button_ava', text=i18n.t('spawn')).rbx_ava = 'avatar'
+            box = layout.box()
+            box.label(text=i18n.t('mesh_custom_properties'))
+            box.operator('object.rbx_button_ava', text=i18n.t('clean_up_all')).rbx_ava = 'clear'
             row_facs = box.row()
-            row_facs.enabled = (len(bpy.context.selected_objects) == 1)
-            row_facs.operator('object.rbx_button_ava', text="Add FACS Properties (Head Only)").rbx_ava = "add_facs" 
+            row_facs.enabled = len(bpy.context.selected_objects) == 1
+            row_facs.operator('object.rbx_button_ava', text=i18n.t('add_facs_properties_head_only')).rbx_ava = 'add_facs'
             row_facs2 = box.row()
-            is_arma_selected = (len(bpy.context.selected_objects) == 1 and bpy.context.selected_objects[0].type == 'ARMATURE')
+            is_arma_selected = len(bpy.context.selected_objects) == 1 and bpy.context.selected_objects[0].type == 'ARMATURE'
             row_facs2.enabled = is_arma_selected
-            row_facs2.operator('object.rbx_button_ava', text="Add FACS Animation (Arma)").rbx_ava = "add_facs_anim" 
-            
+            row_facs2.operator('object.rbx_button_ava', text=i18n.t('add_facs_animation_arma')).rbx_ava = 'add_facs_anim'
             if not is_arma_selected:
                 glob_vars.rbx_facs_anim_error = None
-            
             if getattr(glob_vars, 'rbx_facs_anim_error', None):
                 import textwrap
                 err_text = glob_vars.rbx_facs_anim_error
                 wrapped = textwrap.wrap(err_text, width=40)
-                for i, line in enumerate(wrapped):
+                for (i, line) in enumerate(wrapped):
                     box.label(text=line, icon='ERROR' if i == 0 else 'NONE')
-            
-            # Renamer:
             box = layout.box()
-            box.label(text = "Select Objects to remove .000")
-            box.label(text = "ps: not always works")
-            box.operator('object.rbx_button_ava', text="Rename All").rbx_ava = "rename" 
-
-            # Hide Att:
+            box.label(text=i18n.t('select_objects_to_remove_000'))
+            box.label(text=i18n.t('ps_not_always_works'))
+            box.operator('object.rbx_button_ava', text=i18n.t('rename_all')).rbx_ava = 'rename'
             box = layout.box()
-            box.label(text = "Hide all Att in selected:")
-            box.operator('object.rbx_button_ava', text="Hide All").rbx_ava = "hide" 
-            box.operator('object.rbx_button_ava', text="UnHide Them").rbx_ava = "unhide" 
-            box.label(text = "(only the ones you hide before)")
-
-
-
-
-
-        ######### Cameras #########
+            box.label(text=i18n.t('hide_all_att_in_selected'))
+            box.operator('object.rbx_button_ava', text=i18n.t('hide_all')).rbx_ava = 'hide'
+            box.operator('object.rbx_button_ava', text=i18n.t('unhide_them')).rbx_ava = 'unhide'
+            box.label(text=i18n.t('only_the_ones_you_hide_before'))
         row = layout.row()
         icon = 'DOWNARROW_HLT' if context.scene.subpanel_cams else 'RIGHTARROW'
         row.prop(context.scene, 'subpanel_cams', icon=icon, icon_only=True)
-        row.label(text='Cameras and Lights', icon='CAMERA_DATA')
-        # some data on the subpanel
-        if context.scene.subpanel_cams: 
-            box = layout.box()                  
-            box.operator('object.button_cmr', text = "Add 4 Cameras Setup", icon='IMPORT').cmr = 'append' 
+        row.label(text=i18n.t('cameras_and_lights'), icon='CAMERA_DATA')
+        if context.scene.subpanel_cams:
+            box = layout.box()
+            box.operator('object.button_cmr', text=i18n.t('add_4_cameras_setup'), icon='IMPORT').cmr = 'append'
             try:
                 bpy.data.objects['Camera_F']
             except:
                 pass
-            else:               
-                #box = layout.box()
-                split = box.split(factor = 0.5)
-                col = split.column(align = True)
-                col.label(text='Camera Front:')
-                split.operator('object.button_cmr', text = "Set Active").cmr = 'Camera_F_active'
-                
+            else:
+                split = box.split(factor=0.5)
+                col = split.column(align=True)
+                col.label(text=i18n.t('camera_front'))
+                split.operator('object.button_cmr', text=i18n.t('set_active')).cmr = 'Camera_F_active'
             try:
                 bpy.data.objects['Camera_B']
             except:
                 pass
-            else:                       
-                #box = layout.box()
-                split = box.split(factor = 0.5)
-                col = split.column(align = True)
-                col.label(text='Camera Back:')
-                split.operator('object.button_cmr', text = "Set Active").cmr = 'Camera_B_active'
+            else:
+                split = box.split(factor=0.5)
+                col = split.column(align=True)
+                col.label(text=i18n.t('camera_back'))
+                split.operator('object.button_cmr', text=i18n.t('set_active')).cmr = 'Camera_B_active'
             try:
                 bpy.data.objects['Camera_L']
             except:
                 pass
-            else:                           
-                #box = layout.box()
-                split = box.split(factor = 0.5)
-                col = split.column(align = True)
+            else:
+                split = box.split(factor=0.5)
+                col = split.column(align=True)
                 col.label(text='  Camera Left:')
-                split.operator('object.button_cmr', text = "Set Active").cmr = 'Camera_L_active'
+                split.operator('object.button_cmr', text=i18n.t('set_active')).cmr = 'Camera_L_active'
             try:
                 bpy.data.objects['Camera_R']
             except:
                 pass
-            else:                           
-                #box = layout.box()
-                split = box.split(factor = 0.5)
-                col = split.column(align = True)
-                col.label(text='Camera Right:')
-                split.operator('object.button_cmr', text = "Set Active").cmr = 'Camera_R_active' 
+            else:
+                split = box.split(factor=0.5)
+                col = split.column(align=True)
+                col.label(text=i18n.t('camera_right'))
+                split.operator('object.button_cmr', text=i18n.t('set_active')).cmr = 'Camera_R_active'
             try:
                 bpy.context.active_object.name
             except:
                 pass
             else:
                 for i in range(len(glob_vars.cams)):
-                    if bpy.context.active_object.name == glob_vars.cams[i]:                            
-                        #row = layout.row()
-                        split = box.split(factor = 0.4)
-                        col = split.column(align = True)
+                    if bpy.context.active_object.name == glob_vars.cams[i]:
+                        split = box.split(factor=0.4)
+                        col = split.column(align=True)
                         col.label(text='')
-                        split.operator('object.button_cmr', text = "Preview", icon='HIDE_OFF').cmr = 'preview'
+                        split.operator('object.button_cmr', text=i18n.t('preview'), icon='HIDE_OFF').cmr = 'preview'
             try:
-                 bpy.context.active_object.name
+                bpy.context.active_object.name
             except:
                 pass
             else:
                 for i in range(len(glob_vars.cams)):
-                    if bpy.context.active_object.name == glob_vars.cams[i]:                                
-                        #row = layout.row()
-                        box.prop(bpy.context.scene.render, "film_transparent", text = "Transparent background")                        
-                        split = box.split(factor = 0.4)
-                        col = split.column(align = True)
+                    if bpy.context.active_object.name == glob_vars.cams[i]:
+                        box.prop(bpy.context.scene.render, 'film_transparent', text=i18n.t('transparent_background'))
+                        split = box.split(factor=0.4)
+                        col = split.column(align=True)
                         col.label(text='')
-                        split.operator('render.render', text = "Render", icon='RENDER_STILL')
-
-
-
-
-
-        ######### Armature #########
-        #row = layout.row()
+                        split.operator('render.render', text=i18n.t('render'), icon='RENDER_STILL')
         bn_icon = 'HANDLETYPE_AUTO_CLAMP_VEC'
-        #icon = 'DOWNARROW_HLT' if context.scene.subpanel_bn else 'RIGHTARROW'
-        #row.prop(context.scene, 'subpanel_bn', icon=icon, icon_only=True)
-        #row.label(text='Animation (Advanced)', icon='OUTLINER_DATA_ARMATURE')
-        # some data on the subpanel
-        if False: #context.scene.subpanel_bn:
+        if False:
             box = layout.box()
-            box.operator('object.url_handler', text = "How to Use", icon='HELP').rbx_link = "Guide_Armature"
+            box.operator('object.url_handler', text=i18n.t('how_to_use'), icon='HELP').rbx_link = 'Guide_Armature'
             icon = 'DOWNARROW_HLT' if context.scene.subpanel_bn_st1 else 'RIGHTARROW'
-            box.prop(context.scene, 'subpanel_bn_st1', icon=icon, icon_only=False, text='Step-1 (Add Armature)')
-            # some data on the subpanel
-            if context.scene.subpanel_bn_st1:               
-                ##### STEP-1 #####  
-                bn_exist = 0 
+            box.prop(context.scene, 'subpanel_bn_st1', icon=icon, icon_only=False, text=i18n.t('step1_add_armature'))
+            if context.scene.subpanel_bn_st1:
+                bn_exist = 0
                 try:
                     for i in bpy.context.selected_objects:
                         if i.type == 'ARMATURE':
@@ -1167,177 +838,136 @@ class TOOLBOX_MENU(bpy.types.Panel):
                             break
                 except:
                     pass
-
-                box.prop(rbx_prefs, 'rbx_arma_enum', text ='')
-                split = box.split(factor = 0.5)
-                col = split.column(align = True)            
-                col.label(text = "")            
-                split.operator('object.button_bn', text = "Add Armature").bn = 'arma'
-
-                if bn_exist == 1:             
-                    #box = layout.box()
-                    split = box.split(factor = 0.5)
-                    col = split.column(align = True)
-                    col.label(text='Show Bones:')
-                    split.prop(context.object,'show_in_front')
+                box.prop(rbx_prefs, 'rbx_arma_enum', text='')
+                split = box.split(factor=0.5)
+                col = split.column(align=True)
+                col.label(text='')
+                split.operator('object.button_bn', text=i18n.t('add_armature')).bn = 'arma'
+                if bn_exist == 1:
+                    split = box.split(factor=0.5)
+                    col = split.column(align=True)
+                    col.label(text=i18n.t('show_bones'))
+                    split.prop(context.object, 'show_in_front')
                 box.label(text='          -------------------------------------  ')
-                box.label(text='You may try from Step-4')
-                box.label(text='If no work - back to Step-2')
-            
-            ##### STEP-2 #####    
+                box.label(text=i18n.t('you_may_try_from_step4'))
+                box.label(text=i18n.t('if_no_work_back_to_step2'))
             box = layout.box()
-            box.label(text='Step-2 (Prepare Mesh):', icon=bn_icon)
-            box.operator('object.button_bn', text = "Recalculate Normals", icon='NORMALS_FACE').bn = 'normal'
+            box.label(text=i18n.t('step2_prepare_mesh'), icon=bn_icon)
+            box.operator('object.button_bn', text=i18n.t('recalculate_normals'), icon='NORMALS_FACE').bn = 'normal'
             if glob_vars.msh_selection:
                 box.label(text=glob_vars.msh_selection, icon='ERROR')
             if glob_vars.msh_error == 'done_nml':
-                box.label(text='Recalucalting Done!', icon='CHECKMARK')             
-            
-            ##### STEP-3 #####
-            #CALCULATE DOUBLES
+                box.label(text=i18n.t('recalucalting_done'), icon='CHECKMARK')
             box = layout.box()
-            box.label(text='Step-3 (Double Vertices):', icon=bn_icon)            
-            msh_exist = 0 
+            box.label(text=i18n.t('step3_double_vertices'), icon=bn_icon)
+            msh_exist = 0
             dbls_msg = None
             try:
                 if len(bpy.context.selected_objects) != 1:
                     dbls_msg = 'Select 1 Object'
+                elif bpy.context.selected_objects[0].type != 'MESH':
+                    dbls_msg = 'Object Must be a Mesh'
                 else:
-                    if bpy.context.selected_objects[0].type != 'MESH':
-                        dbls_msg = 'Object Must be a Mesh'
-                    else:
-                        msh_exist = 1
-                        dbls_msg = None
+                    msh_exist = 1
+                    dbls_msg = None
             except:
-                pass    
+                pass
             if msh_exist == 1:
                 try:
-                    # Get the active mesh
                     me = bpy.context.object.data
                 except:
-                    pass #dbls_msg = 'No Mesh Selected'
+                    pass
                 else:
                     dbls_msg = None
-                    distance = 0.0001 # remove doubles tolerance
-                    # Get a BMesh representation
-                    bm = bmesh.new()   # create an empty BMesh
-                    bm.from_mesh(me)   # fill it in from a Mesh
+                    distance = 0.0001
+                    bm = bmesh.new()
+                    bm.from_mesh(me)
                     len_bef = len(bm.verts)
-                    bmesh.ops.remove_doubles(bm, verts=bm.verts, dist = distance)
+                    bmesh.ops.remove_doubles(bm, verts=bm.verts, dist=distance)
                     len_af = len(bm.verts)
                     doubles = len_bef - len_af
                     bm.clear()
-                    bm.free()  # free and prevent further access
+                    bm.free()
                     box.label(text='Doubles Found: ' + str(doubles), icon='INFO')
             if dbls_msg:
                 box.label(text=dbls_msg, icon='ERROR')
-                box.label(text='Doubles Found: ERROR!', icon='INFO')                     
-                 
-            box.operator('object.button_bn', text = "Remove Double Vertices", icon='VERTEXSEL').bn = 'doubles'
+                box.label(text=i18n.t('doubles_found_error'), icon='INFO')
+            box.operator('object.button_bn', text=i18n.t('remove_double_vertices'), icon='VERTEXSEL').bn = 'doubles'
             if glob_vars.msh_selection:
                 box.label(text=glob_vars.msh_selection, icon='ERROR')
-            if glob_vars.msh_error == 'done_vts':  
-                box.label(text='Remove Doubles Done!', icon='CHECKMARK')
-            # MESH SMOOTHING #
-            msh_exist = 0 
+            if glob_vars.msh_error == 'done_vts':
+                box.label(text=i18n.t('remove_doubles_done'), icon='CHECKMARK')
+            msh_exist = 0
             try:
                 for i in bpy.context.selected_objects:
                     if i.type == 'MESH':
                         msh_exist = 1
                         break
             except:
-                pass                     
+                pass
             if msh_exist == 1:
-                box.label(text='(Optional, Might help look better):')             
-                split = box.split(factor = 0.6)
-                col = split.column(align = True)
-                col.label(text='Mesh Smoothing:')
+                box.label(text=i18n.t('optional_might_help_look_better'))
+                split = box.split(factor=0.6)
+                col = split.column(align=True)
+                col.label(text=i18n.t('mesh_smoothing'))
                 try:
                     if float(glob_vars.bldr_fdr) < 4.1:
-                        split.prop(context.object.data,'use_auto_smooth', text='Auto')
+                        split.prop(context.object.data, 'use_auto_smooth', text=i18n.t('auto'))
                     else:
-                        split.operator('object.shade_auto_smooth', text='Auto Smooth')
+                        split.operator('object.shade_auto_smooth', text=i18n.t('auto_smooth'))
                 except:
-                    pass               
-            
-            ##### STEP-4 #####       
-            box = layout.box() 
-            box.label(text='Step-4:', icon=bn_icon)            
-            box.label(text="Adjust Bones in 'Edit Mode'")
-            box.label(text="If needed")
-            
-            ##### STEP-5 #####
+                    pass
             box = layout.box()
-            box.label(text='Step-5:', icon=bn_icon)
-            box.label(text='Select Mesh + Bones, then Parent')
-            box.operator('object.button_bn', text = "Parent Bones and Mesh", icon='BONE_DATA').bn = 'parent'
-
+            box.label(text=i18n.t('step4'), icon=bn_icon)
+            box.label(text="Adjust Bones in 'Edit Mode'")
+            box.label(text=i18n.t('if_needed'))
+            box = layout.box()
+            box.label(text=i18n.t('step5'), icon=bn_icon)
+            box.label(text=i18n.t('select_mesh_bones_then_parent'))
+            box.operator('object.button_bn', text=i18n.t('parent_bones_and_mesh'), icon='BONE_DATA').bn = 'parent'
             if glob_vars.bn_selection:
                 box.label(text=glob_vars.bn_selection, icon='ERROR')
             if glob_vars.bn_error:
                 if glob_vars.bn_error == 1:
-                    box.label(text='Error, need rectify Mesh', icon='ERROR')
+                    box.label(text=i18n.t('error_need_rectify_mesh'), icon='ERROR')
                     glob_vars.bn_error == None
                 if glob_vars.bn_error == 2:
                     glob_vars.bn_error == None
-                    box.label(text='Parenting Done!', icon='CHECKMARK')
-                    box.label(text='Step-6 (Optional):', icon=bn_icon)
-                    box.label(text='You can also now export this')
-                    box.label(text='Model as .fbx to Mixamo for')
-                    box.label(text='animation. (No need redo bones)')
-                    box.operator('object.url_handler', text = "Go to Mixamo", icon='URL').rbx_link = "mixamo"
-        
-        #### Other Functions ####
+                    box.label(text=i18n.t('parenting_done'), icon='CHECKMARK')
+                    box.label(text=i18n.t('step6_optional'), icon=bn_icon)
+                    box.label(text=i18n.t('you_can_also_now_export_this'))
+                    box.label(text=i18n.t('model_as_fbx_to_mixamo_for'))
+                    box.label(text=i18n.t('animation_no_need_redo_bones'))
+                    box.operator('object.url_handler', text=i18n.t('go_to_mixamo'), icon='URL').rbx_link = 'mixamo'
         row = layout.row()
         row = layout.row()
         row = layout.row()
-
-
-
-
-
-        ######## Upload to Roblox ########
         if rbx.is_logged_in:
             row = layout.row()
             icon = 'DOWNARROW_HLT' if context.scene.subpanel_upload else 'RIGHTARROW'
             row.prop(context.scene, 'subpanel_upload', icon=icon, icon_only=True)
-            row.label(text='Upload to Roblox', icon='COLLAPSEMENU')
-            # some data on the subpanel
+            row.label(text=i18n.t('upload_to_roblox'), icon='COLLAPSEMENU')
             if context.scene.subpanel_upload:
                 upload_section_box = layout.box()
-                upload_section_box.prop(rbx, "creator")  # Creator dropdown
-                # Logged In State & Not Processing Login/Logout: Upload Section
+                upload_section_box.prop(rbx, 'creator')
                 if not rbx.is_processing_login_or_logout:
-                    from oauth.lib.upload_operator import RBX_OT_upload  # Local import
+                    from oauth.lib.upload_operator import RBX_OT_upload
                     upload_section_box.row().operator(RBX_OT_upload.bl_idname)
                 else:
-                    upload_section_box.label(text="Refreshing Login. Please wait", icon='ERROR')
-
-                from oauth.lib.get_selected_objects import get_selected_objects  # Local import
-                selected_text = ", ".join(
-                    obj.name for obj in get_selected_objects(context))
+                    upload_section_box.label(text=i18n.t('refreshing_login_please_wait'), icon='ERROR')
+                from oauth.lib.get_selected_objects import get_selected_objects
+                selected_text = ', '.join((obj.name for obj in get_selected_objects(context)))
                 if selected_text:
-                    upload_section_box.row().label(text="Selected Objects:", icon="RESTRICT_SELECT_OFF")
-                    selected_objects_display_box = upload_section_box.box()  # Sub-box for the list
+                    upload_section_box.row().label(text=i18n.t('selected_objects'), icon='RESTRICT_SELECT_OFF')
+                    selected_objects_display_box = upload_section_box.box()
                     selected_objects_display_box.label(text=selected_text)
-
-                from oauth.lib import status_indicators  # Local import
-                # Pass the layout of the upload_section_box for drawing statuses
-                status_indicators.draw_statuses(
-                    context.window_manager, upload_section_box)
-
-                        
-
-
-
-        ######### Other Functions #########
+                from oauth.lib import status_indicators
+                status_indicators.draw_statuses(context.window_manager, upload_section_box)
         row = layout.row()
         icon = 'DOWNARROW_HLT' if context.scene.subpanel_other else 'RIGHTARROW'
         row.prop(context.scene, 'subpanel_other', icon=icon, icon_only=True)
-        row.label(text='Quick Functions:', icon='COLLAPSEMENU')
-        # some data on the subpanel
+        row.label(text=i18n.t('quick_functions'), icon='COLLAPSEMENU')
         if context.scene.subpanel_other:
-
             box = layout.box()
             objs = None
             mat = None
@@ -1349,236 +979,183 @@ class TOOLBOX_MENU(bpy.types.Panel):
                     pass
             except:
                 pass
-
             if objs:
-                if len(objs) == 1: 
+                if len(objs) == 1:
                     if mat:
-                        box.label(text='Culling Option', icon='HIDE_ON') 
-                        box.label(text='(Hide flipped faces, like in Roblox)') 
-                        box.prop(bpy.context.object.active_material, 'use_backface_culling', text='Backface Culling', icon='FACESEL')
+                        box.label(text=i18n.t('culling_option'), icon='HIDE_ON')
+                        box.label(text=i18n.t('hide_flipped_faces_like_in_roblox'))
+                        box.prop(bpy.context.object.active_material, 'use_backface_culling', text=i18n.t('backface_culling'), icon='FACESEL')
                     else:
-                        box.enabled=False
-                        box.label(text='Culling Option (Add Material)', icon='HIDE_ON')
-                        box.label(text='(Hide flipped faces, like in Roblox)') 
-                        box.operator("object.rbx_button_of", text = "Backface Culling",  icon='FACESEL') #Fake button 
+                        box.enabled = False
+                        box.label(text=i18n.t('culling_option_add_material'), icon='HIDE_ON')
+                        box.label(text=i18n.t('hide_flipped_faces_like_in_roblox'))
+                        box.operator('object.rbx_button_of', text=i18n.t('backface_culling'), icon='FACESEL')
                 else:
-                    box.enabled=False
-                    box.label(text='Culling Option (Select 1 Object)', icon='HIDE_ON')
-                    box.label(text='(Hide flipped faces, like in Roblox)') 
-                    box.operator("object.rbx_button_of", text = "Backface Culling",  icon='FACESEL') #Fake button
+                    box.enabled = False
+                    box.label(text=i18n.t('culling_option_select_1_object'), icon='HIDE_ON')
+                    box.label(text=i18n.t('hide_flipped_faces_like_in_roblox'))
+                    box.operator('object.rbx_button_of', text=i18n.t('backface_culling'), icon='FACESEL')
             else:
-                box.enabled=False
-                box.label(text='Culling Option (Select Object)', icon='HIDE_ON')
-                box.label(text='(Hide flipped faces, like in Roblox)') 
-                box.operator("object.rbx_button_of", text = "Backface Culling",  icon='FACESEL') #Fake button    
-            
-
+                box.enabled = False
+                box.label(text=i18n.t('culling_option_select_object'), icon='HIDE_ON')
+                box.label(text=i18n.t('hide_flipped_faces_like_in_roblox'))
+                box.operator('object.rbx_button_of', text=i18n.t('backface_culling'), icon='FACESEL')
             box = layout.box()
-            box.label(text='Normals', icon='ORIENTATION_NORMAL')
-            box.prop(bpy.context.space_data.overlay, 'show_face_orientation', text='Show Face Orientation', icon='NORMALS_FACE')  
+            box.label(text=i18n.t('normals'), icon='ORIENTATION_NORMAL')
+            box.prop(bpy.context.space_data.overlay, 'show_face_orientation', text=i18n.t('show_face_orientation'), icon='NORMALS_FACE')
             box.prop(rbx_prefs, 'rbx_face_enum')
-            split = box.split(factor = 0.5)
-            col = split.column(align = True)
-            col.operator("object.rbx_button_of", text = "Recalc Outside").rbx_of = 'outside'
-            split.operator("object.rbx_button_of", text = "Recalc Inside").rbx_of = 'inside' 
-            box.operator("object.rbx_button_of", text = "Flip Normals").rbx_of = 'flip' 
-            
+            split = box.split(factor=0.5)
+            col = split.column(align=True)
+            col.operator('object.rbx_button_of', text=i18n.t('recalc_outside')).rbx_of = 'outside'
+            split.operator('object.rbx_button_of', text=i18n.t('recalc_inside')).rbx_of = 'inside'
+            box.operator('object.rbx_button_of', text=i18n.t('flip_normals')).rbx_of = 'flip'
             box = layout.box()
             try:
-                if len(bpy.context.selected_objects) == 1: 
-                    box.label(text='Glowing UGC', icon='SHADING_SOLID')
-                    box.operator("object.rbx_button_of", text = "Make Item Glow").rbx_of = 'glow'
-                    box.operator("object.rbx_button_of", text = "Remove Glowing").rbx_of = 'unglow'            
+                if len(bpy.context.selected_objects) == 1:
+                    box.label(text=i18n.t('glowing_ugc'), icon='SHADING_SOLID')
+                    box.operator('object.rbx_button_of', text=i18n.t('make_item_glow')).rbx_of = 'glow'
+                    box.operator('object.rbx_button_of', text=i18n.t('remove_glowing')).rbx_of = 'unglow'
                 else:
-                    box.enabled=False
-                    box.label(text='Glowing UGC (Select Object)', icon='SHADING_SOLID')
-                    box.operator("object.rbx_button_of", text = "Make Item Glow").rbx_of = 'glow'
-                    box.operator("object.rbx_button_of", text = "Remove Glowing").rbx_of = 'unglow'
+                    box.enabled = False
+                    box.label(text=i18n.t('glowing_ugc_select_object'), icon='SHADING_SOLID')
+                    box.operator('object.rbx_button_of', text=i18n.t('make_item_glow')).rbx_of = 'glow'
+                    box.operator('object.rbx_button_of', text=i18n.t('remove_glowing')).rbx_of = 'unglow'
             except:
                 pass
-
-
-            #### Make Outline ####
             box = layout.box()
             if objs:
-                if len(objs) == 1: 
+                if len(objs) == 1:
                     if mat:
-                        box.label(text='UGC Outline ', icon='HIDE_ON') 
-                        box.operator("object.rbx_button_of", text = "Make Outline").rbx_of = 'make_outline'
-                        
+                        box.label(text='UGC Outline ', icon='HIDE_ON')
+                        box.operator('object.rbx_button_of', text=i18n.t('make_outline')).rbx_of = 'make_outline'
                         if 'RBX_Outline_mat' in objs[0].material_slots and 'RBX_Outline' in objs[0].modifiers:
-                            mat = bpy.data.materials.get("RBX_Outline_mat")
+                            mat = bpy.data.materials.get('RBX_Outline_mat')
                             color = mat.node_tree.nodes['RGB']
-                            box.label(text='** Outline Controls: **')
+                            box.label(text=i18n.t('outline_controls'))
                             col_0 = color.outputs[0]
-                            
-                            split = box.split(factor = 0.5)
-                            col = split.column(align = True)
-                            col.label(text='Preview Color:')
-                            split.prop(col_0, "default_value", text = "")
-                            
-                            box.prop(bpy.context.object.modifiers["RBX_Outline"], 'thickness', text='Outline Thickness:')
-                            
+                            split = box.split(factor=0.5)
+                            col = split.column(align=True)
+                            col.label(text=i18n.t('preview_color'))
+                            split.prop(col_0, 'default_value', text='')
+                            box.prop(bpy.context.object.modifiers['RBX_Outline'], 'thickness', text=i18n.t('outline_thickness'))
                             box.label(text='')
-                            box.label(text='** Add Outline to UGC: **')
-                            box.operator("object.rbx_button_of", text = "Apply Outline").rbx_of = 'apply_outline'
-                            box.label(text='*Outline faces will be added to your')
-                            box.label(text='object and UV moved outside.')
-                            box.label(text='Just move that UV to the color')
-                            box.label(text='that you need or re-unwrap it')
+                            box.label(text=i18n.t('add_outline_to_ugc'))
+                            box.operator('object.rbx_button_of', text=i18n.t('apply_outline')).rbx_of = 'apply_outline'
+                            box.label(text=i18n.t('outline_faces_will_be_added_to_your'))
+                            box.label(text=i18n.t('object_and_uv_moved_outside'))
+                            box.label(text=i18n.t('just_move_that_uv_to_the_color'))
+                            box.label(text=i18n.t('that_you_need_or_reunwrap_it'))
                     else:
-                        box.enabled=False
-                        box.label(text='UGC Outline (Add Material)', icon='HIDE_ON')
-                        box.operator("object.rbx_button_of", text = "Make Outline").rbx_of = 'make_outline'
+                        box.enabled = False
+                        box.label(text=i18n.t('ugc_outline_add_material'), icon='HIDE_ON')
+                        box.operator('object.rbx_button_of', text=i18n.t('make_outline')).rbx_of = 'make_outline'
                 else:
-                    box.enabled=False
-                    box.label(text='UGC Outline (Select 1 Object)', icon='HIDE_ON')
-                    box.operator("object.rbx_button_of", text = "Make Outline").rbx_of = 'make_outline'
+                    box.enabled = False
+                    box.label(text=i18n.t('ugc_outline_select_1_object'), icon='HIDE_ON')
+                    box.operator('object.rbx_button_of', text=i18n.t('make_outline')).rbx_of = 'make_outline'
             else:
-                box.enabled=False
-                box.label(text='UGC Outline (Select Object)', icon='HIDE_ON')
-                box.operator("object.rbx_button_of", text = "Make Outline").rbx_of = 'make_outline' 
-
-
-
-
-
-        ######### Export Functions #########
+                box.enabled = False
+                box.label(text=i18n.t('ugc_outline_select_object'), icon='HIDE_ON')
+                box.operator('object.rbx_button_of', text=i18n.t('make_outline')).rbx_of = 'make_outline'
         row = layout.row()
         icon = 'DOWNARROW_HLT' if context.scene.subpanel_export else 'RIGHTARROW'
         row.prop(context.scene, 'subpanel_export', icon=icon, icon_only=True)
-        row.label(text='File Export:', icon='COLLAPSEMENU')
-        # some data on the subpanel
+        row.label(text=i18n.t('file_export'), icon='COLLAPSEMENU')
         if context.scene.subpanel_export:
-                        
-            #### Export FBX UGC ####
             row = layout.row()
             row = layout.row()
             box = layout.box()
-            box.label(text='UGC Item Export:')
-            
+            box.label(text=i18n.t('ugc_item_export'))
             is_valid_ugc = False
             if len(context.selected_objects) == 1:
                 obj = context.selected_objects[0]
                 if obj.type == 'MESH':
                     is_valid_ugc = True
-                    
             try:
-                if is_valid_ugc: 
-                    box.prop(rbx_prefs, 'rbx_of_orig', text = "Set Origin to Geometry") 
-                    box.prop(rbx_prefs, 'rbx_of_trsf', text = "Apply All Transforms")  
-                    box.operator('object.rbx_operators', text = "Export FBX", icon='EXPORT').rbx_operator = 'exp_fbx'
+                if is_valid_ugc:
+                    box.prop(rbx_prefs, 'rbx_of_orig', text=i18n.t('set_origin_to_geometry'))
+                    box.prop(rbx_prefs, 'rbx_of_trsf', text=i18n.t('apply_all_transforms'))
+                    box.operator('object.rbx_operators', text=i18n.t('export_fbx'), icon='EXPORT').rbx_operator = 'exp_fbx'
                 else:
-                    box.label(text='Select 1 Mesh for FBX Export', icon='ERROR')
+                    box.label(text=i18n.t('select_1_mesh_for_fbx_export'), icon='ERROR')
             except:
-                box.label(text='Select 1 Mesh for FBX Export', icon='ERROR')                                          
-
-
-            #### Export FBX LC ####
+                box.label(text=i18n.t('select_1_mesh_for_fbx_export'), icon='ERROR')
             row = layout.row()
             box = layout.box()
-            box.label(text='Layered Cloth Export:')
-            box.label(text='Make sure you select these:')
-            box.label(text='1. Armature')
-            box.label(text='2. YourItem in Armature')
-            box.label(text='3. ItemName_OuterCage')
-            box.label(text='4. ItemName_InnerCage')
+            box.label(text=i18n.t('layered_cloth_export'))
+            box.label(text=i18n.t('make_sure_you_select_these'))
+            box.label(text=i18n.t('1_armature'))
+            box.label(text=i18n.t('2_youritem_in_armature'))
+            box.label(text=i18n.t('3_itemname_outercage'))
+            box.label(text=i18n.t('4_itemname_innercage'))
             try:
-                if len(bpy.context.selected_objects) >= 4:  
-                    box.operator('object.rbx_operators', text = "Export FBX", icon='EXPORT').rbx_operator = 'exp_fbx_lc'
+                if len(bpy.context.selected_objects) >= 4:
+                    box.operator('object.rbx_operators', text=i18n.t('export_fbx'), icon='EXPORT').rbx_operator = 'exp_fbx_lc'
                 else:
-                    box.label(text='Some items not selected', icon='ERROR')
+                    box.label(text=i18n.t('some_items_not_selected'), icon='ERROR')
             except:
-                box.label(text='Some items not selected', icon='ERROR')  
-            
-            
-            #### Export Animation ####
+                box.label(text=i18n.t('some_items_not_selected'), icon='ERROR')
             row = layout.row()
             box = layout.box()
-            box.label(text='Animation Export:')
-            
+            box.label(text=i18n.t('animation_export'))
             is_valid_anim_rig = False
             active_obj = context.active_object
             if active_obj and active_obj.type == 'ARMATURE':
                 if active_obj.animation_data and active_obj.animation_data.action:
                     is_valid_anim_rig = True
-            
             row_op = box.row()
             row_op.enabled = is_valid_anim_rig
-            row_op.operator('object.rbx_operators', text="Export Animation", icon='ACTION').rbx_operator = 'exp_fbx_anim'
-            
+            row_op.operator('object.rbx_operators', text=i18n.t('export_animation'), icon='ACTION').rbx_operator = 'exp_fbx_anim'
             if not is_valid_anim_rig:
-                box.label(text='Select Armature with animation', icon='INFO')
-            
-            
-            #### Export Avatar ####
+                box.label(text=i18n.t('select_armature_with_animation'), icon='INFO')
             row = layout.row()
             box = layout.box()
-            box.label(text='Avatar Export:')
-            box.label(text='Select all parts 1st')
-            box.operator('object.rbx_button_ava', text="Export Avatar").rbx_ava = 'export'
-
-        
-                
-
-        ######### Pie Menu #########
+            box.label(text=i18n.t('avatar_export'))
+            box.label(text=i18n.t('select_all_parts_1st'))
+            box.operator('object.rbx_button_ava', text=i18n.t('export_avatar')).rbx_ava = 'export'
         row = layout.row()
         icon = 'DOWNARROW_HLT' if context.scene.subpanel_pie else 'RIGHTARROW'
         row.prop(context.scene, 'subpanel_pie', icon=icon, icon_only=True)
-        row.label(text='Pie Menu:', icon='COLLAPSEMENU')
-        # some data on the subpanel
+        row.label(text=i18n.t('pie_menu'), icon='COLLAPSEMENU')
         if context.scene.subpanel_pie:
-                        
-            #### Export FBX UGC ####
             box = layout.box()
-            box.operator_context = "INVOKE_DEFAULT" if True else "EXEC_DEFAULT"
-            
-            split = box.split(factor = 0.5)
-            col = split.column(align = True)
-            col.label(text='Shortcut:', icon_value=672)
+            box.operator_context = 'INVOKE_DEFAULT' if True else 'EXEC_DEFAULT'
+            split = box.split(factor=0.5)
+            col = split.column(align=True)
+            col.label(text=i18n.t('shortcut'), icon_value=672)
             try:
                 split.prop(menu_pie.find_user_keyconfig('F85A6'), 'type', text='', full_event=True)
             except:
-                split.label(text='Shortcut not found')
-            box.label(text='1. Wont work if shortcut exist') 
-            box.label(text='2. Work in Obj mode only')            
-
-
-
-
-
-        #### Discord Support Server ####                
+                split.label(text=i18n.t('shortcut_not_found'))
+            box.label(text=i18n.t('1_wont_work_if_shortcut_exist'))
+            box.label(text=i18n.t('2_work_in_obj_mode_only'))
         row = layout.row()
-        row.label(text='          -------------------------------------  ') 
-        row = layout.row() 
-        row.operator("object.rbx_button_of", text = "Install Cool Theme", icon='BRUSHES_ALL').rbx_of = 'theme_install'
-        row = layout.row()  
-        row.operator('object.url_handler', text = "Discord Support Server", icon='URL').rbx_link = "discord"
-        row = layout.row() 
-        row.operator('object.url_handler', text = "Buy me a Coffee! ;)", icon='URL').rbx_link = "buy coffee"
-
+        row.label(text='          -------------------------------------  ')
+        row = layout.row()
+        row.operator('object.rbx_button_of', text=i18n.t('install_cool_theme'), icon='BRUSHES_ALL').rbx_of = 'theme_install'
+        row = layout.row()
+        row.operator('object.url_handler', text=i18n.t('discord_support_server'), icon='URL').rbx_link = 'discord'
+        row = layout.row()
+        row.operator('object.url_handler', text=i18n.t('buy_me_a_coffee'), icon='URL').rbx_link = 'buy coffee'
         row = layout.row()
         icon = 'DOWNARROW_HLT' if context.scene.subpanel_support else 'RIGHTARROW'
         row.prop(context.scene, 'subpanel_support', icon=icon, icon_only=True)
-        row.label(text='Support with Robux', icon='FUND')
-        # some data on the subpanel
+        row.label(text=i18n.t('support_with_robux'), icon='FUND')
         if context.scene.subpanel_support:
             box = layout.box()
-            split_sup = box.split(factor = 0.2)
-            col_sup = split_sup.column(align = True)       
-            col_sup.label(text="", icon="LAYERGROUP_COLOR_04")
-            split_sup.operator("object.url_handler", text = "Supporter (10 Bobuc)").rbx_link = 'tips 10'
-            split_sup = box.split(factor = 0.2)
-            col_sup = split_sup.column(align = True)       
-            col_sup.label(text="", icon="LAYERGROUP_COLOR_03")
-            split_sup.operator("object.url_handler", text = "Hero (50 Bobuc)").rbx_link = 'tips 50'
-            split_sup = box.split(factor = 0.2)
-            col_sup = split_sup.column(align = True)       
-            col_sup.label(text="", icon="LAYERGROUP_COLOR_06")
-            split_sup.operator("object.url_handler", text = "Legend (500 Bobuc)").rbx_link = 'tips 500'
-            split_sup = box.split(factor = 0.2)
-            col_sup = split_sup.column(align = True)       
-            col_sup.label(text="", icon="LAYERGROUP_COLOR_07")
-            split_sup.operator("object.url_handler", text = "Epic (1000 Bobuc)").rbx_link = 'tips 1000'
-        
-    
+            split_sup = box.split(factor=0.2)
+            col_sup = split_sup.column(align=True)
+            col_sup.label(text='', icon='LAYERGROUP_COLOR_04')
+            split_sup.operator('object.url_handler', text=i18n.t('supporter_10_bobuc')).rbx_link = 'tips 10'
+            split_sup = box.split(factor=0.2)
+            col_sup = split_sup.column(align=True)
+            col_sup.label(text='', icon='LAYERGROUP_COLOR_03')
+            split_sup.operator('object.url_handler', text=i18n.t('hero_50_bobuc')).rbx_link = 'tips 50'
+            split_sup = box.split(factor=0.2)
+            col_sup = split_sup.column(align=True)
+            col_sup.label(text='', icon='LAYERGROUP_COLOR_06')
+            split_sup.operator('object.url_handler', text=i18n.t('legend_500_bobuc')).rbx_link = 'tips 500'
+            split_sup = box.split(factor=0.2)
+            col_sup = split_sup.column(align=True)
+            col_sup.label(text='', icon='LAYERGROUP_COLOR_07')
+            split_sup.operator('object.url_handler', text=i18n.t('epic_1000_bobuc')).rbx_link = 'tips 1000'

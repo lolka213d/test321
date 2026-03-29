@@ -8,6 +8,7 @@ from threading import Thread
 import shutil
 import asyncio
 from . import glob_vars
+from test321 import i18n, addon_version
 
 
 # Centralized update URL (use the release zip URL configured in glob_vars)
@@ -50,7 +51,7 @@ async def oauth_logout(context):
 
 class RBX_INSTALL_UPDATE(bpy.types.Operator):
     bl_idname = "wm.install_update"
-    bl_label = "Install Update"
+    bl_label = i18n.t('install_update')
     _timer = None
     restart_only: bpy.props.BoolProperty(default=False) # type: ignore
 
@@ -216,6 +217,75 @@ class RBX_INSTALL_UPDATE(bpy.types.Operator):
         blender_exe = sys.argv[0]  # Get the Blender executable path
         subprocess.Popen([blender_exe])
         bpy.ops.wm.quit_blender()
+        return {'FINISHED'}
+
+
+
+class RBX_CHECK_UPDATE(bpy.types.Operator):
+    """Check GitHub releases for an update and (optionally) start install."""
+    bl_idname = "wm.check_update"
+    bl_label = i18n.t('check_for_updates')
+
+    latest_tag: bpy.props.StringProperty(default="")
+    latest_url: bpy.props.StringProperty(default="")
+
+    def invoke(self, context, event):
+        try:
+            import urllib.parse
+            url = glob_vars.rbx_update_test_down_link
+            parsed = urllib.parse.urlparse(url)
+            parts = parsed.path.strip('/').split('/')
+            if len(parts) < 2:
+                self.report({'WARNING'}, i18n.t('no_internet_connection_skipping_rbx_tool'))
+                return {'FINISHED'}
+            owner, repo = parts[0], parts[1]
+            api_url = f'https://api.github.com/repos/{owner}/{repo}/releases/latest'
+            resp = requests.get(api_url, timeout=10)
+            resp.raise_for_status()
+            data = resp.json()
+            tag = data.get('tag_name') or data.get('name') or ''
+            assets = data.get('assets', [])
+            asset_url = None
+            for a in assets:
+                name = a.get('name', '')
+                if name.lower().endswith('.zip'):
+                    if name.lower().startswith(repo.lower()) or name.lower() == f'{repo}.zip':
+                        asset_url = a.get('browser_download_url')
+                        break
+                    if not asset_url:
+                        asset_url = a.get('browser_download_url')
+            if not asset_url:
+                asset_url = data.get('zipball_url')
+
+            self.latest_tag = tag
+            self.latest_url = asset_url
+
+            def norm(t):
+                if not t:
+                    return ''
+                t = str(t)
+                return t.lstrip('v').lstrip('.')
+
+            if norm(tag) and norm(tag) != norm(addon_version):
+                return context.window_manager.invoke_confirm(self, event)
+            else:
+                self.report({'INFO'}, i18n.t('no_update_found'))
+                return {'FINISHED'}
+        except requests.exceptions.RequestException:
+            self.report({'WARNING'}, i18n.t('no_internet_connection_skipping_rbx_tool'))
+            return {'FINISHED'}
+        except Exception as e:
+            self.report({'WARNING'}, f'Update check failed: {e}')
+            return {'FINISHED'}
+
+    def execute(self, context):
+        if self.latest_url:
+            glob_vars.lts_ver = self.latest_tag if self.latest_tag else None
+            glob_vars.rbx_update_test_down_link = self.latest_url
+            # Start the existing install operator
+            bpy.ops.wm.install_update()
+            return {'FINISHED'}
+        self.report({'INFO'}, i18n.t('no_update_found'))
         return {'FINISHED'}
 
 

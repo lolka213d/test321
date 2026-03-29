@@ -1,11 +1,11 @@
 import bpy
 import os
-from test321 import glob_vars
+from test321 import glob_vars, i18n
 
 
 ######### Dummy Buttons ###########    
 class BUTTON_DMMY(bpy.types.Operator):
-    bl_label = "BUTTON_DMMY"
+    bl_label = i18n.t('button_dmmy')
     bl_idname = "object.button_dmmy"
     bl_options = {'REGISTER', 'UNDO'}
     dmy : bpy.props.StringProperty(name= "Added")  # type: ignore

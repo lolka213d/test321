@@ -19,7 +19,7 @@ import traceback
 bl_info = {
     "name": "RBX Toolbox modified by Moon",
     "author": "Moon",
-    "version": (7, 4, 0),
+    "version": (7, 4, 5),
     "blender": (3, 6, 0),
     "location": "Operator",
     "description": "Roblox UGC models toolbox",
@@ -28,7 +28,7 @@ bl_info = {
 }
 
 # Centralized version string — edit bl_info["version"] above, these derive from it
-addon_version = "v." + ".".join(str(x) for x in bl_info["version"][:2])
+addon_version = "v." + ".".join(str(x) for x in bl_info["version"])
 addon_label = f"Roblox Toolbox ({addon_version})"
 
 # Addon path and package name for installed addon
@@ -81,7 +81,7 @@ from . import glob_vars
 from .prefs import RBXToolsPreferences
 from .props import PROPERTIES_RBX
 from .functions.url_handler import URL_HANDLER
-from .update import RBX_INSTALL_UPDATE
+from .update import RBX_INSTALL_UPDATE, RBX_CHECK_UPDATE
 from .update_aepbr import RBX_UPDATE_AEPBR
 from .functions.ugc_bounds import BUTTON_BNDS
 from .functions.hdri_sky import RBX_BUTTON_HDRI
@@ -118,6 +118,7 @@ classes = (
     PROPERTIES_RBX,
     URL_HANDLER,
     RBX_INSTALL_UPDATE,
+    RBX_CHECK_UPDATE,
     RBX_UPDATE_AEPBR,
     BUTTON_BNDS,
     RBX_BUTTON_HDRI,

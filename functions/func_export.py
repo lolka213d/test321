@@ -1,9 +1,10 @@
 import bpy
+from test321 import i18n
 
 
 ############   OPERATORS   ##############    
 class RBX_OPERATORS(bpy.types.Operator):
-    bl_label = "RBX_OPERATORS"
+    bl_label = i18n.t('rbx_operators')
     bl_idname = "object.rbx_operators"
     bl_options = {'REGISTER', 'UNDO'}
     rbx_operator : bpy.props.StringProperty(name= "Added") # type: ignore

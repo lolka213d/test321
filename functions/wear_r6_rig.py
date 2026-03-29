@@ -3,13 +3,13 @@ import os
 import asyncio
 import requests
 
-from test321 import glob_vars
+from test321 import glob_vars, i18n
 
 
 
 ######### Wear Character ###########    
 class BUTTON_WEAR(bpy.types.Operator):
-    bl_label = "BUTTON_WEAR"
+    bl_label = i18n.t('button_wear')
     bl_idname = "object.button_wear"
     bl_options = {'REGISTER', 'UNDO'}
     rbx_cloth : bpy.props.StringProperty(name= "Added") # type: ignore

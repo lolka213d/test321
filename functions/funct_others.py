@@ -1,12 +1,12 @@
 import bpy
 import os
-from test321 import glob_vars
+from test321 import glob_vars, i18n
 
 
 
 ######### Other Functions ###########    
 class RBX_BUTTON_OF(bpy.types.Operator):
-    bl_label = "RBX_BUTTON_OF"
+    bl_label = i18n.t('rbx_button_of')
     bl_idname = "object.rbx_button_of"
     bl_options = {'REGISTER', 'UNDO'}
     rbx_of : bpy.props.StringProperty(name= "Added") # type: ignore

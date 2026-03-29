@@ -1,0 +1,1244 @@
+{
+  "warning_could_not_access_test321_prefere": {
+    "en": "Warning: Could not access test321 preferences.",
+    "ru": "Предупреждение: не удалось получить доступ к настройкам test321."
+  },
+  "login_info_cleared_from_preferences": {
+    "en": "Login info cleared from preferences.",
+    "ru": "Данные для входа удалены из настроек."
+  },
+  "rbx_toolbox": {
+    "en": "RBX Toolbox",
+    "ru": "RBX Toolbox"
+  },
+  "github": {
+    "en": "GitHub",
+    "ru": "GitHub"
+  },
+  "privacy_policy": {
+    "en": "Privacy Policy",
+    "ru": "Политика конфиденциальности"
+  },
+  "terms_of_service": {
+    "en": "Terms of Service",
+    "ru": "Условия использования"
+  },
+  "s_90e160b2": {
+    "en": "**********************************************",
+    "ru": "**********************************************"
+  },
+  "rbx_toolbox_log": {
+    "en": "RBX Toolbox Log",
+    "ru": "Журнал RBX Toolbox"
+  },
+  "os_platform": {
+    "en": "OS Platform:",
+    "ru": "Платформа ОС:"
+  },
+  "blender_ver": {
+    "en": "Blender ver:",
+    "ru": "Версия Blender:"
+  },
+  "addon_path": {
+    "en": "Addon path:",
+    "ru": "Путь аддона:"
+  },
+  "include": {
+    "en": "Include",
+    "ru": "Включить"
+  },
+  "transform": {
+    "en": "Transform",
+    "ru": "Трансформация"
+  },
+  "armature": {
+    "en": "Armature",
+    "ru": "Арматура"
+  },
+  "bake_animation": {
+    "en": "Bake Animation",
+    "ru": "Запечь анимацию"
+  },
+  "error_getting_info_from_url": {
+    "en": "ERROR getting info from: {url}",
+    "ru": "Ошибка при получении информации с: {url}"
+  },
+  "error_parsing_atom_xml_from_url_e": {
+    "en": "ERROR parsing Atom XML from {url}: {e}",
+    "ru": "Ошибка парсинга Atom XML с {url}: {e}"
+  },
+  "no_atom_entries_found_in_feed_url": {
+    "en": "No Atom entries found in feed: {url}",
+    "ru": "В ленте не найдены записи Atom: {url}"
+  },
+  "malformed_atom_entry_in_feed_url": {
+    "en": "Malformed Atom entry in feed: {url}",
+    "ru": "Некорректная запись Atom в ленте: {url}"
+  },
+  "no_internet_connection_skipping_rbx_tool": {
+    "en": "No internet connection. Skipping RBX Toolbox update check.",
+    "ru": "Нет подключения к Интернету. Пропуск проверки обновлений RBX Toolbox."
+  },
+  "no_internet_connection_skipping_aepbr_up": {
+    "en": "No internet connection. Skipping AEPBR update check.",
+    "ru": "Нет подключения к Интернету. Пропуск проверки обновлений AEPBR."
+  },
+  "successfully_logged_out_for_update_rbx_t": {
+    "en": "Successfully logged out for update RBX Toolbox",
+    "ru": "Успешно вышли перед обновлением RBX Toolbox"
+  },
+  "install_update": {
+    "en": "Install Update",
+    "ru": "Установить обновление"
+  },
+  "operator_is_already_running": {
+    "en": "Operator is already running.",
+    "ru": "Оператор уже запущен."
+  },
+  "downloading_update": {
+    "en": "Downloading update...",
+    "ru": "Загрузка обновления..."
+  },
+  "update_url": {
+    "en": "Update URL:",
+    "ru": "URL обновления:"
+  },
+  "download_error": {
+    "en": "Download ERROR:",
+    "ru": "Ошибка загрузки:"
+  },
+  "simulate_installing": {
+    "en": "Simulate installing",
+    "ru": "Симулировать установку"
+  },
+  "update_installed_successfully_please_res": {
+    "en": "Update Installed! Successfully. Please restart Blender",
+    "ru": "Обновление установлено успешно. Пожалуйста, перезапустите Blender"
+  },
+  "update_error": {
+    "en": "Update ERROR:",
+    "ru": "Ошибка обновления:"
+  },
+  "error_error_message": {
+    "en": "Error: {error_message}",
+    "ru": "Ошибка: {error_message}"
+  },
+  "installation_finished_please_restart_ble": {
+    "en": "Installation finished. Please restart Blender.",
+    "ru": "Установка завершена. Пожалуйста, перезапустите Blender."
+  },
+  "install_aepbr_update": {
+    "en": "Install AEPBR Update",
+    "ru": "Установить обновление AEPBR"
+  },
+  "aepbr_update_url": {
+    "en": "AEPBR Update URL:",
+    "ru": "URL обновления AEPBR:"
+  },
+  "update_error_moving_files": {
+    "en": "Update Error (moving files)",
+    "ru": "Ошибка обновления (перемещение файлов)"
+  },
+  "update_installed_successfully": {
+    "en": "Update Installed! Successfully",
+    "ru": "Обновление успешно установлено"
+  },
+  "error_aepbr_error_message": {
+    "en": "Error: {aepbr_error_message}",
+    "ru": "Ошибка: {aepbr_error_message}"
+  },
+  "installation_finished": {
+    "en": "Installation finished.",
+    "ru": "Установка завершена."
+  },
+  "reloaded_module_full_module_name": {
+    "en": "Reloaded module: {full_module_name}",
+    "ru": "Перезагружен модуль: {full_module_name}"
+  },
+  "module_full_module_name_not_found_for_re": {
+    "en": "Module {full_module_name} not found for reloading.",
+    "ru": "Модуль {full_module_name} не найден для перезагрузки."
+  },
+  "error_during_oauth_registration_e": {
+    "en": "Error during OAuth registration: {e}",
+    "ru": "Ошибка при регистрации OAuth: {e}"
+  },
+  "error_during_oauth_unregistration_e": {
+    "en": "Error during OAuth unregistration: {e}",
+    "ru": "Ошибка при отмене регистрации OAuth: {e}"
+  },
+  "button_bn": {
+    "en": "BUTTON_BN",
+    "ru": "BUTTON_BN"
+  },
+  "armature_appended": {
+    "en": "Armature Appended",
+    "ru": "Арматура добавлена"
+  },
+  "nothing_selected": {
+    "en": "Nothing Selected",
+    "ru": "Ничего не выбрано"
+  },
+  "normals_recalculated": {
+    "en": "Normals Recalculated",
+    "ru": "Нормали пересчитаны"
+  },
+  "doubles_removed": {
+    "en": "Doubles Removed",
+    "ru": "Дубликаты удалены"
+  },
+  "more_than_2_objects_selected": {
+    "en": "More than 2 Objects selected",
+    "ru": "Выбрано более 2 объектов"
+  },
+  "2_objects_must_be_selected": {
+    "en": "2 Objects Must be Selected",
+    "ru": "Должно быть выбрано 2 объекта"
+  },
+  "no_bones_selected": {
+    "en": "No Bones Selected",
+    "ru": "Кости не выбраны"
+  },
+  "no_mesh_selected": {
+    "en": "No Mesh Selected",
+    "ru": "Меш не выбран"
+  },
+  "bones_successfully_parented": {
+    "en": "Bones Successfully Parented",
+    "ru": "Кости успешно присоединены"
+  },
+  "rbx_button_ava": {
+    "en": "RBX_BUTTON_AVA",
+    "ru": "RBX_BUTTON_AVA"
+  },
+  "select_exactly_1_head_mesh": {
+    "en": "Select exactly 1 Head Mesh",
+    "ru": "Выберите ровно 1 меш головы"
+  },
+  "head_mesh_should_be_selected": {
+    "en": "Head Mesh should be selected",
+    "ru": "Должен быть выбран меш головы"
+  },
+  "select_exactly_1_armature": {
+    "en": "Select exactly 1 Armature",
+    "ru": "Выберите ровно 1 арматуру"
+  },
+  "failed_to_append_e": {
+    "en": "Failed to append: {e}",
+    "ru": "Не удалось добавить: {e}"
+  },
+  "debug_facs_animation_missing_bones_missi": {
+    "en": "DEBUG FACS ANIMATION: Missing bones: {missing_bones}",
+    "ru": "DEBUG FACS АНИМАЦИЯ: Отсутствующие кости: {missing_bones}"
+  },
+  "facs_animation_applied": {
+    "en": "FACS Animation applied!",
+    "ru": "FACS анимация применена!"
+  },
+  "could_not_find_animation_data_in_templat": {
+    "en": "Could not find animation data in template",
+    "ru": "Не удалось найти данные анимации в шаблоне"
+  },
+  "button_cmr": {
+    "en": "BUTTON_CMR",
+    "ru": "BUTTON_CMR"
+  },
+  "cameras_setup_spawned": {
+    "en": "Cameras Setup Spawned",
+    "ru": "Настройка камер создана"
+  },
+  "cameras_setup_already_exist": {
+    "en": "Cameras Setup Already Exist",
+    "ru": "Настройка камер уже существует"
+  },
+  "avatar_editor_room_setup_spawned": {
+    "en": "Avatar Editor Room Setup Spawned",
+    "ru": "Комната редактора аватара добавлена"
+  },
+  "avatar_editor_room_setup_already_exist": {
+    "en": "Avatar Editor Room Setup Already Exist",
+    "ru": "Комната редактора аватара уже существует"
+  },
+  "animated_staging_setup_appended": {
+    "en": "Animated Staging Setup Appended",
+    "ru": "Анимированная сцена добавлена"
+  },
+  "s_c61c1aca": {
+    "en": "\"'",
+    "ru": "\"'"
+  },
+  "button_dmmy": {
+    "en": "BUTTON_DMMY",
+    "ru": "BUTTON_DMMY"
+  },
+  "dmy_spwn_dummy_spawned": {
+    "en": "{dmy_spwn} Dummy Spawned",
+    "ru": "{dmy_spwn} макет создан"
+  },
+  "dmy_spawned": {
+    "en": "{dmy} Spawned",
+    "ru": "{dmy} создан"
+  },
+  "rbx_button_lc": {
+    "en": "RBX_BUTTON_LC",
+    "ru": "RBX_BUTTON_LC"
+  },
+  "rbx_button_of": {
+    "en": "RBX_BUTTON_OF",
+    "ru": "RBX_BUTTON_OF"
+  },
+  "rbx_operators": {
+    "en": "RBX_OPERATORS",
+    "ru": "RBX_OPERATORS"
+  },
+  "button_hair": {
+    "en": "BUTTON_HAIR",
+    "ru": "BUTTON_HAIR"
+  },
+  "hair_template_spawned": {
+    "en": "Hair Template Spawned",
+    "ru": "Шаблон волос добавлен"
+  },
+  "hair_shader_spawned": {
+    "en": "Hair Shader Spawned",
+    "ru": "Шейдер волос добавлен"
+  },
+  "hair_texture_baked": {
+    "en": "Hair Texture Baked",
+    "ru": "Текстура волос запечена"
+  },
+  "rbx_button_hdrifull": {
+    "en": "RBX_BUTTON_HDRIFULL",
+    "ru": "RBX_BUTTON_HDRIFULL"
+  },
+  "couldn": {
+    "en": "\"Couldn'",
+    "ru": "\"Couldn'"
+  },
+  "rbx_toolbox_menu": {
+    "en": "RBX Toolbox Menu",
+    "ru": "Меню RBX Toolbox"
+  },
+  "show_face_orientation": {
+    "en": "Show Face Orientation",
+    "ru": "Показать ориентацию лиц"
+  },
+  "set_origin": {
+    "en": "Set Origin",
+    "ru": "Установить начало координат"
+  },
+  "recalculate_normals": {
+    "en": "Recalculate Normals",
+    "ru": "Пересчитать нормали"
+  },
+  "shading": {
+    "en": "Shading",
+    "ru": "Затенение"
+  },
+  "recalc_outside": {
+    "en": "Recalc Outside",
+    "ru": "Пересчитать наружу"
+  },
+  "recalc_inside": {
+    "en": "Recalc Inside",
+    "ru": "Пересчитать внутрь"
+  },
+  "flip_normals": {
+    "en": "Flip Normals",
+    "ru": "Инвертировать нормали"
+  },
+  "all_faces": {
+    "en": "All Faces",
+    "ru": "Все полигоны"
+  },
+  "selected_faces": {
+    "en": "Selected Faces",
+    "ru": "Выбранные полигоны"
+  },
+  "to_geometry": {
+    "en": "To Geometry",
+    "ru": "По геометрии"
+  },
+  "to_3d_cursor": {
+    "en": "To 3D Cursor",
+    "ru": "К 3D-курсор"
+  },
+  "shade_flat": {
+    "en": "Shade Flat",
+    "ru": "Плоское затенение"
+  },
+  "shade_smooth": {
+    "en": "Shade Smooth",
+    "ru": "Гладкое затенение"
+  },
+  "shade_auto_smooth": {
+    "en": "Shade Auto Smooth",
+    "ru": "Авто-гладкость"
+  },
+  "terms_of_use": {
+    "en": "Terms of Use",
+    "ru": "Условия использования"
+  },
+  "terms_of_use_accepted": {
+    "en": "Terms of Use accepted.",
+    "ru": "Условия использования приняты."
+  },
+  "terms_of_use_declined": {
+    "en": "Terms of Use declined.",
+    "ru": "Условия использования отклонены."
+  },
+  "agreement": {
+    "en": "Agreement:",
+    "ru": "Соглашение:"
+  },
+  "by_using_this_tool_you_agree_that_anythi": {
+    "en": "By using this tool, you agree that anything you",
+    "ru": "Используя этот инструмент, вы соглашаетесь, что всё, что вы"
+  },
+  "download_is_strictly_for_your_personal_u": {
+    "en": "download is strictly for your personal use, reference,",
+    "ru": "скачиваете, предназначено исключительно для личного использования, для справки,"
+  },
+  "and_research_purposes_only_you_hereby_ma": {
+    "en": "and research purposes only. You hereby make a",
+    "ru": "и только для целей исследования. Вы настоящим даёте"
+  },
+  "completely_serious_legallybindinginspiri": {
+    "en": "completely serious, legally-binding-in-spirit Pinky",
+    "ru": "полностью серьёзное, «в духе юридической обязательности» обещание"
+  },
+  "promise_not_to_reupload_redistribute_res": {
+    "en": "Promise not to reupload, redistribute, resell, or claim",
+    "ru": "обещаете не перезагружать, не распространять, не перепродавать и не присваивать"
+  },
+  "the_downloaded_content_as_your_own": {
+    "en": "the downloaded content as your own.",
+    "ru": "скачиваемый контент за свой."
+  },
+  "warning": {
+    "en": "WARNING!",
+    "ru": "ВНИМАНИЕ!"
+  },
+  "roblox_is_actively_tracking_asset_access": {
+    "en": "Roblox is actively tracking asset access and related",
+    "ru": "Roblox активно отслеживает доступ к ресурсам и связанную"
+  },
+  "activity_this_includes_hashes_device_inf": {
+    "en": "activity. This includes hashes, device information, IP",
+    "ru": "активность. Это включает хеши, данные устройства, IP-адреса"
+  },
+  "addresses_and_usage_patterns_they_can_te": {
+    "en": "addresses, and usage patterns. They can technically",
+    "ru": "адреса и шаблоны использования. Они технически могут"
+  },
+  "pinpoint_the_source_of_misuse_abuse_of_t": {
+    "en": "pinpoint the source of misuse. Abuse of this tool may",
+    "ru": "определить источник злоупотребления. Злоупотребление этим инструментом может"
+  },
+  "result_in_account_suspension_termination": {
+    "en": "result in account suspension, termination, or further",
+    "ru": "привести к приостановке аккаунта, его удалению или другим"
+  },
+  "action_use_responsibly": {
+    "en": "action. Use responsibly.",
+    "ru": "действиям. Используйте ответственно."
+  },
+  "lts_ver": {
+    "en": "lts_ver:",
+    "ru": "lts_ver:"
+  },
+  "addon_version": {
+    "en": "addon_version:",
+    "ru": "версия аддона:"
+  },
+  "update_available": {
+    "en": "Update Available:",
+    "ru": "Доступно обновление:"
+  },
+  "release_notes": {
+    "en": "Release Notes",
+    "ru": "Примечания к выпуску"
+  },
+  "downloading_updatedownload_progress2f": {
+    "en": "Downloading... {update.download_progress:.2f}%",
+    "ru": "Загрузка... {update.download_progress:.2f}%"
+  },
+  "downloading": {
+    "en": "Downloading",
+    "ru": "Загрузка"
+  },
+  "installing": {
+    "en": "Installing...",
+    "ru": "Установка..."
+  },
+  "restart_blender": {
+    "en": "Restart Blender",
+    "ru": "Перезапустить Blender"
+  },
+  "error_updateerror_message": {
+    "en": "Error: {update.error_message}",
+    "ru": "Ошибка: {update.error_message}"
+  },
+  "logging_out_complete": {
+    "en": "Logging out complete!",
+    "ru": "Выход завершён!"
+  },
+  "roblox_authorization": {
+    "en": "Roblox Authorization",
+    "ru": "Авторизация Roblox"
+  },
+  "this_plugin_requires_installation_of": {
+    "en": "This plugin requires installation of",
+    "ru": "Для работы плагина требуется установка"
+  },
+  "dependencies_the_first_time_it_is_run": {
+    "en": "dependencies the first time it is run.",
+    "ru": "зависимостей при первом запуске."
+  },
+  "installation_complete": {
+    "en": "Installation complete!",
+    "ru": "Установка завершена!"
+  },
+  "restart_blender_to_continue": {
+    "en": "Restart Blender to continue.",
+    "ru": "Перезапустите Blender для продолжения."
+  },
+  "hello_rbxname": {
+    "en": "Hello, {rbx.name}!",
+    "ru": "Привет, {rbx.name}!"
+  },
+  "hello_user_error": {
+    "en": "Hello, User (Error)",
+    "ru": "Привет, пользователь (Ошибка)"
+  },
+  "readme": {
+    "en": "Readme",
+    "ru": "Справка"
+  },
+  "read_instructions_credits": {
+    "en": "Read Instructions, Credits",
+    "ru": "Инструкции и авторы"
+  },
+  "read_version_log": {
+    "en": "Read Version Log",
+    "ru": "Журнал версий"
+  },
+  "r15_rigs_are_taken_from_here": {
+    "en": "R15 rigs are taken from here:",
+    "ru": "R15 риги взяты отсюда:"
+  },
+  "roblox_github": {
+    "en": "Roblox Github",
+    "ru": "Roblox Github"
+  },
+  "r6_rig_taken_from_here": {
+    "en": "R6 Rig taken from here:",
+    "ru": "R6 риг взят отсюда:"
+  },
+  "nuke_youtube": {
+    "en": "Nuke Youtube",
+    "ru": "Nuke Youtube"
+  },
+  "you_can_see_here_how_to_link": {
+    "en": "You can see here how to link",
+    "ru": "Здесь показано, как привязать"
+  },
+  "texture_to_r6_rig": {
+    "en": "texture to R6 rig",
+    "ru": "текстуру к R6 ригу"
+  },
+  "to_unlock_additional_features": {
+    "en": "To unlock additional features",
+    "ru": "Чтобы открыть дополнительные функции"
+  },
+  "specify_folder_with_ugc": {
+    "en": "Specify folder with UGC",
+    "ru": "Укажите папку с UGC"
+  },
+  "blend_file": {
+    "en": "\"blend file '\",\n    "ru": "\"blend file '"\n  },\n  "hdri_templates": {\n    "en": "HDRI & Templates",\n    "ru": "HDRI и шаблоны"\n  },\n  "blender_builtin_hdris": {\n    "en": "Blender built-in HDRIs",\n    "ru": "Встроенные HDRI Blender"\n  },\n  "set_as_hdri": {\n    "en": "Set as HDRI",\n    "ru": "Установить как HDRI"\n  },\n  "current_world_controls": {\n    "en": "** Current World Controls: **",\n    "ru": "** Настройки текущего мира: **"\n  },\n  "brightness": {\n    "en": "Brightness:",\n    "ru": "Яркость:"\n  },\n  "rotationn": {\n    "en": "Rotationn:",\n    "ru": "Поворот:"\n  },\n  "simple_skybox": {\n    "en": "Simple Skybox",\n    "ru": "Простой скайбокс"\n  },\n  "set_sky": {\n    "en": "Set Sky",\n    "ru": "Установить скай"\n  },\n  "skybox_controls": {\n    "en": "** Skybox Controls: **",\n    "ru": "** Управление скайбоксом: **"\n  },\n  "rotation": {\n    "en": "Rotation:",\n    "ru": "Вращение:"\n  },\n  "you_may_setup_your_own": {\n    "en": "*You may setup your own",\n    "ru": "*Вы можете настроить свой"\n  },\n  "skybox_in_shading_tab": {\n    "en": "Skybox in Shading tab",\n    "ru": "Скайбокс во вкладке Shading"\n  },\n  "add_animated_staging": {\n    "en": "Add Animated Staging",\n    "ru": "Добавить анимированную сцену"\n  },\n  "camera": {\n    "en": "Camera:",\n    "ru": "Камера:"\n  },\n  "set_active": {\n    "en": "Set Active",\n    "ru": "Сделать активной"\n  },\n  "backdrop": {\n    "en": "Backdrop:",\n    "ru": "Фон:"\n  },\n  "add_avatar_editor_room": {\n    "en": "Add Avatar Editor Room",\n    "ru": "Добавить комнату редактора аватара"\n  },\n  "add_roblox_baseplate": {\n    "en": "Add Roblox Baseplate",\n    "ru": "Добавить базовую пластину Roblox"\n  },\n  "import_beta": {\n    "en": "Import (Beta)",\n    "ru": "Импорт (бета)"\n  },\n  "please_accept_the_terms_of_use": {\n    "en": "Please accept the Terms of Use",\n    "ru": "Пожалуйста, примите Условия использования"\n  },\n  "before_using_import_beta": {\n    "en": "before using Import (Beta).",\n    "ru": "перед использованием Импорта (бета)."\n  },\n  "enter_id_or_url": {\n    "en": "Enter ID or URL",\n    "ru": "Введите ID или URL"\n  },\n  "asset_discovery": {\n    "en": "Asset Discovery",\n    "ru": "Поиск ассетов"\n  },\n  "reset": {\n    "en": "Reset",\n    "ru": "Сброс"\n  },\n  "discovered_items": {\n    "en": "Discovered Items:",\n    "ru": "Найденные элементы:"\n  },\n  "name_glob_varsrbx_asset_name": {\n    "en": "Name: {glob_vars.rbx_asset_name}",\n    "ru": "Имя: {glob_vars.rbx_asset_name}"\n  },\n  "type_glob_varsrbx_asset_type": {\n    "en": "Type: {glob_vars.rbx_asset_type}",\n    "ru": "Тип: {glob_vars.rbx_asset_type}"\n  },\n  "creator_glob_varsrbx_asset_creator": {\n    "en": "Creator: {glob_vars.rbx_asset_creator}",\n    "ru": "Создатель: {glob_vars.rbx_asset_creator}"\n  },\n  "dynamic_head_not_found_in_bundle": {\n    "en": "Dynamic head not found in bundle,",\n    "ru": "Динамическая голова не найдена в пакете,"\n  },\n  "default_is_used": {\n    "en": "Default is used.",\n    "ru": "Используется значение по умолчанию."\n  },\n  "open_folder": {\n    "en": "Open Folder",\n    "ru": "Открыть папку"\n  },\n  "armatures_for_older_meshes": {\n    "en": "Armatures for older meshes",\n    "ru": "Арматуры для старых мешей"\n  },\n  "below_v400_are_not_supported": {\n    "en": "(below v4.00) are not supported.",\n    "ru": "(ниже v4.00) не поддерживаются."\n  },\n  "animations": {\n    "en": "Animations",\n    "ru": "Анимации"\n  },\n  "target_armature": {\n    "en": "Target Armature:",\n    "ru": "Целевая арматура:"\n  },\n  "check_alt_animations": {\n    "en": "Check alt animations",\n    "ru": "Проверить альтернативные анимации"\n  },\n  "found_lenanim_subs_animations": {\n    "en": "Found {len(anim_subs)} animation(s):",\n    "ru": "Найдено {len(anim_subs)} анимаций:"\n  },\n  "process_all": {\n    "en": "Process All:",\n    "ru": "Обработать всё:"\n  },\n  "select_checkboxes_in_above_menus": {\n    "en": "Select checkboxes in above menus",\n    "ru": "Выберите флажки в вышеуказанных меню"\n  },\n  "download_everything": {\n    "en": "Download Everything",\n    "ru": "Загрузить всё"\n  },\n  "open_junk_tmp_folder": {\n    "en": "Open Junk (tmp) Folder",\n    "ru": "Открыть папку временных файлов"\n  },\n  "accessory_bounds": {\n    "en": "Accessory Bounds",\n    "ru": "Границы аксессуаров"\n  },\n  "ugc": {\n    "en": "UGC",\n    "ru": "UGC"\n  },\n  "spawn": {\n    "en": "Spawn",\n    "ru": "Создать"\n  },\n  "avatars": {\n    "en": "Avatars",\n    "ru": "Аватары"\n  },\n  "lc_6907b869": {\n    "en": "LC",\n    "ru": "LC"\n  },\n  "dummy": {\n    "en": "Dummy",\n    "ru": "Макет"\n  },\n  "dummies": {\n    "en": "Dummies",\n    "ru": "Макеты"\n  },\n  "rigs": {\n    "en": "Rigs",\n    "ru": "Риги"\n  },\n  "roblox_rigged_models": {\n    "en": "Roblox Rigged Models",\n    "ru": "Ригнутые модели Roblox"\n  },\n  "r15_blocky_rig": {\n    "en": "R15 Blocky Rig",\n    "ru": "R15 Blocky риг"\n  },\n  "r15_woman_rig": {\n    "en": "R15 Woman Rig",\n    "ru": "R15 риг (женский)"\n  },\n  "plushie_template": {\n    "en": "Plushie Template",\n    "ru": "Шаблон плюшевого"\n  },\n  "iixenix_rigs": {\n    "en": "iiXenix Rigs",\n    "ru": "iiXenix риги"\n  },\n  "multirig": {\n    "en": "Multirig",\n    "ru": "Мультириг"\n  },\n  "multirig_faceless": {\n    "en": "Multirig Faceless",\n    "ru": "Мультириг без лица"\n  },\n  "paribes_rig": {\n    "en": "Paribes Rig",\n    "ru": "Paribes риг"\n  },\n  "aepbr": {\n    "en": "AEPBR",\n    "ru": "AEPBR"\n  },\n  "s_16810612": {\n    "en": "- - - - - - -",\n    "ru": "- - - - - - -"\n  },\n  "update_available_aepbr_cur_ver_glob_vars": {\n    "en": "Update Available:  ({aepbr_cur_ver} -> {glob_vars.aepbr_lts_ver})",\n    "ru": "Доступно обновление: ({aepbr_cur_ver} -> {glob_vars.aepbr_lts_ver})"\n  },\n  "release_notes_vglob_varsaepbr_lts_ver": {\n    "en": "Release Notes v.{glob_vars.aepbr_lts_ver}",\n    "ru": "Примечания к выпуску v.{glob_vars.aepbr_lts_ver}"\n  },\n  "error_update_aepbraepbr_error_message": {\n    "en": "Error: {update_aepbr.aepbr_error_message}",\n    "ru": "Ошибка: {update_aepbr.aepbr_error_message}"\n  },\n  "dowload_rig_vglob_varsaepbr_lts_ver": {\n    "en": "Dowload rig (v.{glob_vars.aepbr_lts_ver})",\n    "ru": "Загрузить риг (v.{glob_vars.aepbr_lts_ver})"\n  },\n  "no_inernet_connection": {\n    "en": "No inernet Connection",\n    "ru": "Нет подключения к Интернету"\n  },\n  "aepbr_discord": {\n    "en": "AEPBR Discord",\n    "ru": "AEPBR Discord"\n  },\n  "r6_from_nuke_yt": {\n    "en": "R6 from Nuke (YT)",\n    "ru": "R6 от Nuke (YT)"\n  },\n  "rigged_r6": {\n    "en": "Rigged R6",\n    "ru": "Ригнутый R6"\n  },\n  "wear_character_select_armature": {\n    "en": "Wear Character (Select Armature)",\n    "ru": "Надеть персонажа (выберите арматуру)"\n  },\n  "currently_only_r6_rig_is_supported": {\n    "en": "Currently Only R6 Rig is supported",\n    "ru": "В настоящее время поддерживается только R6 риг"\n  },\n  "modify_character": {\n    "en": "Modify Character",\n    "ru": "Изменить персонажа"\n  },\n  "head": {\n    "en": "- - - - - - - - - - - HEAD - - - - - - - - - - -",\n    "ru": "- - - - - - - - - - - ГОЛОВА - - - - - - - - - - -"\n  },\n  "head_98921133": {\n    "en": "Head",\n    "ru": "Голова"\n  },\n  "skin_tone": {\n    "en": "Skin Tone:",\n    "ru": "Тон кожи:"\n  },\n  "loaded_face_none": {\n    "en": "Loaded Face: None",\n    "ru": "Загруженное лицо: нет"\n  },\n  "loaded_face_glob_varsrbx_face_name": {\n    "en": "Loaded Face: {glob_vars.rbx_face_name}",\n    "ru": "Загруженное лицо: {glob_vars.rbx_face_name}"\n  },\n  "enter_face_id_or_url": {\n    "en": "Enter Face ID or URL",\n    "ru": "Введите ID лица или URL"\n  },\n  "import": {\n    "en": "Import",\n    "ru": "Импорт"\n  },\n  "shirt": {\n    "en": "- - - - - - - - - - - SHIRT - - - - - - - - - - -",\n    "ru": "- - - - - - - - - - - РУБАШКА - - - - - - - - - - -"\n  },\n  "shirt_3f1f22fd": {\n    "en": "Shirt",\n    "ru": "Рубашка"\n  },\n  "loaded_shirt_none": {\n    "en": "Loaded Shirt: None",\n    "ru": "Загруженная рубашка: нет"\n  },\n  "loaded_shirt_glob_varsrbx_shirt_name": {\n    "en": "Loaded Shirt: {glob_vars.rbx_shirt_name}",\n    "ru": "Загруженная рубашка: {glob_vars.rbx_shirt_name}"\n  },\n  "enter_shirt_id_or_url": {\n    "en": "Enter Shirt ID or URL",\n    "ru": "Введите ID рубашки или URL"\n  },\n  "torso": {\n    "en": "- - - - - - - - - - - TORSO - - - - - - - - - -",\n    "ru": "- - - - - - - - - - - ТОРС - - - - - - - - - -"\n  },\n  "torso_94b1fe49": {\n    "en": "Torso",\n    "ru": "Торс"\n  },\n  "loaded_pants_none": {\n    "en": "Loaded Pants: None",\n    "ru": "Загруженные штаны: нет"\n  },\n  "loaded_pants_glob_varsrbx_pants_name": {\n    "en": "Loaded Pants: {glob_vars.rbx_pants_name}",\n    "ru": "Загруженные штаны: {glob_vars.rbx_pants_name}"\n  },\n  "pants": {\n    "en": "- - - - - - - - - - - PANTS - - - - - - - - - - -",\n    "ru": "- - - - - - - - - - - ШТАНЫ - - - - - - - - - - -"\n  },\n  "pants_6ecd23b2": {\n    "en": "Pants",\n    "ru": "Штаны"\n  },\n  "enter_pants_id_or_url": {\n    "en": "Enter Pants ID or URL",\n    "ru": "Введите ID штанов или URL"\n  },\n  "textures_folder": {\n    "en": "Textures Folder",\n    "ru": "Папка текстур"\n  },\n  "hairs": {\n    "en": "Hairs",\n    "ru": "Волосы"\n  },\n  "dummie_heads_only": {\n    "en": "Dummie Heads Only",\n    "ru": "Только макетные головы"\n  },\n  "starter_hair_template": {\n    "en": "Starter Hair Template:",\n    "ru": "Шаблон начальных волос:"\n  },\n  "add": {\n    "en": "Add",\n    "ru": "Добавить"\n  },\n  "bake_hair_texture": {\n    "en": "Bake Hair Texture",\n    "ru": "Запечь текстуру волос"\n  },\n  "add_hair_shader": {\n    "en": "Add Hair Shader",\n    "ru": "Добавить шейдер волос"\n  },\n  "hair_color_controls": {\n    "en": "** Hair Color Controls: **",\n    "ru": "** Управление цветом волос: **"\n  },\n  "hair_color": {\n    "en": "Hair Color:",\n    "ru": "Цвет волос:"\n  },\n  "hair_strands": {\n    "en": "Hair Strands:",\n    "ru": "Пряди волос:"\n  },\n  "strands_color": {\n    "en": "Strands Color:",\n    "ru": "Цвет прядей:"\n  },\n  "highlight_color": {\n    "en": "Highlight Color:",\n    "ru": "Цвет блика:"\n  },\n  "highlight_scale": {\n    "en": "Highlight Scale:",\n    "ru": "Масштаб блика:"\n  },\n  "top_position": {\n    "en": "Top Position:",\n    "ru": "Верхняя позиция:"\n  },\n  "bottom_position": {\n    "en": "Bottom Position:",\n    "ru": "Нижняя позиция:"\n  },\n  "bumps": {\n    "en": "Bumps:",\n    "ru": "Бамп:"\n  },\n  "bake_texture": {\n    "en": "Bake Texture",\n    "ru": "Запечь текстуру"\n  },\n  "view_image": {\n    "en": "View Image",\n    "ru": "Просмотреть изображение"\n  },\n  "layered_cloth": {\n    "en": "Layered Cloth",\n    "ru": "Многослойная ткань"\n  },\n  "cages": {\n    "en": "Cages",\n    "ru": "Клетки (Cages)"\n  },\n  "show_bones_infront": {\n    "en": "Show Bones Infront",\n    "ru": "Показать кости спереди"\n  },\n  "show_bone_names": {\n    "en": "Show Bone Names",\n    "ru": "Показать имена костей"\n  },\n  "lc_animation_test": {\n    "en": "LC Animation Test",\n    "ru": "Тест анимации LC"\n  },\n  "1_select_lc_armature": {\n    "en": "1. Select LC Armature",\n    "ru": "1. Выберите LC арматуру"\n  },\n  "2_select_rig_to_spawn": {\n    "en": "2. Select Rig to spawn",\n    "ru": "2. Выберите риг для создания"\n  },\n  "spawn_rig": {\n    "en": "Spawn Rig",\n    "ru": "Создать риг"\n  },\n  "animations_6c85be98": {\n    "en": "Animations:",\n    "ru": "Анимации:"\n  },\n  "idle": {\n    "en": "Idle",\n    "ru": "Ожидание"\n  },\n  "walk": {\n    "en": "Walk",\n    "ru": "Ходьба"\n  },\n  "move": {\n    "en": "Move",\n    "ru": "Движение"\n  },\n  "run": {\n    "en": "Run",\n    "ru": "Бег"\n  },\n  "swim": {\n    "en": "Swim",\n    "ru": "Плавание"\n  },\n  "climb": {\n    "en": "Climb",\n    "ru": "Подъём"\n  },\n  "jump": {\n    "en": "Jump",\n    "ru": "Прыжок"\n  },\n  "fall": {\n    "en": "Fall",\n    "ru": "Падение"\n  },\n  "play_pause": {\n    "en": "Play / Pause",\n    "ru": "Воспроизвести / Пауза"\n  },\n  "delete_rig": {\n    "en": "Delete Rig",\n    "ru": "Удалить риг"\n  },\n  "scrub": {\n    "en": "Scrub",\n    "ru": "Перемотка"\n  },\n  "speed": {\n    "en": "Speed:",\n    "ru": "Скорость:"\n  },\n  "01x_07c8fdc8": {\n    "en": "0.1x",\n    "ru": "0.1x"\n  },\n  "025x_a505df0a": {\n    "en": "0.25x",\n    "ru": "0.25x"\n  },\n  "05x_60c9b4d8": {\n    "en": "0.5x",\n    "ru": "0.5x"\n  },\n  "1x_38684612": {\n    "en": "1x",\n    "ru": "1x"\n  },\n  "roblox_samples_from_github": {\n    "en": "Roblox Samples from Github",\n    "ru": "Примеры Roblox с GitHub"\n  },\n  "avatar_templates": {\n    "en": "Avatar Templates",\n    "ru": "Шаблоны аватаров"\n  },\n  "mesh_custom_properties": {\n    "en": "Mesh Custom Properties",\n    "ru": "Пользовательские свойства меша"\n  },\n  "clean_up_all": {\n    "en": "Clean Up All",\n    "ru": "Очистить всё"\n  },\n  "add_facs_properties_head_only": {\n    "en": "Add FACS Properties (Head Only)",\n    "ru": "Добавить FACS свойства (только голова)"\n  },\n  "add_facs_animation_arma": {\n    "en": "Add FACS Animation (Arma)",\n    "ru": "Добавить FACS анимацию (Arma)"\n  },\n  "select_objects_to_remove_000": {\n    "en": "Select Objects to remove .000",\n    "ru": "Выберите объекты для удаления .000"\n  },\n  "ps_not_always_works": {\n    "en": "ps: not always works",\n    "ru": "примечание: не всегда работает"\n  },\n  "rename_all": {\n    "en": "Rename All",\n    "ru": "Переименовать всё"\n  },\n  "hide_all_att_in_selected": {\n    "en": "Hide all Att in selected:",\n    "ru": "Скрыть все прикрепления в выбранных:"\n  },\n  "hide_all": {\n    "en": "Hide All",\n    "ru": "Скрыть всё"\n  },\n  "unhide_them": {\n    "en": "UnHide Them",\n    "ru": "Показать их"\n  },\n  "only_the_ones_you_hide_before": {\n    "en": "(only the ones you hide before)",\n    "ru": "(только те, которые вы скрывали ранее)"\n  },\n  "cameras_and_lights": {\n    "en": "Cameras and Lights",\n    "ru": "Камеры и свет"\n  },\n  "add_4_cameras_setup": {\n    "en": "Add 4 Cameras Setup",\n    "ru": "Добавить настройку 4 камер"\n  },\n  "camera_front": {\n    "en": "Camera Front:",\n    "ru": "Камера спереди:"\n  },\n  "camera_back": {\n    "en": "Camera Back:",\n    "ru": "Камера сзади:"\n  },\n  "camera_left": {\n    "en": "Camera Left:",\n    "ru": "Камера слева:"\n  },\n  "camera_right": {\n    "en": "Camera Right:",\n    "ru": "Камера справа:"\n  },\n  "preview": {\n    "en": "Preview",\n    "ru": "Просмотр"\n  },\n  "transparent_background": {\n    "en": "Transparent background",\n    "ru": "Прозрачный фон"\n  },\n  "render": {\n    "en": "Render",\n    "ru": "Рендер"\n  },\n  "animation_advanced": {\n    "en": "Animation (Advanced)",\n    "ru": "Анимация (расширенная)"\n  },\n  "how_to_use": {\n    "en": "How to Use",\n    "ru": "Как использовать"\n  },\n  "step1_add_armature": {\n    "en": "Step-1 (Add Armature)",\n    "ru": "Шаг 1 (Добавить арматуру)"\n  },\n  "add_armature": {\n    "en": "Add Armature",\n    "ru": "Добавить арматуру"\n  },\n  "show_bones": {\n    "en": "Show Bones:",\n    "ru": "Показать кости:"\n  },\n  "s_ca8da72b": {\n    "en": "-------------------------------------",\n    "ru": "-------------------------------------"\n  },\n  "you_may_try_from_step4": {\n    "en": "You may try from Step-4",\n    "ru": "Вы можете попробовать с шага 4"\n  },\n  "if_no_work_back_to_step2": {\n    "en": "If no work - back to Step-2",\n    "ru": "Если не работает - вернитесь к шагу 2"\n  },\n  "step2_prepare_mesh": {\n    "en": "Step-2 (Prepare Mesh):",\n    "ru": "Шаг 2 (Подготовить меш):"\n  },\n  "recalucalting_done": {\n    "en": "Recalucalting Done!",\n    "ru": "Пересчёт завершён!"\n  },\n  "step3_double_vertices": {\n    "en": "Step-3 (Double Vertices):",\n    "ru": "Шаг 3 (Дубли вершин):"\n  },\n  "doubles_found": {\n    "en": "Doubles Found:",\n    "ru": "Найдено дубликатов:"\n  },\n  "doubles_found_error": {\n    "en": "Doubles Found: ERROR!",\n    "ru": "Найдены дубликаты: ОШИБКА!"\n  },\n  "remove_double_vertices": {\n    "en": "Remove Double Vertices",\n    "ru": "Удалить дубли вершин"\n  },\n  "remove_doubles_done": {\n    "en": "Remove Doubles Done!",\n    "ru": "Удаление дубликатов завершено!"\n  },\n  "optional_might_help_look_better": {\n    "en": "(Optional, Might help look better):",\n    "ru": "(Необязательно, может улучшить внешний вид):"\n  },\n  "mesh_smoothing": {\n    "en": "Mesh Smoothing:",\n    "ru": "Сглаживание меша:"\n  },\n  "auto": {\n    "en": "Auto",\n    "ru": "Авто"\n  },\n  "auto_smooth": {\n    "en": "Auto Smooth",\n    "ru": "Авто-гладкость"\n  },\n  "step4": {\n    "en": "Step-4:",\n    "ru": "Шаг 4:"\n  },\n  "adjust_bones_in": {\n    "en": "\"Adjust Bones in '\",
+    "ru": "\"Adjust Bones in '"
+  },
+  "if_needed": {
+    "en": "If needed",
+    "ru": "Если необходимо"
+  },
+  "step5": {
+    "en": "Step-5:",
+    "ru": "Шаг 5:"
+  },
+  "select_mesh_bones_then_parent": {
+    "en": "Select Mesh + Bones, then Parent",
+    "ru": "Выберите меш + кости, затем присоедините"
+  },
+  "parent_bones_and_mesh": {
+    "en": "Parent Bones and Mesh",
+    "ru": "Присоединить кости и меш"
+  },
+  "error_need_rectify_mesh": {
+    "en": "Error, need rectify Mesh",
+    "ru": "Ошибка, требуется исправить меш"
+  },
+  "parenting_done": {
+    "en": "Parenting Done!",
+    "ru": "Присоединение выполнено!"
+  },
+  "step6_optional": {
+    "en": "Step-6 (Optional):",
+    "ru": "Шаг 6 (необязательно):"
+  },
+  "you_can_also_now_export_this": {
+    "en": "You can also now export this",
+    "ru": "Теперь вы также можете экспортировать это"
+  },
+  "model_as_fbx_to_mixamo_for": {
+    "en": "Model as .fbx to Mixamo for",
+    "ru": "Модель в .fbx для Mixamo для"
+  },
+  "animation_no_need_redo_bones": {
+    "en": "animation. (No need redo bones)",
+    "ru": "анимации. (Не нужно переделывать кости)"
+  },
+  "go_to_mixamo": {
+    "en": "Go to Mixamo",
+    "ru": "Перейти на Mixamo"
+  },
+  "upload_to_roblox": {
+    "en": "Upload to Roblox",
+    "ru": "Загрузить в Roblox"
+  },
+  "refreshing_login_please_wait": {
+    "en": "Refreshing Login. Please wait",
+    "ru": "Обновление входа. Пожалуйста, дождитесь"
+  },
+  "selected_objects": {
+    "en": "Selected Objects:",
+    "ru": "Выбранные объекты:"
+  },
+  "quick_functions": {
+    "en": "Quick Functions:",
+    "ru": "Быстрые функции:"
+  },
+  "culling_option": {
+    "en": "Culling Option",
+    "ru": "Параметры отсечения"
+  },
+  "hide_flipped_faces_like_in_roblox": {
+    "en": "(Hide flipped faces, like in Roblox)",
+    "ru": "(Скрыть инвертированные лица, как в Roblox)"
+  },
+  "backface_culling": {
+    "en": "Backface Culling",
+    "ru": "Отсечение задних граней"
+  },
+  "culling_option_add_material": {
+    "en": "Culling Option (Add Material)",
+    "ru": "Опция отсечения (добавить материал)"
+  },
+  "culling_option_select_1_object": {
+    "en": "Culling Option (Select 1 Object)",
+    "ru": "Опция отсечения (выберите 1 объект)"
+  },
+  "culling_option_select_object": {
+    "en": "Culling Option (Select Object)",
+    "ru": "Опция отсечения (выбрать объект)"
+  },
+  "normals": {
+    "en": "Normals",
+    "ru": "Нормали"
+  },
+  "glowing_ugc": {
+    "en": "Glowing UGC",
+    "ru": "Светящийся UGC"
+  },
+  "make_item_glow": {
+    "en": "Make Item Glow",
+    "ru": "Добавить свечения элементу"
+  },
+  "remove_glowing": {
+    "en": "Remove Glowing",
+    "ru": "Убрать свечение"
+  },
+  "glowing_ugc_select_object": {
+    "en": "Glowing UGC (Select Object)",
+    "ru": "Светящийся UGC (выберите объект)"
+  },
+  "ugc_outline": {
+    "en": "UGC Outline",
+    "ru": "Контур UGC"
+  },
+  "make_outline": {
+    "en": "Make Outline",
+    "ru": "Создать контур"
+  },
+  "outline_controls": {
+    "en": "** Outline Controls: **",
+    "ru": "** Управление контуром: **"
+  },
+  "preview_color": {
+    "en": "Preview Color:",
+    "ru": "Цвет предпросмотра:"
+  },
+  "outline_thickness": {
+    "en": "Outline Thickness:",
+    "ru": "Толщина контура:"
+  },
+  "add_outline_to_ugc": {
+    "en": "** Add Outline to UGC: **",
+    "ru": "** Добавить контур к UGC: **"
+  },
+  "apply_outline": {
+    "en": "Apply Outline",
+    "ru": "Применить контур"
+  },
+  "outline_faces_will_be_added_to_your": {
+    "en": "*Outline faces will be added to your",
+    "ru": "*Полигоны контура будут добавлены в ваш"
+  },
+  "object_and_uv_moved_outside": {
+    "en": "object and UV moved outside.",
+    "ru": "объект, а UV перемещены наружу."
+  },
+  "just_move_that_uv_to_the_color": {
+    "en": "Just move that UV to the color",
+    "ru": "Просто переместите этот UV в цветовую"
+  },
+  "that_you_need_or_reunwrap_it": {
+    "en": "that you need or re-unwrap it",
+    "ru": "зону, которую вам нужно, или перепроявите её"
+  },
+  "ugc_outline_add_material": {
+    "en": "UGC Outline (Add Material)",
+    "ru": "Контур UGC (добавить материал)"
+  },
+  "ugc_outline_select_1_object": {
+    "en": "UGC Outline (Select 1 Object)",
+    "ru": "Контур UGC (выбрать 1 объект)"
+  },
+  "ugc_outline_select_object": {
+    "en": "UGC Outline (Select Object)",
+    "ru": "Контур UGC (выбрать объект)"
+  },
+  "file_export": {
+    "en": "File Export:",
+    "ru": "Экспорт файла:"
+  },
+  "ugc_item_export": {
+    "en": "UGC Item Export:",
+    "ru": "Экспорт предмета UGC:"
+  },
+  "set_origin_to_geometry": {
+    "en": "Set Origin to Geometry",
+    "ru": "Установить начало по геометрии"
+  },
+  "apply_all_transforms": {
+    "en": "Apply All Transforms",
+    "ru": "Применить все преобразования"
+  },
+  "export_fbx": {
+    "en": "Export FBX",
+    "ru": "Экспорт в FBX"
+  },
+  "select_1_mesh_for_fbx_export": {
+    "en": "Select 1 Mesh for FBX Export",
+    "ru": "Выберите 1 меш для экспорта FBX"
+  },
+  "layered_cloth_export": {
+    "en": "Layered Cloth Export:",
+    "ru": "Экспорт многослойной ткани:"
+  },
+  "make_sure_you_select_these": {
+    "en": "Make sure you select these:",
+    "ru": "Убедитесь, что вы выбрали эти элементы:"
+  },
+  "1_armature": {
+    "en": "1. Armature",
+    "ru": "1. Арматура"
+  },
+  "2_youritem_in_armature": {
+    "en": "2. YourItem in Armature",
+    "ru": "2. Ваш предмет в арматуре"
+  },
+  "3_itemname_outercage": {
+    "en": "3. ItemName_OuterCage",
+    "ru": "3. ItemName_OuterCage"
+  },
+  "4_itemname_innercage": {
+    "en": "4. ItemName_InnerCage",
+    "ru": "4. ItemName_InnerCage"
+  },
+  "some_items_not_selected": {
+    "en": "Some items not selected",
+    "ru": "Некоторые элементы не выбраны"
+  },
+  "animation_export": {
+    "en": "Animation Export:",
+    "ru": "Экспорт анимации:"
+  },
+  "export_animation": {
+    "en": "Export Animation",
+    "ru": "Экспорт анимации"
+  },
+  "select_armature_with_animation": {
+    "en": "Select Armature with animation",
+    "ru": "Выберите арматуру с анимацией"
+  },
+  "avatar_export": {
+    "en": "Avatar Export:",
+    "ru": "Экспорт аватара:"
+  },
+  "select_all_parts_1st": {
+    "en": "Select all parts 1st",
+    "ru": "Сначала выберите все части"
+  },
+  "export_avatar": {
+    "en": "Export Avatar",
+    "ru": "Экспорт аватара"
+  },
+  "pie_menu": {
+    "en": "Pie Menu:",
+    "ru": "Кольцевое меню:"
+  },
+  "shortcut": {
+    "en": "Shortcut:",
+    "ru": "Сочетание клавиш:"
+  },
+  "shortcut_not_found": {
+    "en": "Shortcut not found",
+    "ru": "Сочетание клавиш не найдено"
+  },
+  "1_wont_work_if_shortcut_exist": {
+    "en": "1. Wont work if shortcut exist",
+    "ru": "1. Не будет работать, если сочетание уже существует"
+  },
+  "2_work_in_obj_mode_only": {
+    "en": "2. Work in Obj mode only",
+    "ru": "2. Работает только в режиме объекта"
+  },
+  "install_cool_theme": {
+    "en": "Install Cool Theme",
+    "ru": "Установить стильную тему"
+  },
+  "discord_support_server": {
+    "en": "Discord Support Server",
+    "ru": "Сервер поддержки в Discord"
+  },
+  "buy_me_a_coffee": {
+    "en": "Buy me a Coffee! ;)",
+    "ru": "Купи мне кофе! ;)"
+  },
+  "support_with_robux": {
+    "en": "Support with Robux",
+    "ru": "Поддержать Robux"
+  },
+  "supporter_10_bobuc": {
+    "en": "Supporter (10 Bobuc)",
+    "ru": "Поддержка (10 Bobuc)"
+  },
+  "hero_50_bobuc": {
+    "en": "Hero (50 Bobuc)",
+    "ru": "Герой (50 Bobuc)"
+  },
+  "legend_500_bobuc": {
+    "en": "Legend (500 Bobuc)",
+    "ru": "Легенда (500 Bobuc)"
+  },
+  "epic_1000_bobuc": {
+    "en": "Epic (1000 Bobuc)",
+    "ru": "Эпик (1000 Bobuc)"
+  },
+  "button_bnds": {
+    "en": "BUTTON_BNDS",
+    "ru": "BUTTON_BNDS"
+  },
+  "url_handler": {
+    "en": "URL_HANDLER",
+    "ru": "URL_HANDLER"
+  },
+  "button_wear": {
+    "en": "BUTTON_WEAR",
+    "ru": "BUTTON_WEAR"
+  },
+  "error_applying_special_mesh_scale_e": {
+    "en": "Error applying special mesh scale: {e}",
+    "ru": "Ошибка при применении специального масштаба меша: {e}"
+  },
+  "please_select_a_mesh_object": {
+    "en": "Please select a mesh object.",
+    "ru": "Пожалуйста, выберите объект меша."
+  },
+  "skipping_empty_or_nonnode_material_in_sl": {
+    "en": "Skipping empty or non-node material in slot: {slot.name}",
+    "ru": "Пропуск пустого или не-node материала в слоте: {slot.name}"
+  },
+  "no_principled_bsdf_found_in_material_mat": {
+    "en": "No Principled BSDF found in material: {mat.name}",
+    "ru": "Не найден Principled BSDF в материале: {mat.name}"
+  },
+  "no_alpha_texture_to_remove_in_material_m": {
+    "en": "No alpha texture to remove in material: {mat.name}",
+    "ru": "Отсутствует альфа-текстура для удаления в материале: {mat.name}"
+  },
+  "material_matname_texture_has_no_alpha_ou": {
+    "en": "Material {mat.name}: Texture has no Alpha output.",
+    "ru": "Материал {mat.name}: у текстуры нет Alpha-канала."
+  },
+  "animation_error_no_valid_armature_provid": {
+    "en": "[Animation] ERROR: No valid armature provided.",
+    "ru": "[Анимация] ОШИБКА: не указана действительная арматура."
+  },
+  "animation_warning_no_keyframe_tracks_fou": {
+    "en": "[Animation] WARNING: No keyframe tracks found.",
+    "ru": "[Анимация] ПРЕДУПРЕЖДЕНИЕ: не найдены дорожки ключевых кадров."
+  },
+  "animation_skipped_lenskipped_tracks_no_m": {
+    "en": "[Animation] Skipped {len(skipped)} tracks (no matching bone):",
+    "ru": "[Анимация] Пропущено {len(skipped)} дорожек (нет соответствующей кости):"
+  },
+  "s_0858c12d": {
+    "en": "{s}",
+    "ru": "{s}"
+  },
+  "animation_applied": {
+    "en": "\"[Animation] Applied '\",\n    "ru": "\"[Анимация] Применено '"\n  },\n  "curveanim_error_no_valid_armature_provid": {\n    "en": "[CurveAnim] ERROR: No valid armature provided.",\n    "ru": "[CurveAnim] ОШИБКА: не указана действительная арматура."\n  },\n  "curveanim_warning_no_keyframe_tracks_fou": {\n    "en": "[CurveAnim] WARNING: No keyframe tracks found.",\n    "ru": "[CurveAnim] ПРЕДУПРЕЖДЕНИЕ: не найдены дорожки ключевых кадров."\n  },\n  "curveanim_warning_invalid_length_length": {\n    "en": "[CurveAnim] WARNING: Invalid length ({length}), defaulting to 1.0s",\n    "ru": "[CurveAnim] ПРЕДУПРЕЖДЕНИЕ: неверная длина ({length}), используется значение по умолчанию 1.0 с"\n  },\n  "please_select_a_valid_armature_in_the_pi": {\n    "en": "Please select a valid Armature in the picker.",\n    "ru": "Пожалуйста, выберите действительную арматуру в селекторе."\n  },\n  "invalid_rig_selection": {\n    "en": "Invalid rig selection.",\n    "ru": "Недействительный выбор рига."\n  },\n  "rig_collection_could_not_be_appended": {\n    "en": "Rig collection could not be appended.",\n    "ru": "Коллекция рига не может быть добавлена."\n  },\n  "no_armature_found_in_spawned_rig_collect": {\n    "en": "No armature found in spawned rig collection.",\n    "ru": "В созданной коллекции рига не найдена арматура."\n  },\n  "rig_spawned_successfully": {\n    "en": "Rig spawned successfully.",\n    "ru": "Риг успешно создан."\n  },\n  "add_animation": {\n    "en": "Add Animation",\n    "ru": "Добавить анимацию"\n  },\n  "no_spawned_rig_found_spawn_a_rig_first": {\n    "en": "No spawned rig found. Spawn a rig first.",\n    "ru": "Созданный риг не найден. Сначала создайте риг."\n  },\n  "animation_file_not_found_fbx_path": {\n    "en": "Animation file not found: {fbx_path}",\n    "ru": "Файл анимации не найден: {fbx_path}"\n  },\n  "selfanim_type_animation_added": {\n    "en": "{self.anim_type} animation added.",\n    "ru": "Анимация {self.anim_type} добавлена."\n  },\n  "animation_fbx_did_not_contain_an_armatur": {\n    "en": "Animation FBX did not contain an armature.",\n    "ru": "FBX анимации не содержал арматуру."\n  },\n  "no_animation_loaded_add_an_animation_fir": {\n    "en": "No animation loaded. Add an animation first.",\n    "ru": "Анимация не загружена. Сначала добавьте анимацию."\n  },\n  "pause": {\n    "en": "Pause",\n    "ru": "Пауза"\n  },\n  "rig_deleted": {\n    "en": "Rig deleted.",\n    "ru": "Риг удалён."\n  },\n  "speed_44877c6a": {\n    "en": "Speed",\n    "ru": "Скорость"\n  },\n  "speed_set_to_selfspeedx": {\n    "en": "Speed set to {self.speed}x",\n    "ru": "Скорость установлена на {self.speed}x"\n  },\n  "info": {\n    "en": "Info",\n    "ru": "Информация"\n  },\n  "info_2a72c335": {\n    "en": "INFO.",\n    "ru": "ИНФО."\n  },\n  "1_test_is_only_implemented_for_blocky_an": {\n    "en": "1. Test is only implemented for Blocky and Woman avatars.",\n    "ru": "1. Тест реализован только для аватаров Blocky и Woman."\n  },\n  "2_if_you_need_to_test_with_custom_animat": {\n    "en": "2. If you need to test with custom animations:",\n    "ru": "2. Если нужно протестировать с пользовательскими анимациями:"\n  },\n  "spawn_test_rig": {\n    "en": "- Spawn test rig",\n    "ru": "- Создать тестовый риг"\n  },\n  "in_the_import_beta_import_animation_that": {\n    "en": "- In the import (Beta) import animation that you need",\n    "ru": "- В Импорт (бета) импортируйте нужную анимацию"\n  },\n  "select_the_armature_in_the": {\n    "en": "'  - Select the armature in the \"",\n    "ru": "'  - Выберите арматуру в \""\n  },\n  "apply_animation": {\n    "en": "- Apply animation",\n    "ru": "- Применить анимацию"\n  },\n  "the_scrub_function_timings_might_not_be": {\n    "en": "(The scrub function timings might not be accurate).",\n    "ru": "(Временные интервалы функции перемотки могут быть неточными)."\n  },\n  "skipping_armature_for_mesh_mesh_infoget": {\n    "en": "\"Skipping armature for mesh {mesh_info.get('\'",\n    "ru": "\"Пропуск арматуры для меша {mesh_info.get('\'"\n  },\n  "no_valid_meshes_with_bone_data_found_for": {\n    "en": "No valid meshes with bone data found for armature generation.",\n    "ru": "Не найдено действительных мешей с данными костей для генерации арматуры."\n  },\n  "no_bones_found_in_imported_data": {\n    "en": "No bones found in imported data.",\n    "ru": "В импортированных данных не найдены кости."\n  },\n  "discovery_failed_asset_error": {\n    "en": "Discovery Failed: {asset_error}",\n    "ru": "Поиск не удался: {asset_error}"\n  },\n  "bundle_discovery_failed_rbx_imp_error": {\n    "en": "Bundle Discovery Failed: {rbx_imp_error}",\n    "ru": "Поиск пакета не удался: {rbx_imp_error}"\n  },\n  "import_beta_reset": {\n    "en": "Import (Beta) Reset",\n    "ru": "Сброс Импорта (бета)"\n  },\n  "download": {\n    "en": "Download",\n    "ru": "Загрузить"\n  },\n  "download_triggered_for_category_selfcate": {\n    "en": "Download triggered for category: {self.category}",\n    "ru": "Запущена загрузка для категории: {self.category}"\n  },\n  "downloading_body_parts": {\n    "en": "Downloading Body Parts...",\n    "ru": "Загрузка частей тела..."\n  },\n  "downloading_dynamic_heads": {\n    "en": "Downloading Dynamic Heads...",\n    "ru": "Загрузка динамических голов..."\n  },\n  "downloading_accessories": {\n    "en": "Downloading Accessories...",\n    "ru": "Загрузка аксессуаров..."\n  },\n  "downloading_layered_cloth": {\n    "en": "Downloading Layered Cloth...",\n    "ru": "Загрузка многослойной ткани..."\n  },\n  "downloading_face_parts": {\n    "en": "Downloading Face Parts...",\n    "ru": "Загрузка частей лица..."\n  },\n  "downloading_classics": {\n    "en": "Downloading Classics...",\n    "ru": "Загрузка классических..."\n  },\n  "downloading_gears": {\n    "en": "Downloading Gears...",\n    "ru": "Загрузка аксессуаров (Gears)..."\n  },\n  "downloading_armature": {\n    "en": "Downloading Armature...",\n    "ru": "Загрузка арматуры..."\n  },\n  "downloading_animations": {\n    "en": "Downloading Animations...",\n    "ru": "Загрузка анимаций..."\n  },\n  "downloading_models": {\n    "en": "Downloading Models...",\n    "ru": "Загрузка моделей..."\n  },\n  "applying_animation": {\n    "en": "Applying Animation...",\n    "ru": "Применение анимации..."\n  },\n  "options": {\n    "en": "Options",\n    "ru": "Опции"\n  },\n  "options_category": {\n    "en": "Options: {category}",\n    "ru": "Параметры: {category}"\n  },\n  "created_folder_folder_path": {\n    "en": "Created folder: {folder_path}",\n    "ru": "Создана папка: {folder_path}"\n  },\n  "could_not_create_folder_e": {\n    "en": "Could not create folder: {e}",\n    "ru": "Не удалось создать папку: {e}"\n  },\n  "opened_folder_folder_path": {\n    "en": "Opened folder: {folder_path}",\n    "ru": "Открыта папка: {folder_path}"\n  },\n  "could_not_open_folder_e": {\n    "en": "Could not open folder: {e}",\n    "ru": "Не удалось открыть папку: {e}"\n  },\n  "no_folder_mapped_for_category_category": {\n    "en": "No folder mapped for category: {category}",\n    "ru": "Нет сопоставленной папки для категории: {category}"\n  },\n  "1_spawn_at_origin": {\n    "en": "1. Spawn at Origin",\n    "ru": "1. Создавать в начале координат"\n  },\n  "when_this_option_is_enabled_objects_will": {\n    "en": "When this option is enabled, objects will be moved to the Blender origin",\n    "ru": "Когда эта опция включена, объекты будут перемещены в начало координат Blender"\n  },\n  "instead_of_being_placed_at_their_origina": {\n    "en": "instead of being placed at their original locations.",\n    "ru": "вместо размещения в их исходных позициях."\n  },\n  "2_incorrect_item_placement": {\n    "en": "2. Incorrect Item Placement",\n    "ru": "2. Неправильное размещение предметов"\n  },\n  "some_items_may_not_appear_in_their_expec": {\n    "en": "Some items may not appear in their expected locations. This usually happens",\n    "ru": "Некоторые предметы могут не появиться в ожидаемых местах. Это обычно происходит"\n  },\n  "because_the_item": {\n    "en": "\"because the item'",\n    "ru": "\"потому что предмет'"\n  },\n  "rbx_toolbox_reads_the_object": {\n    "en": "\"RBX Toolbox reads the object'",\n    "ru": "\"RBX Toolbox считывает объект'"\n  },\n  "3_importing_items_separately": {\n    "en": "3. Importing Items Separately",\n    "ru": "3. Импорт предметов по отдельности"\n  },\n  "if_you_import_items_individually_such_as": {\n    "en": "If you import items individually (such as bundle items, cages, attachments, etc.),",\n    "ru": "Если вы импортируете элементы по отдельности (например, элементы пакетов, клетки, прикрепления и т.д.),"\n  },\n  "they_may_not_be_placed_correctly_this_oc": {\n    "en": "they may not be placed correctly. This occurs because RBX Toolbox moves the",\n    "ru": "они могут быть размещены неправильно. Это происходит потому, что RBX Toolbox перемещает"\n  },\n  "selection_to_the_origin_relative_to_the": {\n    "en": "selection to the origin relative to the number of items selected.",\n    "ru": "выбранные объекты в начало относительно числа выбранных элементов."\n  },\n  "if_you_disable_spawn_at_origin_the_items": {\n    "en": "If you disable Spawn at Origin, the items will appear in their correct positions,",\n    "ru": "Если отключить создание в начале координат, элементы появятся в правильных позициях,"\n  },\n  "but_they_may_be_located_far_from_the_ble": {\n    "en": "but they may be located far from the Blender origin.",\n    "ru": "но они могут находиться далеко от начала координат Blender."\n  },\n  "4_exclude_from_import": {\n    "en": "4. Exclude from import",\n    "ru": "4. Исключить из импорта"\n  },\n  "if_you_want_to_exclude_some_items_from_g": {\n    "en": "If you want to exclude some items from group import (Download everything button)",\n    "ru": "Если вы хотите исключить некоторые элементы из группового импорта (кнопка «Загрузить всё")"
+  },
+  "deselect_all_checkboxes_in_the_item_opti": {
+    "en": "- deselect all checkboxes in the item options.",
+    "ru": "- снимите все флажки в опциях элемента."
+  },
+  "import_summary": {
+    "en": "Import Summary",
+    "ru": "Сводка импорта"
+  },
+  "imported_selfimported_count_objects": {
+    "en": "Imported: {self.imported_count} objects",
+    "ru": "Импортировано: {self.imported_count} объектов"
+  },
+  "failed_to_import": {
+    "en": "Failed to import:",
+    "ru": "Не удалось импортировать:"
+  },
+  "permission_denied": {
+    "en": "Permission denied:",
+    "ru": "Доступ запрещён:"
+  },
+  "other_error": {
+    "en": "Other error:",
+    "ru": "Другая ошибка:"
+  },
+  "name_data": {
+    "en": "\"Name     : {data['",
+    "ru": "\"Имя      : {data['"
+  },
+  "loop_data": {
+    "en": "\"Loop     : {data['",
+    "ru": "\"Цикл     : {data['"
+  },
+  "length_dataget": {
+    "en": "\"Length   : {data.get('",
+    "ru": "\"Длина    : {data.get('",
+  "tracks_lendata": {
+    "en": "\"Tracks   : {len(data['",
+    "ru": "\"Дорожек  : {len(data['"
+  },
+  "track36_lenkfs3_kf_times": {
+    "en": "{track:<36} {len(kfs):>3} kf  {times}",
+    "ru": "{track:<36} {len(kfs):>3} кф  {times}"
+  },
+  "curveanim_warning_truncated_at_entry_ien": {
+    "en": "[CurveAnim] WARNING: truncated at entry {i}/{entry_count}, off={off}, n={n}",
+    "ru": "[CurveAnim] ПРЕДУПРЕЖДЕНИЕ: усечено на записи {i}/{entry_count}, off={off}, n={n}"
+  },
+  "mesh_version_version": {
+    "en": "Mesh version: {version}",
+    "ru": "Версия меша: {version}"
+  },
+  "rbx_toolbox_authorization": {
+    "en": "RBX Toolbox Authorization",
+    "ru": "Авторизация RBX Toolbox"
+  },
+  "authorizing": {
+    "en": "Authorizing...",
+    "ru": "Авторизация..."
+  },
+  "if_youre_not_redirected": {
+    "en": "If you're not redirected,",
+    "ru": "Если вы не перенаправлены,"
+  },
+  "javascript_is_required": {
+    "en": "JavaScript is required.",
+    "ru": "Требуется JavaScript."
+  },
+  "error": {
+    "en": "Error:",
+    "ru": "Ошибка:"
+  },
+  "rbx_toolbox_privacy_policy": {
+    "en": "RBX Toolbox - Privacy Policy",
+    "ru": "RBX Toolbox - Политика конфиденциальности"
+  },
+  "github_repository": {
+    "en": "GitHub repository",
+    "ru": "Репозиторий GitHub"
+  },
+  "nytv_gaming_supportsuggestions_discord": {
+    "en": "NYTV Gaming Support/Suggestions Discord",
+    "ru": "Discord поддержки/предложений NYTV Gaming"
+  },
+  "rbx_toolbox_terms_of_service": {
+    "en": "RBX Toolbox - Terms of Service",
+    "ru": "RBX Toolbox - Условия использования"
+  },
+  "exception_when_getting_asset_upload_stat": {
+    "en": "Exception when getting asset upload status: %s",
+    "ru": "Исключение при получении статуса загрузки ассета: %s"
+  },
+  "authorization_complete_you_can_close_thi": {
+    "en": "Authorization complete. You can close this window.",
+    "ru": "Авторизация завершена. Вы можете закрыть это окно."
+  },
+  "saving_roblox_session_details_to_prefere": {
+    "en": "Saving Roblox session details to preferences.",
+    "ru": "Сохранение данных сессии Roblox в настройки."
+  },
+  "saving_the_following_creator_id_rbxcreat": {
+    "en": "Saving the following creator ID: {rbx.creator}",
+    "ru": "Сохранение следующего ID создателя: {rbx.creator}"
+  },
+  "saving_is_logged_in_add_on_preferencesis": {
+    "en": "Saving is_logged_in: {add_on_preferences.is_logged_in}",
+    "ru": "Сохранение is_logged_in: {add_on_preferences.is_logged_in}"
+  },
+  "saving_token_data": {
+    "en": "Saving token data.",
+    "ru": "Сохранение данных токена."
+  },
+  "token_data_is_not_empty": {
+    "en": "Token data is not empty.",
+    "ru": "Данные токена не пусты."
+  },
+  "token_data_is_empty": {
+    "en": "Token data is empty.",
+    "ru": "Данные токена пусты."
+  },
+  "saving_the_list_of_creators": {
+    "en": "Saving the list of creators.",
+    "ru": "Сохранение списка создателей."
+  },
+  "no_creators_to_save": {
+    "en": "No creators to save.",
+    "ru": "Нет создателей для сохранения."
+  },
+  "successfully_updated_rbx_property_and_sa": {
+    "en": "Successfully updated RBX property and saved creator details.",
+    "ru": "Успешно обновлено свойство RBX и сохранены данные создателя."
+  },
+  "error_saving_roblox_session_details_e": {
+    "en": "Error saving Roblox session details: {e}",
+    "ru": "Ошибка сохранения данных сессии Roblox: {e}"
+  },
+  "loading_roblox_session_details_from_pref": {
+    "en": "Loading Roblox session details from preferences.",
+    "ru": "Загрузка данных сессии Roblox из настроек."
+  },
+  "loading_simple_properties": {
+    "en": "Loading simple properties.",
+    "ru": "Загрузка простых свойств."
+  },
+  "loading_creators_list_from_preferences": {
+    "en": "Loading creators list from preferences.",
+    "ru": "Загрузка списка создателей из настроек."
+  },
+  "successfully_validated_and_set_creator_i": {
+    "en": "Successfully validated and set creator ID: {stored_creator_id}",
+    "ru": "Успешно проверен и установлен ID создателя: {stored_creator_id}"
+  },
+  "default_creator_set_to_user_id_rbxcreato": {
+    "en": "Default creator set to User ID: {rbx.creator}",
+    "ru": "По умолчанию создателем установлен пользователь с ID: {rbx.creator}"
+  },
+  "warning_could_not_find_a_user_id_to_set": {
+    "en": "Warning: Could not find a User ID to set as default.",
+    "ru": "Предупреждение: не удалось найти ID пользователя для установки по умолчанию."
+  },
+  "roblox_login_session_loaded_and_validate": {
+    "en": "Roblox login session loaded and validated.",
+    "ru": "Сессия входа Roblox загружена и проверена."
+  },
+  "loading_token_data_from_preferences": {
+    "en": "Loading token data from preferences.",
+    "ru": "Загрузка данных токена из настроек."
+  },
+  "token_data_loaded": {
+    "en": "Token data loaded.",
+    "ru": "Данные токена загружены."
+  },
+  "no_active_roblox_login_session_found_in": {
+    "en": "No active Roblox login session found in preferences.",
+    "ru": "В настройках не найдена активная сессия входа Roblox."
+  },
+  "forcing_ui_refresh": {
+    "en": "Forcing UI refresh.",
+    "ru": "Принудительное обновление интерфейса."
+  },
+  "error_loading_roblox_session_details_e": {
+    "en": "Error loading Roblox session details: {e}",
+    "ru": "Ошибка загрузки данных сессии Roblox: {e}"
+  },
+  "registers_a_timer_to_step_the_event_loop": {
+    "en": "Registers a timer to step the event loop",
+    "ru": "Регистрирует таймер для шагания цикла событий"
+  },
+  "rbx_toolbox_stale_dependencies_detected": {
+    "en": "[RBX Toolbox] Stale dependencies detected — restart required for clean reinstall.",
+    "ru": "[RBX Toolbox] Обнаружены устаревшие зависимости — для чистой переустановки требуется перезапуск."    
+  },
+  "rbx_toolbox_dependency_folder_is_empty_r": {
+    "en": "[RBX Toolbox] Dependency folder is empty — ready to install.",
+    "ru": "[RBX Toolbox] Папка зависимостей пуста — готово к установке."
+  },
+  "install_dependencies": {
+    "en": "Install Dependencies",
+    "ru": "Установить зависимости"
+  },
+  "installs_addon_dependencies_in_the_backg": {
+    "en": "Installs add-on dependencies in the background",
+    "ru": "Устанавливает зависимости аддона в фоновом режиме"
+  },
+  "installation_outputnstdoutdecode": {
+    "en": "INSTALLATION OUTPUT:\n{stdout.decode()}",
+    "ru": "ВЫВОД УСТАНОВКИ:\n{stdout.decode()}"
+  },
+  "reloading_aiohttp": {
+    "en": "Reloading aiohttp",
+    "ru": "Перезагрузка aiohttp"
+  },
+  "reloading_web": {
+    "en": "Reloading web",
+    "ru": "Перезагрузка веб-модуля"
+  },
+  "user_logged_out_and_session_state_saved": {
+    "en": "User logged out and session state saved.",
+    "ru": "Пользователь вышел, состояние сессии сохранено."
+  },
+  "default_creator_set_to_user_id_selfrbxcr": {
+    "en": "Default creator set to User ID: {self.rbx.creator}",
+    "ru": "По умолчанию создателем установлен пользователь ID: {self.rbx.creator}"
+  },
+  "user_logged_in_and_session_state_saved": {
+    "en": "User logged in and session state saved.",
+    "ru": "Пользователь вошёл, состояние сессии сохранено."
+  },
+  "log_in": {
+    "en": "Log in",
+    "ru": "Войти"
+  },
+  "log_in_with_your_roblox_account_using_yo": {
+    "en": "Log in with your Roblox account using your browser",
+    "ru": "Войдите с помощью учётной записи Roblox через браузер"
+  },
+  "cancel": {
+    "en": "Cancel",
+    "ru": "Отмена"
+  },
+  "stop_waiting_for_the_browser_to_return_l": {
+    "en": "Stop waiting for the browser to return login info",
+    "ru": "Прекратить ожидание возврата данных входа из браузера"
+  },
+  "log_out": {
+    "en": "Log out",
+    "ru": "Выйти"
+  },
+  "log_out_of_your_roblox_account": {
+    "en": "Log out of your Roblox account",
+    "ru": "Выйти из вашей учётной записи Roblox"
+  },
+  "upload_status": {
+    "en": "Upload Status",
+    "ru": "Статус загрузки"
+  },
+  "upload": {
+    "en": "Upload",
+    "ru": "Загрузить"
+  },
+  "s_5058f1af": {
+    "en": ".",
+    "ru": "."
+  },
+  "operation_path_operationpath": {
+    "en": "Operation path: {operation.path}",
+    "ru": "Путь операции: {operation.path}"
+  },
+  "upload_failed_operationerrorcode_operati": {
+    "en": "Upload failed, {operation.error.code}: {operation.error.message}",
+    "ru": "Загрузка не удалась, {operation.error.code}: {operation.error.message}"
+  },
+  "upload_failed_invalid_responsenoperation": {
+    "en": "Upload failed, invalid response:\n{operation}",
+    "ru": "Загрузка не удалась, неверный ответ:\n{operation}"
+  },
+  "avatar_error_loading_image_e": {
+    "en": "[AVATAR] error loading image: {e}",
+    "ru": "[АВАТАР] ошибка при загрузке изображения: {e}"
+  },
+  "avatar_error_fetching_thumbnail_e": {
+    "en": "[AVATAR] error fetching thumbnail: {e}",
+    "ru": "[АВАТАР] ошибка при получении миниатюры: {e}"
+  },
+  "err": {
+    "en": "ERR:",
+    "ru": "ОШИБКА:"
+  },
+  "total_errors": {
+    "en": "TOTAL_ERRORS",
+    "ru": "ОБЩИЕ_ОШИБКИ"
+  },
+  "changed": {
+    "en": "CHANGED",
+    "ru": "ИЗМЕНЕНО"
+  },
+  "changed_5f6203a2": {
+    "en": "CHANGED:",
+    "ru": "ИЗМЕНЕНО:"
+  },
+  "skipped": {
+    "en": "SKIPPED",
+    "ru": "ПРОПУЩЕНО"
+  },
+  "skip": {
+    "en": "SKIP:",
+    "ru": "ПРОПУСТИТЬ:"
+  },
+  "compile_errors": {
+    "en": "COMPILE_ERRORS",
+    "ru": "ОШИБКИ_КОМПИЛЯЦИИ"
+  },
+  "recompiler": {
+    "en": ", re.compile(r",
+    "ru": ", re.compile(r"
+  },
+  "skipping_p_e": {
+    "en": "Skipping {p}: {e}",
+    "ru": "Пропуск {p}: {e}"
+  },
+  "extracted_lenunique_candidate_strings_ou": {
+    "en": "Extracted {len(unique)} candidate strings → {OUT}",
+    "ru": "Извлечено {len(unique)} кандидатных строк → {OUT}"
+  },
+  "default_language": {
+    "en": "Default language:",
+    "ru": "Язык по умолчанию:"
+  },
+  "en_aba587a0": {
+    "en": "EN:",
+    "ru": "EN:"
+  },
+  "after_set_ru": {
+    "en": "After set RU ->",
+    "ru": "После установки RU ->"
+  },
+  "ru_5921e0db": {
+    "en": "RU:",
+    "ru": "RU:"
+  }
+}

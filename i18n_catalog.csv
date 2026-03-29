@@ -1,0 +1,1025 @@
+file,line,pattern,string,source_line
+glob_vars.py,37,print(,Warning: Could not access test321 preferences.,"print(""Warning: Could not access test321 preferences."")"
+glob_vars.py,86,print(,Login info cleared from preferences.,"print(""Login info cleared from preferences."")"
+index.html,6,html/text,RBX Toolbox,<title>RBX Toolbox</title>
+index.html,109,html/text,RBX Toolbox,<h1>RBX Toolbox</h1>
+index.html,129,html/text,GitHub,>GitHub</a
+index.html,133,html/text,Privacy Policy,>Privacy Policy</a
+index.html,137,html/text,Terms of Service,>Terms of Service</a
+prefs.py,8,print(,**********************************************,"print(""**********************************************"")"
+prefs.py,9,print(,RBX Toolbox Log,"print(""RBX Toolbox Log"")"
+prefs.py,10,print(,OS Platform: ,"print(""OS Platform: "" + platform.system())"
+prefs.py,11,print(,Blender ver:,"print(""Blender ver:"", glob_vars.bldr_ver)"
+prefs.py,12,print(,Addon path:,"print(""Addon path:"", glob_vars.addon_path)"
+prefs.py,13,print(,**********************************************,"print(""**********************************************"")"
+prefs.py,162,layout.label,Include,"self.layout.label(text=""Include"")"
+prefs.py,162,label(text=,Include,"self.layout.label(text=""Include"")"
+prefs.py,162,text=,Include,"self.layout.label(text=""Include"")"
+prefs.py,166,layout.label,Transform,"self.layout.label(text=""Transform"")"
+prefs.py,166,label(text=,Transform,"self.layout.label(text=""Transform"")"
+prefs.py,166,text=,Transform,"self.layout.label(text=""Transform"")"
+prefs.py,170,layout.label,Armature,"self.layout.label(text=""Armature"")"
+prefs.py,170,label(text=,Armature,"self.layout.label(text=""Armature"")"
+prefs.py,170,text=,Armature,"self.layout.label(text=""Armature"")"
+prefs.py,174,text=,Bake Animation,"self.layout.prop(self, ""bake_anim"", text=""Bake Animation"")"
+props.py,19,print(,ERROR getting info from: {url},"print(f""ERROR getting info from: {url}"")"
+props.py,27,print(,ERROR parsing Atom XML from {url}: {e},"print(f""ERROR parsing Atom XML from {url}: {e}"")"
+props.py,33,print(,No Atom entries found in feed: {url},"print(f""No Atom entries found in feed: {url}"")"
+props.py,40,print(,Malformed Atom entry in feed: {url},"print(f""Malformed Atom entry in feed: {url}"")"
+props.py,977,print(,No internet connection. Skipping RBX Toolbox update check.,"print(""No internet connection. Skipping RBX Toolbox update check."")"
+props.py,992,print(,No internet connection. Skipping AEPBR update check.,"print(""No internet connection. Skipping AEPBR update check."")"
+update.py,44,print(,Successfully logged out for update RBX Toolbox,"print(""Successfully logged out for update RBX Toolbox"")"
+update.py,53,bl_label,Install Update,"bl_label = ""Install Update"""
+update.py,110,self.report,Operator is already running.,"self.report({'ERROR'}, ""Operator is already running."")"
+update.py,125,print(,Downloading update...,"print(""Downloading update..."")"
+update.py,126,print(,Update URL: ,"print(""Update URL: "", UPDATE_URL)"
+update.py,150,print(,Download ERROR: ,"print(""Download ERROR: "", error_message)"
+update.py,159,print(,Simulate installing,"print(""Simulate installing"")"
+update.py,179,print(,Update Installed! Successfully. Please restart Blender,"print(""Update Installed! Successfully. Please restart Blender"")"
+update.py,185,print(,Update ERROR: ,"print(""Update ERROR: "", error_message)"
+update.py,202,self.report,Error: {error_message},"self.report({'ERROR'}, f""Error: {error_message}"")"
+update.py,206,self.report,Installation finished. Please restart Blender.,"self.report({'INFO'}, ""Installation finished. Please restart Blender."")"
+update_aepbr.py,33,bl_label,Install AEPBR Update,"bl_label = ""Install AEPBR Update"""
+update_aepbr.py,61,self.report,Operator is already running.,"self.report({'ERROR'}, ""Operator is already running."")"
+update_aepbr.py,79,print(,Downloading update...,"print(""Downloading update..."")"
+update_aepbr.py,80,print(,AEPBR Update URL: ,"print(""AEPBR Update URL: "", AEPBR_UPDATE_URL)"
+update_aepbr.py,104,print(,Download ERROR: ,"print(""Download ERROR: "", aepbr_error_message)"
+update_aepbr.py,131,print(,Update Error (moving files),"print(""Update Error (moving files)"")"
+update_aepbr.py,138,print(,Update Error (moving files),"print(""Update Error (moving files)"")"
+update_aepbr.py,148,print(,Simulate installing,"print(""Simulate installing"")"
+update_aepbr.py,168,print(,Update Installed! Successfully,"print(""Update Installed! Successfully"")"
+update_aepbr.py,174,print(,Update ERROR: ,"print(""Update ERROR: "", aepbr_error_message)"
+update_aepbr.py,193,self.report,Error: {aepbr_error_message},"self.report({'ERROR'}, f""Error: {aepbr_error_message}"")"
+update_aepbr.py,197,self.report,Installation finished.,"self.report({'INFO'}, ""Installation finished."")"
+__init__.py,75,print(,Reloaded module: {full_module_name},"print(f""Reloaded module: {full_module_name}"")"
+__init__.py,77,print(,Module {full_module_name} not found for reloading.,"print(f""Module {full_module_name} not found for reloading."")"
+__init__.py,168,print(,Error during OAuth registration: {e},"print(f""Error during OAuth registration: {e}"")"
+__init__.py,220,print(,Error during OAuth unregistration: {e},"print(f""Error during OAuth unregistration: {e}"")"
+functions\armature_buttons.py,8,bl_label,BUTTON_BN,"bl_label = ""BUTTON_BN"""
+functions\armature_buttons.py,47,print(,Armature Appended,"print(""Armature Appended"")"
+functions\armature_buttons.py,55,print(,Nothing Selected,"print(""Nothing Selected"")"
+functions\armature_buttons.py,75,print(,Normals Recalculated,"print(""Normals Recalculated"")"
+functions\armature_buttons.py,82,print(,Nothing Selected,"print(""Nothing Selected"")"
+functions\armature_buttons.py,110,print(,Doubles Removed,"print(""Doubles Removed"")"
+functions\armature_buttons.py,119,print(,Nothing Selected,"print(""Nothing Selected"")"
+functions\armature_buttons.py,124,print(,More than 2 Objects selected,"print(""More than 2 Objects selected"")"
+functions\armature_buttons.py,128,print(,2 Objects Must be Selected,"print(""2 Objects Must be Selected"")"
+functions\armature_buttons.py,136,print(,No Bones Selected,"print(""No Bones Selected"")"
+functions\armature_buttons.py,143,print(,No Mesh Selected,"print(""No Mesh Selected"")"
+functions\armature_buttons.py,163,print(,Bones Successfully Parented,"print(""Bones Successfully Parented"")"
+functions\avatar_buttons.py,11,bl_label,RBX_BUTTON_AVA,"bl_label = ""RBX_BUTTON_AVA"""
+functions\avatar_buttons.py,81,self.report,Select exactly 1 Head Mesh,"self.report({'ERROR'}, ""Select exactly 1 Head Mesh"")"
+functions\avatar_buttons.py,86,self.report,Head Mesh should be selected,"self.report({'ERROR'}, ""Head Mesh should be selected"")"
+functions\avatar_buttons.py,217,self.report,Select exactly 1 Armature,"self.report({'ERROR'}, ""Select exactly 1 Armature"")"
+functions\avatar_buttons.py,229,self.report,Failed to append: {e},"self.report({'ERROR'}, f""Failed to append: {e}"")"
+functions\avatar_buttons.py,280,print(,DEBUG FACS ANIMATION: Missing bones: {missing_bones},"print(f""DEBUG FACS ANIMATION: Missing bones: {missing_bones}"")"
+functions\avatar_buttons.py,313,self.report,FACS Animation applied!,"self.report({'INFO'}, ""FACS Animation applied!"")"
+functions\avatar_buttons.py,315,self.report,Could not find animation data in template,"self.report({'ERROR'}, ""Could not find animation data in template"")"
+functions\cam_staging.py,7,bl_label,BUTTON_CMR,"bl_label = ""BUTTON_CMR"""
+functions\cam_staging.py,25,print(,Cameras Setup Spawned,"print(""Cameras Setup Spawned"")"
+functions\cam_staging.py,27,print(,Cameras Setup Already Exist,"print(""Cameras Setup Already Exist"")"
+functions\cam_staging.py,36,print(,Avatar Editor Room Setup Spawned,"print(""Avatar Editor Room Setup Spawned"")"
+functions\cam_staging.py,38,print(,Avatar Editor Room Setup Already Exist,"print(""Avatar Editor Room Setup Already Exist"")"
+functions\cam_staging.py,70,print(,Animated Staging Setup Appended,"print(""Animated Staging Setup Appended"")"
+functions\cam_staging.py,80,print(,"""'","print(""'Staging Camera' Set as Active"")"
+functions\cam_staging.py,91,print(,"""'","print(""'Avatar Editor Camera' Set as Active"")"
+functions\dmy_buttons.py,8,bl_label,BUTTON_DMMY,"bl_label = ""BUTTON_DMMY"""
+functions\dmy_buttons.py,56,print(,{dmy_spwn} Dummy Spawned,"print(f""{dmy_spwn} Dummy Spawned"")"
+functions\dmy_buttons.py,68,print(,{dmy_spwn} Dummy Spawned,"print(f""{dmy_spwn} Dummy Spawned"")"
+functions\dmy_buttons.py,78,print(,{dmy} Spawned,"print(f""{dmy} Spawned"")"
+functions\dmy_lc_buttons.py,7,bl_label,RBX_BUTTON_LC,"bl_label = ""RBX_BUTTON_LC"""
+functions\funct_others.py,9,bl_label,RBX_BUTTON_OF,"bl_label = ""RBX_BUTTON_OF"""
+functions\funct_others.py,83,print(,Nothing Selected,"print(""Nothing Selected"")"
+functions\funct_others.py,109,print(,Normals Recalculated,"print(""Normals Recalculated"")"
+functions\funct_others.py,210,print(,Nothing Selected,"print(""Nothing Selected"")"
+functions\funct_others.py,236,print(,Normals Recalculated,"print(""Normals Recalculated"")"
+functions\func_export.py,6,bl_label,RBX_OPERATORS,"bl_label = ""RBX_OPERATORS"""
+functions\hair_buttons.py,7,bl_label,BUTTON_HAIR,"bl_label = ""BUTTON_HAIR"""
+functions\hair_buttons.py,77,print(,Hair Template Spawned,"print(""Hair Template Spawned"")"
+functions\hair_buttons.py,95,print(,Hair Shader Spawned,"print(""Hair Shader Spawned"")"
+functions\hair_buttons.py,133,print(,Hair Texture Baked,"print(""Hair Texture Baked"")"
+functions\hdri_sky.py,7,bl_label,RBX_BUTTON_HDRIFULL,"bl_label = ""RBX_BUTTON_HDRIFULL"""
+functions\menu_pie.py,20,print(,"""Couldn'","print(f""Couldn't find keymap item for {key}, using addon keymap instead. This won't be saved across sessions!"")"
+functions\menu_pie.py,27,bl_label,RBX Toolbox Menu,"bl_label = ""RBX Toolbox Menu"""
+functions\menu_pie.py,35,text=,Show Face Orientation,"op = layout.prop(bpy.context.space_data.overlay, 'show_face_orientation', text='Show Face Orientation', icon='NORMALS_FACE')"
+functions\menu_pie.py,36,text=,Set Origin,"layout.menu('RBX_MT_MENU3', text='Set Origin', icon='LAYER_ACTIVE')"
+functions\menu_pie.py,37,text=,Recalculate Normals,"layout.menu('RBX_MT_MENU2', text='Recalculate Normals', icon='FACESEL')"
+functions\menu_pie.py,38,text=,Shading,"layout.menu('RBX_MT_MENU4', text='Shading', icon='SHADING_TEXTURE')"
+functions\menu_pie.py,45,bl_label,,"bl_label = """""
+functions\menu_pie.py,56,text=,Recalc Outside,"layout.menu('RBX_MT_MENU2_1', text='Recalc Outside', icon_value=0)"
+functions\menu_pie.py,57,text=,Recalc Inside,"layout.menu('RBX_MT_MENU2_2', text='Recalc Inside', icon_value=0)"
+functions\menu_pie.py,58,text=,Flip Normals,"layout.menu('RBX_MT_MENU2_3', text='Flip Normals', icon_value=0)"
+functions\menu_pie.py,64,bl_label,,"bl_label = """""
+functions\menu_pie.py,75,layout.operator text=,All Faces,"op = layout.operator(""object.rbx_button_of"", text = ""All Faces"").rbx_of = 'pie_outside_all'"
+functions\menu_pie.py,75,text=,All Faces,"op = layout.operator(""object.rbx_button_of"", text = ""All Faces"").rbx_of = 'pie_outside_all'"
+functions\menu_pie.py,76,layout.operator text=,Selected Faces,"op = layout.operator(""object.rbx_button_of"", text = ""Selected Faces"").rbx_of = 'pie_outside'"
+functions\menu_pie.py,76,text=,Selected Faces,"op = layout.operator(""object.rbx_button_of"", text = ""Selected Faces"").rbx_of = 'pie_outside'"
+functions\menu_pie.py,82,bl_label,,"bl_label = """""
+functions\menu_pie.py,93,layout.operator text=,All Faces,"op = layout.operator(""object.rbx_button_of"", text = ""All Faces"").rbx_of = 'pie_inside_all'"
+functions\menu_pie.py,93,text=,All Faces,"op = layout.operator(""object.rbx_button_of"", text = ""All Faces"").rbx_of = 'pie_inside_all'"
+functions\menu_pie.py,94,layout.operator text=,Selected Faces,"op = layout.operator(""object.rbx_button_of"", text = ""Selected Faces"").rbx_of = 'pie_inside'"
+functions\menu_pie.py,94,text=,Selected Faces,"op = layout.operator(""object.rbx_button_of"", text = ""Selected Faces"").rbx_of = 'pie_inside'"
+functions\menu_pie.py,100,bl_label,,"bl_label = """""
+functions\menu_pie.py,111,layout.operator text=,All Faces,"op = layout.operator(""object.rbx_button_of"", text = ""All Faces"").rbx_of = 'pie_flip_all'"
+functions\menu_pie.py,111,text=,All Faces,"op = layout.operator(""object.rbx_button_of"", text = ""All Faces"").rbx_of = 'pie_flip_all'"
+functions\menu_pie.py,112,layout.operator text=,Selected Faces,"op = layout.operator(""object.rbx_button_of"", text = ""Selected Faces"").rbx_of = 'pie_flip'"
+functions\menu_pie.py,112,text=,Selected Faces,"op = layout.operator(""object.rbx_button_of"", text = ""Selected Faces"").rbx_of = 'pie_flip'"
+functions\menu_pie.py,118,bl_label,,"bl_label = """""
+functions\menu_pie.py,129,layout.operator text=,To Geometry,"op = layout.operator(""object.rbx_button_of"", text = ""To Geometry"").rbx_of = 'orig_to_geo'"
+functions\menu_pie.py,129,text=,To Geometry,"op = layout.operator(""object.rbx_button_of"", text = ""To Geometry"").rbx_of = 'orig_to_geo'"
+functions\menu_pie.py,130,layout.operator text=,To 3D Cursor,"op = layout.operator(""object.rbx_button_of"", text = ""To 3D Cursor"").rbx_of = 'orig_to_3d'"
+functions\menu_pie.py,130,text=,To 3D Cursor,"op = layout.operator(""object.rbx_button_of"", text = ""To 3D Cursor"").rbx_of = 'orig_to_3d'"
+functions\menu_pie.py,136,bl_label,,"bl_label = """""
+functions\menu_pie.py,147,layout.operator text=,Shade Flat,"op = layout.operator(""object.rbx_button_of"", text = ""Shade Flat"").rbx_of = 'shd_flat'"
+functions\menu_pie.py,147,text=,Shade Flat,"op = layout.operator(""object.rbx_button_of"", text = ""Shade Flat"").rbx_of = 'shd_flat'"
+functions\menu_pie.py,148,layout.operator text=,Shade Smooth,"op = layout.operator(""object.rbx_button_of"", text = ""Shade Smooth"").rbx_of = 'shd_smooth'"
+functions\menu_pie.py,148,text=,Shade Smooth,"op = layout.operator(""object.rbx_button_of"", text = ""Shade Smooth"").rbx_of = 'shd_smooth'"
+functions\menu_pie.py,149,layout.operator text=,Shade Auto Smooth,"op = layout.operator(""object.rbx_button_of"", text = ""Shade Auto Smooth"").rbx_of = 'shd_aut_smooth'"
+functions\menu_pie.py,149,text=,Shade Auto Smooth,"op = layout.operator(""object.rbx_button_of"", text = ""Shade Auto Smooth"").rbx_of = 'shd_aut_smooth'"
+functions\menu_pie.py,150,text=,,"#op = layout.prop(bpy.context.object.data.auto_smooth_angle,""default_value"", text = """")"
+functions\menu_ui.py,38,bl_label,Terms of Use,"bl_label = ""Terms of Use"""
+functions\menu_ui.py,48,self.report,Terms of Use accepted.,"self.report({'INFO'}, ""Terms of Use accepted."")"
+functions\menu_ui.py,51,self.report,Terms of Use declined.,"self.report({'WARNING'}, ""Terms of Use declined."")"
+functions\menu_ui.py,61,label(text=,Agreement:,"box.label(text=""Agreement:"", icon='BOOKMARKS')"
+functions\menu_ui.py,61,text=,Agreement:,"box.label(text=""Agreement:"", icon='BOOKMARKS')"
+functions\menu_ui.py,63,label(text=,"By using this tool, you agree that anything you","col.label(text=""By using this tool, you agree that anything you"")"
+functions\menu_ui.py,63,text=,"By using this tool, you agree that anything you","col.label(text=""By using this tool, you agree that anything you"")"
+functions\menu_ui.py,64,label(text=,"download is strictly for your personal use, reference,","col.label(text=""download is strictly for your personal use, reference,"")"
+functions\menu_ui.py,64,text=,"download is strictly for your personal use, reference,","col.label(text=""download is strictly for your personal use, reference,"")"
+functions\menu_ui.py,65,label(text=,and research purposes only. You hereby make a,"col.label(text=""and research purposes only. You hereby make a"")"
+functions\menu_ui.py,65,text=,and research purposes only. You hereby make a,"col.label(text=""and research purposes only. You hereby make a"")"
+functions\menu_ui.py,66,label(text=,"completely serious, legally-binding-in-spirit Pinky","col.label(text=""completely serious, legally-binding-in-spirit Pinky"")"
+functions\menu_ui.py,66,text=,"completely serious, legally-binding-in-spirit Pinky","col.label(text=""completely serious, legally-binding-in-spirit Pinky"")"
+functions\menu_ui.py,67,label(text=,"Promise not to reupload, redistribute, resell, or claim","col.label(text=""Promise not to reupload, redistribute, resell, or claim"")"
+functions\menu_ui.py,67,text=,"Promise not to reupload, redistribute, resell, or claim","col.label(text=""Promise not to reupload, redistribute, resell, or claim"")"
+functions\menu_ui.py,68,label(text=,the downloaded content as your own.,"col.label(text=""the downloaded content as your own."")"
+functions\menu_ui.py,68,text=,the downloaded content as your own.,"col.label(text=""the downloaded content as your own."")"
+functions\menu_ui.py,75,label(text=,WARNING!,"box.label(text=""WARNING!"", icon='ERROR')"
+functions\menu_ui.py,75,text=,WARNING!,"box.label(text=""WARNING!"", icon='ERROR')"
+functions\menu_ui.py,77,label(text=,Roblox is actively tracking asset access and related,"col.label(text=""Roblox is actively tracking asset access and related"")"
+functions\menu_ui.py,77,text=,Roblox is actively tracking asset access and related,"col.label(text=""Roblox is actively tracking asset access and related"")"
+functions\menu_ui.py,78,label(text=,"activity. This includes hashes, device information, IP","col.label(text=""activity. This includes hashes, device information, IP"")"
+functions\menu_ui.py,78,text=,"activity. This includes hashes, device information, IP","col.label(text=""activity. This includes hashes, device information, IP"")"
+functions\menu_ui.py,79,label(text=,"addresses, and usage patterns. They can technically","col.label(text=""addresses, and usage patterns. They can technically"")"
+functions\menu_ui.py,79,text=,"addresses, and usage patterns. They can technically","col.label(text=""addresses, and usage patterns. They can technically"")"
+functions\menu_ui.py,80,label(text=,pinpoint the source of misuse. Abuse of this tool may,"col.label(text=""pinpoint the source of misuse. Abuse of this tool may"")"
+functions\menu_ui.py,80,text=,pinpoint the source of misuse. Abuse of this tool may,"col.label(text=""pinpoint the source of misuse. Abuse of this tool may"")"
+functions\menu_ui.py,81,label(text=,"result in account suspension, termination, or further","col.label(text=""result in account suspension, termination, or further"")"
+functions\menu_ui.py,81,text=,"result in account suspension, termination, or further","col.label(text=""result in account suspension, termination, or further"")"
+functions\menu_ui.py,82,label(text=,action. Use responsibly.,"col.label(text=""action. Use responsibly."")"
+functions\menu_ui.py,82,text=,action. Use responsibly.,"col.label(text=""action. Use responsibly."")"
+functions\menu_ui.py,89,self.report,Terms of Use accepted.,"self.report({'INFO'}, ""Terms of Use accepted."")"
+functions\menu_ui.py,110,print(,lts_ver: ,"#print(""lts_ver: "", glob_vars.lts_ver)"
+functions\menu_ui.py,111,print(,addon_version: ,"#print(""addon_version: "", addon_version)"
+functions\menu_ui.py,115,label(text=,Update Available: ,"box.label(text = ""Update Available: "" + glob_vars.lts_ver)"
+functions\menu_ui.py,115,text=,Update Available: ,"box.label(text = ""Update Available: "" + glob_vars.lts_ver)"
+functions\menu_ui.py,116,text=,Release Notes ,"box.operator('object.url_handler', text = ""Release Notes "" + glob_vars.lts_ver, icon='DOCUMENTS').rbx_link = ""update"""
+functions\menu_ui.py,118,text=,Install Update,"box.operator(""wm.install_update"", text=""Install Update"", icon='IMPORT')"
+functions\menu_ui.py,120,label(text=,Downloading... {update.download_progress:.2f}%,"box.label(text=f""Downloading... {update.download_progress:.2f}%"")'''"
+functions\menu_ui.py,120,text=,Downloading... {update.download_progress:.2f}%,"box.label(text=f""Downloading... {update.download_progress:.2f}%"")'''"
+functions\menu_ui.py,123,text=,Downloading,"box.prop(update.current_operator, ""progress"", text=""Downloading"", slider=True)"
+functions\menu_ui.py,125,label(text=,Installing...,"box.label(text=""Installing..."")"
+functions\menu_ui.py,125,text=,Installing...,"box.label(text=""Installing..."")"
+functions\menu_ui.py,129,text=,Restart Blender,"box.operator(""wm.install_update"", text=""Restart Blender"")"
+functions\menu_ui.py,133,label(text=,Error: {update.error_message},"box.label(text=f""Error: {update.error_message}"", icon='ERROR')"
+functions\menu_ui.py,133,text=,Error: {update.error_message},"box.label(text=f""Error: {update.error_message}"", icon='ERROR')"
+functions\menu_ui.py,135,label(text=,Logging out complete!,"box.row().label(text=""Logging out complete!"", icon=""CHECKMARK"")"
+functions\menu_ui.py,135,text=,Logging out complete!,"box.row().label(text=""Logging out complete!"", icon=""CHECKMARK"")"
+functions\menu_ui.py,137,text=,Restart Blender,"box.operator(""wm.install_update"", text=""Restart Blender"").restart_only = True"
+functions\menu_ui.py,145,label(text=,Roblox Authorization,"row.label(text = ""Roblox Authorization"", icon= ""USER"")"
+functions\menu_ui.py,145,text=,Roblox Authorization,"row.label(text = ""Roblox Authorization"", icon= ""USER"")"
+functions\menu_ui.py,154,text=,This plugin requires installation of,"text=f""This plugin requires installation of"","
+functions\menu_ui.py,158,text=,dependencies the first time it is run.,"text=f""dependencies the first time it is run."","
+functions\menu_ui.py,162,text=,Installing...,"text=""Installing..."" if rbx.is_installing_dependencies else ""Install Dependencies"","
+functions\menu_ui.py,169,label(text=,Installation complete!,"box.row().label(text=""Installation complete!"", icon=""CHECKMARK"")"
+functions\menu_ui.py,169,text=,Installation complete!,"box.row().label(text=""Installation complete!"", icon=""CHECKMARK"")"
+functions\menu_ui.py,171,text=,Restart Blender,"box.operator(""wm.install_update"", text=""Restart Blender"").restart_only = True"
+functions\menu_ui.py,172,label(text=,Restart Blender to continue.,"#layout.row().label(text=""Restart Blender to continue."")"
+functions\menu_ui.py,172,text=,Restart Blender to continue.,"#layout.row().label(text=""Restart Blender to continue."")"
+functions\menu_ui.py,216,label(text=,"Hello, {rbx.name}!","top_row_creator.label(text=f""Hello, {rbx.name}!"")"
+functions\menu_ui.py,216,text=,"Hello, {rbx.name}!","top_row_creator.label(text=f""Hello, {rbx.name}!"")"
+functions\menu_ui.py,221,text=,"Hello, User (Error)","text=""Hello, User (Error)"", icon=""ERROR"")  # Fallback"
+functions\menu_ui.py,236,label(text=,Readme,"row.label(text = ""Readme"", icon= ""ASSET_MANAGER"")"
+functions\menu_ui.py,236,text=,Readme,"row.label(text = ""Readme"", icon= ""ASSET_MANAGER"")"
+functions\menu_ui.py,240,text=,"Read Instructions, Credits","box.operator('object.url_handler', text = ""Read Instructions, Credits"", icon='ARMATURE_DATA').rbx_link = ""Credits and Instructions"""
+functions\menu_ui.py,241,text=,Read Version Log,"box.operator('object.url_handler', text = ""Read Version Log"", icon='CON_ARMATURE').rbx_link = ""Version_log"""
+functions\menu_ui.py,245,label(text=,R15 rigs are taken from here:,box.label(text = 'R15 rigs are taken from here:')
+functions\menu_ui.py,245,text=,R15 rigs are taken from here:,box.label(text = 'R15 rigs are taken from here:')
+functions\menu_ui.py,246,text=,Roblox Github,"box.operator('object.url_handler', text = ""Roblox Github"", icon='URL').rbx_link = ""rbx github"""
+functions\menu_ui.py,247,label(text=,R6 Rig taken from here:,box.label(text = 'R6 Rig taken from here:')
+functions\menu_ui.py,247,text=,R6 Rig taken from here:,box.label(text = 'R6 Rig taken from here:')
+functions\menu_ui.py,248,text=,Nuke Youtube,"box.operator('object.url_handler', text = ""Nuke Youtube"", icon='URL').rbx_link = ""rbx nuke"""
+functions\menu_ui.py,249,label(text=,You can see here how to link,box.label(text = 'You can see here how to link')
+functions\menu_ui.py,249,text=,You can see here how to link,box.label(text = 'You can see here how to link')
+functions\menu_ui.py,250,label(text=,texture to R6 rig,box.label(text = 'texture to R6 rig')
+functions\menu_ui.py,250,text=,texture to R6 rig,box.label(text = 'texture to R6 rig')
+functions\menu_ui.py,254,label(text=,To unlock additional features,"box.label(text = ""To unlock additional features"")"
+functions\menu_ui.py,254,text=,To unlock additional features,"box.label(text = ""To unlock additional features"")"
+functions\menu_ui.py,255,label(text=,Specify folder with UGC,"box.label(text = ""Specify folder with UGC"")"
+functions\menu_ui.py,255,text=,Specify folder with UGC,"box.label(text = ""Specify folder with UGC"")"
+functions\menu_ui.py,256,label(text=,"""blend file '","box.label(text = ""blend file 'Bounds.blend'"")"
+functions\menu_ui.py,256,text=,"""blend file '","box.label(text = ""blend file 'Bounds.blend'"")"
+functions\menu_ui.py,260,label(text=,"""'","box.label(text = ""'Bounds.blend' linked to addon"")"
+functions\menu_ui.py,260,text=,"""'","box.label(text = ""'Bounds.blend' linked to addon"")"
+functions\menu_ui.py,262,label(text=,"""'","box.label(text = ""'Bounds.blend' not found"")"
+functions\menu_ui.py,262,text=,"""'","box.label(text = ""'Bounds.blend' not found"")"
+functions\menu_ui.py,274,label(text=,HDRI & Templates,"row.label(text = ""HDRI & Templates"", icon= ""WORLD"")"
+functions\menu_ui.py,274,text=,HDRI & Templates,"row.label(text = ""HDRI & Templates"", icon= ""WORLD"")"
+functions\menu_ui.py,278,label(text=,Blender built-in HDRIs,"box.label(text = ""Blender built-in HDRIs"", icon ='NODE_MATERIAL')"
+functions\menu_ui.py,278,text=,Blender built-in HDRIs,"box.label(text = ""Blender built-in HDRIs"", icon ='NODE_MATERIAL')"
+functions\menu_ui.py,282,label(text=,,"col.label(text = """")"
+functions\menu_ui.py,282,text=,,"col.label(text = """")"
+functions\menu_ui.py,283,text=,Set as HDRI,"split.operator(""object.rbx_button_hdrifull"", text = ""Set as HDRI"").rbx_hdri = 'hdri'"
+functions\menu_ui.py,289,label(text=,** Current World Controls: **,box.label(text='** Current World Controls: **')
+functions\menu_ui.py,289,text=,** Current World Controls: **,box.label(text='** Current World Controls: **')
+functions\menu_ui.py,296,label(text=,Brightness:,col.label(text='Brightness:')
+functions\menu_ui.py,296,text=,Brightness:,col.label(text='Brightness:')
+functions\menu_ui.py,297,text=,,"split.prop(wrld_0, ""default_value"", text = """")"
+functions\menu_ui.py,301,label(text=,Rotationn:,col.label(text='Rotationn:')
+functions\menu_ui.py,301,text=,Rotationn:,col.label(text='Rotationn:')
+functions\menu_ui.py,302,text=,,"split.prop(wrld_1, ""default_value"", text = """")"
+functions\menu_ui.py,307,label(text=,Simple Skybox,"box.label(text = ""Simple Skybox"", icon ='WORLD_DATA')"
+functions\menu_ui.py,307,text=,Simple Skybox,"box.label(text = ""Simple Skybox"", icon ='WORLD_DATA')"
+functions\menu_ui.py,311,label(text=,,"col.label(text = """")"
+functions\menu_ui.py,311,text=,,"col.label(text = """")"
+functions\menu_ui.py,312,text=,Set Sky,"split.operator(""object.rbx_button_hdrifull"", text = ""Set Sky"").rbx_hdri = 'sky'"
+functions\menu_ui.py,318,label(text=,** Skybox Controls: **,box.label(text='** Skybox Controls: **')
+functions\menu_ui.py,318,text=,** Skybox Controls: **,box.label(text='** Skybox Controls: **')
+functions\menu_ui.py,322,label(text=,Rotation:,col.label(text='Rotation:')
+functions\menu_ui.py,322,text=,Rotation:,col.label(text='Rotation:')
+functions\menu_ui.py,323,text=,,"split.prop(sky_0, 'default_value', text = """")"
+functions\menu_ui.py,324,label(text=,*You may setup your own,box.label(text='*You may setup your own')
+functions\menu_ui.py,324,text=,*You may setup your own,box.label(text='*You may setup your own')
+functions\menu_ui.py,325,label(text=, Skybox in Shading tab,box.label(text=' Skybox in Shading tab')
+functions\menu_ui.py,325,text=, Skybox in Shading tab,box.label(text=' Skybox in Shading tab')
+functions\menu_ui.py,330,text=,Add Animated Staging,"box.operator('object.button_cmr', text = ""Add Animated Staging"", icon='IMPORT').cmr = 'staging'"
+functions\menu_ui.py,339,label(text=,Camera:,col.label(text='Camera:')
+functions\menu_ui.py,339,text=,Camera:,col.label(text='Camera:')
+functions\menu_ui.py,340,text=,Set Active,"split.operator('object.button_cmr', text = ""Set Active"").cmr = 'staging-active'"
+functions\menu_ui.py,349,label(text=,Backdrop:,col.label(text='Backdrop:')
+functions\menu_ui.py,349,text=,Backdrop:,col.label(text='Backdrop:')
+functions\menu_ui.py,350,text=,,"split.prop(bkdrp_0, 'default_value', text = """")"
+functions\menu_ui.py,354,text=,Add Avatar Editor Room,"box.operator('object.button_cmr', text = ""Add Avatar Editor Room"", icon='IMPORT').cmr = 'edtr_append'"
+functions\menu_ui.py,363,label(text=,Camera:,col.label(text='Camera:')
+functions\menu_ui.py,363,text=,Camera:,col.label(text='Camera:')
+functions\menu_ui.py,364,text=,Set Active,"split.operator('object.button_cmr', text = ""Set Active"").cmr = 'edtr-active'"
+functions\menu_ui.py,369,text=,Add Roblox Baseplate,"box.operator('object.button_cmr', text = ""Add Roblox Baseplate"", icon='IMPORT').cmr = 'bsplt_append'"
+functions\menu_ui.py,380,label(text=,Import (Beta),"row.label(text='Import (Beta)', icon='IMPORT')"
+functions\menu_ui.py,380,text=,Import (Beta),"row.label(text='Import (Beta)', icon='IMPORT')"
+functions\menu_ui.py,387,label(text=,Please accept the Terms of Use,"box.label(text=""Please accept the Terms of Use"", icon='INFO')"
+functions\menu_ui.py,387,text=,Please accept the Terms of Use,"box.label(text=""Please accept the Terms of Use"", icon='INFO')"
+functions\menu_ui.py,388,label(text=,before using Import (Beta).,"box.label(text=""before using Import (Beta)."")"
+functions\menu_ui.py,388,text=,before using Import (Beta).,"box.label(text=""before using Import (Beta)."")"
+functions\menu_ui.py,389,text=,Terms of Use,"box.operator('object.rbx_terms_of_use', text=""Terms of Use"", icon='BOOKMARKS').action = ""SHOW"""
+functions\menu_ui.py,394,label(text=,Enter ID or URL,row_title.label(text='Enter ID or URL')
+functions\menu_ui.py,394,text=,Enter ID or URL,row_title.label(text='Enter ID or URL')
+functions\menu_ui.py,395,text=,,"row_title.operator('object.rbx_import_discovery_info_popup', text="""", icon='INFO')"
+functions\menu_ui.py,399,text=,,"row.prop(rbx_prefs, 'rbx_item_field_entry', text ='')"
+functions\menu_ui.py,403,text=,Asset Discovery,"row.operator('object.rbx_import_discovery', text = ""Asset Discovery"")"
+functions\menu_ui.py,408,text=,Reset,"box_reset.operator('object.rbx_import_reset', text = ""Reset"")"
+functions\menu_ui.py,424,label(text=,Discovered Items:,"box.label(text=""Discovered Items:"", icon='PREFERENCES')"
+functions\menu_ui.py,424,text=,Discovered Items:,"box.label(text=""Discovered Items:"", icon='PREFERENCES')"
+functions\menu_ui.py,428,label(text=,Name: {glob_vars.rbx_asset_name},"box.label(text=f""Name: {glob_vars.rbx_asset_name}"")"
+functions\menu_ui.py,428,text=,Name: {glob_vars.rbx_asset_name},"box.label(text=f""Name: {glob_vars.rbx_asset_name}"")"
+functions\menu_ui.py,430,label(text=,Type: {glob_vars.rbx_asset_type},"box.label(text=f""Type: {glob_vars.rbx_asset_type}"")"
+functions\menu_ui.py,430,text=,Type: {glob_vars.rbx_asset_type},"box.label(text=f""Type: {glob_vars.rbx_asset_type}"")"
+functions\menu_ui.py,432,label(text=,Creator: {glob_vars.rbx_asset_creator},"box.label(text=f""Creator: {glob_vars.rbx_asset_creator}"")"
+functions\menu_ui.py,432,text=,Creator: {glob_vars.rbx_asset_creator},"box.label(text=f""Creator: {glob_vars.rbx_asset_creator}"")"
+functions\menu_ui.py,457,text=,,"row_header.operator(""object.rbx_import_discovery_options"", text="""", icon='PREFERENCES').category = category_name"
+functions\menu_ui.py,461,text=,,"box.prop(rbx_prefs, enum_prop, text="""")"
+functions\menu_ui.py,466,label(text=,"Dynamic head not found in bundle,","col_info.label(text=""Dynamic head not found in bundle,"", icon='INFO')"
+functions\menu_ui.py,466,text=,"Dynamic head not found in bundle,","col_info.label(text=""Dynamic head not found in bundle,"", icon='INFO')"
+functions\menu_ui.py,467,label(text=,Default is used.,"col_info.label(text=""Default is used."")"
+functions\menu_ui.py,467,text=,Default is used.,"col_info.label(text=""Default is used."")"
+functions\menu_ui.py,477,text=,Open Folder,"box.operator('object.rbx_import_discovery_open_folder', text=""Open Folder"").category = category_name"
+functions\menu_ui.py,481,label(text=,Armatures for older meshes,"col_info.label(text=""Armatures for older meshes"", icon='ERROR')"
+functions\menu_ui.py,481,text=,Armatures for older meshes,"col_info.label(text=""Armatures for older meshes"", icon='ERROR')"
+functions\menu_ui.py,482,label(text=,(below v4.00) are not supported.,"col_info.label(text=""(below v4.00) are not supported."")"
+functions\menu_ui.py,482,text=,(below v4.00) are not supported.,"col_info.label(text=""(below v4.00) are not supported."")"
+functions\menu_ui.py,523,label(text=,Animations,"row_header.label(text=""Animations"", icon='ACTION')"
+functions\menu_ui.py,523,text=,Animations,"row_header.label(text=""Animations"", icon='ACTION')"
+functions\menu_ui.py,528,label(text=,Target Armature:,"box.label(text=""Target Armature:"")"
+functions\menu_ui.py,528,text=,Target Armature:,"box.label(text=""Target Armature:"")"
+functions\menu_ui.py,529,text=,,"box.prop(rbx_prefs, 'rbx_anim_armature_target', text="""")"
+functions\menu_ui.py,534,text=,,"box.prop(rbx_prefs, 'rbx_enum_animations', text="""")"
+functions\menu_ui.py,539,text=,Check alt animations,"text=""Check alt animations"""
+functions\menu_ui.py,546,label(text=,Found {len(anim_subs)} animation(s):,"box.label(text=f""Found {len(anim_subs)} animation(s):"")"
+functions\menu_ui.py,546,text=,Found {len(anim_subs)} animation(s):,"box.label(text=f""Found {len(anim_subs)} animation(s):"")"
+functions\menu_ui.py,558,label(text=,Process All:,"box_dl_all.label(text=""Process All:"", icon='IMPORT')"
+functions\menu_ui.py,558,text=,Process All:,"box_dl_all.label(text=""Process All:"", icon='IMPORT')"
+functions\menu_ui.py,559,label(text=,Select checkboxes in above menus,"box_dl_all.label(text=""Select checkboxes in above menus"")"
+functions\menu_ui.py,559,text=,Select checkboxes in above menus,"box_dl_all.label(text=""Select checkboxes in above menus"")"
+functions\menu_ui.py,560,text=,Download Everything,"box_dl_all.operator('object.rbx_import_discovery_download', text=""Download Everything"").category = ""ALL_CATEGORIES"""
+functions\menu_ui.py,563,text=,Open Junk (tmp) Folder,"box_tmp.operator('object.rbx_open_tmp_folder', text=""Open Junk (tmp) Folder"", icon='FILE_FOLDER')"
+functions\menu_ui.py,570,label(text=,Accessory Bounds,"row.label(text='Accessory Bounds', icon='CUBE')"
+functions\menu_ui.py,570,text=,Accessory Bounds,"row.label(text='Accessory Bounds', icon='CUBE')"
+functions\menu_ui.py,574,text=,UGC,"box.prop(rbx_prefs, 'rbx_bnds_enum', text ='UGC')"
+functions\menu_ui.py,578,label(text=,,"col.label(text = """")"
+functions\menu_ui.py,578,text=,,"col.label(text = """")"
+functions\menu_ui.py,579,text=,Spawn,"split.operator('object.button_bnds', text = ""Spawn"").bnds = ""UGC"""
+functions\menu_ui.py,582,text=,Avatars,"box.prop(rbx_prefs, 'rbx_bnds_avatar_enum', text ='Avatars')"
+functions\menu_ui.py,585,label(text=,,"col.label(text = """")"
+functions\menu_ui.py,585,text=,,"col.label(text = """")"
+functions\menu_ui.py,586,text=,Spawn,"split.operator('object.button_bnds', text = ""Spawn"").bnds = ""AVA"""
+functions\menu_ui.py,589,text=,LC,"box.prop(rbx_prefs, 'rbx_bnds_lc_enum', text ='LC')"
+functions\menu_ui.py,592,label(text=,,"col.label(text = """")"
+functions\menu_ui.py,592,text=,,"col.label(text = """")"
+functions\menu_ui.py,593,text=,Spawn,"split.operator('object.button_bnds', text = ""Spawn"").bnds = ""LC"""
+functions\menu_ui.py,602,label(text=,Dummy,"row.label(text='Dummy', icon='OUTLINER_OB_ARMATURE')"
+functions\menu_ui.py,602,text=,Dummy,"row.label(text='Dummy', icon='OUTLINER_OB_ARMATURE')"
+functions\menu_ui.py,606,label(text=,Dummies,box.label(text = 'Dummies')
+functions\menu_ui.py,606,text=,Dummies,box.label(text = 'Dummies')
+functions\menu_ui.py,607,text=,,"box.prop(rbx_prefs, 'rbx_dum_enum', text ='')"
+functions\menu_ui.py,610,label(text=,,"col.label(text = """")"
+functions\menu_ui.py,610,text=,,"col.label(text = """")"
+functions\menu_ui.py,611,text=,Spawn,"split.operator('object.button_dmmy', text = ""Spawn"").dmy = 'Dummy'"
+functions\menu_ui.py,622,label(text=,Rigs,"row.label(text='Rigs', icon='OUTLINER_DATA_ARMATURE')"
+functions\menu_ui.py,622,text=,Rigs,"row.label(text='Rigs', icon='OUTLINER_DATA_ARMATURE')"
+functions\menu_ui.py,626,label(text=,Roblox Rigged Models,box.label(text = 'Roblox Rigged Models')
+functions\menu_ui.py,626,text=,Roblox Rigged Models,box.label(text = 'Roblox Rigged Models')
+functions\menu_ui.py,627,text=,R15 Blocky Rig,"box.operator('object.button_dmmy', text = ""R15 Blocky Rig"").dmy = 'R15 Blocky Rig'"
+functions\menu_ui.py,628,text=,R15 Woman Rig,"box.operator('object.button_dmmy', text = ""R15 Woman Rig"").dmy = 'R15 Woman Rig'"
+functions\menu_ui.py,629,text=,Plushie Template,"box.operator('object.button_dmmy', text = ""Plushie Template"").dmy = 'Plushie Template'"
+functions\menu_ui.py,634,label(text=,iiXenix Rigs,box.label(text = 'iiXenix Rigs')
+functions\menu_ui.py,634,text=,iiXenix Rigs,box.label(text = 'iiXenix Rigs')
+functions\menu_ui.py,635,text=,Multirig,"box.operator('object.button_dmmy', text = ""Multirig"").dmy = 'Multirig'"
+functions\menu_ui.py,636,text=,Multirig Faceless,"box.operator('object.button_dmmy', text = ""Multirig Faceless"").dmy = 'Multirig_faceless'"
+functions\menu_ui.py,642,label(text=,Paribes Rig,box.label(text = 'Paribes Rig')
+functions\menu_ui.py,642,text=,Paribes Rig,box.label(text = 'Paribes Rig')
+functions\menu_ui.py,652,text=,AEPBR,"box.operator('object.button_dmmy', text = ""AEPBR"").dmy = 'aepbr'"
+functions\menu_ui.py,657,label(text=,,box.label(text = '')
+functions\menu_ui.py,657,text=,,box.label(text = '')
+functions\menu_ui.py,658,label(text=,- - - - - - - ,box.label(text = '- - - - - - - ')
+functions\menu_ui.py,658,text=,- - - - - - - ,box.label(text = '- - - - - - - ')
+functions\menu_ui.py,659,label(text=,Update Available:  ({aepbr_cur_ver} -> {glob_vars.aepbr_lts_ver}),"box.label(text = f""Update Available:  ({aepbr_cur_ver} -> {glob_vars.aepbr_lts_ver})"")"
+functions\menu_ui.py,659,text=,Update Available:  ({aepbr_cur_ver} -> {glob_vars.aepbr_lts_ver}),"box.label(text = f""Update Available:  ({aepbr_cur_ver} -> {glob_vars.aepbr_lts_ver})"")"
+functions\menu_ui.py,661,text=,Release Notes ,"#box.operator('object.url_handler', text = ""Release Notes "" + glob_vars.lts_ver, icon='DOCUMENTS').rbx_link = ""update"""
+functions\menu_ui.py,663,text=,Install Update,"box.operator(""wm.update_aepbr"", text=""Install Update"", icon='IMPORT')"
+functions\menu_ui.py,664,text=,Release Notes v.{glob_vars.aepbr_lts_ver},"box.operator('object.url_handler', text = f""Release Notes v.{glob_vars.aepbr_lts_ver}"", icon='DOCUMENTS').rbx_link = ""aepbr notes"""
+functions\menu_ui.py,667,text=,Downloading,"box.prop(update_aepbr.aepbr_current_operator, ""progress"", text=""Downloading"", slider=True)"
+functions\menu_ui.py,669,label(text=,Installing...,"box.label(text=""Installing..."")"
+functions\menu_ui.py,669,text=,Installing...,"box.label(text=""Installing..."")"
+functions\menu_ui.py,673,label(text=,Error: {update_aepbr.aepbr_error_message},"box.label(text=f""Error: {update_aepbr.aepbr_error_message}"", icon='ERROR')"
+functions\menu_ui.py,673,text=,Error: {update_aepbr.aepbr_error_message},"box.label(text=f""Error: {update_aepbr.aepbr_error_message}"", icon='ERROR')"
+functions\menu_ui.py,679,text=,Dowload rig (v.{glob_vars.aepbr_lts_ver}),"box.operator(""wm.update_aepbr"", text=f""Dowload rig (v.{glob_vars.aepbr_lts_ver})"", icon='IMPORT')"
+functions\menu_ui.py,680,label(text=,No inernet Connection,"box.label(text=""No inernet Connection"", icon='ERROR')"
+functions\menu_ui.py,680,text=,No inernet Connection,"box.label(text=""No inernet Connection"", icon='ERROR')"
+functions\menu_ui.py,682,text=,Dowload rig (v.{glob_vars.aepbr_lts_ver}),"box.operator(""wm.update_aepbr"", text=f""Dowload rig (v.{glob_vars.aepbr_lts_ver})"", icon='IMPORT')"
+functions\menu_ui.py,685,text=,Downloading,"box.prop(update_aepbr.aepbr_current_operator, ""progress"", text=""Downloading"", slider=True)"
+functions\menu_ui.py,687,label(text=,Installing...,"box.label(text=""Installing..."")"
+functions\menu_ui.py,687,text=,Installing...,"box.label(text=""Installing..."")"
+functions\menu_ui.py,691,label(text=,Error: {update_aepbr.aepbr_error_message},"box.label(text=f""Error: {update_aepbr.aepbr_error_message}"", icon='ERROR')"
+functions\menu_ui.py,691,text=,Error: {update_aepbr.aepbr_error_message},"box.label(text=f""Error: {update_aepbr.aepbr_error_message}"", icon='ERROR')"
+functions\menu_ui.py,694,text=,AEPBR Discord,"box.operator('object.url_handler', text = ""AEPBR Discord"", icon='URL').rbx_link = ""aepbr discord"""
+functions\menu_ui.py,704,label(text=,R6 from Nuke (YT),box.label(text = 'R6 from Nuke (YT)')
+functions\menu_ui.py,704,text=,R6 from Nuke (YT),box.label(text = 'R6 from Nuke (YT)')
+functions\menu_ui.py,705,text=,Rigged R6,"box.operator('object.button_dmmy', text = ""Rigged R6"").dmy = 'Rigged R6'"
+functions\menu_ui.py,707,label(text=,,box.label(text = '')
+functions\menu_ui.py,707,text=,,box.label(text = '')
+functions\menu_ui.py,708,label(text=,Wear Character (Select Armature),box.label(text = 'Wear Character (Select Armature)')
+functions\menu_ui.py,708,text=,Wear Character (Select Armature),box.label(text = 'Wear Character (Select Armature)')
+functions\menu_ui.py,709,label(text=,Currently Only R6 Rig is supported,box.label(text = 'Currently Only R6 Rig is supported')
+functions\menu_ui.py,709,text=,Currently Only R6 Rig is supported,box.label(text = 'Currently Only R6 Rig is supported')
+functions\menu_ui.py,710,text=,Modify Character,"box.operator('object.button_wear', text = ""Modify Character"").rbx_cloth = 'mod'"
+functions\menu_ui.py,730,label(text=,- - - - - - - - - - - HEAD - - - - - - - - - - -,box.label(text = '- - - - - - - - - - - HEAD - - - - - - - - - - -')
+functions\menu_ui.py,730,text=,- - - - - - - - - - - HEAD - - - - - - - - - - -,box.label(text = '- - - - - - - - - - - HEAD - - - - - - - - - - -')
+functions\menu_ui.py,731,label(text=,Head,#box.label(text = 'Head')
+functions\menu_ui.py,731,text=,Head,#box.label(text = 'Head')
+functions\menu_ui.py,736,label(text=,Skin Tone:,col.label(text='Skin Tone:')
+functions\menu_ui.py,736,text=,Skin Tone:,col.label(text='Skin Tone:')
+functions\menu_ui.py,737,text=,,"split.prop(cloth_head, ""default_value"", text = """")"
+functions\menu_ui.py,739,label(text=,Loaded Face: None,box.label(text = 'Loaded Face: None')
+functions\menu_ui.py,739,text=,Loaded Face: None,box.label(text = 'Loaded Face: None')
+functions\menu_ui.py,741,label(text=,Loaded Face: {glob_vars.rbx_face_name},box.label(text = f'Loaded Face: {glob_vars.rbx_face_name}')
+functions\menu_ui.py,741,text=,Loaded Face: {glob_vars.rbx_face_name},box.label(text = f'Loaded Face: {glob_vars.rbx_face_name}')
+functions\menu_ui.py,742,label(text=,Enter Face ID or URL,box.label(text = 'Enter Face ID or URL')
+functions\menu_ui.py,742,text=,Enter Face ID or URL,box.label(text = 'Enter Face ID or URL')
+functions\menu_ui.py,743,text=,,"box.prop(rbx_prefs, 'rbx_face', text ='')"
+functions\menu_ui.py,744,text=,Import,"box.operator('object.button_wear', text = ""Import"").rbx_cloth = 'face'"
+functions\menu_ui.py,747,label(text=,,#box.label(text = '')
+functions\menu_ui.py,747,text=,,#box.label(text = '')
+functions\menu_ui.py,751,label(text=,- - - - - - - - - - - SHIRT - - - - - - - - - - -,box.label(text = '- - - - - - - - - - - SHIRT - - - - - - - - - - -')
+functions\menu_ui.py,751,text=,- - - - - - - - - - - SHIRT - - - - - - - - - - -,box.label(text = '- - - - - - - - - - - SHIRT - - - - - - - - - - -')
+functions\menu_ui.py,752,label(text=,Shirt,#box.label(text = 'Shirt')
+functions\menu_ui.py,752,text=,Shirt,#box.label(text = 'Shirt')
+functions\menu_ui.py,757,label(text=,Skin Tone:,col.label(text='Skin Tone:')
+functions\menu_ui.py,757,text=,Skin Tone:,col.label(text='Skin Tone:')
+functions\menu_ui.py,758,text=,,"split.prop(cloth_shirt, ""default_value"", text = """")"
+functions\menu_ui.py,760,label(text=,Loaded Shirt: None,box.label(text = 'Loaded Shirt: None')
+functions\menu_ui.py,760,text=,Loaded Shirt: None,box.label(text = 'Loaded Shirt: None')
+functions\menu_ui.py,762,label(text=,Loaded Shirt: {glob_vars.rbx_shirt_name},box.label(text = f'Loaded Shirt: {glob_vars.rbx_shirt_name}')
+functions\menu_ui.py,762,text=,Loaded Shirt: {glob_vars.rbx_shirt_name},box.label(text = f'Loaded Shirt: {glob_vars.rbx_shirt_name}')
+functions\menu_ui.py,763,label(text=,Enter Shirt ID or URL,box.label(text = 'Enter Shirt ID or URL')
+functions\menu_ui.py,763,text=,Enter Shirt ID or URL,box.label(text = 'Enter Shirt ID or URL')
+functions\menu_ui.py,764,text=,,"box.prop(rbx_prefs, 'rbx_shirt', text ='')"
+functions\menu_ui.py,765,text=,Import,"box.operator('object.button_wear', text = ""Import"").rbx_cloth = 'shirt'"
+functions\menu_ui.py,768,label(text=,,#box.label(text = '')
+functions\menu_ui.py,768,text=,,#box.label(text = '')
+functions\menu_ui.py,772,label(text=,- - - - - - - - - - - TORSO - - - - - - - - - -,box.label(text = '- - - - - - - - - - - TORSO - - - - - - - - - -')
+functions\menu_ui.py,772,text=,- - - - - - - - - - - TORSO - - - - - - - - - -,box.label(text = '- - - - - - - - - - - TORSO - - - - - - - - - -')
+functions\menu_ui.py,773,label(text=,Torso,#box.label(text = 'Torso')
+functions\menu_ui.py,773,text=,Torso,#box.label(text = 'Torso')
+functions\menu_ui.py,778,label(text=,Skin Tone:,col.label(text='Skin Tone:')
+functions\menu_ui.py,778,text=,Skin Tone:,col.label(text='Skin Tone:')
+functions\menu_ui.py,779,text=,,"split.prop(cloth_torso, ""default_value"", text = """")"
+functions\menu_ui.py,781,label(text=,Loaded Shirt: None,box.label(text = 'Loaded Shirt: None')
+functions\menu_ui.py,781,text=,Loaded Shirt: None,box.label(text = 'Loaded Shirt: None')
+functions\menu_ui.py,783,label(text=,Loaded Shirt: {glob_vars.rbx_shirt_name},box.label(text = f'Loaded Shirt: {glob_vars.rbx_shirt_name}')
+functions\menu_ui.py,783,text=,Loaded Shirt: {glob_vars.rbx_shirt_name},box.label(text = f'Loaded Shirt: {glob_vars.rbx_shirt_name}')
+functions\menu_ui.py,785,label(text=,Loaded Pants: None,box.label(text = 'Loaded Pants: None')
+functions\menu_ui.py,785,text=,Loaded Pants: None,box.label(text = 'Loaded Pants: None')
+functions\menu_ui.py,787,label(text=,Loaded Pants: {glob_vars.rbx_pants_name},box.label(text = f'Loaded Pants: {glob_vars.rbx_pants_name}')
+functions\menu_ui.py,787,text=,Loaded Pants: {glob_vars.rbx_pants_name},box.label(text = f'Loaded Pants: {glob_vars.rbx_pants_name}')
+functions\menu_ui.py,788,label(text=,,#box.label(text = '')
+functions\menu_ui.py,788,text=,,#box.label(text = '')
+functions\menu_ui.py,792,label(text=,- - - - - - - - - - - PANTS - - - - - - - - - - -,box.label(text = '- - - - - - - - - - - PANTS - - - - - - - - - - -')
+functions\menu_ui.py,792,text=,- - - - - - - - - - - PANTS - - - - - - - - - - -,box.label(text = '- - - - - - - - - - - PANTS - - - - - - - - - - -')
+functions\menu_ui.py,793,label(text=,Pants,#box.label(text = 'Pants')
+functions\menu_ui.py,793,text=,Pants,#box.label(text = 'Pants')
+functions\menu_ui.py,798,label(text=,Skin Tone:,col.label(text='Skin Tone:')
+functions\menu_ui.py,798,text=,Skin Tone:,col.label(text='Skin Tone:')
+functions\menu_ui.py,799,text=,,"split.prop(cloth_pants, ""default_value"", text = """")"
+functions\menu_ui.py,801,label(text=,Loaded Pants: None,box.label(text = 'Loaded Pants: None')
+functions\menu_ui.py,801,text=,Loaded Pants: None,box.label(text = 'Loaded Pants: None')
+functions\menu_ui.py,803,label(text=,Loaded Pants: {glob_vars.rbx_pants_name},box.label(text = f'Loaded Pants: {glob_vars.rbx_pants_name}')
+functions\menu_ui.py,803,text=,Loaded Pants: {glob_vars.rbx_pants_name},box.label(text = f'Loaded Pants: {glob_vars.rbx_pants_name}')
+functions\menu_ui.py,804,label(text=,Enter Pants ID or URL,box.label(text = 'Enter Pants ID or URL')
+functions\menu_ui.py,804,text=,Enter Pants ID or URL,box.label(text = 'Enter Pants ID or URL')
+functions\menu_ui.py,805,text=,,"box.prop(rbx_prefs, 'rbx_pants', text ='')"
+functions\menu_ui.py,806,text=,Import,"box.operator('object.button_wear', text = ""Import"").rbx_cloth = 'pants'"
+functions\menu_ui.py,810,label(text=,,box.label(text = '')
+functions\menu_ui.py,810,text=,,box.label(text = '')
+functions\menu_ui.py,811,text=,Textures Folder,"box.operator('object.button_wear', text = ""Textures Folder"").rbx_cloth = ""folder"""
+functions\menu_ui.py,821,label(text=,Hairs,"row.label(text='Hairs', icon='OUTLINER_OB_FORCE_FIELD')"
+functions\menu_ui.py,821,text=,Hairs,"row.label(text='Hairs', icon='OUTLINER_OB_FORCE_FIELD')"
+functions\menu_ui.py,825,label(text=,Dummie Heads Only,box.label(text = 'Dummie Heads Only')
+functions\menu_ui.py,825,text=,Dummie Heads Only,box.label(text = 'Dummie Heads Only')
+functions\menu_ui.py,826,text=,,"box.prop(rbx_prefs, 'rbx_dum_hd_enum', text ='')"
+functions\menu_ui.py,829,label(text=,,"col.label(text = """")"
+functions\menu_ui.py,829,text=,,"col.label(text = """")"
+functions\menu_ui.py,830,text=,Spawn,"split.operator('object.button_hair', text = ""Spawn"").rbx_hair = 'Dummy_head'"
+functions\menu_ui.py,835,label(text=,Starter Hair Template:,col.label(text='Starter Hair Template:')
+functions\menu_ui.py,835,text=,Starter Hair Template:,col.label(text='Starter Hair Template:')
+functions\menu_ui.py,836,text=,Add,"split.operator('object.button_hair', text = ""Add"").rbx_hair = 'hair_template'"
+functions\menu_ui.py,839,label(text=,Bake Hair Texture,box.label(text = 'Bake Hair Texture')
+functions\menu_ui.py,839,text=,Bake Hair Texture,box.label(text = 'Bake Hair Texture')
+functions\menu_ui.py,840,text=,Add Hair Shader,"box.operator('object.button_hair', text = ""Add Hair Shader"").rbx_hair = 'hair_shader'"
+functions\menu_ui.py,849,label(text=,** Hair Color Controls: **,box.label(text='** Hair Color Controls: **')
+functions\menu_ui.py,849,text=,** Hair Color Controls: **,box.label(text='** Hair Color Controls: **')
+functions\menu_ui.py,861,label(text=,Hair Color:,col.label(text='Hair Color:')
+functions\menu_ui.py,861,text=,Hair Color:,col.label(text='Hair Color:')
+functions\menu_ui.py,862,text=,,"split.prop(hrs_0, ""default_value"", text = """")"
+functions\menu_ui.py,865,label(text=,Hair Strands:,col.label(text='Hair Strands:')
+functions\menu_ui.py,865,text=,Hair Strands:,col.label(text='Hair Strands:')
+functions\menu_ui.py,866,text=,,"split.prop(hrs_1, ""default_value"", text = """")"
+functions\menu_ui.py,869,label(text=,Strands Color:,col.label(text='Strands Color:')
+functions\menu_ui.py,869,text=,Strands Color:,col.label(text='Strands Color:')
+functions\menu_ui.py,870,text=,,"split.prop(hrs_2, ""default_value"", text = """")"
+functions\menu_ui.py,873,label(text=,Highlight Color:,col.label(text='Highlight Color:')
+functions\menu_ui.py,873,text=,Highlight Color:,col.label(text='Highlight Color:')
+functions\menu_ui.py,874,text=,,"split.prop(hrs_3, ""default_value"", text = """")"
+functions\menu_ui.py,877,label(text=,Highlight Scale:,col.label(text='Highlight Scale:')
+functions\menu_ui.py,877,text=,Highlight Scale:,col.label(text='Highlight Scale:')
+functions\menu_ui.py,878,text=,,"split.prop(hrs_4, ""default_value"", text = """")"
+functions\menu_ui.py,881,label(text=,Top Position:,col.label(text='Top Position:')
+functions\menu_ui.py,881,text=,Top Position:,col.label(text='Top Position:')
+functions\menu_ui.py,882,text=,,"split.prop(hrs_5, ""default_value"", text = """")"
+functions\menu_ui.py,885,label(text=,Bottom Position:,col.label(text='Bottom Position:')
+functions\menu_ui.py,885,text=,Bottom Position:,col.label(text='Bottom Position:')
+functions\menu_ui.py,886,text=,,"split.prop(hrs_6, ""default_value"", text = """")"
+functions\menu_ui.py,889,label(text=,Bumps:,col.label(text='Bumps:')
+functions\menu_ui.py,889,text=,Bumps:,col.label(text='Bumps:')
+functions\menu_ui.py,890,text=,,"split.prop(hrs_7, ""default_value"", text = """")"
+functions\menu_ui.py,895,label(text=,,col.label(text='')
+functions\menu_ui.py,895,text=,,col.label(text='')
+functions\menu_ui.py,896,text=,Bake Texture,"split.operator('object.button_hair', text = ""Bake Texture"").rbx_hair = 'hair_bake'"
+functions\menu_ui.py,898,text=,View Image,"box.operator('object.button_hair', text = ""View Image"").rbx_hair = 'hair_save'"
+functions\menu_ui.py,908,label(text=,Layered Cloth,"row.label(text='Layered Cloth', icon='MATCLOTH')"
+functions\menu_ui.py,908,text=,Layered Cloth,"row.label(text='Layered Cloth', icon='MATCLOTH')"
+functions\menu_ui.py,912,label(text=,Cages,box.label(text = 'Cages')
+functions\menu_ui.py,912,text=,Cages,box.label(text = 'Cages')
+functions\menu_ui.py,913,text=,,"box.prop(rbx_prefs, 'rbx_lc_dum_enum', text ='')"
+functions\menu_ui.py,916,text=,Cages,"col.operator('object.rbx_button_lc', text = ""Cages"").rbx_lc = ""_Cage"""
+functions\menu_ui.py,917,text=,Armature,"split.operator('object.rbx_button_lc', text = ""Armature"").rbx_lc = ""_Arma"""
+functions\menu_ui.py,925,text=,Show Bones Infront,"box.prop(bpy.context.object, 'show_in_front', text ='Show Bones Infront')"
+functions\menu_ui.py,926,text=,Show Bone Names,"box.prop(bpy.context.object.data, 'show_names', text ='Show Bone Names')"
+functions\menu_ui.py,929,text=,Show Bones Infront,"box.prop(rbx_prefs, 'rbx_bn_disabled', text ='Show Bones Infront')"
+functions\menu_ui.py,930,text=,Show Bone Names,"box.prop(rbx_prefs, 'rbx_bn_disabled', text ='Show Bone Names')"
+functions\menu_ui.py,933,text=,Show Bones Infront,"box.prop(rbx_prefs, 'rbx_bn_disabled', text ='Show Bones Infront')"
+functions\menu_ui.py,934,text=,Show Bone Names,"box.prop(rbx_prefs, 'rbx_bn_disabled', text ='Show Bone Names')"
+functions\menu_ui.py,942,label(text=,LC Animation Test,row_title.label(text='LC Animation Test')
+functions\menu_ui.py,942,text=,LC Animation Test,row_title.label(text='LC Animation Test')
+functions\menu_ui.py,943,text=,,"row_title.operator('object.rbx_lc_anim_test_info_popup', text="""", icon='INFO')"
+functions\menu_ui.py,944,label(text=,1. Select LC Armature,box.label(text = '1. Select LC Armature')
+functions\menu_ui.py,944,text=,1. Select LC Armature,box.label(text = '1. Select LC Armature')
+functions\menu_ui.py,946,label(text=,2. Select Rig to spawn,box.label(text = '2. Select Rig to spawn')
+functions\menu_ui.py,946,text=,2. Select Rig to spawn,box.label(text = '2. Select Rig to spawn')
+functions\menu_ui.py,947,text=,,"box.prop(rbx_prefs, 'rbx_lc_anim_v2_rig_enum', text = '')"
+functions\menu_ui.py,949,text=,Spawn Rig,"box.operator('object.rbx_lc_anim_v2', text = ""Spawn Rig"", icon='ARMATURE_DATA')"
+functions\menu_ui.py,955,label(text=,Animations:,box.label(text = 'Animations:')
+functions\menu_ui.py,955,text=,Animations:,box.label(text = 'Animations:')
+functions\menu_ui.py,958,text=,Idle,"row.operator('object.rbx_lc_anim_v2_add_anim', text=""Idle"", icon='ARMATURE_DATA').anim_type = ""IDLE"""
+functions\menu_ui.py,959,text=,Walk,"row.operator('object.rbx_lc_anim_v2_add_anim', text=""Walk"", icon='ARMATURE_DATA').anim_type = ""WALK"""
+functions\menu_ui.py,961,text=,Move,"row.operator('object.rbx_lc_anim_v2_add_anim', text=""Move"", icon='ARMATURE_DATA').anim_type = ""MOVE"""
+functions\menu_ui.py,962,text=,Run,"row.operator('object.rbx_lc_anim_v2_add_anim', text=""Run"", icon='ARMATURE_DATA').anim_type = ""RUN"""
+functions\menu_ui.py,964,text=,Swim,"row.operator('object.rbx_lc_anim_v2_add_anim', text=""Swim"", icon='ARMATURE_DATA').anim_type = ""SWIM"""
+functions\menu_ui.py,965,text=,Climb,"row.operator('object.rbx_lc_anim_v2_add_anim', text=""Climb"", icon='ARMATURE_DATA').anim_type = ""CLIMB"""
+functions\menu_ui.py,967,text=,Jump,"row.operator('object.rbx_lc_anim_v2_add_anim', text=""Jump"", icon='ARMATURE_DATA').anim_type = ""JUMP"""
+functions\menu_ui.py,968,text=,Fall,"row.operator('object.rbx_lc_anim_v2_add_anim', text=""Fall"", icon='ARMATURE_DATA').anim_type = ""FALL"""
+functions\menu_ui.py,974,text=,Play / Pause,"row.operator('object.rbx_lc_anim_v2_play', text=""Play / Pause"", icon=play_icon)"
+functions\menu_ui.py,975,text=,Delete Rig,"row.operator('object.rbx_lc_anim_v2_delete', text=""Delete Rig"", icon='TRASH')"
+functions\menu_ui.py,978,text=,Scrub,"box.prop(scene, ""rbx_lc_anim_scrub"", text=""Scrub"", slider=True)"
+functions\menu_ui.py,983,label(text=,Speed:,box.label(text = 'Speed:')
+functions\menu_ui.py,983,text=,Speed:,box.label(text = 'Speed:')
+functions\menu_ui.py,985,text=,0.1x,"op = row.operator('object.rbx_lc_anim_v2_speed', text=""0.1x"", depress=(cur_speed == 0.10))"
+functions\menu_ui.py,987,text=,0.25x,"op = row.operator('object.rbx_lc_anim_v2_speed', text=""0.25x"", depress=(cur_speed == 0.25))"
+functions\menu_ui.py,989,text=,0.5x,"op = row.operator('object.rbx_lc_anim_v2_speed', text=""0.5x"", depress=(cur_speed == 0.50))"
+functions\menu_ui.py,991,text=,1x,"op = row.operator('object.rbx_lc_anim_v2_speed', text=""1x"", depress=(cur_speed == 1.00))"
+functions\menu_ui.py,998,label(text=,Roblox Samples from Github,box.label(text = 'Roblox Samples from Github')
+functions\menu_ui.py,998,text=,Roblox Samples from Github,box.label(text = 'Roblox Samples from Github')
+functions\menu_ui.py,999,text=,,"box.prop(rbx_prefs, 'rbx_lc_spl_enum', text ='')"
+functions\menu_ui.py,1002,label(text=,,"col.label(text = """")"
+functions\menu_ui.py,1002,text=,,"col.label(text = """")"
+functions\menu_ui.py,1003,text=,Spawn,"split.operator('object.rbx_button_lc', text = ""Spawn"").rbx_lc = ""sample"""
+functions\menu_ui.py,1006,text=,Roblox Github,"box.operator('object.url_handler', text = ""Roblox Github"", icon='URL').rbx_link = ""rbx github"""
+functions\menu_ui.py,1016,label(text=,Avatars,"row.label(text='Avatars', icon='COMMUNITY')"
+functions\menu_ui.py,1016,text=,Avatars,"row.label(text='Avatars', icon='COMMUNITY')"
+functions\menu_ui.py,1021,label(text=,Avatar Templates,box.label(text = 'Avatar Templates')
+functions\menu_ui.py,1021,text=,Avatar Templates,box.label(text = 'Avatar Templates')
+functions\menu_ui.py,1022,text=,,"box.prop(rbx_prefs, 'rbx_ava_enum', text ='')"
+functions\menu_ui.py,1025,label(text=,,"col.label(text = """")"
+functions\menu_ui.py,1025,text=,,"col.label(text = """")"
+functions\menu_ui.py,1026,text=,Spawn,"split.operator('object.rbx_button_ava', text = ""Spawn"").rbx_ava = 'avatar'"
+functions\menu_ui.py,1030,label(text=,Mesh Custom Properties,"box.label(text = ""Mesh Custom Properties"")"
+functions\menu_ui.py,1030,text=,Mesh Custom Properties,"box.label(text = ""Mesh Custom Properties"")"
+functions\menu_ui.py,1031,text=,Clean Up All,"box.operator('object.rbx_button_ava', text=""Clean Up All"").rbx_ava = ""clear"""
+functions\menu_ui.py,1034,text=,Add FACS Properties (Head Only),"row_facs.operator('object.rbx_button_ava', text=""Add FACS Properties (Head Only)"").rbx_ava = ""add_facs"""
+functions\menu_ui.py,1038,text=,Add FACS Animation (Arma),"row_facs2.operator('object.rbx_button_ava', text=""Add FACS Animation (Arma)"").rbx_ava = ""add_facs_anim"""
+functions\menu_ui.py,1052,label(text=,Select Objects to remove .000,"box.label(text = ""Select Objects to remove .000"")"
+functions\menu_ui.py,1052,text=,Select Objects to remove .000,"box.label(text = ""Select Objects to remove .000"")"
+functions\menu_ui.py,1053,label(text=,ps: not always works,"box.label(text = ""ps: not always works"")"
+functions\menu_ui.py,1053,text=,ps: not always works,"box.label(text = ""ps: not always works"")"
+functions\menu_ui.py,1054,text=,Rename All,"box.operator('object.rbx_button_ava', text=""Rename All"").rbx_ava = ""rename"""
+functions\menu_ui.py,1058,label(text=,Hide all Att in selected:,"box.label(text = ""Hide all Att in selected:"")"
+functions\menu_ui.py,1058,text=,Hide all Att in selected:,"box.label(text = ""Hide all Att in selected:"")"
+functions\menu_ui.py,1059,text=,Hide All,"box.operator('object.rbx_button_ava', text=""Hide All"").rbx_ava = ""hide"""
+functions\menu_ui.py,1060,text=,UnHide Them,"box.operator('object.rbx_button_ava', text=""UnHide Them"").rbx_ava = ""unhide"""
+functions\menu_ui.py,1061,label(text=,(only the ones you hide before),"box.label(text = ""(only the ones you hide before)"")"
+functions\menu_ui.py,1061,text=,(only the ones you hide before),"box.label(text = ""(only the ones you hide before)"")"
+functions\menu_ui.py,1071,label(text=,Cameras and Lights,"row.label(text='Cameras and Lights', icon='CAMERA_DATA')"
+functions\menu_ui.py,1071,text=,Cameras and Lights,"row.label(text='Cameras and Lights', icon='CAMERA_DATA')"
+functions\menu_ui.py,1075,text=,Add 4 Cameras Setup,"box.operator('object.button_cmr', text = ""Add 4 Cameras Setup"", icon='IMPORT').cmr = 'append'"
+functions\menu_ui.py,1084,label(text=,Camera Front:,col.label(text='Camera Front:')
+functions\menu_ui.py,1084,text=,Camera Front:,col.label(text='Camera Front:')
+functions\menu_ui.py,1085,text=,Set Active,"split.operator('object.button_cmr', text = ""Set Active"").cmr = 'Camera_F_active'"
+functions\menu_ui.py,1095,label(text=,Camera Back:,col.label(text='Camera Back:')
+functions\menu_ui.py,1095,text=,Camera Back:,col.label(text='Camera Back:')
+functions\menu_ui.py,1096,text=,Set Active,"split.operator('object.button_cmr', text = ""Set Active"").cmr = 'Camera_B_active'"
+functions\menu_ui.py,1105,label(text=,  Camera Left:,col.label(text='  Camera Left:')
+functions\menu_ui.py,1105,text=,  Camera Left:,col.label(text='  Camera Left:')
+functions\menu_ui.py,1106,text=,Set Active,"split.operator('object.button_cmr', text = ""Set Active"").cmr = 'Camera_L_active'"
+functions\menu_ui.py,1115,label(text=,Camera Right:,col.label(text='Camera Right:')
+functions\menu_ui.py,1115,text=,Camera Right:,col.label(text='Camera Right:')
+functions\menu_ui.py,1116,text=,Set Active,"split.operator('object.button_cmr', text = ""Set Active"").cmr = 'Camera_R_active'"
+functions\menu_ui.py,1127,label(text=,,col.label(text='')
+functions\menu_ui.py,1127,text=,,col.label(text='')
+functions\menu_ui.py,1128,text=,Preview,"split.operator('object.button_cmr', text = ""Preview"", icon='HIDE_OFF').cmr = 'preview'"
+functions\menu_ui.py,1137,text=,Transparent background,"box.prop(bpy.context.scene.render, ""film_transparent"", text = ""Transparent background"")"
+functions\menu_ui.py,1140,label(text=,,col.label(text='')
+functions\menu_ui.py,1140,text=,,col.label(text='')
+functions\menu_ui.py,1141,text=,Render,"split.operator('render.render', text = ""Render"", icon='RENDER_STILL')"
+functions\menu_ui.py,1152,label(text=,Animation (Advanced),"#row.label(text='Animation (Advanced)', icon='OUTLINER_DATA_ARMATURE')"
+functions\menu_ui.py,1152,text=,Animation (Advanced),"#row.label(text='Animation (Advanced)', icon='OUTLINER_DATA_ARMATURE')"
+functions\menu_ui.py,1156,text=,How to Use,"box.operator('object.url_handler', text = ""How to Use"", icon='HELP').rbx_link = ""Guide_Armature"""
+functions\menu_ui.py,1158,text=,Step-1 (Add Armature),"box.prop(context.scene, 'subpanel_bn_st1', icon=icon, icon_only=False, text='Step-1 (Add Armature)')"
+functions\menu_ui.py,1171,text=,,"box.prop(rbx_prefs, 'rbx_arma_enum', text ='')"
+functions\menu_ui.py,1174,label(text=,,"col.label(text = """")"
+functions\menu_ui.py,1174,text=,,"col.label(text = """")"
+functions\menu_ui.py,1175,text=,Add Armature,"split.operator('object.button_bn', text = ""Add Armature"").bn = 'arma'"
+functions\menu_ui.py,1181,label(text=,Show Bones:,col.label(text='Show Bones:')
+functions\menu_ui.py,1181,text=,Show Bones:,col.label(text='Show Bones:')
+functions\menu_ui.py,1183,label(text=,          -------------------------------------  ,box.label(text='          -------------------------------------  ')
+functions\menu_ui.py,1183,text=,          -------------------------------------  ,box.label(text='          -------------------------------------  ')
+functions\menu_ui.py,1184,label(text=,You may try from Step-4,box.label(text='You may try from Step-4')
+functions\menu_ui.py,1184,text=,You may try from Step-4,box.label(text='You may try from Step-4')
+functions\menu_ui.py,1185,label(text=,If no work - back to Step-2,box.label(text='If no work - back to Step-2')
+functions\menu_ui.py,1185,text=,If no work - back to Step-2,box.label(text='If no work - back to Step-2')
+functions\menu_ui.py,1189,label(text=,Step-2 (Prepare Mesh):,"box.label(text='Step-2 (Prepare Mesh):', icon=bn_icon)"
+functions\menu_ui.py,1189,text=,Step-2 (Prepare Mesh):,"box.label(text='Step-2 (Prepare Mesh):', icon=bn_icon)"
+functions\menu_ui.py,1190,text=,Recalculate Normals,"box.operator('object.button_bn', text = ""Recalculate Normals"", icon='NORMALS_FACE').bn = 'normal'"
+functions\menu_ui.py,1194,label(text=,Recalucalting Done!,"box.label(text='Recalucalting Done!', icon='CHECKMARK')"
+functions\menu_ui.py,1194,text=,Recalucalting Done!,"box.label(text='Recalucalting Done!', icon='CHECKMARK')"
+functions\menu_ui.py,1199,label(text=,Step-3 (Double Vertices):,"box.label(text='Step-3 (Double Vertices):', icon=bn_icon)"
+functions\menu_ui.py,1199,text=,Step-3 (Double Vertices):,"box.label(text='Step-3 (Double Vertices):', icon=bn_icon)"
+functions\menu_ui.py,1231,label(text=,Doubles Found: ,"box.label(text='Doubles Found: ' + str(doubles), icon='INFO')"
+functions\menu_ui.py,1231,text=,Doubles Found: ,"box.label(text='Doubles Found: ' + str(doubles), icon='INFO')"
+functions\menu_ui.py,1234,label(text=,Doubles Found: ERROR!,"box.label(text='Doubles Found: ERROR!', icon='INFO')"
+functions\menu_ui.py,1234,text=,Doubles Found: ERROR!,"box.label(text='Doubles Found: ERROR!', icon='INFO')"
+functions\menu_ui.py,1236,text=,Remove Double Vertices,"box.operator('object.button_bn', text = ""Remove Double Vertices"", icon='VERTEXSEL').bn = 'doubles'"
+functions\menu_ui.py,1240,label(text=,Remove Doubles Done!,"box.label(text='Remove Doubles Done!', icon='CHECKMARK')"
+functions\menu_ui.py,1240,text=,Remove Doubles Done!,"box.label(text='Remove Doubles Done!', icon='CHECKMARK')"
+functions\menu_ui.py,1251,label(text=,"(Optional, Might help look better):","box.label(text='(Optional, Might help look better):')"
+functions\menu_ui.py,1251,text=,"(Optional, Might help look better):","box.label(text='(Optional, Might help look better):')"
+functions\menu_ui.py,1254,label(text=,Mesh Smoothing:,col.label(text='Mesh Smoothing:')
+functions\menu_ui.py,1254,text=,Mesh Smoothing:,col.label(text='Mesh Smoothing:')
+functions\menu_ui.py,1257,text=,Auto,"split.prop(context.object.data,'use_auto_smooth', text='Auto')"
+functions\menu_ui.py,1259,text=,Auto Smooth,"split.operator('object.shade_auto_smooth', text='Auto Smooth')"
+functions\menu_ui.py,1265,label(text=,Step-4:,"box.label(text='Step-4:', icon=bn_icon)"
+functions\menu_ui.py,1265,text=,Step-4:,"box.label(text='Step-4:', icon=bn_icon)"
+functions\menu_ui.py,1266,label(text=,"""Adjust Bones in '","box.label(text=""Adjust Bones in 'Edit Mode'"")"
+functions\menu_ui.py,1266,text=,"""Adjust Bones in '","box.label(text=""Adjust Bones in 'Edit Mode'"")"
+functions\menu_ui.py,1267,label(text=,If needed,"box.label(text=""If needed"")"
+functions\menu_ui.py,1267,text=,If needed,"box.label(text=""If needed"")"
+functions\menu_ui.py,1271,label(text=,Step-5:,"box.label(text='Step-5:', icon=bn_icon)"
+functions\menu_ui.py,1271,text=,Step-5:,"box.label(text='Step-5:', icon=bn_icon)"
+functions\menu_ui.py,1272,label(text=,"Select Mesh + Bones, then Parent","box.label(text='Select Mesh + Bones, then Parent')"
+functions\menu_ui.py,1272,text=,"Select Mesh + Bones, then Parent","box.label(text='Select Mesh + Bones, then Parent')"
+functions\menu_ui.py,1273,text=,Parent Bones and Mesh,"box.operator('object.button_bn', text = ""Parent Bones and Mesh"", icon='BONE_DATA').bn = 'parent'"
+functions\menu_ui.py,1279,label(text=,"Error, need rectify Mesh","box.label(text='Error, need rectify Mesh', icon='ERROR')"
+functions\menu_ui.py,1279,text=,"Error, need rectify Mesh","box.label(text='Error, need rectify Mesh', icon='ERROR')"
+functions\menu_ui.py,1283,label(text=,Parenting Done!,"box.label(text='Parenting Done!', icon='CHECKMARK')"
+functions\menu_ui.py,1283,text=,Parenting Done!,"box.label(text='Parenting Done!', icon='CHECKMARK')"
+functions\menu_ui.py,1284,label(text=,Step-6 (Optional):,"box.label(text='Step-6 (Optional):', icon=bn_icon)"
+functions\menu_ui.py,1284,text=,Step-6 (Optional):,"box.label(text='Step-6 (Optional):', icon=bn_icon)"
+functions\menu_ui.py,1285,label(text=,You can also now export this,box.label(text='You can also now export this')
+functions\menu_ui.py,1285,text=,You can also now export this,box.label(text='You can also now export this')
+functions\menu_ui.py,1286,label(text=,Model as .fbx to Mixamo for,box.label(text='Model as .fbx to Mixamo for')
+functions\menu_ui.py,1286,text=,Model as .fbx to Mixamo for,box.label(text='Model as .fbx to Mixamo for')
+functions\menu_ui.py,1287,label(text=,animation. (No need redo bones),box.label(text='animation. (No need redo bones)')
+functions\menu_ui.py,1287,text=,animation. (No need redo bones),box.label(text='animation. (No need redo bones)')
+functions\menu_ui.py,1288,text=,Go to Mixamo,"box.operator('object.url_handler', text = ""Go to Mixamo"", icon='URL').rbx_link = ""mixamo"""
+functions\menu_ui.py,1304,label(text=,Upload to Roblox,"row.label(text='Upload to Roblox', icon='COLLAPSEMENU')"
+functions\menu_ui.py,1304,text=,Upload to Roblox,"row.label(text='Upload to Roblox', icon='COLLAPSEMENU')"
+functions\menu_ui.py,1314,label(text=,Refreshing Login. Please wait,"upload_section_box.label(text=""Refreshing Login. Please wait"", icon='ERROR')"
+functions\menu_ui.py,1314,text=,Refreshing Login. Please wait,"upload_section_box.label(text=""Refreshing Login. Please wait"", icon='ERROR')"
+functions\menu_ui.py,1320,label(text=,Selected Objects:,"upload_section_box.row().label(text=""Selected Objects:"", icon=""RESTRICT_SELECT_OFF"")"
+functions\menu_ui.py,1320,text=,Selected Objects:,"upload_section_box.row().label(text=""Selected Objects:"", icon=""RESTRICT_SELECT_OFF"")"
+functions\menu_ui.py,1337,label(text=,Quick Functions:,"row.label(text='Quick Functions:', icon='COLLAPSEMENU')"
+functions\menu_ui.py,1337,text=,Quick Functions:,"row.label(text='Quick Functions:', icon='COLLAPSEMENU')"
+functions\menu_ui.py,1356,label(text=,Culling Option,"box.label(text='Culling Option', icon='HIDE_ON')"
+functions\menu_ui.py,1356,text=,Culling Option,"box.label(text='Culling Option', icon='HIDE_ON')"
+functions\menu_ui.py,1357,label(text=,"(Hide flipped faces, like in Roblox)","box.label(text='(Hide flipped faces, like in Roblox)')"
+functions\menu_ui.py,1357,text=,"(Hide flipped faces, like in Roblox)","box.label(text='(Hide flipped faces, like in Roblox)')"
+functions\menu_ui.py,1358,text=,Backface Culling,"box.prop(bpy.context.object.active_material, 'use_backface_culling', text='Backface Culling', icon='FACESEL')"
+functions\menu_ui.py,1361,label(text=,Culling Option (Add Material),"box.label(text='Culling Option (Add Material)', icon='HIDE_ON')"
+functions\menu_ui.py,1361,text=,Culling Option (Add Material),"box.label(text='Culling Option (Add Material)', icon='HIDE_ON')"
+functions\menu_ui.py,1362,label(text=,"(Hide flipped faces, like in Roblox)","box.label(text='(Hide flipped faces, like in Roblox)')"
+functions\menu_ui.py,1362,text=,"(Hide flipped faces, like in Roblox)","box.label(text='(Hide flipped faces, like in Roblox)')"
+functions\menu_ui.py,1363,text=,Backface Culling,"box.operator(""object.rbx_button_of"", text = ""Backface Culling"",  icon='FACESEL') #Fake button"
+functions\menu_ui.py,1366,label(text=,Culling Option (Select 1 Object),"box.label(text='Culling Option (Select 1 Object)', icon='HIDE_ON')"
+functions\menu_ui.py,1366,text=,Culling Option (Select 1 Object),"box.label(text='Culling Option (Select 1 Object)', icon='HIDE_ON')"
+functions\menu_ui.py,1367,label(text=,"(Hide flipped faces, like in Roblox)","box.label(text='(Hide flipped faces, like in Roblox)')"
+functions\menu_ui.py,1367,text=,"(Hide flipped faces, like in Roblox)","box.label(text='(Hide flipped faces, like in Roblox)')"
+functions\menu_ui.py,1368,text=,Backface Culling,"box.operator(""object.rbx_button_of"", text = ""Backface Culling"",  icon='FACESEL') #Fake button"
+functions\menu_ui.py,1371,label(text=,Culling Option (Select Object),"box.label(text='Culling Option (Select Object)', icon='HIDE_ON')"
+functions\menu_ui.py,1371,text=,Culling Option (Select Object),"box.label(text='Culling Option (Select Object)', icon='HIDE_ON')"
+functions\menu_ui.py,1372,label(text=,"(Hide flipped faces, like in Roblox)","box.label(text='(Hide flipped faces, like in Roblox)')"
+functions\menu_ui.py,1372,text=,"(Hide flipped faces, like in Roblox)","box.label(text='(Hide flipped faces, like in Roblox)')"
+functions\menu_ui.py,1373,text=,Backface Culling,"box.operator(""object.rbx_button_of"", text = ""Backface Culling"",  icon='FACESEL') #Fake button"
+functions\menu_ui.py,1377,label(text=,Normals,"box.label(text='Normals', icon='ORIENTATION_NORMAL')"
+functions\menu_ui.py,1377,text=,Normals,"box.label(text='Normals', icon='ORIENTATION_NORMAL')"
+functions\menu_ui.py,1378,text=,Show Face Orientation,"box.prop(bpy.context.space_data.overlay, 'show_face_orientation', text='Show Face Orientation', icon='NORMALS_FACE')"
+functions\menu_ui.py,1382,text=,Recalc Outside,"col.operator(""object.rbx_button_of"", text = ""Recalc Outside"").rbx_of = 'outside'"
+functions\menu_ui.py,1383,text=,Recalc Inside,"split.operator(""object.rbx_button_of"", text = ""Recalc Inside"").rbx_of = 'inside'"
+functions\menu_ui.py,1384,text=,Flip Normals,"box.operator(""object.rbx_button_of"", text = ""Flip Normals"").rbx_of = 'flip'"
+functions\menu_ui.py,1389,label(text=,Glowing UGC,"box.label(text='Glowing UGC', icon='SHADING_SOLID')"
+functions\menu_ui.py,1389,text=,Glowing UGC,"box.label(text='Glowing UGC', icon='SHADING_SOLID')"
+functions\menu_ui.py,1390,text=,Make Item Glow,"box.operator(""object.rbx_button_of"", text = ""Make Item Glow"").rbx_of = 'glow'"
+functions\menu_ui.py,1391,text=,Remove Glowing,"box.operator(""object.rbx_button_of"", text = ""Remove Glowing"").rbx_of = 'unglow'"
+functions\menu_ui.py,1394,label(text=,Glowing UGC (Select Object),"box.label(text='Glowing UGC (Select Object)', icon='SHADING_SOLID')"
+functions\menu_ui.py,1394,text=,Glowing UGC (Select Object),"box.label(text='Glowing UGC (Select Object)', icon='SHADING_SOLID')"
+functions\menu_ui.py,1395,text=,Make Item Glow,"box.operator(""object.rbx_button_of"", text = ""Make Item Glow"").rbx_of = 'glow'"
+functions\menu_ui.py,1396,text=,Remove Glowing,"box.operator(""object.rbx_button_of"", text = ""Remove Glowing"").rbx_of = 'unglow'"
+functions\menu_ui.py,1406,label(text=,UGC Outline ,"box.label(text='UGC Outline ', icon='HIDE_ON')"
+functions\menu_ui.py,1406,text=,UGC Outline ,"box.label(text='UGC Outline ', icon='HIDE_ON')"
+functions\menu_ui.py,1407,text=,Make Outline,"box.operator(""object.rbx_button_of"", text = ""Make Outline"").rbx_of = 'make_outline'"
+functions\menu_ui.py,1412,label(text=,** Outline Controls: **,box.label(text='** Outline Controls: **')
+functions\menu_ui.py,1412,text=,** Outline Controls: **,box.label(text='** Outline Controls: **')
+functions\menu_ui.py,1417,label(text=,Preview Color:,col.label(text='Preview Color:')
+functions\menu_ui.py,1417,text=,Preview Color:,col.label(text='Preview Color:')
+functions\menu_ui.py,1418,text=,,"split.prop(col_0, ""default_value"", text = """")"
+functions\menu_ui.py,1420,text=,Outline Thickness:,"box.prop(bpy.context.object.modifiers[""RBX_Outline""], 'thickness', text='Outline Thickness:')"
+functions\menu_ui.py,1422,label(text=,,box.label(text='')
+functions\menu_ui.py,1422,text=,,box.label(text='')
+functions\menu_ui.py,1423,label(text=,** Add Outline to UGC: **,box.label(text='** Add Outline to UGC: **')
+functions\menu_ui.py,1423,text=,** Add Outline to UGC: **,box.label(text='** Add Outline to UGC: **')
+functions\menu_ui.py,1424,text=,Apply Outline,"box.operator(""object.rbx_button_of"", text = ""Apply Outline"").rbx_of = 'apply_outline'"
+functions\menu_ui.py,1425,label(text=,*Outline faces will be added to your,box.label(text='*Outline faces will be added to your')
+functions\menu_ui.py,1425,text=,*Outline faces will be added to your,box.label(text='*Outline faces will be added to your')
+functions\menu_ui.py,1426,label(text=,object and UV moved outside.,box.label(text='object and UV moved outside.')
+functions\menu_ui.py,1426,text=,object and UV moved outside.,box.label(text='object and UV moved outside.')
+functions\menu_ui.py,1427,label(text=,Just move that UV to the color,box.label(text='Just move that UV to the color')
+functions\menu_ui.py,1427,text=,Just move that UV to the color,box.label(text='Just move that UV to the color')
+functions\menu_ui.py,1428,label(text=,that you need or re-unwrap it,box.label(text='that you need or re-unwrap it')
+functions\menu_ui.py,1428,text=,that you need or re-unwrap it,box.label(text='that you need or re-unwrap it')
+functions\menu_ui.py,1431,label(text=,UGC Outline (Add Material),"box.label(text='UGC Outline (Add Material)', icon='HIDE_ON')"
+functions\menu_ui.py,1431,text=,UGC Outline (Add Material),"box.label(text='UGC Outline (Add Material)', icon='HIDE_ON')"
+functions\menu_ui.py,1432,text=,Make Outline,"box.operator(""object.rbx_button_of"", text = ""Make Outline"").rbx_of = 'make_outline'"
+functions\menu_ui.py,1435,label(text=,UGC Outline (Select 1 Object),"box.label(text='UGC Outline (Select 1 Object)', icon='HIDE_ON')"
+functions\menu_ui.py,1435,text=,UGC Outline (Select 1 Object),"box.label(text='UGC Outline (Select 1 Object)', icon='HIDE_ON')"
+functions\menu_ui.py,1436,text=,Make Outline,"box.operator(""object.rbx_button_of"", text = ""Make Outline"").rbx_of = 'make_outline'"
+functions\menu_ui.py,1439,label(text=,UGC Outline (Select Object),"box.label(text='UGC Outline (Select Object)', icon='HIDE_ON')"
+functions\menu_ui.py,1439,text=,UGC Outline (Select Object),"box.label(text='UGC Outline (Select Object)', icon='HIDE_ON')"
+functions\menu_ui.py,1440,text=,Make Outline,"box.operator(""object.rbx_button_of"", text = ""Make Outline"").rbx_of = 'make_outline'"
+functions\menu_ui.py,1450,label(text=,File Export:,"row.label(text='File Export:', icon='COLLAPSEMENU')"
+functions\menu_ui.py,1450,text=,File Export:,"row.label(text='File Export:', icon='COLLAPSEMENU')"
+functions\menu_ui.py,1458,label(text=,UGC Item Export:,box.label(text='UGC Item Export:')
+functions\menu_ui.py,1458,text=,UGC Item Export:,box.label(text='UGC Item Export:')
+functions\menu_ui.py,1468,text=,Set Origin to Geometry,"box.prop(rbx_prefs, 'rbx_of_orig', text = ""Set Origin to Geometry"")"
+functions\menu_ui.py,1469,text=,Apply All Transforms,"box.prop(rbx_prefs, 'rbx_of_trsf', text = ""Apply All Transforms"")"
+functions\menu_ui.py,1470,text=,Export FBX,"box.operator('object.rbx_operators', text = ""Export FBX"", icon='EXPORT').rbx_operator = 'exp_fbx'"
+functions\menu_ui.py,1472,label(text=,Select 1 Mesh for FBX Export,"box.label(text='Select 1 Mesh for FBX Export', icon='ERROR')"
+functions\menu_ui.py,1472,text=,Select 1 Mesh for FBX Export,"box.label(text='Select 1 Mesh for FBX Export', icon='ERROR')"
+functions\menu_ui.py,1474,label(text=,Select 1 Mesh for FBX Export,"box.label(text='Select 1 Mesh for FBX Export', icon='ERROR')"
+functions\menu_ui.py,1474,text=,Select 1 Mesh for FBX Export,"box.label(text='Select 1 Mesh for FBX Export', icon='ERROR')"
+functions\menu_ui.py,1480,label(text=,Layered Cloth Export:,box.label(text='Layered Cloth Export:')
+functions\menu_ui.py,1480,text=,Layered Cloth Export:,box.label(text='Layered Cloth Export:')
+functions\menu_ui.py,1481,label(text=,Make sure you select these:,box.label(text='Make sure you select these:')
+functions\menu_ui.py,1481,text=,Make sure you select these:,box.label(text='Make sure you select these:')
+functions\menu_ui.py,1482,label(text=,1. Armature,box.label(text='1. Armature')
+functions\menu_ui.py,1482,text=,1. Armature,box.label(text='1. Armature')
+functions\menu_ui.py,1483,label(text=,2. YourItem in Armature,box.label(text='2. YourItem in Armature')
+functions\menu_ui.py,1483,text=,2. YourItem in Armature,box.label(text='2. YourItem in Armature')
+functions\menu_ui.py,1484,label(text=,3. ItemName_OuterCage,box.label(text='3. ItemName_OuterCage')
+functions\menu_ui.py,1484,text=,3. ItemName_OuterCage,box.label(text='3. ItemName_OuterCage')
+functions\menu_ui.py,1485,label(text=,4. ItemName_InnerCage,box.label(text='4. ItemName_InnerCage')
+functions\menu_ui.py,1485,text=,4. ItemName_InnerCage,box.label(text='4. ItemName_InnerCage')
+functions\menu_ui.py,1488,text=,Export FBX,"box.operator('object.rbx_operators', text = ""Export FBX"", icon='EXPORT').rbx_operator = 'exp_fbx_lc'"
+functions\menu_ui.py,1490,label(text=,Some items not selected,"box.label(text='Some items not selected', icon='ERROR')"
+functions\menu_ui.py,1490,text=,Some items not selected,"box.label(text='Some items not selected', icon='ERROR')"
+functions\menu_ui.py,1492,label(text=,Some items not selected,"box.label(text='Some items not selected', icon='ERROR')"
+functions\menu_ui.py,1492,text=,Some items not selected,"box.label(text='Some items not selected', icon='ERROR')"
+functions\menu_ui.py,1498,label(text=,Animation Export:,box.label(text='Animation Export:')
+functions\menu_ui.py,1498,text=,Animation Export:,box.label(text='Animation Export:')
+functions\menu_ui.py,1508,text=,Export Animation,"row_op.operator('object.rbx_operators', text=""Export Animation"", icon='ACTION').rbx_operator = 'exp_fbx_anim'"
+functions\menu_ui.py,1511,label(text=,Select Armature with animation,"box.label(text='Select Armature with animation', icon='INFO')"
+functions\menu_ui.py,1511,text=,Select Armature with animation,"box.label(text='Select Armature with animation', icon='INFO')"
+functions\menu_ui.py,1517,label(text=,Avatar Export:,box.label(text='Avatar Export:')
+functions\menu_ui.py,1517,text=,Avatar Export:,box.label(text='Avatar Export:')
+functions\menu_ui.py,1518,label(text=,Select all parts 1st,box.label(text='Select all parts 1st')
+functions\menu_ui.py,1518,text=,Select all parts 1st,box.label(text='Select all parts 1st')
+functions\menu_ui.py,1519,text=,Export Avatar,"box.operator('object.rbx_button_ava', text=""Export Avatar"").rbx_ava = 'export'"
+functions\menu_ui.py,1528,label(text=,Pie Menu:,"row.label(text='Pie Menu:', icon='COLLAPSEMENU')"
+functions\menu_ui.py,1528,text=,Pie Menu:,"row.label(text='Pie Menu:', icon='COLLAPSEMENU')"
+functions\menu_ui.py,1538,label(text=,Shortcut:,"col.label(text='Shortcut:', icon_value=672)"
+functions\menu_ui.py,1538,text=,Shortcut:,"col.label(text='Shortcut:', icon_value=672)"
+functions\menu_ui.py,1540,text=,,"split.prop(menu_pie.find_user_keyconfig('F85A6'), 'type', text='', full_event=True)"
+functions\menu_ui.py,1542,label(text=,Shortcut not found,split.label(text='Shortcut not found')
+functions\menu_ui.py,1542,text=,Shortcut not found,split.label(text='Shortcut not found')
+functions\menu_ui.py,1543,label(text=,1. Wont work if shortcut exist,box.label(text='1. Wont work if shortcut exist')
+functions\menu_ui.py,1543,text=,1. Wont work if shortcut exist,box.label(text='1. Wont work if shortcut exist')
+functions\menu_ui.py,1544,label(text=,2. Work in Obj mode only,box.label(text='2. Work in Obj mode only')
+functions\menu_ui.py,1544,text=,2. Work in Obj mode only,box.label(text='2. Work in Obj mode only')
+functions\menu_ui.py,1552,label(text=,          -------------------------------------  ,row.label(text='          -------------------------------------  ')
+functions\menu_ui.py,1552,text=,          -------------------------------------  ,row.label(text='          -------------------------------------  ')
+functions\menu_ui.py,1554,text=,Install Cool Theme,"row.operator(""object.rbx_button_of"", text = ""Install Cool Theme"", icon='BRUSHES_ALL').rbx_of = 'theme_install'"
+functions\menu_ui.py,1556,text=,Discord Support Server,"row.operator('object.url_handler', text = ""Discord Support Server"", icon='URL').rbx_link = ""discord"""
+functions\menu_ui.py,1558,text=,Buy me a Coffee! ;),"row.operator('object.url_handler', text = ""Buy me a Coffee! ;)"", icon='URL').rbx_link = ""buy coffee"""
+functions\menu_ui.py,1563,label(text=,Support with Robux,"row.label(text='Support with Robux', icon='FUND')"
+functions\menu_ui.py,1563,text=,Support with Robux,"row.label(text='Support with Robux', icon='FUND')"
+functions\menu_ui.py,1569,label(text=,,"col_sup.label(text="""", icon=""LAYERGROUP_COLOR_04"")"
+functions\menu_ui.py,1569,text=,,"col_sup.label(text="""", icon=""LAYERGROUP_COLOR_04"")"
+functions\menu_ui.py,1570,text=,Supporter (10 Bobuc),"split_sup.operator(""object.url_handler"", text = ""Supporter (10 Bobuc)"").rbx_link = 'tips 10'"
+functions\menu_ui.py,1573,label(text=,,"col_sup.label(text="""", icon=""LAYERGROUP_COLOR_03"")"
+functions\menu_ui.py,1573,text=,,"col_sup.label(text="""", icon=""LAYERGROUP_COLOR_03"")"
+functions\menu_ui.py,1574,text=,Hero (50 Bobuc),"split_sup.operator(""object.url_handler"", text = ""Hero (50 Bobuc)"").rbx_link = 'tips 50'"
+functions\menu_ui.py,1577,label(text=,,"col_sup.label(text="""", icon=""LAYERGROUP_COLOR_06"")"
+functions\menu_ui.py,1577,text=,,"col_sup.label(text="""", icon=""LAYERGROUP_COLOR_06"")"
+functions\menu_ui.py,1578,text=,Legend (500 Bobuc),"split_sup.operator(""object.url_handler"", text = ""Legend (500 Bobuc)"").rbx_link = 'tips 500'"
+functions\menu_ui.py,1581,label(text=,,"col_sup.label(text="""", icon=""LAYERGROUP_COLOR_07"")"
+functions\menu_ui.py,1581,text=,,"col_sup.label(text="""", icon=""LAYERGROUP_COLOR_07"")"
+functions\menu_ui.py,1582,text=,Epic (1000 Bobuc),"split_sup.operator(""object.url_handler"", text = ""Epic (1000 Bobuc)"").rbx_link = 'tips 1000'"
+functions\ugc_bounds.py,8,bl_label,BUTTON_BNDS,"bl_label = ""BUTTON_BNDS"""
+functions\url_handler.py,9,bl_label,URL_HANDLER,"bl_label = ""URL_HANDLER"""
+functions\wear_r6_rig.py,12,bl_label,BUTTON_WEAR,"bl_label = ""BUTTON_WEAR"""
+func_import_v2\func_blndr_api.py,60,print(,Error applying special mesh scale: {e},"print(f""Error applying special mesh scale: {e}"")"
+func_import_v2\func_blndr_api.py,307,print(,Please select a mesh object.,"print(""Please select a mesh object."")"
+func_import_v2\func_blndr_api.py,312,print(,Skipping empty or non-node material in slot: {slot.name},"print(f""Skipping empty or non-node material in slot: {slot.name}"")"
+func_import_v2\func_blndr_api.py,330,print(,No Principled BSDF found in material: {mat.name},"print(f""No Principled BSDF found in material: {mat.name}"")"
+func_import_v2\func_blndr_api.py,348,print(,No alpha texture to remove in material: {mat.name},"print(f""No alpha texture to remove in material: {mat.name}"")"
+func_import_v2\func_blndr_api.py,375,print(,Material {mat.name}: Texture has no Alpha output.,"print(f""Material {mat.name}: Texture has no Alpha output."")"
+func_import_v2\func_blndr_api.py,516,print(,[Animation] ERROR: No valid armature provided.,"print(""[Animation] ERROR: No valid armature provided."")"
+func_import_v2\func_blndr_api.py,526,print(,[Animation] WARNING: No keyframe tracks found.,"print(""[Animation] WARNING: No keyframe tracks found."")"
+func_import_v2\func_blndr_api.py,593,print(,[Animation] Skipped {len(skipped)} tracks (no matching bone):,"print(f""[Animation] Skipped {len(skipped)} tracks (no matching bone):"")"
+func_import_v2\func_blndr_api.py,595,print(,  {s},"print(f""  {s}"")"
+func_import_v2\func_blndr_api.py,597,print(,"""[Animation] Applied '","print(f""[Animation] Applied '{action.name}' to '{armature.name}' ({arm_type}) — Frames: 1 → {bpy.context.scene.frame_end}"")"
+func_import_v2\func_blndr_api.py,618,print(,[CurveAnim] ERROR: No valid armature provided.,"print(""[CurveAnim] ERROR: No valid armature provided."")"
+func_import_v2\func_blndr_api.py,627,print(,[CurveAnim] WARNING: No keyframe tracks found.,"print(""[CurveAnim] WARNING: No keyframe tracks found."")"
+func_import_v2\func_blndr_api.py,632,print(,"[CurveAnim] WARNING: Invalid length ({length}), defaulting to 1.0s","print(f""[CurveAnim] WARNING: Invalid length ({length}), defaulting to 1.0s"")"
+func_import_v2\func_lc_animations.py,233,bl_label,Spawn Rig,"bl_label = ""Spawn Rig"""
+func_import_v2\func_lc_animations.py,243,self.report,Please select a valid Armature in the picker.,"self.report({'ERROR'}, ""Please select a valid Armature in the picker."")"
+func_import_v2\func_lc_animations.py,250,self.report,Invalid rig selection.,"self.report({'ERROR'}, ""Invalid rig selection."")"
+func_import_v2\func_lc_animations.py,262,self.report,Rig collection could not be appended.,"self.report({'ERROR'}, ""Rig collection could not be appended."")"
+func_import_v2\func_lc_animations.py,284,self.report,No armature found in spawned rig collection.,"self.report({'ERROR'}, ""No armature found in spawned rig collection."")"
+func_import_v2\func_lc_animations.py,384,self.report,Rig spawned successfully.,"self.report({'INFO'}, ""Rig spawned successfully."")"
+func_import_v2\func_lc_animations.py,393,bl_label,Add Animation,"bl_label = ""Add Animation"""
+func_import_v2\func_lc_animations.py,402,self.report,No spawned rig found. Spawn a rig first.,"self.report({'ERROR'}, ""No spawned rig found. Spawn a rig first."")"
+func_import_v2\func_lc_animations.py,412,self.report,Animation file not found: {fbx_path},"self.report({'WARNING'}, f""Animation file not found: {fbx_path}"")"
+func_import_v2\func_lc_animations.py,454,self.report,{self.anim_type} animation added.,"self.report({'INFO'}, f""{self.anim_type} animation added."")"
+func_import_v2\func_lc_animations.py,456,self.report,Animation FBX did not contain an armature.,"self.report({'WARNING'}, ""Animation FBX did not contain an armature."")"
+func_import_v2\func_lc_animations.py,467,bl_label,Play / Pause,"bl_label = ""Play / Pause"""
+func_import_v2\func_lc_animations.py,472,self.report,No animation loaded. Add an animation first.,"self.report({'WARNING'}, ""No animation loaded. Add an animation first."")"
+func_import_v2\func_lc_animations.py,485,bl_label,Pause,"bl_label = ""Pause"""
+func_import_v2\func_lc_animations.py,502,bl_label,Delete Rig,"bl_label = ""Delete Rig"""
+func_import_v2\func_lc_animations.py,550,self.report,Rig deleted.,"self.report({'INFO'}, ""Rig deleted."")"
+func_import_v2\func_lc_animations.py,559,bl_label,Speed,"bl_label = ""Speed"""
+func_import_v2\func_lc_animations.py,573,self.report,Speed set to {self.speed}x,"self.report({'INFO'}, f""Speed set to {self.speed}x"")"
+func_import_v2\func_lc_animations.py,582,bl_label,Info,"bl_label = ""Info"""
+func_import_v2\func_lc_animations.py,590,layout.label,INFO.,"layout.label(text=""INFO."", icon='INFO')"
+func_import_v2\func_lc_animations.py,590,label(text=,INFO.,"layout.label(text=""INFO."", icon='INFO')"
+func_import_v2\func_lc_animations.py,590,text=,INFO.,"layout.label(text=""INFO."", icon='INFO')"
+func_import_v2\func_lc_animations.py,595,label(text=,1. Test is only implemented for Blocky and Woman avatars.,"col.label(text=""1. Test is only implemented for Blocky and Woman avatars."")"
+func_import_v2\func_lc_animations.py,595,text=,1. Test is only implemented for Blocky and Woman avatars.,"col.label(text=""1. Test is only implemented for Blocky and Woman avatars."")"
+func_import_v2\func_lc_animations.py,598,label(text=,2. If you need to test with custom animations:,"col.label(text=""2. If you need to test with custom animations:"")"
+func_import_v2\func_lc_animations.py,598,text=,2. If you need to test with custom animations:,"col.label(text=""2. If you need to test with custom animations:"")"
+func_import_v2\func_lc_animations.py,599,label(text=,  - Spawn test rig,"col.label(text=""  - Spawn test rig"")"
+func_import_v2\func_lc_animations.py,599,text=,  - Spawn test rig,"col.label(text=""  - Spawn test rig"")"
+func_import_v2\func_lc_animations.py,600,label(text=,  - In the import (Beta) import animation that you need,"col.label(text=""  - In the import (Beta) import animation that you need"")"
+func_import_v2\func_lc_animations.py,600,text=,  - In the import (Beta) import animation that you need,"col.label(text=""  - In the import (Beta) import animation that you need"")"
+func_import_v2\func_lc_animations.py,601,label(text=,"'  - Select the armature in the ""","col.label(text='  - Select the armature in the ""LC_Animation_Test"" folder')"
+func_import_v2\func_lc_animations.py,601,text=,"'  - Select the armature in the ""","col.label(text='  - Select the armature in the ""LC_Animation_Test"" folder')"
+func_import_v2\func_lc_animations.py,602,label(text=,  - Apply animation,"col.label(text=""  - Apply animation"")"
+func_import_v2\func_lc_animations.py,602,text=,  - Apply animation,"col.label(text=""  - Apply animation"")"
+func_import_v2\func_lc_animations.py,604,label(text=,(The scrub function timings might not be accurate).,"col.label(text=""(The scrub function timings might not be accurate)."", icon='ERROR')"
+func_import_v2\func_lc_animations.py,604,text=,(The scrub function timings might not be accurate).,"col.label(text=""(The scrub function timings might not be accurate)."", icon='ERROR')"
+func_import_v2\rbx_import_bones.py,213,print(,"""Skipping armature for mesh {mesh_info.get('","print(f""Skipping armature for mesh {mesh_info.get('mesh_name', 'Unknown')}: Version {version_str} < 4.00"")"
+func_import_v2\rbx_import_bones.py,224,print(,No valid meshes with bone data found for armature generation.,"print(""No valid meshes with bone data found for armature generation."")"
+func_import_v2\rbx_import_bones.py,294,print(,No bones found in imported data.,"print(""No bones found in imported data."")"
+func_import_v2\rbx_import_discovery.py,37,bl_label,Asset Discovery,"bl_label = ""Asset Discovery"""
+func_import_v2\rbx_import_discovery.py,117,self.report,Discovery Failed: {asset_error},"self.report({'ERROR'}, f""Discovery Failed: {asset_error}"")"
+func_import_v2\rbx_import_discovery.py,122,self.report,Bundle Discovery Failed: {rbx_imp_error},"self.report({'ERROR'}, f""Bundle Discovery Failed: {rbx_imp_error}"")"
+func_import_v2\rbx_import_discovery.py,243,bl_label,Reset,"bl_label = ""Reset"""
+func_import_v2\rbx_import_discovery.py,259,self.report,Import (Beta) Reset,"self.report({'INFO'}, ""Import (Beta) Reset"")"
+func_import_v2\rbx_import_discovery.py,266,bl_label,Download,"bl_label = ""Download"""
+func_import_v2\rbx_import_discovery.py,272,self.report,Download triggered for category: {self.category},"self.report({'INFO'}, f""Download triggered for category: {self.category}"")"
+func_import_v2\rbx_import_discovery.py,283,self.report,Downloading Body Parts...,"self.report({'INFO'}, ""Downloading Body Parts..."")"
+func_import_v2\rbx_import_discovery.py,287,self.report,Downloading Dynamic Heads...,"self.report({'INFO'}, ""Downloading Dynamic Heads..."")"
+func_import_v2\rbx_import_discovery.py,291,self.report,Downloading Accessories...,"self.report({'INFO'}, ""Downloading Accessories..."")"
+func_import_v2\rbx_import_discovery.py,295,self.report,Downloading Layered Cloth...,"self.report({'INFO'}, ""Downloading Layered Cloth..."")"
+func_import_v2\rbx_import_discovery.py,299,self.report,Downloading Face Parts...,"self.report({'INFO'}, ""Downloading Face Parts..."")"
+func_import_v2\rbx_import_discovery.py,303,self.report,Downloading Classics...,"self.report({'INFO'}, ""Downloading Classics..."")"
+func_import_v2\rbx_import_discovery.py,307,self.report,Downloading Gears...,"self.report({'INFO'}, ""Downloading Gears..."")"
+func_import_v2\rbx_import_discovery.py,311,self.report,Downloading Armature...,"self.report({'INFO'}, ""Downloading Armature..."")"
+func_import_v2\rbx_import_discovery.py,316,self.report,Downloading Animations...,"self.report({'INFO'}, ""Downloading Animations..."")"
+func_import_v2\rbx_import_discovery.py,321,self.report,Downloading Models...,"self.report({'INFO'}, ""Downloading Models..."")"
+func_import_v2\rbx_import_discovery.py,326,self.report,Applying Animation...,"self.report({'INFO'}, ""Applying Animation..."")"
+func_import_v2\rbx_import_discovery.py,343,bl_label,Options,"bl_label = ""Options"""
+func_import_v2\rbx_import_discovery.py,357,label(text=,Options: {category},"box.label(text=f""Options: {category}"", icon='PREFERENCES')"
+func_import_v2\rbx_import_discovery.py,357,text=,Options: {category},"box.label(text=f""Options: {category}"", icon='PREFERENCES')"
+func_import_v2\rbx_import_discovery.py,504,bl_label,Open Folder,"bl_label = ""Open Folder"""
+func_import_v2\rbx_import_discovery.py,540,self.report,Created folder: {folder_path},"self.report({'INFO'}, f""Created folder: {folder_path}"")"
+func_import_v2\rbx_import_discovery.py,542,self.report,Could not create folder: {e},"self.report({'ERROR'}, f""Could not create folder: {e}"")"
+func_import_v2\rbx_import_discovery.py,548,self.report,Opened folder: {folder_path},"self.report({'INFO'}, f""Opened folder: {folder_path}"")"
+func_import_v2\rbx_import_discovery.py,550,self.report,Could not open folder: {e},"self.report({'ERROR'}, f""Could not open folder: {e}"")"
+func_import_v2\rbx_import_discovery.py,552,self.report,No folder mapped for category: {category},"self.report({'WARNING'}, f""No folder mapped for category: {category}"")"
+func_import_v2\rbx_import_discovery.py,559,bl_label,Info,"bl_label = ""Info"""
+func_import_v2\rbx_import_discovery.py,567,layout.label,INFO.,"layout.label(text=""INFO."", icon='INFO')"
+func_import_v2\rbx_import_discovery.py,567,label(text=,INFO.,"layout.label(text=""INFO."", icon='INFO')"
+func_import_v2\rbx_import_discovery.py,567,text=,INFO.,"layout.label(text=""INFO."", icon='INFO')"
+func_import_v2\rbx_import_discovery.py,572,label(text=,1. Spawn at Origin,"box.label(text=""1. Spawn at Origin"")"
+func_import_v2\rbx_import_discovery.py,572,text=,1. Spawn at Origin,"box.label(text=""1. Spawn at Origin"")"
+func_import_v2\rbx_import_discovery.py,574,label(text=,"When this option is enabled, objects will be moved to the Blender origin","col.label(text=""When this option is enabled, objects will be moved to the Blender origin"")"
+func_import_v2\rbx_import_discovery.py,574,text=,"When this option is enabled, objects will be moved to the Blender origin","col.label(text=""When this option is enabled, objects will be moved to the Blender origin"")"
+func_import_v2\rbx_import_discovery.py,575,label(text=,instead of being placed at their original locations.,"col.label(text=""instead of being placed at their original locations."")"
+func_import_v2\rbx_import_discovery.py,575,text=,instead of being placed at their original locations.,"col.label(text=""instead of being placed at their original locations."")"
+func_import_v2\rbx_import_discovery.py,579,label(text=,2. Incorrect Item Placement,"box.label(text=""2. Incorrect Item Placement"")"
+func_import_v2\rbx_import_discovery.py,579,text=,2. Incorrect Item Placement,"box.label(text=""2. Incorrect Item Placement"")"
+func_import_v2\rbx_import_discovery.py,581,label(text=,Some items may not appear in their expected locations. This usually happens,"col.label(text=""Some items may not appear in their expected locations. This usually happens"")"
+func_import_v2\rbx_import_discovery.py,581,text=,Some items may not appear in their expected locations. This usually happens,"col.label(text=""Some items may not appear in their expected locations. This usually happens"")"
+func_import_v2\rbx_import_discovery.py,582,label(text=,"""because the item'","col.label(text=""because the item's original placement was not set correctly by the creator."")"
+func_import_v2\rbx_import_discovery.py,582,text=,"""because the item'","col.label(text=""because the item's original placement was not set correctly by the creator."")"
+func_import_v2\rbx_import_discovery.py,583,label(text=,"""RBX Toolbox reads the object'","col.label(text=""RBX Toolbox reads the object's original position data when importing."")"
+func_import_v2\rbx_import_discovery.py,583,text=,"""RBX Toolbox reads the object'","col.label(text=""RBX Toolbox reads the object's original position data when importing."")"
+func_import_v2\rbx_import_discovery.py,587,label(text=,3. Importing Items Separately,"box.label(text=""3. Importing Items Separately"")"
+func_import_v2\rbx_import_discovery.py,587,text=,3. Importing Items Separately,"box.label(text=""3. Importing Items Separately"")"
+func_import_v2\rbx_import_discovery.py,589,label(text=,"If you import items individually (such as bundle items, cages, attachments, etc.),","col.label(text=""If you import items individually (such as bundle items, cages, attachments, etc.),"")"
+func_import_v2\rbx_import_discovery.py,589,text=,"If you import items individually (such as bundle items, cages, attachments, etc.),","col.label(text=""If you import items individually (such as bundle items, cages, attachments, etc.),"")"
+func_import_v2\rbx_import_discovery.py,590,label(text=,they may not be placed correctly. This occurs because RBX Toolbox moves the,"col.label(text=""they may not be placed correctly. This occurs because RBX Toolbox moves the"")"
+func_import_v2\rbx_import_discovery.py,590,text=,they may not be placed correctly. This occurs because RBX Toolbox moves the,"col.label(text=""they may not be placed correctly. This occurs because RBX Toolbox moves the"")"
+func_import_v2\rbx_import_discovery.py,591,label(text=,selection to the origin relative to the number of items selected.,"col.label(text=""selection to the origin relative to the number of items selected."")"
+func_import_v2\rbx_import_discovery.py,591,text=,selection to the origin relative to the number of items selected.,"col.label(text=""selection to the origin relative to the number of items selected."")"
+func_import_v2\rbx_import_discovery.py,593,label(text=,"If you disable Spawn at Origin, the items will appear in their correct positions,","col.label(text=""If you disable Spawn at Origin, the items will appear in their correct positions,"")"
+func_import_v2\rbx_import_discovery.py,593,text=,"If you disable Spawn at Origin, the items will appear in their correct positions,","col.label(text=""If you disable Spawn at Origin, the items will appear in their correct positions,"")"
+func_import_v2\rbx_import_discovery.py,594,label(text=,but they may be located far from the Blender origin.,"col.label(text=""but they may be located far from the Blender origin."")"
+func_import_v2\rbx_import_discovery.py,594,text=,but they may be located far from the Blender origin.,"col.label(text=""but they may be located far from the Blender origin."")"
+func_import_v2\rbx_import_discovery.py,598,label(text=,4. Exclude from import,"box.label(text=""4. Exclude from import"")"
+func_import_v2\rbx_import_discovery.py,598,text=,4. Exclude from import,"box.label(text=""4. Exclude from import"")"
+func_import_v2\rbx_import_discovery.py,600,label(text=,If you want to exclude some items from group import (Download everything button),"col.label(text=""If you want to exclude some items from group import (Download everything button)"")"
+func_import_v2\rbx_import_discovery.py,600,text=,If you want to exclude some items from group import (Download everything button),"col.label(text=""If you want to exclude some items from group import (Download everything button)"")"
+func_import_v2\rbx_import_discovery.py,601,label(text=,- deselect all checkboxes in the item options.,"col.label(text=""- deselect all checkboxes in the item options."")"
+func_import_v2\rbx_import_discovery.py,601,text=,- deselect all checkboxes in the item options.,"col.label(text=""- deselect all checkboxes in the item options."")"
+func_import_v2\rbx_import_discovery.py,610,bl_label,Open Junk (tmp) Folder,"bl_label = ""Open Junk (tmp) Folder"""
+func_import_v2\rbx_import_discovery.py,619,self.report,Could not create folder: {e},"self.report({'ERROR'}, f""Could not create folder: {e}"")"
+func_import_v2\rbx_import_discovery.py,623,self.report,Opened folder: {folder_path},"self.report({'INFO'}, f""Opened folder: {folder_path}"")"
+func_import_v2\rbx_import_discovery.py,625,self.report,Could not open folder: {e},"self.report({'ERROR'}, f""Could not open folder: {e}"")"
+func_import_v2\rbx_import_discovery.py,632,bl_label,Import Summary,"bl_label = ""Import Summary"""
+func_import_v2\rbx_import_discovery.py,646,label(text=,Imported: {self.imported_count} objects,"box.label(text=f""Imported: {self.imported_count} objects"")"
+func_import_v2\rbx_import_discovery.py,646,text=,Imported: {self.imported_count} objects,"box.label(text=f""Imported: {self.imported_count} objects"")"
+func_import_v2\rbx_import_discovery.py,655,label(text=,Failed to import:,"box_failed.label(text=""Failed to import:"", icon='ERROR')"
+func_import_v2\rbx_import_discovery.py,655,text=,Failed to import:,"box_failed.label(text=""Failed to import:"", icon='ERROR')"
+func_import_v2\rbx_import_discovery.py,659,label(text=,Permission denied:,"col.label(text=""Permission denied:"")"
+func_import_v2\rbx_import_discovery.py,659,text=,Permission denied:,"col.label(text=""Permission denied:"")"
+func_import_v2\rbx_import_discovery.py,667,label(text=,Other error:,"col.label(text=""Other error:"")"
+func_import_v2\rbx_import_discovery.py,667,text=,Other error:,"col.label(text=""Other error:"")"
+func_import_v2\readers\animation_reader.py,205,print(,"""Name     : {data['","print(f""Name     : {data['name']}"")"
+func_import_v2\readers\animation_reader.py,206,print(,"""Loop     : {data['","print(f""Loop     : {data['loop']}"")"
+func_import_v2\readers\animation_reader.py,207,print(,"""Length   : {data.get('","print(f""Length   : {data.get('length', '?'):.3f}s"")"
+func_import_v2\readers\animation_reader.py,208,print(,"""Tracks   : {len(data['","print(f""Tracks   : {len(data['keyframes'])}"")"
+func_import_v2\readers\animation_reader.py,211,print(,  {track:<36} {len(kfs):>3} kf  {times},"print(f""  {track:<36} {len(kfs):>3} kf  {times}"")"
+func_import_v2\readers\curve_animation_reader.py,196,print(,"[CurveAnim] WARNING: truncated at entry {i}/{entry_count}, off={off}, n={n}","print(f""[CurveAnim] WARNING: truncated at entry {i}/{entry_count}, off={off}, n={n}"")"
+func_import_v2\readers\curve_animation_reader.py,508,print(,"""Name     : {data['","print(f""Name     : {data['name']}"")"
+func_import_v2\readers\curve_animation_reader.py,509,print(,"""Loop     : {data['","print(f""Loop     : {data['loop']}"")"
+func_import_v2\readers\curve_animation_reader.py,510,print(,"""Length   : {data.get('","print(f""Length   : {data.get('length', '?'):.3f}s"")"
+func_import_v2\readers\curve_animation_reader.py,511,print(,"""Tracks   : {len(data['","print(f""Tracks   : {len(data['keyframes'])}"")"
+func_import_v2\readers\curve_animation_reader.py,514,print(,  {track:<36} {len(kfs):>3} kf  {times},"print(f""  {track:<36} {len(kfs):>3} kf  {times}"")"
+func_import_v2\readers\mesh_reader.py,69,print(,Mesh version: {version},"print(f""Mesh version: {version}"")"
+oauth\callback.html,6,html/text,RBX Toolbox Authorization,<title>RBX Toolbox Authorization</title>
+oauth\callback.html,24,html/text,Authorizing...,<h2>Authorizing...</h2>
+oauth\callback.html,28,html/text,"If you're not redirected,","<p>If you're not redirected, <a id=""manualLink"" href=""#"">click here</a> to continue.</p>"
+oauth\callback.html,32,html/text,JavaScript is required.,<p><strong>JavaScript is required.</strong><br />
+oauth\callback.html,51,html/text,Error:,"errorBox.innerHTML = ""<p><strong>Error:</strong> No authorization code was found. Please restart the login from the addon.</p>"";"
+oauth\privacy.html,6,html/text,RBX Toolbox - Privacy Policy,<title>RBX Toolbox - Privacy Policy</title>
+oauth\privacy.html,118,html/text,Privacy Policy,<h1>Privacy Policy</h1>
+oauth\privacy.html,129,html/text,GitHub repository,"For any questions or concerns regarding your privacy, please contact us via the <a href=""https://github.com/lolka213d/test321"">GitHub repository</a>."
+oauth\privacy.html,132,html/text,NYTV Gaming Support/Suggestions Discord,"Or the <a href="""">NYTV Gaming Support/Suggestions Discord</a>."
+oauth\privacy.html,139,html/text,GitHub,>GitHub</a
+oauth\privacy.html,143,html/text,Privacy Policy,>Privacy Policy</a
+oauth\privacy.html,147,html/text,Terms of Service,>Terms of Service</a
+oauth\terms.html,6,html/text,RBX Toolbox - Terms of Service,<title>RBX Toolbox - Terms of Service</title>
+oauth\terms.html,118,html/text,Terms of Service,<h1>Terms of Service</h1>
+oauth\terms.html,132,html/text,GitHub repository,"For more information or support, please visit the <a href=""https://github.com/lolka213d/test321"">GitHub repository</a>."
+oauth\terms.html,135,html/text,NYTV Gaming Support/Suggestions Discord,"Or the <a href="""">NYTV Gaming Support/Suggestions Discord</a>."
+oauth\terms.html,142,html/text,GitHub,>GitHub</a
+oauth\terms.html,146,html/text,Privacy Policy,>Privacy Policy</a
+oauth\terms.html,150,html/text,Terms of Service,>Terms of Service</a
+oauth\dependencies_private\assets_upload_client.py,183,print(,"Exception when getting asset upload status: %s
+","print(""Exception when getting asset upload status: %s\n"" % e)"
+oauth\lib\auth_callback_request_handler.py,221,text=,Authorization complete. You can close this window.,"text=""Authorization complete. You can close this window."","
+oauth\lib\creator_details.py,73,print(,Saving Roblox session details to preferences.,"print(""Saving Roblox session details to preferences."")"
+oauth\lib\creator_details.py,79,print(,Saving the following creator ID: {rbx.creator},"print(f""Saving the following creator ID: {rbx.creator}"")"
+oauth\lib\creator_details.py,85,print(,Saving is_logged_in: {add_on_preferences.is_logged_in},"print(f""Saving is_logged_in: {add_on_preferences.is_logged_in}"")"
+oauth\lib\creator_details.py,90,print(,Saving token data.,"print(""Saving token data."")"
+oauth\lib\creator_details.py,92,print(,Token data is not empty.,"print(""Token data is not empty."")"
+oauth\lib\creator_details.py,96,print(,Token data is empty.,"print(""Token data is empty."")"
+oauth\lib\creator_details.py,101,print(,Saving the list of creators.,"print(""Saving the list of creators."")"
+oauth\lib\creator_details.py,111,print(,No creators to save.,"print(""No creators to save."")"
+oauth\lib\creator_details.py,117,print(,Successfully updated RBX property and saved creator details.,"print(""Successfully updated RBX property and saved creator details."")"
+oauth\lib\creator_details.py,120,print(,Error saving Roblox session details: {e},"print(f""Error saving Roblox session details: {e}"")"
+oauth\lib\creator_details.py,136,print(,Loading Roblox session details from preferences.,"print(""Loading Roblox session details from preferences."")"
+oauth\lib\creator_details.py,141,print(,Loading simple properties.,"print(""Loading simple properties."")"
+oauth\lib\creator_details.py,149,print(,Loading creators list from preferences.,"print(""Loading creators list from preferences."")"
+oauth\lib\creator_details.py,181,print(,Successfully validated and set creator ID: {stored_creator_id},"print(f""Successfully validated and set creator ID: {stored_creator_id}"")"
+oauth\lib\creator_details.py,187,print(,Default creator set to User ID: {rbx.creator},"print(f""Default creator set to User ID: {rbx.creator}"")"
+oauth\lib\creator_details.py,189,print(,Warning: Could not find a User ID to set as default.,"print(""Warning: Could not find a User ID to set as default."")"
+oauth\lib\creator_details.py,192,print(,Roblox login session loaded and validated.,"print(""Roblox login session loaded and validated."")"
+oauth\lib\creator_details.py,193,print(,Loading token data from preferences.,"print(""Loading token data from preferences."")"
+oauth\lib\creator_details.py,196,print(,Token data loaded.,"print(""Token data loaded."")"
+oauth\lib\creator_details.py,198,print(,No active Roblox login session found in preferences.,"print(""No active Roblox login session found in preferences."")"
+oauth\lib\creator_details.py,201,print(,Forcing UI refresh.,"print(""Forcing UI refresh."")"
+oauth\lib\creator_details.py,208,print(,Error loading Roblox session details: {e},"print(f""Error loading Roblox session details: {e}"")"
+oauth\lib\event_loop.py,34,bl_label,Registers a timer to step the event loop,"bl_label = ""Registers a timer to step the event loop"""
+oauth\lib\install_dependencies.py,127,print(,[RBX Toolbox] Stale dependencies detected — restart required for clean reinstall.,"print(""[RBX Toolbox] Stale dependencies detected — restart required for clean reinstall."")"
+oauth\lib\install_dependencies.py,130,print(,[RBX Toolbox] Dependency folder is empty — ready to install.,"print(""[RBX Toolbox] Dependency folder is empty — ready to install."")"
+oauth\lib\install_dependencies.py,158,bl_label,Install Dependencies,"bl_label = ""Install Dependencies"""
+oauth\lib\install_dependencies.py,159,bl_description,Installs add-on dependencies in the background,"bl_description = ""Installs add-on dependencies in the background"""
+oauth\lib\install_dependencies.py,217,print(,INSTALLATION OUTPUT:\n{stdout.decode()},"print(f""INSTALLATION OUTPUT:\n{stdout.decode()}"")"
+oauth\lib\oauth2_client.py,48,print(,Reloading aiohttp,"print(""Reloading aiohttp"")"
+oauth\lib\oauth2_client.py,51,print(,Reloading web,"print(""Reloading web"")"
+oauth\lib\oauth2_client.py,252,print(,User logged out and session state saved.,"print(""User logged out and session state saved."")"
+oauth\lib\oauth2_client.py,288,print(,Default creator set to User ID: {self.rbx.creator},"print(f""Default creator set to User ID: {self.rbx.creator}"")"
+oauth\lib\oauth2_client.py,293,print(,User logged in and session state saved.,"print(""User logged in and session state saved."")"
+oauth\lib\oauth2_login_operators.py,47,bl_label,Log in,"bl_label = ""Log in"""
+oauth\lib\oauth2_login_operators.py,48,bl_description,Log in with your Roblox account using your browser,"bl_description = ""Log in with your Roblox account using your browser"""
+oauth\lib\oauth2_login_operators.py,123,bl_label,Cancel,"bl_label = ""Cancel"""
+oauth\lib\oauth2_login_operators.py,124,bl_description,Stop waiting for the browser to return login info,"bl_description = ""Stop waiting for the browser to return login info"""
+oauth\lib\oauth2_login_operators.py,143,bl_label,Log out,"bl_label = ""Log out"""
+oauth\lib\oauth2_login_operators.py,144,bl_description,Log out of your Roblox account,"bl_description = ""Log out of your Roblox account"""
+oauth\lib\status_indicators.py,65,label(text=,Upload Status,"layout.row().label(text=""Upload Status"", icon=""COPY_ID"")"
+oauth\lib\status_indicators.py,65,text=,Upload Status,"layout.row().label(text=""Upload Status"", icon=""COPY_ID"")"
+oauth\lib\upload_operator.py,74,bl_label,Upload,"bl_label = ""Upload"""
+oauth\lib\upload_operator.py,112,self.report,".
+","self.report({""ERROR""}, "".\n"".join(issues_blocking_upload))"
+oauth\lib\upload_operator.py,246,print(,Operation path: {operation.path},"print(f""Operation path: {operation.path}"")"
+oauth\lib\upload_operator.py,250,print(,"Upload failed, {operation.error.code}: {operation.error.message}","print(f""Upload failed, {operation.error.code}: {operation.error.message}"")"
+oauth\lib\upload_operator.py,271,print(,"Upload failed, invalid response:\n{operation}","print(f""Upload failed, invalid response:\n{operation}"")"
+oauth\lib\user_thumbnail.py,90,print(,[AVATAR] error loading image: {e},"print(f""[AVATAR] error loading image: {e}"")"
+oauth\lib\user_thumbnail.py,99,print(,[AVATAR] error fetching thumbnail: {e},"print(f""[AVATAR] error fetching thumbnail: {e}"")"
+scripts\check_syntax.py,18,print(,ERR:,"print('ERR:', e[0], e[1])"
+scripts\check_syntax.py,19,print(,TOTAL_ERRORS,"print('TOTAL_ERRORS', len(errs))"
+scripts\convert_tabs.py,39,print(,CHANGED,"print('CHANGED', len(changed))"
+scripts\convert_tabs.py,41,print(,CHANGED:,"print('CHANGED:', c)"
+scripts\convert_tabs.py,42,print(,SKIPPED,"print('SKIPPED', len(skipped))"
+scripts\convert_tabs.py,44,print(,SKIP:,"print('SKIP:', s[0], s[1])"
+scripts\convert_tabs.py,45,print(,COMPILE_ERRORS,"print('COMPILE_ERRORS', len(errors))"
+scripts\convert_tabs.py,47,print(,ERR:,"print('ERR:', e[0], e[1])"
+scripts\extract_ui_strings.py,20,label(text=,", re.compile(r","(r'label(text=', re.compile(r'label\s*\(\s*text\s*=\s*(?P<lit>(?:[rubfRUBF]{,2})?[""\'].*?[""\'])')),"
+scripts\extract_ui_strings.py,20,text=,", re.compile(r","(r'label(text=', re.compile(r'label\s*\(\s*text\s*=\s*(?P<lit>(?:[rubfRUBF]{,2})?[""\'].*?[""\'])')),"
+scripts\extract_ui_strings.py,21,text=,", re.compile(r","(r'layout.operator text=', re.compile(r'layout\.operator\([^)]*?text\s*=\s*(?P<lit>(?:[rubfRUBF]{,2})?[""\'].*?[""\'])')),"
+scripts\extract_ui_strings.py,22,text=,", re.compile(r","(r'text=', re.compile(r'\btext\s*=\s*(?P<lit>(?:[rubfRUBF]{,2})?[""\'].*?[""\'])')),"
+scripts\extract_ui_strings.py,24,print(,", re.compile(r","(r'print(', re.compile(r'\bprint\s*\(\s*(?P<lit>(?:f|F|r|u|b|R|U|B|fr|rf|FR|RF)?[""\'].*?[""\'])')),"
+scripts\extract_ui_strings.py,83,print(,Skipping {p}: {e},"print(f""Skipping {p}: {e}"")"
+scripts\extract_ui_strings.py,101,print(,Extracted {len(unique)} candidate strings → {OUT},"print(f""Extracted {len(unique)} candidate strings → {OUT}"")"
+scripts\i18n_example.py,5,print(,Default language:,"print('Default language:', i18n.DEFAULT_LANG)"
+scripts\i18n_example.py,6,print(,EN:,"print('EN:', i18n.t('importing_models'))"
+scripts\i18n_example.py,8,print(,After set RU ->,"print('After set RU ->', i18n.DEFAULT_LANG)"
+scripts\i18n_example.py,9,print(,RU:,"print('RU:', i18n.t('importing_models'))"

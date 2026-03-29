@@ -1,10 +1,10 @@
 import bpy
-from test321 import glob_vars
+from test321 import glob_vars, i18n
 
 
 ######### Camera Buttons ###########    
 class BUTTON_CMR(bpy.types.Operator):
-    bl_label = "BUTTON_CMR"
+    bl_label = i18n.t('button_cmr')
     bl_idname = "object.button_cmr"
     bl_options = {'REGISTER', 'UNDO'}
     cmr : bpy.props.StringProperty(name= "Added") # type: ignore

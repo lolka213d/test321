@@ -2,6 +2,7 @@ import bpy
 from bpy.props import StringProperty, IntProperty, FloatProperty, BoolProperty
 import platform
 from . import glob_vars
+from . import i18n
 
 
 
@@ -147,20 +148,30 @@ class RBXToolsPreferences(bpy.types.AddonPreferences):
         default=False,
     ) # type: ignore
 
+    # UI Language selection for addon translations
+    language: bpy.props.EnumProperty(
+        name="Language",
+        description="Choose the UI language for the add-on",
+        items=[('en', 'English', 'English'), ('ru', 'Русский', 'Русian')],
+        default='en',
+    )
+
     def draw(self, context):
-        self.layout.label(text="Include")
+        # Language selector for translations
+        self.layout.prop(self, "language")
+        self.layout.label(text=i18n.t('include'))
         include_box = self.layout.box()
         include_box.prop(self, "use_custom_props")
 
-        self.layout.label(text="Transform")
+        self.layout.label(text=i18n.t('transform'))
         transform_box = self.layout.box()
         transform_box.prop(self, "export_scale")
 
-        self.layout.label(text="Armature")
+        self.layout.label(text=i18n.t('armature'))
         armature_box = self.layout.box()
         armature_box.prop(self, "add_leaf_bones")
 
-        self.layout.prop(self, "bake_anim", text="Bake Animation")
+        self.layout.prop(self, "bake_anim", text=i18n.t('bake_animation'))
         bake_anim_box = self.layout.box()
         bake_anim_box.use_property_split = True
         bake_anim_box.enabled = self.bake_anim

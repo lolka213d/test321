@@ -6,6 +6,7 @@ import zipfile
 from threading import Thread
 import shutil
 from. import glob_vars
+from test321 import i18n
 
 
 
@@ -30,7 +31,7 @@ aepbr_current_operator = None
 
 class RBX_UPDATE_AEPBR(bpy.types.Operator):
     bl_idname = "wm.update_aepbr"
-    bl_label = "Install AEPBR Update"
+    bl_label = i18n.t('install_aepbr_update')
     _timer = None
 
     # Add a property for the progress bar

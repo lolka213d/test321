@@ -1,0 +1,555 @@
+key,en
+warning_could_not_access_test321_prefere,Warning: Could not access test321 preferences.
+login_info_cleared_from_preferences,Login info cleared from preferences.
+rbx_toolbox,RBX Toolbox
+github,GitHub
+privacy_policy,Privacy Policy
+terms_of_service,Terms of Service
+s_90e160b2,**********************************************
+rbx_toolbox_log,RBX Toolbox Log
+os_platform,OS Platform:
+blender_ver,Blender ver:
+addon_path,Addon path:
+include,Include
+transform,Transform
+armature,Armature
+bake_animation,Bake Animation
+error_getting_info_from_url,ERROR getting info from: {url}
+error_parsing_atom_xml_from_url_e,ERROR parsing Atom XML from {url}: {e}
+no_atom_entries_found_in_feed_url,No Atom entries found in feed: {url}
+malformed_atom_entry_in_feed_url,Malformed Atom entry in feed: {url}
+no_internet_connection_skipping_rbx_tool,No internet connection. Skipping RBX Toolbox update check.
+no_internet_connection_skipping_aepbr_up,No internet connection. Skipping AEPBR update check.
+successfully_logged_out_for_update_rbx_t,Successfully logged out for update RBX Toolbox
+install_update,Install Update
+operator_is_already_running,Operator is already running.
+downloading_update,Downloading update...
+update_url,Update URL:
+download_error,Download ERROR:
+simulate_installing,Simulate installing
+update_installed_successfully_please_res,Update Installed! Successfully. Please restart Blender
+update_error,Update ERROR:
+error_error_message,Error: {error_message}
+installation_finished_please_restart_ble,Installation finished. Please restart Blender.
+install_aepbr_update,Install AEPBR Update
+aepbr_update_url,AEPBR Update URL:
+update_error_moving_files,Update Error (moving files)
+update_installed_successfully,Update Installed! Successfully
+error_aepbr_error_message,Error: {aepbr_error_message}
+installation_finished,Installation finished.
+reloaded_module_full_module_name,Reloaded module: {full_module_name}
+module_full_module_name_not_found_for_re,Module {full_module_name} not found for reloading.
+error_during_oauth_registration_e,Error during OAuth registration: {e}
+error_during_oauth_unregistration_e,Error during OAuth unregistration: {e}
+button_bn,BUTTON_BN
+armature_appended,Armature Appended
+nothing_selected,Nothing Selected
+normals_recalculated,Normals Recalculated
+doubles_removed,Doubles Removed
+more_than_2_objects_selected,More than 2 Objects selected
+2_objects_must_be_selected,2 Objects Must be Selected
+no_bones_selected,No Bones Selected
+no_mesh_selected,No Mesh Selected
+bones_successfully_parented,Bones Successfully Parented
+rbx_button_ava,RBX_BUTTON_AVA
+select_exactly_1_head_mesh,Select exactly 1 Head Mesh
+head_mesh_should_be_selected,Head Mesh should be selected
+select_exactly_1_armature,Select exactly 1 Armature
+failed_to_append_e,Failed to append: {e}
+debug_facs_animation_missing_bones_missi,DEBUG FACS ANIMATION: Missing bones: {missing_bones}
+facs_animation_applied,FACS Animation applied!
+could_not_find_animation_data_in_templat,Could not find animation data in template
+button_cmr,BUTTON_CMR
+cameras_setup_spawned,Cameras Setup Spawned
+cameras_setup_already_exist,Cameras Setup Already Exist
+avatar_editor_room_setup_spawned,Avatar Editor Room Setup Spawned
+avatar_editor_room_setup_already_exist,Avatar Editor Room Setup Already Exist
+animated_staging_setup_appended,Animated Staging Setup Appended
+s_c61c1aca,"""'"
+button_dmmy,BUTTON_DMMY
+dmy_spwn_dummy_spawned,{dmy_spwn} Dummy Spawned
+dmy_spawned,{dmy} Spawned
+rbx_button_lc,RBX_BUTTON_LC
+rbx_button_of,RBX_BUTTON_OF
+rbx_operators,RBX_OPERATORS
+button_hair,BUTTON_HAIR
+hair_template_spawned,Hair Template Spawned
+hair_shader_spawned,Hair Shader Spawned
+hair_texture_baked,Hair Texture Baked
+rbx_button_hdrifull,RBX_BUTTON_HDRIFULL
+couldn,"""Couldn'"
+rbx_toolbox_menu,RBX Toolbox Menu
+show_face_orientation,Show Face Orientation
+set_origin,Set Origin
+recalculate_normals,Recalculate Normals
+shading,Shading
+recalc_outside,Recalc Outside
+recalc_inside,Recalc Inside
+flip_normals,Flip Normals
+all_faces,All Faces
+selected_faces,Selected Faces
+to_geometry,To Geometry
+to_3d_cursor,To 3D Cursor
+shade_flat,Shade Flat
+shade_smooth,Shade Smooth
+shade_auto_smooth,Shade Auto Smooth
+terms_of_use,Terms of Use
+terms_of_use_accepted,Terms of Use accepted.
+terms_of_use_declined,Terms of Use declined.
+agreement,Agreement:
+by_using_this_tool_you_agree_that_anythi,"By using this tool, you agree that anything you"
+download_is_strictly_for_your_personal_u,"download is strictly for your personal use, reference,"
+and_research_purposes_only_you_hereby_ma,and research purposes only. You hereby make a
+completely_serious_legallybindinginspiri,"completely serious, legally-binding-in-spirit Pinky"
+promise_not_to_reupload_redistribute_res,"Promise not to reupload, redistribute, resell, or claim"
+the_downloaded_content_as_your_own,the downloaded content as your own.
+warning,WARNING!
+roblox_is_actively_tracking_asset_access,Roblox is actively tracking asset access and related
+activity_this_includes_hashes_device_inf,"activity. This includes hashes, device information, IP"
+addresses_and_usage_patterns_they_can_te,"addresses, and usage patterns. They can technically"
+pinpoint_the_source_of_misuse_abuse_of_t,pinpoint the source of misuse. Abuse of this tool may
+result_in_account_suspension_termination,"result in account suspension, termination, or further"
+action_use_responsibly,action. Use responsibly.
+lts_ver,lts_ver:
+addon_version,addon_version:
+update_available,Update Available:
+release_notes,Release Notes
+downloading_updatedownload_progress2f,Downloading... {update.download_progress:.2f}%
+downloading,Downloading
+installing,Installing...
+restart_blender,Restart Blender
+error_updateerror_message,Error: {update.error_message}
+logging_out_complete,Logging out complete!
+roblox_authorization,Roblox Authorization
+this_plugin_requires_installation_of,This plugin requires installation of
+dependencies_the_first_time_it_is_run,dependencies the first time it is run.
+installation_complete,Installation complete!
+restart_blender_to_continue,Restart Blender to continue.
+hello_rbxname,"Hello, {rbx.name}!"
+hello_user_error,"Hello, User (Error)"
+readme,Readme
+read_instructions_credits,"Read Instructions, Credits"
+read_version_log,Read Version Log
+r15_rigs_are_taken_from_here,R15 rigs are taken from here:
+roblox_github,Roblox Github
+r6_rig_taken_from_here,R6 Rig taken from here:
+nuke_youtube,Nuke Youtube
+you_can_see_here_how_to_link,You can see here how to link
+texture_to_r6_rig,texture to R6 rig
+to_unlock_additional_features,To unlock additional features
+specify_folder_with_ugc,Specify folder with UGC
+blend_file,"""blend file '"
+hdri_templates,HDRI & Templates
+blender_builtin_hdris,Blender built-in HDRIs
+set_as_hdri,Set as HDRI
+current_world_controls,** Current World Controls: **
+brightness,Brightness:
+rotationn,Rotationn:
+simple_skybox,Simple Skybox
+set_sky,Set Sky
+skybox_controls,** Skybox Controls: **
+rotation,Rotation:
+you_may_setup_your_own,*You may setup your own
+skybox_in_shading_tab,Skybox in Shading tab
+add_animated_staging,Add Animated Staging
+camera,Camera:
+set_active,Set Active
+backdrop,Backdrop:
+add_avatar_editor_room,Add Avatar Editor Room
+add_roblox_baseplate,Add Roblox Baseplate
+import_beta,Import (Beta)
+please_accept_the_terms_of_use,Please accept the Terms of Use
+before_using_import_beta,before using Import (Beta).
+enter_id_or_url,Enter ID or URL
+asset_discovery,Asset Discovery
+reset,Reset
+discovered_items,Discovered Items:
+name_glob_varsrbx_asset_name,Name: {glob_vars.rbx_asset_name}
+type_glob_varsrbx_asset_type,Type: {glob_vars.rbx_asset_type}
+creator_glob_varsrbx_asset_creator,Creator: {glob_vars.rbx_asset_creator}
+dynamic_head_not_found_in_bundle,"Dynamic head not found in bundle,"
+default_is_used,Default is used.
+open_folder,Open Folder
+armatures_for_older_meshes,Armatures for older meshes
+below_v400_are_not_supported,(below v4.00) are not supported.
+animations,Animations
+target_armature,Target Armature:
+check_alt_animations,Check alt animations
+found_lenanim_subs_animations,Found {len(anim_subs)} animation(s):
+process_all,Process All:
+select_checkboxes_in_above_menus,Select checkboxes in above menus
+download_everything,Download Everything
+open_junk_tmp_folder,Open Junk (tmp) Folder
+accessory_bounds,Accessory Bounds
+ugc,UGC
+spawn,Spawn
+avatars,Avatars
+lc_6907b869,LC
+dummy,Dummy
+dummies,Dummies
+rigs,Rigs
+roblox_rigged_models,Roblox Rigged Models
+r15_blocky_rig,R15 Blocky Rig
+r15_woman_rig,R15 Woman Rig
+plushie_template,Plushie Template
+iixenix_rigs,iiXenix Rigs
+multirig,Multirig
+multirig_faceless,Multirig Faceless
+paribes_rig,Paribes Rig
+aepbr,AEPBR
+s_16810612,- - - - - - -
+update_available_aepbr_cur_ver_glob_vars,Update Available:  ({aepbr_cur_ver} -> {glob_vars.aepbr_lts_ver})
+release_notes_vglob_varsaepbr_lts_ver,Release Notes v.{glob_vars.aepbr_lts_ver}
+error_update_aepbraepbr_error_message,Error: {update_aepbr.aepbr_error_message}
+dowload_rig_vglob_varsaepbr_lts_ver,Dowload rig (v.{glob_vars.aepbr_lts_ver})
+no_inernet_connection,No inernet Connection
+aepbr_discord,AEPBR Discord
+r6_from_nuke_yt,R6 from Nuke (YT)
+rigged_r6,Rigged R6
+wear_character_select_armature,Wear Character (Select Armature)
+currently_only_r6_rig_is_supported,Currently Only R6 Rig is supported
+modify_character,Modify Character
+head,- - - - - - - - - - - HEAD - - - - - - - - - - -
+head_98921133,Head
+skin_tone,Skin Tone:
+loaded_face_none,Loaded Face: None
+loaded_face_glob_varsrbx_face_name,Loaded Face: {glob_vars.rbx_face_name}
+enter_face_id_or_url,Enter Face ID or URL
+import,Import
+shirt,- - - - - - - - - - - SHIRT - - - - - - - - - - -
+shirt_3f1f22fd,Shirt
+loaded_shirt_none,Loaded Shirt: None
+loaded_shirt_glob_varsrbx_shirt_name,Loaded Shirt: {glob_vars.rbx_shirt_name}
+enter_shirt_id_or_url,Enter Shirt ID or URL
+torso,- - - - - - - - - - - TORSO - - - - - - - - - -
+torso_94b1fe49,Torso
+loaded_pants_none,Loaded Pants: None
+loaded_pants_glob_varsrbx_pants_name,Loaded Pants: {glob_vars.rbx_pants_name}
+pants,- - - - - - - - - - - PANTS - - - - - - - - - - -
+pants_6ecd23b2,Pants
+enter_pants_id_or_url,Enter Pants ID or URL
+textures_folder,Textures Folder
+hairs,Hairs
+dummie_heads_only,Dummie Heads Only
+starter_hair_template,Starter Hair Template:
+add,Add
+bake_hair_texture,Bake Hair Texture
+add_hair_shader,Add Hair Shader
+hair_color_controls,** Hair Color Controls: **
+hair_color,Hair Color:
+hair_strands,Hair Strands:
+strands_color,Strands Color:
+highlight_color,Highlight Color:
+highlight_scale,Highlight Scale:
+top_position,Top Position:
+bottom_position,Bottom Position:
+bumps,Bumps:
+bake_texture,Bake Texture
+view_image,View Image
+layered_cloth,Layered Cloth
+cages,Cages
+show_bones_infront,Show Bones Infront
+show_bone_names,Show Bone Names
+lc_animation_test,LC Animation Test
+1_select_lc_armature,1. Select LC Armature
+2_select_rig_to_spawn,2. Select Rig to spawn
+spawn_rig,Spawn Rig
+animations_6c85be98,Animations:
+idle,Idle
+walk,Walk
+move,Move
+run,Run
+swim,Swim
+climb,Climb
+jump,Jump
+fall,Fall
+play_pause,Play / Pause
+delete_rig,Delete Rig
+scrub,Scrub
+speed,Speed:
+01x_07c8fdc8,0.1x
+025x_a505df0a,0.25x
+05x_60c9b4d8,0.5x
+1x_38684612,1x
+roblox_samples_from_github,Roblox Samples from Github
+avatar_templates,Avatar Templates
+mesh_custom_properties,Mesh Custom Properties
+clean_up_all,Clean Up All
+add_facs_properties_head_only,Add FACS Properties (Head Only)
+add_facs_animation_arma,Add FACS Animation (Arma)
+select_objects_to_remove_000,Select Objects to remove .000
+ps_not_always_works,ps: not always works
+rename_all,Rename All
+hide_all_att_in_selected,Hide all Att in selected:
+hide_all,Hide All
+unhide_them,UnHide Them
+only_the_ones_you_hide_before,(only the ones you hide before)
+cameras_and_lights,Cameras and Lights
+add_4_cameras_setup,Add 4 Cameras Setup
+camera_front,Camera Front:
+camera_back,Camera Back:
+camera_left,Camera Left:
+camera_right,Camera Right:
+preview,Preview
+transparent_background,Transparent background
+render,Render
+animation_advanced,Animation (Advanced)
+how_to_use,How to Use
+step1_add_armature,Step-1 (Add Armature)
+add_armature,Add Armature
+show_bones,Show Bones:
+s_ca8da72b,-------------------------------------
+you_may_try_from_step4,You may try from Step-4
+if_no_work_back_to_step2,If no work - back to Step-2
+step2_prepare_mesh,Step-2 (Prepare Mesh):
+recalucalting_done,Recalucalting Done!
+step3_double_vertices,Step-3 (Double Vertices):
+doubles_found,Doubles Found:
+doubles_found_error,Doubles Found: ERROR!
+remove_double_vertices,Remove Double Vertices
+remove_doubles_done,Remove Doubles Done!
+optional_might_help_look_better,"(Optional, Might help look better):"
+mesh_smoothing,Mesh Smoothing:
+auto,Auto
+auto_smooth,Auto Smooth
+step4,Step-4:
+adjust_bones_in,"""Adjust Bones in '"
+if_needed,If needed
+step5,Step-5:
+select_mesh_bones_then_parent,"Select Mesh + Bones, then Parent"
+parent_bones_and_mesh,Parent Bones and Mesh
+error_need_rectify_mesh,"Error, need rectify Mesh"
+parenting_done,Parenting Done!
+step6_optional,Step-6 (Optional):
+you_can_also_now_export_this,You can also now export this
+model_as_fbx_to_mixamo_for,Model as .fbx to Mixamo for
+animation_no_need_redo_bones,animation. (No need redo bones)
+go_to_mixamo,Go to Mixamo
+upload_to_roblox,Upload to Roblox
+refreshing_login_please_wait,Refreshing Login. Please wait
+selected_objects,Selected Objects:
+quick_functions,Quick Functions:
+culling_option,Culling Option
+hide_flipped_faces_like_in_roblox,"(Hide flipped faces, like in Roblox)"
+backface_culling,Backface Culling
+culling_option_add_material,Culling Option (Add Material)
+culling_option_select_1_object,Culling Option (Select 1 Object)
+culling_option_select_object,Culling Option (Select Object)
+normals,Normals
+glowing_ugc,Glowing UGC
+make_item_glow,Make Item Glow
+remove_glowing,Remove Glowing
+glowing_ugc_select_object,Glowing UGC (Select Object)
+ugc_outline,UGC Outline
+make_outline,Make Outline
+outline_controls,** Outline Controls: **
+preview_color,Preview Color:
+outline_thickness,Outline Thickness:
+add_outline_to_ugc,** Add Outline to UGC: **
+apply_outline,Apply Outline
+outline_faces_will_be_added_to_your,*Outline faces will be added to your
+object_and_uv_moved_outside,object and UV moved outside.
+just_move_that_uv_to_the_color,Just move that UV to the color
+that_you_need_or_reunwrap_it,that you need or re-unwrap it
+ugc_outline_add_material,UGC Outline (Add Material)
+ugc_outline_select_1_object,UGC Outline (Select 1 Object)
+ugc_outline_select_object,UGC Outline (Select Object)
+file_export,File Export:
+ugc_item_export,UGC Item Export:
+set_origin_to_geometry,Set Origin to Geometry
+apply_all_transforms,Apply All Transforms
+export_fbx,Export FBX
+select_1_mesh_for_fbx_export,Select 1 Mesh for FBX Export
+layered_cloth_export,Layered Cloth Export:
+make_sure_you_select_these,Make sure you select these:
+1_armature,1. Armature
+2_youritem_in_armature,2. YourItem in Armature
+3_itemname_outercage,3. ItemName_OuterCage
+4_itemname_innercage,4. ItemName_InnerCage
+some_items_not_selected,Some items not selected
+animation_export,Animation Export:
+export_animation,Export Animation
+select_armature_with_animation,Select Armature with animation
+avatar_export,Avatar Export:
+select_all_parts_1st,Select all parts 1st
+export_avatar,Export Avatar
+pie_menu,Pie Menu:
+shortcut,Shortcut:
+shortcut_not_found,Shortcut not found
+1_wont_work_if_shortcut_exist,1. Wont work if shortcut exist
+2_work_in_obj_mode_only,2. Work in Obj mode only
+install_cool_theme,Install Cool Theme
+discord_support_server,Discord Support Server
+buy_me_a_coffee,Buy me a Coffee! ;)
+support_with_robux,Support with Robux
+supporter_10_bobuc,Supporter (10 Bobuc)
+hero_50_bobuc,Hero (50 Bobuc)
+legend_500_bobuc,Legend (500 Bobuc)
+epic_1000_bobuc,Epic (1000 Bobuc)
+button_bnds,BUTTON_BNDS
+url_handler,URL_HANDLER
+button_wear,BUTTON_WEAR
+error_applying_special_mesh_scale_e,Error applying special mesh scale: {e}
+please_select_a_mesh_object,Please select a mesh object.
+skipping_empty_or_nonnode_material_in_sl,Skipping empty or non-node material in slot: {slot.name}
+no_principled_bsdf_found_in_material_mat,No Principled BSDF found in material: {mat.name}
+no_alpha_texture_to_remove_in_material_m,No alpha texture to remove in material: {mat.name}
+material_matname_texture_has_no_alpha_ou,Material {mat.name}: Texture has no Alpha output.
+animation_error_no_valid_armature_provid,[Animation] ERROR: No valid armature provided.
+animation_warning_no_keyframe_tracks_fou,[Animation] WARNING: No keyframe tracks found.
+animation_skipped_lenskipped_tracks_no_m,[Animation] Skipped {len(skipped)} tracks (no matching bone):
+s_0858c12d,{s}
+animation_applied,"""[Animation] Applied '"
+curveanim_error_no_valid_armature_provid,[CurveAnim] ERROR: No valid armature provided.
+curveanim_warning_no_keyframe_tracks_fou,[CurveAnim] WARNING: No keyframe tracks found.
+curveanim_warning_invalid_length_length,"[CurveAnim] WARNING: Invalid length ({length}), defaulting to 1.0s"
+please_select_a_valid_armature_in_the_pi,Please select a valid Armature in the picker.
+invalid_rig_selection,Invalid rig selection.
+rig_collection_could_not_be_appended,Rig collection could not be appended.
+no_armature_found_in_spawned_rig_collect,No armature found in spawned rig collection.
+rig_spawned_successfully,Rig spawned successfully.
+add_animation,Add Animation
+no_spawned_rig_found_spawn_a_rig_first,No spawned rig found. Spawn a rig first.
+animation_file_not_found_fbx_path,Animation file not found: {fbx_path}
+selfanim_type_animation_added,{self.anim_type} animation added.
+animation_fbx_did_not_contain_an_armatur,Animation FBX did not contain an armature.
+no_animation_loaded_add_an_animation_fir,No animation loaded. Add an animation first.
+pause,Pause
+rig_deleted,Rig deleted.
+speed_44877c6a,Speed
+speed_set_to_selfspeedx,Speed set to {self.speed}x
+info,Info
+info_2a72c335,INFO.
+1_test_is_only_implemented_for_blocky_an,1. Test is only implemented for Blocky and Woman avatars.
+2_if_you_need_to_test_with_custom_animat,2. If you need to test with custom animations:
+spawn_test_rig,- Spawn test rig
+in_the_import_beta_import_animation_that,- In the import (Beta) import animation that you need
+select_the_armature_in_the,"'  - Select the armature in the """
+apply_animation,- Apply animation
+the_scrub_function_timings_might_not_be,(The scrub function timings might not be accurate).
+skipping_armature_for_mesh_mesh_infoget,"""Skipping armature for mesh {mesh_info.get('"
+no_valid_meshes_with_bone_data_found_for,No valid meshes with bone data found for armature generation.
+no_bones_found_in_imported_data,No bones found in imported data.
+discovery_failed_asset_error,Discovery Failed: {asset_error}
+bundle_discovery_failed_rbx_imp_error,Bundle Discovery Failed: {rbx_imp_error}
+import_beta_reset,Import (Beta) Reset
+download,Download
+download_triggered_for_category_selfcate,Download triggered for category: {self.category}
+downloading_body_parts,Downloading Body Parts...
+downloading_dynamic_heads,Downloading Dynamic Heads...
+downloading_accessories,Downloading Accessories...
+downloading_layered_cloth,Downloading Layered Cloth...
+downloading_face_parts,Downloading Face Parts...
+downloading_classics,Downloading Classics...
+downloading_gears,Downloading Gears...
+downloading_armature,Downloading Armature...
+downloading_animations,Downloading Animations...
+downloading_models,Downloading Models...
+applying_animation,Applying Animation...
+options,Options
+options_category,Options: {category}
+created_folder_folder_path,Created folder: {folder_path}
+could_not_create_folder_e,Could not create folder: {e}
+opened_folder_folder_path,Opened folder: {folder_path}
+could_not_open_folder_e,Could not open folder: {e}
+no_folder_mapped_for_category_category,No folder mapped for category: {category}
+1_spawn_at_origin,1. Spawn at Origin
+when_this_option_is_enabled_objects_will,"When this option is enabled, objects will be moved to the Blender origin"
+instead_of_being_placed_at_their_origina,instead of being placed at their original locations.
+2_incorrect_item_placement,2. Incorrect Item Placement
+some_items_may_not_appear_in_their_expec,Some items may not appear in their expected locations. This usually happens
+because_the_item,"""because the item'"
+rbx_toolbox_reads_the_object,"""RBX Toolbox reads the object'"
+3_importing_items_separately,3. Importing Items Separately
+if_you_import_items_individually_such_as,"If you import items individually (such as bundle items, cages, attachments, etc.),"
+they_may_not_be_placed_correctly_this_oc,they may not be placed correctly. This occurs because RBX Toolbox moves the
+selection_to_the_origin_relative_to_the,selection to the origin relative to the number of items selected.
+if_you_disable_spawn_at_origin_the_items,"If you disable Spawn at Origin, the items will appear in their correct positions,"
+but_they_may_be_located_far_from_the_ble,but they may be located far from the Blender origin.
+4_exclude_from_import,4. Exclude from import
+if_you_want_to_exclude_some_items_from_g,If you want to exclude some items from group import (Download everything button)
+deselect_all_checkboxes_in_the_item_opti,- deselect all checkboxes in the item options.
+import_summary,Import Summary
+imported_selfimported_count_objects,Imported: {self.imported_count} objects
+failed_to_import,Failed to import:
+permission_denied,Permission denied:
+other_error,Other error:
+name_data,"""Name     : {data['"
+loop_data,"""Loop     : {data['"
+length_dataget,"""Length   : {data.get('"
+tracks_lendata,"""Tracks   : {len(data['"
+track36_lenkfs3_kf_times,{track:<36} {len(kfs):>3} kf  {times}
+curveanim_warning_truncated_at_entry_ien,"[CurveAnim] WARNING: truncated at entry {i}/{entry_count}, off={off}, n={n}"
+mesh_version_version,Mesh version: {version}
+rbx_toolbox_authorization,RBX Toolbox Authorization
+authorizing,Authorizing...
+if_youre_not_redirected,"If you're not redirected,"
+javascript_is_required,JavaScript is required.
+error,Error:
+rbx_toolbox_privacy_policy,RBX Toolbox - Privacy Policy
+github_repository,GitHub repository
+nytv_gaming_supportsuggestions_discord,NYTV Gaming Support/Suggestions Discord
+rbx_toolbox_terms_of_service,RBX Toolbox - Terms of Service
+exception_when_getting_asset_upload_stat,Exception when getting asset upload status: %s
+authorization_complete_you_can_close_thi,Authorization complete. You can close this window.
+saving_roblox_session_details_to_prefere,Saving Roblox session details to preferences.
+saving_the_following_creator_id_rbxcreat,Saving the following creator ID: {rbx.creator}
+saving_is_logged_in_add_on_preferencesis,Saving is_logged_in: {add_on_preferences.is_logged_in}
+saving_token_data,Saving token data.
+token_data_is_not_empty,Token data is not empty.
+token_data_is_empty,Token data is empty.
+saving_the_list_of_creators,Saving the list of creators.
+no_creators_to_save,No creators to save.
+successfully_updated_rbx_property_and_sa,Successfully updated RBX property and saved creator details.
+error_saving_roblox_session_details_e,Error saving Roblox session details: {e}
+loading_roblox_session_details_from_pref,Loading Roblox session details from preferences.
+loading_simple_properties,Loading simple properties.
+loading_creators_list_from_preferences,Loading creators list from preferences.
+successfully_validated_and_set_creator_i,Successfully validated and set creator ID: {stored_creator_id}
+default_creator_set_to_user_id_rbxcreato,Default creator set to User ID: {rbx.creator}
+warning_could_not_find_a_user_id_to_set,Warning: Could not find a User ID to set as default.
+roblox_login_session_loaded_and_validate,Roblox login session loaded and validated.
+loading_token_data_from_preferences,Loading token data from preferences.
+token_data_loaded,Token data loaded.
+no_active_roblox_login_session_found_in,No active Roblox login session found in preferences.
+forcing_ui_refresh,Forcing UI refresh.
+error_loading_roblox_session_details_e,Error loading Roblox session details: {e}
+registers_a_timer_to_step_the_event_loop,Registers a timer to step the event loop
+rbx_toolbox_stale_dependencies_detected,[RBX Toolbox] Stale dependencies detected — restart required for clean reinstall.
+rbx_toolbox_dependency_folder_is_empty_r,[RBX Toolbox] Dependency folder is empty — ready to install.
+install_dependencies,Install Dependencies
+installs_addon_dependencies_in_the_backg,Installs add-on dependencies in the background
+installation_outputnstdoutdecode,INSTALLATION OUTPUT:\n{stdout.decode()}
+reloading_aiohttp,Reloading aiohttp
+reloading_web,Reloading web
+user_logged_out_and_session_state_saved,User logged out and session state saved.
+default_creator_set_to_user_id_selfrbxcr,Default creator set to User ID: {self.rbx.creator}
+user_logged_in_and_session_state_saved,User logged in and session state saved.
+log_in,Log in
+log_in_with_your_roblox_account_using_yo,Log in with your Roblox account using your browser
+cancel,Cancel
+stop_waiting_for_the_browser_to_return_l,Stop waiting for the browser to return login info
+log_out,Log out
+log_out_of_your_roblox_account,Log out of your Roblox account
+upload_status,Upload Status
+upload,Upload
+s_5058f1af,.
+operation_path_operationpath,Operation path: {operation.path}
+upload_failed_operationerrorcode_operati,"Upload failed, {operation.error.code}: {operation.error.message}"
+upload_failed_invalid_responsenoperation,"Upload failed, invalid response:\n{operation}"
+avatar_error_loading_image_e,[AVATAR] error loading image: {e}
+avatar_error_fetching_thumbnail_e,[AVATAR] error fetching thumbnail: {e}
+err,ERR:
+total_errors,TOTAL_ERRORS
+changed,CHANGED
+changed_5f6203a2,CHANGED:
+skipped,SKIPPED
+skip,SKIP:
+compile_errors,COMPILE_ERRORS
+recompiler,", re.compile(r"
+skipping_p_e,Skipping {p}: {e}
+extracted_lenunique_candidate_strings_ou,Extracted {len(unique)} candidate strings → {OUT}
+default_language,Default language:
+en_aba587a0,EN:
+after_set_ru,After set RU ->
+ru_5921e0db,RU:

@@ -1,11 +1,11 @@
 import bpy
-from test321 import glob_vars
+from test321 import glob_vars, i18n
 
 
 
 ######### Bounds Buttons ###########    
 class BUTTON_BNDS(bpy.types.Operator):
-    bl_label = "BUTTON_BNDS"
+    bl_label = i18n.t('button_bnds')
     bl_idname = "object.button_bnds"
     bl_options = {'REGISTER', 'UNDO'}
     bnds : bpy.props.StringProperty(name= "Added") # type: ignore

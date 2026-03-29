@@ -1,10 +1,10 @@
 import bpy
-from test321 import glob_vars
+from test321 import glob_vars, i18n
 
 
 ######### Layered Clothing Buttons ###########    
 class RBX_BUTTON_LC(bpy.types.Operator):
-    bl_label = "RBX_BUTTON_LC"
+    bl_label = i18n.t('rbx_button_lc')
     bl_idname = "object.rbx_button_lc"
     bl_options = {'REGISTER', 'UNDO'}
     rbx_lc : bpy.props.StringProperty(name= "Added") # type: ignore

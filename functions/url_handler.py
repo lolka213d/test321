@@ -1,12 +1,12 @@
 import bpy
 import webbrowser
-from test321 import glob_vars
+from test321 import glob_vars, i18n
 
 
 
 ############   URL HANDLER OPERATOR   ##############    
 class URL_HANDLER(bpy.types.Operator):
-    bl_label = "URL_HANDLER"
+    bl_label = i18n.t('url_handler')
     bl_idname = "object.url_handler"
     bl_options = {'REGISTER', 'UNDO'}
     rbx_link : bpy.props.StringProperty(name= "Added") # type: ignore
