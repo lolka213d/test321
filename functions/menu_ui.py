@@ -82,6 +82,9 @@ class TOOLBOX_MENU(bpy.types.Panel):
         layout = self.layout
         scene = context.scene
         rbx_prefs = scene.rbx_prefs
+        # Always-visible update check button (quick access)
+        row = layout.row(align=True)
+        row.operator('wm.check_update', text=i18n.t('check_for_updates'), icon='FILE_REFRESH')
         if glob_vars.lts_ver is not None:
             if glob_vars.lts_ver > addon_version:
                 box = layout.box()
