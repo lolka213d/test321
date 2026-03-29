@@ -17,13 +17,13 @@ import traceback
 
 
 bl_info = {
-    "name": "RBX Toolbox",
-    "author": "Papa_Boss332",
+    "name": "RBX Toolbox modified by Moon",
+    "author": "Moon",
     "version": (7, 4, 0),
     "blender": (3, 6, 0),
     "location": "Operator",
     "description": "Roblox UGC models toolbox",
-    "warning": "Subscribe to NYTV :)",
+    "warning": "Subscribe to Mr_MgohonShf :)",
     "category": "Object"
 }
 
