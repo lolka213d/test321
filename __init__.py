@@ -19,7 +19,7 @@ import traceback
 bl_info = {
     "name": "RBX Toolbox modified by Moon",
     "author": "Moon",
-    "version": (7, 4, 5),
+    "version": (7, 4, 6),
     "blender": (3, 6, 0),
     "location": "Operator",
     "description": "Roblox UGC models toolbox",
