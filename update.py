@@ -124,8 +124,10 @@ class RBX_INSTALL_UPDATE(bpy.types.Operator):
 
             # Simulate a file download
             print("Downloading update...")
-            print("Update URL: ", UPDATE_URL)
-            response = requests.get(UPDATE_URL, stream=True)
+            # Use the latest URL from glob_vars at download time (fix stale module-level constant)
+            url = getattr(glob_vars, 'rbx_update_test_down_link', None) or UPDATE_URL
+            print("Update URL:", url)
+            response = requests.get(url, stream=True)
             response.raise_for_status()  # Raise an error for bad status codes
             total_size = int(response.headers.get('content-length', 0))
             downloaded_size = 0
