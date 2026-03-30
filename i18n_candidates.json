@@ -2215,4 +2215,56 @@
     "en": "You may try from Step-4",
     "ru": "Вы можете попробовать с шага 4"
   }
+  ,"upload_skin": {
+    "en": "Upload Skin",
+    "ru": "Загрузить скин"
+  },
+  "no_file_selected": {
+    "en": "No file selected",
+    "ru": "Файл не выбран"
+  },
+  "select_mesh_for_skin": {
+    "en": "Select a mesh to apply skin",
+    "ru": "Выберите меш для применения скина"
+  },
+  "skin_applied": {
+    "en": "Skin applied to selected objects",
+    "ru": "Скин применён к выделенным объектам"
+  },
+  "use_uv_mapping": {
+    "en": "Use UV mapping",
+    "ru": "Использовать UV-маппинг"
+  },
+  "uv_scale": {
+    "en": "UV Scale",
+    "ru": "Масштаб UV"
+  },
+  "uv_offset": {
+    "en": "UV Offset",
+    "ru": "Смещение UV"
+  },
+  "target_material": {
+    "en": "Target Material",
+    "ru": "Материал назначения"
+  },
+  "uv_map": {
+    "en": "UV Map",
+    "ru": "UV-карта"
+  },
+  "separate_mesh_parts": {
+    "en": "Separate Mesh Parts",
+    "ru": "Разделить части меша"
+  },
+  "separate_done": {
+    "en": "Separation completed",
+    "ru": "Разделение завершено"
+  },
+  "separate_loose": {
+    "en": "Separate Loose Parts",
+    "ru": "Разделить по островам"
+  },
+  "separate_material": {
+    "en": "Separate by Material",
+    "ru": "Разделить по материалам"
+  }
 }

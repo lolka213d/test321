@@ -11,6 +11,7 @@ from test321 import update_aepbr
 from test321 import props
 from test321 import addon_version, addon_label
 from test321 import i18n
+from bpy_extras.io_utils import ImportHelper
 
 def get_aepbr_cur_ver():
     rbx_aepbr_fldr_path = os.path.join(addon_path, glob_vars.rbx_aepbr_fldr)
@@ -69,6 +70,171 @@ class RBX_OT_terms_of_use(bpy.types.Operator):
         prefs.accepted_terms_of_use = True
         bpy.ops.wm.save_userpref()
         self.report({'INFO'}, i18n.t('terms_of_use_accepted'))
+        return {'FINISHED'}
+
+
+class RBX_OT_upload_skin(bpy.types.Operator, ImportHelper):
+    """Load a local image and apply it as a skin texture to selected mesh(es)"""
+    bl_idname = 'object.rbx_upload_skin'
+    bl_label = i18n.t('upload_skin')
+    filename_ext = "*.png;*.jpg;*.jpeg"
+    filter_glob: bpy.props.StringProperty(default='*.png;*.jpg;*.jpeg', options={'HIDDEN'})
+
+    def execute(self, context):
+        filepath = getattr(self, 'filepath', None)
+        if not filepath:
+            self.report({'ERROR'}, i18n.t('no_file_selected'))
+            return {'CANCELLED'}
+
+        try:
+            image = bpy.data.images.load(filepath)
+        except Exception as e:
+            self.report({'ERROR'}, f"Failed to load image: {e}")
+            return {'CANCELLED'}
+
+        objs = context.selected_objects or ([context.active_object] if context.active_object else [])
+        if not objs:
+            self.report({'ERROR'}, i18n.t('select_mesh_for_skin'))
+            return {'CANCELLED'}
+
+        # store preview name on scene for UI
+        try:
+            context.scene.rbx_skin_last_image = image.name
+            try:
+                image.preview_ensure()
+            except Exception:
+                pass
+        except Exception:
+            pass
+
+        for obj in objs:
+            if not obj or obj.type != 'MESH':
+                continue
+            if not obj.data.materials:
+                mat = bpy.data.materials.new(name=f"{obj.name}_SkinMat")
+                obj.data.materials.append(mat)
+
+            mat = obj.active_material or obj.data.materials[0]
+            if mat is None:
+                mat = bpy.data.materials.new(name=f"{obj.name}_SkinMat")
+                obj.data.materials.append(mat)
+
+            mat.use_nodes = True
+            node_tree = getattr(mat, 'node_tree', None)
+            if node_tree is None:
+                mat.use_nodes = True
+                node_tree = mat.node_tree
+
+            nodes = node_tree.nodes
+            links = node_tree.links
+
+            bsdf = None
+            for n in nodes:
+                if getattr(n, 'type', None) == 'BSDF_PRINCIPLED':
+                    bsdf = n
+                    break
+            if bsdf is None:
+                bsdf = nodes.new(type='ShaderNodeBsdfPrincipled')
+                bsdf.location = (0, 0)
+                out_node = None
+                for n in nodes:
+                    if getattr(n, 'type', None) == 'OUTPUT_MATERIAL':
+                        out_node = n
+                        break
+                if out_node is None:
+                    out_node = nodes.new(type='ShaderNodeOutputMaterial')
+                    out_node.location = (300, 0)
+                try:
+                    links.new(bsdf.outputs.get('BSDF') or bsdf.outputs[0], out_node.inputs.get('Surface') or out_node.inputs[0])
+                except Exception:
+                    pass
+
+            # create image node
+            img_node = nodes.new(type='ShaderNodeTexImage')
+            img_node.image = image
+            img_node.location = (-600, 0)
+
+            # Mapping / UV controls from Scene
+            scene = context.scene
+            uv_scale = getattr(scene, 'rbx_skin_uv_scale', (1.0, 1.0))
+            uv_offset = getattr(scene, 'rbx_skin_uv_offset', (0.0, 0.0))
+            use_mapping = getattr(scene, 'rbx_skin_use_mapping', False)
+
+            # detect active UV map name for this object
+            uv_map_name = None
+            try:
+                if obj.data.uv_layers:
+                    uv_map = obj.data.uv_layers.active
+                    if uv_map:
+                        uv_map_name = uv_map.name
+            except Exception:
+                uv_map_name = None
+
+            # create mapping chain if requested or scale/offset differs
+            try:
+                if use_mapping or uv_scale != (1.0, 1.0) or uv_offset != (0.0, 0.0) or uv_map_name:
+                    uvmap_node = nodes.new(type='ShaderNodeUVMap')
+                    if uv_map_name:
+                        try:
+                            uvmap_node.uv_map = uv_map_name
+                        except Exception:
+                            pass
+                    mapping_node = nodes.new(type='ShaderNodeMapping')
+                    try:
+                        mapping_node.inputs.get('Scale').default_value = (uv_scale[0], uv_scale[1], 1.0)
+                        mapping_node.inputs.get('Location').default_value = (uv_offset[0], uv_offset[1], 0.0)
+                    except Exception:
+                        pass
+                    try:
+                        links.new(uvmap_node.outputs.get('UV') or uvmap_node.outputs[0], mapping_node.inputs.get('Vector') or mapping_node.inputs[0])
+                        links.new(mapping_node.outputs.get('Vector') or mapping_node.outputs[0], img_node.inputs.get('Vector') or img_node.inputs[1])
+                    except Exception:
+                        pass
+
+            except Exception:
+                pass
+
+            try:
+                base_color = bsdf.inputs.get('Base Color') or bsdf.inputs[0]
+                links.new(img_node.outputs.get('Color') or img_node.outputs[0], base_color)
+            except Exception:
+                pass
+
+        self.report({'INFO'}, i18n.t('skin_applied'))
+        return {'FINISHED'}
+
+
+class RBX_OT_separate_parts(bpy.types.Operator):
+    """Separate selected mesh(es) into parts (loose parts or by material)"""
+    bl_idname = 'object.rbx_separate_parts'
+    bl_label = i18n.t('separate_mesh_parts')
+    method: bpy.props.EnumProperty(
+        items=(('LOOSE', 'Loose Parts', ''), ('MATERIAL', 'By Material', '')),
+        default='LOOSE'
+    )
+
+    def execute(self, context):
+        objs = context.selected_objects
+        if not objs:
+            self.report({'ERROR'}, i18n.t('no_mesh_selected'))
+            return {'CANCELLED'}
+
+        for obj in list(objs):
+            if obj.type != 'MESH':
+                continue
+            bpy.ops.object.mode_set(mode='OBJECT')
+            bpy.ops.object.select_all(action='DESELECT')
+            obj.select_set(True)
+            context.view_layer.objects.active = obj
+            bpy.ops.object.mode_set(mode='EDIT')
+            try:
+                bpy.ops.mesh.select_all(action='SELECT')
+                bpy.ops.mesh.separate(type=self.method)
+            except Exception as e:
+                self.report({'ERROR'}, f"Separate failed: {e}")
+            bpy.ops.object.mode_set(mode='OBJECT')
+
+        self.report({'INFO'}, i18n.t('separate_done'))
         return {'FINISHED'}
 
 class TOOLBOX_MENU(bpy.types.Panel):
@@ -956,6 +1122,31 @@ class TOOLBOX_MENU(bpy.types.Panel):
                 if not rbx.is_processing_login_or_logout:
                     from oauth.lib.upload_operator import RBX_OT_upload
                     upload_section_box.row().operator(RBX_OT_upload.bl_idname)
+                    # Allow user to apply a local skin image to selected mesh(es)
+                    upload_section_box.row().operator('object.rbx_upload_skin', text=i18n.t('upload_skin'), icon='IMAGE_DATA')
+                    # Skin preview and mapping options
+                    img_name = getattr(scene, 'rbx_skin_last_image', '')
+                    img = bpy.data.images.get(img_name) if img_name else None
+                    if img:
+                        try:
+                            img.preview_ensure()
+                        except Exception:
+                            pass
+                        upload_section_box.template_preview(img, show_buttons=False)
+                    upload_section_box.prop(scene, 'rbx_skin_use_mapping', text=i18n.t('use_uv_mapping'))
+                    if scene.rbx_skin_use_mapping:
+                        upload_section_box.prop(scene, 'rbx_skin_uv_scale', text=i18n.t('uv_scale'))
+                        upload_section_box.prop(scene, 'rbx_skin_uv_offset', text=i18n.t('uv_offset'))
+                    # Target material selector for active mesh
+                    if context.active_object and context.active_object.type == 'MESH':
+                        try:
+                            upload_section_box.prop_search(context.active_object, 'active_material', bpy.data, 'materials', text=i18n.t('target_material'))
+                        except Exception:
+                            pass
+                        try:
+                            upload_section_box.prop(context.active_object.data.uv_layers, 'active_index', text=i18n.t('uv_map'))
+                        except Exception:
+                            pass
                 else:
                     upload_section_box.label(text=i18n.t('refreshing_login_please_wait'), icon='ERROR')
                 from oauth.lib.get_selected_objects import get_selected_objects

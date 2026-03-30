@@ -103,7 +103,7 @@ from .functions.menu_pie import RBX_MT_MENU2_2
 from .functions.menu_pie import RBX_MT_MENU2_3
 from .functions.menu_pie import RBX_MT_MENU3
 from .functions.menu_pie import RBX_MT_MENU4
-from .functions.menu_ui import TOOLBOX_MENU, RBX_OT_terms_of_use
+from .functions.menu_ui import TOOLBOX_MENU, RBX_OT_terms_of_use, RBX_OT_upload_skin, RBX_OT_separate_parts
 from .func_import_v2.rbx_import_discovery import RBX_OT_import_discovery, RBX_OT_import_reset, RBX_OT_import_discovery_download, RBX_OT_import_discovery_options, RBX_OT_import_discovery_open_folder, RBX_OT_open_tmp_folder, RBX_OT_import_model_summary, RBX_OT_import_discovery_info_popup
 from . import oauth
 import bpy
@@ -155,6 +155,8 @@ classes = (
     RBX_MT_MENU3,
     RBX_MT_MENU4,
     RBX_OT_terms_of_use,
+    RBX_OT_upload_skin,
+    RBX_OT_separate_parts,
     TOOLBOX_MENU
 )
 
@@ -196,6 +198,11 @@ def register():
         subtype='PERCENTAGE',
         update=_update_frame_scrub
     )
+    # Skin preview and mapping properties (used by Upload UI)
+    Scene.rbx_skin_last_image = bpy.props.StringProperty(default="")
+    Scene.rbx_skin_uv_scale = bpy.props.FloatVectorProperty(name="Skin UV Scale", size=2, default=(1.0, 1.0))
+    Scene.rbx_skin_uv_offset = bpy.props.FloatVectorProperty(name="Skin UV Offset", size=2, default=(0.0, 0.0))
+    Scene.rbx_skin_use_mapping = bpy.props.BoolProperty(name="Use UV Mapping", default=False)
     Scene.subpanel_ava = BoolProperty(default=False)
     Scene.subpanel_cams = BoolProperty(default=False)
     Scene.subpanel_bn = BoolProperty(default=False)
@@ -245,6 +252,14 @@ def unregister():
     del Scene.subpanel_upload
     del Scene.subpanel_pie
     del Scene.subpanel_support
+    # Skin preview and mapping properties cleanup
+    try:
+        del Scene.rbx_skin_last_image
+        del Scene.rbx_skin_uv_scale
+        del Scene.rbx_skin_uv_offset
+        del Scene.rbx_skin_use_mapping
+    except Exception:
+        pass
     wm = bpy.context.window_manager
     kc = wm.keyconfigs.addon
     for km, kmi in glob_vars.addon_keymaps.values():

@@ -256,39 +256,249 @@ def blender_api_assets_new_material(rbx_obj, mesh_part, rbx_textures, rbx_asset_
     mat = rbx_obj.material_slots[0].material
     mat.use_nodes = True
     mat.use_backface_culling = True
-    nodes = mat.node_tree.nodes
-    bsdf = nodes.get("Principled BSDF")
-    # Set Roughness
-    if float(glob_vars.bldr_fdr) < 4.0:
-        bsdf.inputs[9].default_value = 1
-    else:
-        bsdf.inputs[2].default_value = 1
+    # Ensure node tree exists
+    node_tree = getattr(mat, 'node_tree', None)
+    if node_tree is None:
+        mat.use_nodes = True
+        node_tree = mat.node_tree
+
+    nodes = node_tree.nodes
+    links = node_tree.links
+
+    # Find existing Principled BSDF or create one
+    bsdf = None
+    for n in nodes:
+        if getattr(n, 'type', None) == 'BSDF_PRINCIPLED':
+            bsdf = n
+            break
+    if bsdf is None:
+        bsdf = nodes.new(type='ShaderNodeBsdfPrincipled')
+        bsdf.location = (0, 0)
+
+        # Ensure material output exists and link BSDF -> Surface
+        out_node = None
+        for n in nodes:
+            if getattr(n, 'type', None) == 'OUTPUT_MATERIAL':
+                out_node = n
+                break
+        if out_node is None:
+            out_node = nodes.new(type='ShaderNodeOutputMaterial')
+            out_node.location = (300, 0)
+        try:
+            # Prefer named sockets when available
+            out_surface = out_node.inputs.get('Surface') or out_node.inputs[0]
+            bsdf_output = bsdf.outputs.get('BSDF') or bsdf.outputs[0]
+            links.new(bsdf_output, out_surface)
+        except Exception:
+            pass
+
+    # Set Roughness safely using named input
+    try:
+        if 'Roughness' in [i.name for i in bsdf.inputs]:
+            bsdf.inputs['Roughness'].default_value = 1.0
+        else:
+            # fallback: try to find by name-insensitive match
+            for inp in bsdf.inputs:
+                if inp.name.lower() == 'roughness':
+                    inp.default_value = 1.0
+                    break
+    except Exception:
+        pass
 
     node_y_index = 0
-    for tex_name, tex_path in rbx_textures.items():
-        rbx_image = bpy.data.images.load(tex_path)
-        rbxtexNode = nodes.new('ShaderNodeTexImage')
-        rbxtexNode.image = rbx_image
-        rbxtexNode.name = tex_name
-        rbxtexNode.location = (-700,300-300 * node_y_index)
-        if tex_name == "Color":
-            mat.node_tree.links.new(rbxtexNode.outputs[0], bsdf.inputs["Base Color"])
-            if not rbx_SurfaceAppearance:
-                blender_api_transparent_textures()
-                return
+    errlog = []
+    # Read optional scene-level UV mapping settings
+    try:
+        scene = bpy.context.scene
+        uv_scale = tuple(getattr(scene, 'rbx_skin_uv_scale', (1.0, 1.0)))
+        uv_offset = tuple(getattr(scene, 'rbx_skin_uv_offset', (0.0, 0.0)))
+        use_mapping = bool(getattr(scene, 'rbx_skin_use_mapping', False))
+    except Exception:
+        uv_scale = (1.0, 1.0)
+        uv_offset = (0.0, 0.0)
+        use_mapping = False
 
-        elif tex_name == "Normal":
-            norm_node = nodes.new(type="ShaderNodeNormalMap")
-            norm_node.location = (-400,300-300 * node_y_index)
-            mat.node_tree.links.new(rbxtexNode.outputs[0], norm_node.inputs[1])
-            mat.node_tree.links.new(norm_node.outputs[0], bsdf.inputs[tex_name])
-            norm_node.space = 'TANGENT'
-            rbx_image.colorspace_settings.name = 'Non-Color'
-        else:
-            mat.node_tree.links.new(rbxtexNode.outputs[0], bsdf.inputs[tex_name])
-            rbx_image.colorspace_settings.name = 'Non-Color'
-        blender_api_transparent_textures()
+    # Determine active UV map name for the object (if any)
+    uv_map_name = None
+    try:
+        if rbx_obj and rbx_obj.type == 'MESH' and rbx_obj.data.uv_layers:
+            uv = rbx_obj.data.uv_layers.active
+            if uv:
+                uv_map_name = uv.name
+    except Exception:
+        uv_map_name = None
+
+    base_color_node = None
+    for tex_name, tex_path in rbx_textures.items():
+        try:
+            rbx_image = bpy.data.images.load(tex_path)
+        except Exception as e:
+            dprint(f"Error loading image {tex_path}: {e}")
+            errlog.append(f"Error loading image {tex_path}: {e}")
+            node_y_index += 1
+            continue
+
+        # Create image node
+        img_node = nodes.new('ShaderNodeTexImage')
+        img_node.image = rbx_image
+        img_node.name = f"RBX_{tex_name}_Img"
+        img_node.location = (-700, 300 - 300 * node_y_index)
+
+        # Optionally create UVMap -> Mapping -> Image.Vector chain
+        try:
+            if use_mapping or uv_scale != (1.0, 1.0) or uv_offset != (0.0, 0.0) or uv_map_name:
+                uvmap_node = nodes.new(type='ShaderNodeUVMap')
+                if uv_map_name:
+                    try:
+                        uvmap_node.uv_map = uv_map_name
+                    except Exception:
+                        pass
+                mapping_node = nodes.new(type='ShaderNodeMapping')
+                try:
+                    mapping_node.inputs.get('Scale').default_value = (uv_scale[0], uv_scale[1], 1.0)
+                    mapping_node.inputs.get('Location').default_value = (uv_offset[0], uv_offset[1], 0.0)
+                except Exception:
+                    pass
+                try:
+                    links.new(uvmap_node.outputs.get('UV') or uvmap_node.outputs[0], mapping_node.inputs.get('Vector') or mapping_node.inputs[0])
+                    links.new(mapping_node.outputs.get('Vector') or mapping_node.outputs[0], img_node.inputs.get('Vector') or img_node.inputs[1])
+                except Exception:
+                    pass
+        except Exception:
+            pass
+
+        # Decide where to link based on texture role
+        key = tex_name.lower()
+        try:
+            if key in ('color', 'colormap', 'base_color', 'base color'):
+                base_color_node = img_node
+                try:
+                    rbx_image.colorspace_settings.name = 'sRGB'
+                except Exception:
+                    pass
+                target = bsdf.inputs.get('Base Color') or bsdf.inputs[0]
+                links.new(img_node.outputs.get('Color') or img_node.outputs[0], target)
+                if not rbx_SurfaceAppearance:
+                    blender_api_transparent_textures()
+                    return
+
+            elif key in ('normal', 'normalmap', 'normal_map'):
+                try:
+                    rbx_image.colorspace_settings.name = 'Non-Color'
+                except Exception:
+                    pass
+                norm_node = nodes.new(type='ShaderNodeNormalMap')
+                norm_node.location = (-400, 300 - 300 * node_y_index)
+                color_input = norm_node.inputs.get('Color') or norm_node.inputs[1]
+                links.new(img_node.outputs.get('Color') or img_node.outputs[0], color_input)
+                normal_output = norm_node.outputs.get('Normal') or norm_node.outputs[0]
+                bsdf_normal = bsdf.inputs.get('Normal')
+                if bsdf_normal is not None:
+                    links.new(normal_output, bsdf_normal)
+                norm_node.space = 'TANGENT'
+
+            elif key in ('metallic', 'metallicmap', 'metalnessmap', 'metalness'):
+                try:
+                    rbx_image.colorspace_settings.name = 'Non-Color'
+                except Exception:
+                    pass
+                target = bsdf.inputs.get('Metallic')
+                if target is None:
+                    for inp in bsdf.inputs:
+                        if inp.name.lower() == 'metallic':
+                            target = inp
+                            break
+                if target:
+                    links.new(img_node.outputs.get('Color') or img_node.outputs[0], target)
+                else:
+                    errlog.append(f"No Metallic input found for {tex_name}")
+
+            elif key in ('roughness', 'roughnessmap'):
+                try:
+                    rbx_image.colorspace_settings.name = 'Non-Color'
+                except Exception:
+                    pass
+                target = bsdf.inputs.get('Roughness')
+                if target is None:
+                    for inp in bsdf.inputs:
+                        if inp.name.lower() == 'roughness':
+                            target = inp
+                            break
+                if target:
+                    links.new(img_node.outputs.get('Color') or img_node.outputs[0], target)
+                else:
+                    errlog.append(f"No Roughness input found for {tex_name}")
+
+            elif key in ('ao', 'ambientocclusion', 'ambient_occlusion'):
+                try:
+                    rbx_image.colorspace_settings.name = 'Non-Color'
+                except Exception:
+                    pass
+                if base_color_node:
+                    mix_node = nodes.new(type='ShaderNodeMixRGB')
+                    mix_node.blend_type = 'MULTIPLY'
+                    mix_node.location = (bsdf.location.x - 200, base_color_node.location.y)
+                    links.new(base_color_node.outputs.get('Color') or base_color_node.outputs[0], mix_node.inputs[1])
+                    links.new(img_node.outputs.get('Color') or img_node.outputs[0], mix_node.inputs[2])
+                    bc_target = bsdf.inputs.get('Base Color') or bsdf.inputs[0]
+                    links.new(mix_node.outputs.get('Color') or mix_node.outputs[0], bc_target)
+                else:
+                    errlog.append('AO provided but no Base Color to multiply with')
+
+            elif key in ('emission', 'emissive'):
+                try:
+                    rbx_image.colorspace_settings.name = 'sRGB'
+                except Exception:
+                    pass
+                target = bsdf.inputs.get('Emission')
+                if target:
+                    links.new(img_node.outputs.get('Color') or img_node.outputs[0], target)
+
+            elif key in ('alpha', 'opacity'):
+                alpha_input = bsdf.inputs.get('Alpha')
+                if alpha_input:
+                    try:
+                        links.new(img_node.outputs.get('Alpha') or img_node.outputs[1], alpha_input)
+                    except Exception:
+                        pass
+                else:
+                    try:
+                        mat.blend_method = 'BLEND'
+                        bsdf_base = bsdf.inputs.get('Base Color') or bsdf.inputs[0]
+                        mix_node = nodes.new(type='ShaderNodeMixRGB')
+                        mix_node.blend_type = 'MIX'
+                        links.new(img_node.outputs.get('Alpha') or img_node.outputs[1], mix_node.inputs[0])
+                        links.new(img_node.outputs.get('Color') or img_node.outputs[0], mix_node.inputs[2])
+                        links.new(mix_node.outputs.get('Color') or mix_node.outputs[0], bsdf_base)
+                    except Exception as e:
+                        errlog.append(f"Alpha handling error: {e}")
+
+            else:
+                # Default: try to match by input name
+                target = bsdf.inputs.get(tex_name)
+                if target:
+                    try:
+                        rbx_image.colorspace_settings.name = 'Non-Color'
+                    except Exception:
+                        pass
+                    links.new(img_node.outputs.get('Color') or img_node.outputs[0], target)
+                else:
+                    dprint(f"Unknown BSDF input for texture role: {tex_name}")
+        except Exception as e:
+            dprint(f"Error linking texture node for {tex_name}: {e}")
+            errlog.append(f"Error linking {tex_name}: {e}")
+
         node_y_index += 1
+
+    if errlog:
+        try:
+            glob_vars.rbx_last_material_error = '\n'.join(errlog)
+        except Exception:
+            pass
+        print('RBX Material creation warnings/errors:\n' + '\n'.join(errlog))
+
+    # Post-process transparency handling once
+    blender_api_transparent_textures()
 
 
 
