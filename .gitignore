@@ -1,1 +1,3 @@
 upload_release.ps1
+.github/workflows/build_light_zip.yml
+scripts/build_light_zip.ps1
