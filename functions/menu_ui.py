@@ -252,7 +252,47 @@ class TOOLBOX_MENU(bpy.types.Panel):
         row = layout.row(align=True)
         row.operator('wm.check_update', text=i18n.t('check_for_updates'), icon='FILE_REFRESH')
         if glob_vars.lts_ver is not None:
-            if glob_vars.lts_ver > addon_version:
+            # Determine installed version from on-disk __init__.py if possible
+            def parse_ver(s):
+                try:
+                    import re
+                    nums = re.findall(r"\\d+", str(s))
+                    return tuple(int(x) for x in nums)
+                except Exception:
+                    return tuple()
+
+            installed_ver = None
+            try:
+                init_path = os.path.join(addon_path, '__init__.py')
+                if os.path.exists(init_path):
+                    with open(init_path, 'r', encoding='utf-8') as fh:
+                        txt = fh.read()
+                    import re
+                    m = re.search(r'"version"\s*:\s*\(([^\)]*)\)', txt)
+                    if m:
+                        nums = [int(x.strip()) for x in m.group(1).split(',') if x.strip().isdigit()]
+                        installed_ver = tuple(nums)
+            except Exception:
+                installed_ver = None
+
+            # Fallback to imported addon_version if disk read failed
+            if not installed_ver:
+                try:
+                    installed_ver = parse_ver(addon_version)
+                except Exception:
+                    installed_ver = tuple()
+
+            latest_ver = parse_ver(glob_vars.lts_ver)
+            update_needed = False
+            if latest_ver and installed_ver:
+                try:
+                    update_needed = latest_ver > installed_ver
+                except Exception:
+                    update_needed = (glob_vars.lts_ver != addon_version)
+            else:
+                update_needed = (glob_vars.lts_ver != addon_version)
+
+            if update_needed:
                 box = layout.box()
                 box.label(text=f"{i18n.t('update_available')} {glob_vars.lts_ver}")
                 box.operator('object.url_handler', text=f"{i18n.t('release_notes')} {glob_vars.lts_ver}", icon='DOCUMENTS').rbx_link = 'update'

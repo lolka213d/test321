@@ -6,6 +6,8 @@ import zipfile
 import subprocess
 from threading import Thread
 import shutil
+import time
+import tempfile
 import asyncio
 from . import glob_vars
 from test321 import i18n, addon_version
@@ -191,13 +193,27 @@ class RBX_INSTALL_UPDATE(bpy.types.Operator):
 
         try:
             print("Simulate installing")
+            # Create a backup of current addon before removing it (for rollback)
+            backup_path = None
+            try:
+                ts = int(time.time())
+                backup_path = addon_path + f".backup.{ts}"
+                shutil.copytree(addon_path, backup_path)
+                print(f"Backup created at {backup_path}")
+            except Exception as e:
+                backup_path = None
+                print("Warning: could not create backup before install:", e)
+
             #Delete old add-on files (except update.zip)
             for filename in os.listdir(addon_path):
                 file_path = os.path.join(addon_path, filename)
-                if os.path.isfile(file_path) and filename != "update.zip":
-                    os.remove(file_path)
-                elif os.path.isdir(file_path) and filename != "rig_aepbr":
-                    shutil.rmtree(file_path)
+                try:
+                    if os.path.isfile(file_path) and filename != "update.zip":
+                        os.remove(file_path)
+                    elif os.path.isdir(file_path) and filename != "rig_aepbr":
+                        shutil.rmtree(file_path)
+                except Exception as e:
+                    print(f"Failed to remove {file_path}: {e}")
 
             # Extract ZIP
             #normpath - Normalizes the path (removes trailing / or \ if present)
@@ -206,6 +222,25 @@ class RBX_INSTALL_UPDATE(bpy.types.Operator):
             with zipfile.ZipFile(download_path, 'r') as zip_ref:
                 zip_ref.extractall(parent_path)
 
+            # Attempt to update in-memory addon version from newly extracted files (avoid full reload)
+            try:
+                init_file = os.path.join(addon_path, "__init__.py")
+                if os.path.exists(init_file):
+                    with open(init_file, 'r', encoding='utf-8') as fh:
+                        txt = fh.read()
+                    import re
+                    m = re.search(r'"version"\s*:\s*\(\s*([0-9]+)\s*,\s*([0-9]+)\s*,\s*([0-9]+)\s*\)', txt)
+                    if m:
+                        new_ver = f"v.{m.group(1)}.{m.group(2)}.{m.group(3)}"
+                        try:
+                            global addon_version
+                            addon_version = new_ver
+                            print("Updated runtime addon_version to", addon_version)
+                        except Exception:
+                            print("Could not set runtime addon_version")
+            except Exception as e:
+                print("Could not update runtime addon_version from disk:", e)
+
             # Cleanup update.zip
             os.remove(download_path)
 
@@ -213,10 +248,34 @@ class RBX_INSTALL_UPDATE(bpy.types.Operator):
             print("Update Installed! Successfully. Please restart Blender")
             operator_state = "FINISHED"
 
+            # Remove backup if installation succeeded
+            try:
+                if 'backup_path' in locals() and backup_path and os.path.exists(backup_path):
+                    shutil.rmtree(backup_path)
+                    print("Removed backup after successful install")
+            except Exception as e:
+                print("Could not remove backup:", e)
+
         except Exception as e:
             operator_state = "ERROR"
             error_message = str(e)
             print("Update ERROR: ", error_message)
+            # Attempt rollback if backup exists
+            try:
+                if 'backup_path' in locals() and backup_path and os.path.exists(backup_path):
+                    print("Attempting rollback from backup...")
+                    try:
+                        if os.path.exists(addon_path):
+                            shutil.rmtree(addon_path)
+                    except Exception as re:
+                        print("Failed to remove partially installed addon:", re)
+                    try:
+                        shutil.move(backup_path, addon_path)
+                        print("Rollback successful: restored backup to addon path")
+                    except Exception as re:
+                        print("Rollback failed:", re)
+            except Exception as re:
+                print("Rollback attempt encountered error:", re)
 
 
 
@@ -293,13 +352,30 @@ class RBX_CHECK_UPDATE(bpy.types.Operator):
             self.latest_tag = tag
             self.latest_url = asset_url
 
+            # Determine installed version from the on-disk __init__.py (prefer actual files on disk)
+            installed_version = None
+            try:
+                init_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '__init__.py')
+                if os.path.exists(init_path):
+                    with open(init_path, 'r', encoding='utf-8') as fh:
+                        txt = fh.read()
+                    import re
+                    m = re.search(r'"version"\s*:\s*\(\s*([0-9]+)\s*,\s*([0-9]+)\s*,\s*([0-9]+)\s*\)', txt)
+                    if m:
+                        installed_version = f"v.{m.group(1)}.{m.group(2)}.{m.group(3)}"
+            except Exception:
+                installed_version = None
+
+            if not installed_version:
+                installed_version = addon_version
+
             def norm(t):
                 if not t:
                     return ''
                 t = str(t)
                 return t.lstrip('v').lstrip('.')
 
-            if norm(tag) and norm(tag) != norm(addon_version):
+            if norm(tag) and norm(tag) != norm(installed_version):
                 return context.window_manager.invoke_confirm(self, event)
             else:
                 self.report({'INFO'}, i18n.t('no_update_found'))
