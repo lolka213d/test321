@@ -288,9 +288,18 @@ class TOOLBOX_MENU(bpy.types.Panel):
                 try:
                     update_needed = latest_ver > installed_ver
                 except Exception:
-                    update_needed = (glob_vars.lts_ver != addon_version)
+                    # Fallback: perform numeric normalization before comparing
+                    import re
+                    def _ver_tuple(s):
+                        nums = re.findall(r"\d+", str(s))
+                        return tuple(int(x) for x in nums) if nums else tuple()
+                    update_needed = _ver_tuple(glob_vars.lts_ver) > _ver_tuple(addon_version)
             else:
-                update_needed = (glob_vars.lts_ver != addon_version)
+                import re
+                def _ver_tuple(s):
+                    nums = re.findall(r"\d+", str(s))
+                    return tuple(int(x) for x in nums) if nums else tuple()
+                update_needed = _ver_tuple(glob_vars.lts_ver) > _ver_tuple(addon_version)
 
             if update_needed:
                 box = layout.box()
