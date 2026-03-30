@@ -124,10 +124,41 @@ class RBX_INSTALL_UPDATE(bpy.types.Operator):
 
             # Simulate a file download
             print("Downloading update...")
-            # Use the latest URL from glob_vars at download time (fix stale module-level constant)
+            # Start with runtime URL if available
             url = getattr(glob_vars, 'rbx_update_test_down_link', None) or UPDATE_URL
+            # Try to resolve the latest release asset from GitHub to avoid stale defaults
+            try:
+                import urllib.parse
+                parsed = urllib.parse.urlparse(url)
+                parts = parsed.path.strip('/').split('/')
+                if len(parts) >= 2:
+                    owner, repo = parts[0], parts[1]
+                    api_url = f'https://api.github.com/repos/{owner}/{repo}/releases/latest'
+                    print("Querying GitHub API for latest release:", api_url)
+                    resp = requests.get(api_url, timeout=10)
+                    resp.raise_for_status()
+                    data = resp.json()
+                    assets = data.get('assets', [])
+                    asset_url = None
+                    for a in assets:
+                        name = a.get('name', '') or ''
+                        if name.lower().endswith('.zip'):
+                            if name.lower().startswith(repo.lower()) or name.lower() == f'{repo}.zip':
+                                asset_url = a.get('browser_download_url')
+                                break
+                            if not asset_url:
+                                asset_url = a.get('browser_download_url')
+                    if not asset_url:
+                        asset_url = data.get('zipball_url')
+                    if asset_url:
+                        url = asset_url
+                        glob_vars.rbx_update_test_down_link = url
+                        print("Resolved latest asset URL:", url)
+            except Exception as e:
+                print("Could not resolve latest asset via GitHub API, using existing URL:", url, "(", e, ")")
+
             print("Update URL:", url)
-            response = requests.get(url, stream=True)
+            response = requests.get(url, stream=True, timeout=30)
             response.raise_for_status()  # Raise an error for bad status codes
             total_size = int(response.headers.get('content-length', 0))
             downloaded_size = 0
