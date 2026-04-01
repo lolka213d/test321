@@ -109,6 +109,20 @@ class PROPERTIES_RBX(bpy.types.PropertyGroup):
         maxlen=100,
     ) # type: ignore
 
+    rbx_import_filter: bpy.props.StringProperty(
+        name="Import Filter",
+        description="Filter discovered items by name",
+        default="",
+        maxlen=100,
+    ) # type: ignore
+
+    rbx_avatar_rig_type: bpy.props.EnumProperty(
+        name="Avatar Rig Type",
+        description="Select avatar rig type for import",
+        default='AUTO',
+        items=[('AUTO', 'Auto', ''), ('R15', 'R15', ''), ('R6', 'R6', '')]
+    ) # type: ignore
+
     rbx_bndl_char_choice_at_origin : bpy.props.BoolProperty(
     name="Spawn at Origin",
     description="Spawn at Origin property",

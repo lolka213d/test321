@@ -9,6 +9,27 @@ from typing import TYPE_CHECKING, List, Any, Dict, Union
 DEBUG = False
 dprint = lambda *args, **kwargs: print(*args, **kwargs) if DEBUG else None
 
+R6_PARTS = [
+    ("Head", ["Head"]),
+    ("Torso", ["Torso"]),
+    ("LeftArm", ["LeftArm", "Left Arm"]),
+    ("RightArm", ["RightArm", "Right Arm"]),
+    ("LeftLeg", ["LeftLeg", "Left Leg"]),
+    ("RightLeg", ["RightLeg", "Right Leg"]),
+]
+
+
+def _collect_parts_by_name(container, parts_list):
+    parts = []
+    for display_name, variants in parts_list:
+        part = None
+        for name in variants:
+            part = container.FindFirstChild(name)
+            if part:
+                parts.append((part, display_name))
+                break
+    return parts
+
 def download_and_apply_cages(target: Union[int, Any], mesh_name: str, bundle_own_folder: str, headers: dict, 
                              asset_clean_name: str, rbx_tmp_rbxm_filepath: str, 
                              at_origin: bool, add_ver_col: bool,
@@ -59,10 +80,12 @@ def download_and_apply_cages(target: Union[int, Any], mesh_name: str, bundle_own
             return
 
         R15Fixed = rbxm_file.FindFirstChild("R15Fixed")
+        R6Fixed = rbxm_file.FindFirstChild("R6Fixed") or rbxm_file.FindFirstChild("R6")
         
         parts_to_process = []
 
-        if R15Fixed:
+        rig_type = getattr(glob_vars, "rbx_avatar_rig_type", "AUTO")
+        if R15Fixed and rig_type != "R6":
             dprint(f"Found R15Fixed folder. Checking children...")
             # Create folder structure for the bundle
             main_collection_name = glob_vars.rbx_asset_name if glob_vars.rbx_asset_name else "Imported Body Parts"
@@ -87,47 +110,54 @@ def download_and_apply_cages(target: Union[int, Any], mesh_name: str, bundle_own
                 if mesh_part:
                     parts_to_process.append((mesh_part, part_name))
         else:
-            dprint(f"No R15Fixed folder found. Checking for Dynamic Head MeshPart...")
-            # Search for MeshPart named "Head"
-            head_part = rbxm_file.FindFirstChild("Head")
-            if head_part and head_part.class_name == "MeshPart":
-                dprint("Found Head MeshPart. Processing as Dynamic Head.")
-                target_bundle_folder = bundle_own_folder
-                parts_to_process.append((head_part, "Head"))
-            else:
-                dprint(f"No Head MeshPart found in {asset_clean_name if asset_clean_name else str(asset_id)}")
-                # Debug: List children
-                children = [c.name for c in rbxm_file.GetDescendants() if c.parent is None or c.parent not in rbxm_file.roots]
-                children_root = [c.name for c in rbxm_file.roots] if hasattr(rbxm_file, 'roots') else []
-                dprint(f"Root children found: {children_root}")
-                
-                 # Fallback: check all children for MeshParts (e.g. Accessories with "Handle")
-                dprint("No Head MeshPart found. Checking all children for MeshParts...")
-                target_bundle_folder = bundle_own_folder
-                 
-                found_any = False
-                for child in rbxm_file.roots:
-                     # 1. Check if child is an Accessory (container)
-                     if child.class_name == "Accessory":
-                         for acc_child in child.GetChildren():
-                             if acc_child.class_name == "MeshPart":
-                                 dprint(f"Found Accessory MeshPart: {acc_child.name}")
-                                 parts_to_process.append((acc_child, acc_child.name))
-                                 found_any = True
+            if rig_type != "R15":
+                r6_container = R6Fixed if R6Fixed else rbxm_file
+                r6_parts = _collect_parts_by_name(r6_container, R6_PARTS)
+                if r6_parts:
+                    parts_to_process.extend(r6_parts)
+
+            if not parts_to_process:
+                dprint(f"No R15Fixed folder found. Checking for Dynamic Head MeshPart...")
+                # Search for MeshPart named "Head"
+                head_part = rbxm_file.FindFirstChild("Head")
+                if head_part and head_part.class_name == "MeshPart":
+                    dprint("Found Head MeshPart. Processing as Dynamic Head.")
+                    target_bundle_folder = bundle_own_folder
+                    parts_to_process.append((head_part, "Head"))
+                else:
+                    dprint(f"No Head MeshPart found in {asset_clean_name if asset_clean_name else str(asset_id)}")
+                    # Debug: List children
+                    children = [c.name for c in rbxm_file.GetDescendants() if c.parent is None or c.parent not in rbxm_file.roots]
+                    children_root = [c.name for c in rbxm_file.roots] if hasattr(rbxm_file, 'roots') else []
+                    dprint(f"Root children found: {children_root}")
+                    
+                    # Fallback: check all children for MeshParts (e.g. Accessories with "Handle")
+                    dprint("No Head MeshPart found. Checking all children for MeshParts...")
+                    target_bundle_folder = bundle_own_folder
+                    
+                    found_any = False
+                    for child in rbxm_file.roots:
+                         # 1. Check if child is an Accessory (container)
+                         if child.class_name == "Accessory":
+                             for acc_child in child.GetChildren():
+                                 if acc_child.class_name == "MeshPart":
+                                     dprint(f"Found Accessory MeshPart: {acc_child.name}")
+                                     parts_to_process.append((acc_child, acc_child.name))
+                                     found_any = True
+                                     break 
+                             
+                             if found_any:
                                  break 
                          
-                         if found_any:
+                         # 2. Check if child is directly a MeshPart
+                         elif child.class_name == "MeshPart":
+                             dprint(f"Found generic MeshPart: {child.name}")
+                             parts_to_process.append((child, child.name))
+                             found_any = True
                              break 
-                     
-                     # 2. Check if child is directly a MeshPart
-                     elif child.class_name == "MeshPart":
-                         dprint(f"Found generic MeshPart: {child.name}")
-                         parts_to_process.append((child, child.name))
-                         found_any = True
-                         break 
-                
-                if not parts_to_process:
-                    return
+                    
+                    if not parts_to_process:
+                        return
 
         # Calculate unique Cages collection name if LC or FP
         lc_target_cage_name = None

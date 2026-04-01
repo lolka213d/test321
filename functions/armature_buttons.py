@@ -98,7 +98,7 @@ class BUTTON_BN(bpy.types.Operator):
                     bpy.ops.object.editmode_toggle()
 
                     bpy.ops.mesh.customdata_custom_splitnormals_clear()
-                    if float(glob_vars.bldr_fdr) < 4.1:
+                    if glob_vars.is_blender_version_below(4, 1):
                         bpy.context.object.data.use_auto_smooth = False
                     else:
                         bpy.ops.object.shade_auto_smooth()

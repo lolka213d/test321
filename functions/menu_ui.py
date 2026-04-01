@@ -23,6 +23,18 @@ def get_aepbr_cur_ver():
         aepbr_cur_ver = '0'
     return aepbr_cur_ver
 
+
+def _get_human_model_candidates(scene):
+    candidates = []
+    for obj in scene.objects:
+        if obj.type != "ARMATURE":
+            continue
+        if not obj.visible_get():
+            continue
+        if any(child.type == "MESH" for child in obj.children_recursive):
+            candidates.append(obj)
+    return candidates
+
 class RBX_OT_terms_of_use(bpy.types.Operator):
     """Terms of Use for Import (Beta)"""
     bl_idname = 'object.rbx_terms_of_use'
@@ -488,6 +500,15 @@ class TOOLBOX_MENU(bpy.types.Panel):
                     box.operator('object.rbx_terms_of_use', text=i18n.t('terms_of_use'), icon='BOOKMARKS').action = 'SHOW'
                 else:
                     box = layout.box()
+                    box.label(text='Avatar import', icon='COMMUNITY')
+                    row = box.row()
+                    row.prop(rbx_prefs, 'rbx_username_entered', text='Username/ID')
+                    box.prop(rbx_prefs, 'rbx_avatar_rig_type', text='Rig')
+                    row = box.row(align=True)
+                    row.operator('object.rbx_import_avatar', text='Import my avatar', icon='IMPORT').source = 'SELF'
+                    row.operator('object.rbx_import_avatar', text='Import by username/ID', icon='IMPORT').source = 'USER_INPUT'
+                    box.separator()
+                    box = layout.box()
                     row_title = box.row()
                     row_title.label(text=i18n.t('enter_id_or_url'))
                     row_title.operator('object.rbx_import_discovery_info_popup', text='', icon='INFO')
@@ -512,6 +533,7 @@ class TOOLBOX_MENU(bpy.types.Panel):
                         if has_items:
                             box = layout.box()
                             box.label(text=i18n.t('discovered_items'), icon='PREFERENCES')
+                            box.prop(rbx_prefs, 'rbx_import_filter', text='Filter')
                             if glob_vars.rbx_asset_name:
                                 box.label(text=i18n.t('name_glob_varsrbx_asset_name', glob_vars=glob_vars))
                             if glob_vars.rbx_asset_type:
@@ -527,6 +549,24 @@ class TOOLBOX_MENU(bpy.types.Panel):
                             except:
                                 pass
                             from test321.func_import_v2 import rbx_import_discovery as discovery_config
+
+                            filter_text = (rbx_prefs.rbx_import_filter or '').strip().lower()
+                            if filter_text:
+                                matches_box = box.box()
+                                matches_box.label(text='Matches', icon='VIEWZOOM')
+                                match_lines = 0
+                                for (cat_name, items) in glob_vars.discovered_items_data.items():
+                                    for item in items:
+                                        name = str(item.get('name', ''))
+                                        if filter_text in name.lower():
+                                            matches_box.label(text=f"{cat_name}: {name}")
+                                            match_lines += 1
+                                            if match_lines >= 15:
+                                                break
+                                    if match_lines >= 15:
+                                        break
+                                if match_lines == 0:
+                                    matches_box.label(text='No matches', icon='INFO')
 
                             def draw_discovery_category(layout, category_name, icon, enum_prop, download_operator_text):
                                 box = layout.box()
@@ -551,27 +591,42 @@ class TOOLBOX_MENU(bpy.types.Panel):
                                     col_info.label(text=i18n.t('armatures_for_older_meshes'), icon='ERROR')
                                     col_info.label(text=i18n.t('below_v400_are_not_supported'))
                             categories_to_draw = []
+                            def _has_filter_match(cat):
+                                if not filter_text:
+                                    return True
+                                items = glob_vars.discovered_items_data.get(cat, [])
+                                return any(filter_text in str(i.get('name', '')).lower() for i in items)
                             if glob_vars.discovered_items_data.get('Body Parts'):
-                                categories_to_draw.append(('Body Parts', 'OUTLINER_OB_ARMATURE', 'rbx_enum_body_parts', 'Download Body Parts'))
+                                if _has_filter_match('Body Parts'):
+                                    categories_to_draw.append(('Body Parts', 'OUTLINER_OB_ARMATURE', 'rbx_enum_body_parts', 'Download Body Parts'))
                             if glob_vars.discovered_items_data.get('Accessory'):
-                                categories_to_draw.append(('Accessory', 'MOD_CLOTH', 'rbx_enum_accessory', 'Download Accessories'))
+                                if _has_filter_match('Accessory'):
+                                    categories_to_draw.append(('Accessory', 'MOD_CLOTH', 'rbx_enum_accessory', 'Download Accessories'))
                             if glob_vars.discovered_items_data.get('Dynamic Head'):
-                                categories_to_draw.append(('Dynamic Head', 'MONKEY', 'rbx_enum_dynamic_head', 'Download Dynamic Head'))
+                                if _has_filter_match('Dynamic Head'):
+                                    categories_to_draw.append(('Dynamic Head', 'MONKEY', 'rbx_enum_dynamic_head', 'Download Dynamic Head'))
                             if glob_vars.discovered_items_data.get('Layered Cloth'):
-                                categories_to_draw.append(('Layered Cloth', 'MOD_CLOTH', 'rbx_enum_layered_cloth', 'Download Layered Cloth'))
+                                if _has_filter_match('Layered Cloth'):
+                                    categories_to_draw.append(('Layered Cloth', 'MOD_CLOTH', 'rbx_enum_layered_cloth', 'Download Layered Cloth'))
                             if glob_vars.discovered_items_data.get('Face Parts'):
-                                categories_to_draw.append(('Face Parts', 'FACESEL', 'rbx_enum_face_parts', 'Download Face Parts'))
+                                if _has_filter_match('Face Parts'):
+                                    categories_to_draw.append(('Face Parts', 'FACESEL', 'rbx_enum_face_parts', 'Download Face Parts'))
                             if glob_vars.discovered_items_data.get('Classics'):
-                                categories_to_draw.append(('Classics', 'MOD_CLOTH', 'rbx_enum_classics', 'Download Classics'))
+                                if _has_filter_match('Classics'):
+                                    categories_to_draw.append(('Classics', 'MOD_CLOTH', 'rbx_enum_classics', 'Download Classics'))
                             if glob_vars.discovered_items_data.get('Gear'):
-                                categories_to_draw.append(('Gear', 'MODIFIER', 'rbx_enum_gear', 'Download Gear'))
+                                if _has_filter_match('Gear'):
+                                    categories_to_draw.append(('Gear', 'MODIFIER', 'rbx_enum_gear', 'Download Gear'))
                             armature_relevant_cats = ['Body Parts', 'Dynamic Head', 'Layered Cloth', 'Face Parts']
                             if any((glob_vars.discovered_items_data.get(cat) for cat in armature_relevant_cats)):
-                                categories_to_draw.append(('Armature', 'OUTLINER_OB_ARMATURE', 'rbx_arma_enum', 'Download Armature'))
+                                if _has_filter_match('Body Parts') or _has_filter_match('Dynamic Head') or _has_filter_match('Layered Cloth') or _has_filter_match('Face Parts'):
+                                    categories_to_draw.append(('Armature', 'OUTLINER_OB_ARMATURE', 'rbx_arma_enum', 'Download Armature'))
                             if glob_vars.discovered_items_data.get('Models'):
-                                categories_to_draw.append(('Models', 'MESH_CUBE', 'rbx_enum_models', 'Download Model'))
+                                if _has_filter_match('Models'):
+                                    categories_to_draw.append(('Models', 'MESH_CUBE', 'rbx_enum_models', 'Download Model'))
                             if glob_vars.discovered_items_data.get('Places'):
-                                categories_to_draw.append(('Places', 'WORLD', 'rbx_enum_places', 'Download Place'))
+                                if _has_filter_match('Places'):
+                                    categories_to_draw.append(('Places', 'WORLD', 'rbx_enum_places', 'Download Place'))
                             for (cat_name, icon, enum, dl_text) in categories_to_draw:
                                 draw_discovery_category(layout, cat_name, icon, enum, dl_text)
                             if glob_vars.discovered_items_data.get('Animations'):
@@ -1129,7 +1184,7 @@ class TOOLBOX_MENU(bpy.types.Panel):
                 col = split.column(align=True)
                 col.label(text=i18n.t('mesh_smoothing'))
                 try:
-                    if float(glob_vars.bldr_fdr) < 4.1:
+                    if glob_vars.is_blender_version_below(4, 1):
                         split.prop(context.object.data, 'use_auto_smooth', text=i18n.t('auto'))
                     else:
                         split.operator('object.shade_auto_smooth', text=i18n.t('auto_smooth'))
@@ -1148,9 +1203,9 @@ class TOOLBOX_MENU(bpy.types.Panel):
             if glob_vars.bn_error:
                 if glob_vars.bn_error == 1:
                     box.label(text=i18n.t('error_need_rectify_mesh'), icon='ERROR')
-                    glob_vars.bn_error == None
+                    glob_vars.bn_error = None
                 if glob_vars.bn_error == 2:
-                    glob_vars.bn_error == None
+                    glob_vars.bn_error = None
                     box.label(text=i18n.t('parenting_done'), icon='CHECKMARK')
                     box.label(text=i18n.t('step6_optional'), icon=bn_icon)
                     box.label(text=i18n.t('you_can_also_now_export_this'))
@@ -1196,6 +1251,18 @@ class TOOLBOX_MENU(bpy.types.Panel):
                             upload_section_box.prop(context.active_object.data.uv_layers, 'active_index', text=i18n.t('uv_map'))
                         except Exception:
                             pass
+
+                    human_models_box = upload_section_box.box()
+                    human_models_box.label(text="Human models", icon="ARMATURE_DATA")
+                    human_models = _get_human_model_candidates(scene)
+                    if human_models:
+                        for human_model in human_models:
+                            row = human_models_box.row()
+                            row.label(text=human_model.name, icon="ARMATURE_DATA")
+                            op = row.operator("rbx.upload_single", text="Upload", icon="EXPORT")
+                            op.target_object_name = human_model.name
+                    else:
+                        human_models_box.label(text="No human models found", icon="INFO")
                 else:
                     upload_section_box.label(text=i18n.t('refreshing_login_please_wait'), icon='ERROR')
                 from oauth.lib.get_selected_objects import get_selected_objects

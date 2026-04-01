@@ -8,6 +8,35 @@ from typing import TYPE_CHECKING, Any, Dict, List
 DEBUG = False
 dprint = lambda *args, **kwargs: print(*args, **kwargs) if DEBUG else None
 
+R15_PARTS = [
+    "LeftUpperArm", "LeftLowerArm", "LeftHand",
+    "RightUpperArm", "RightLowerArm", "RightHand",
+    "LeftUpperLeg", "LeftLowerLeg", "LeftFoot",
+    "RightUpperLeg", "RightLowerLeg", "RightFoot",
+    "UpperTorso", "LowerTorso", "Head",
+]
+
+R6_PARTS = [
+    ("Head", ["Head"]),
+    ("Torso", ["Torso"]),
+    ("LeftArm", ["LeftArm", "Left Arm"]),
+    ("RightArm", ["RightArm", "Right Arm"]),
+    ("LeftLeg", ["LeftLeg", "Left Leg"]),
+    ("RightLeg", ["RightLeg", "Right Leg"]),
+]
+
+
+def _collect_parts_by_name(container, parts_list):
+    parts = []
+    for display_name, variants in parts_list:
+        part = None
+        for name in variants:
+            part = container.FindFirstChild(name)
+            if part:
+                parts.append((part, display_name))
+                break
+    return parts
+
 def process_mesh_asset(asset_id: int, asset_name: str, headers: dict, prefs: Dict[str, Any], 
                        bundles_folder: str, rbx_tmp_rbxm_filepath: str, 
                        mesh_reader: Any, funct: Any, func_rbx_cloud_api: Any, func_rbx_other: Any, func_blndr_api: Any,
@@ -71,8 +100,9 @@ def process_mesh_asset(asset_id: int, asset_name: str, headers: dict, prefs: Dic
     if not os.path.exists(bundle_own_folder):
         os.makedirs(bundle_own_folder)
 
-    # Look for R15Fixed folder
+    # Look for rig containers
     R15Fixed = rbxm_file.FindFirstChild("R15Fixed")
+    R6Fixed = rbxm_file.FindFirstChild("R6Fixed") or rbxm_file.FindFirstChild("R6")
     acc_obj = rbxm_file.FindFirstChildOfClass("Accessory")
 
     mesh_parts_to_process = []
@@ -101,7 +131,7 @@ def process_mesh_asset(asset_id: int, asset_name: str, headers: dict, prefs: Dic
              else:
                   dprint("Accessory found but no MeshPart or Part inside.")
             
-    elif not R15Fixed:
+    elif not R15Fixed or getattr(glob_vars, "rbx_avatar_rig_type", "AUTO") == "R6":
         # Check for Tool / Gear
         tool_obj = rbxm_file.FindFirstChildOfClass("Tool")
             
@@ -126,32 +156,31 @@ def process_mesh_asset(asset_id: int, asset_name: str, headers: dict, prefs: Dic
                  dprint("  No Part with SpecialMesh or MeshPart found in Tool.")
 
         else:
-            dprint(f"No R15Fixed folder found in {asset_name}. Checking for Dynamic Head...")
-            
-            # Try Dynamic Head Import
-            head_mesh_part, new_rbxm_file = process_dynamic_head(
-                headers, rbx_tmp_rbxm_filepath, rbxm_file, func_rbx_cloud_api, str(asset_id)
-            )
-            
-            if head_mesh_part:
-                dprint("Dynamic Head Found and Processed.")
-                mesh_parts_to_process.append((head_mesh_part, "Head"))
-            else:
-                dprint("Dynamic Head check failed or not a head.")
-                return
+            rig_type = getattr(glob_vars, "rbx_avatar_rig_type", "AUTO")
+            r6_container = R6Fixed if R6Fixed else rbxm_file
+            if rig_type != "R15":
+                r6_parts = _collect_parts_by_name(r6_container, R6_PARTS)
+                if r6_parts:
+                    mesh_parts_to_process.extend(r6_parts)
+
+            if not mesh_parts_to_process:
+                dprint(f"No R15Fixed folder found in {asset_name}. Checking for Dynamic Head...")
+                # Try Dynamic Head Import
+                head_mesh_part, new_rbxm_file = process_dynamic_head(
+                    headers, rbx_tmp_rbxm_filepath, rbxm_file, func_rbx_cloud_api, str(asset_id)
+                )
+                
+                if head_mesh_part:
+                    dprint("Dynamic Head Found and Processed.")
+                    mesh_parts_to_process.append((head_mesh_part, "Head"))
+                else:
+                    dprint("Dynamic Head check failed or not a head.")
+                    return
 
 
-    else:
+    if R15Fixed and getattr(glob_vars, "rbx_avatar_rig_type", "AUTO") != "R6":
         # 4. Standard R15Fixed Processing
-        rbx_avatar_bundle_parts = [
-                "LeftUpperArm", "LeftLowerArm", "LeftHand",
-                "RightUpperArm", "RightLowerArm", "RightHand",
-                "LeftUpperLeg", "LeftLowerLeg", "LeftFoot",
-                "RightUpperLeg", "RightLowerLeg", "RightFoot",
-                "UpperTorso", "LowerTorso", "Head"
-            ]
-
-        for mesh_name in rbx_avatar_bundle_parts:
+        for mesh_name in R15_PARTS:
             mesh_part = R15Fixed.FindFirstChild(mesh_name)
             if mesh_part:
                 mesh_parts_to_process.append((mesh_part, mesh_name))

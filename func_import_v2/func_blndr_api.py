@@ -24,7 +24,7 @@ dprint = lambda *args, **kwargs: print(*args, **kwargs) if DEBUG else None
 #################################
 
 def blender_api_import_obj(obj_filepath):
-    if glob_vars.bldr_ver[0] < '4':
+    if glob_vars.is_blender_version_below(4, 0):
         bpy.ops.import_scene.obj(filepath=obj_filepath)
     else:
         bpy.ops.wm.obj_import(filepath=obj_filepath)
@@ -504,7 +504,7 @@ def blender_api_assets_new_material(rbx_obj, mesh_part, rbx_textures, rbx_asset_
 
 ### remove alpha textures and add a mix node to properly display transparency
 def blender_api_transparent_textures():
-    if float(glob_vars.bldr_fdr) < 3.4:
+    if glob_vars.is_blender_version_below(3, 4):
         obj = bpy.context.selected_objects[0]
         bpy.ops.object.select_all(action='DESELECT')
         bpy.context.view_layer.objects.active = None

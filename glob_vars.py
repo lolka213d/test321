@@ -21,6 +21,9 @@ else:
 lts_ver = None
 lts_title = None
 
+# Avatar import defaults
+rbx_avatar_rig_type = "AUTO"
+
 
 ## Tests
 update_test = False # Set to True to test out update process without uploading new version to Github (nothing else need change)
@@ -98,8 +101,17 @@ aepbr_lts_title = None
 
 ### For Blender HDRI ### 
 bldr_path = (os.path.dirname(bpy.app.binary_path))
-bldr_ver = bpy.app.version_string.split('.')
-bldr_fdr = bldr_ver[0] + '.' + bldr_ver[1]
+bldr_ver = bpy.app.version
+bldr_ver_str = bpy.app.version_string
+bldr_fdr = f"{bldr_ver[0]}.{bldr_ver[1]}"
+
+
+def is_blender_version_at_least(major, minor=0, patch=0):
+    return bldr_ver >= (major, minor, patch)
+
+
+def is_blender_version_below(major, minor=0, patch=0):
+    return bldr_ver < (major, minor, patch)
 
 
 

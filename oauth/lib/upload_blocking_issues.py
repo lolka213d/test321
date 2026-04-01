@@ -38,10 +38,14 @@ def get_issues_blocking_upload(context):
     is_logged_in = rbx.is_logged_in
     is_processing_login_or_logout = rbx.is_processing_login_or_logout
     is_object_selected = len(get_selected_objects(context)) > 0
+    creator_is_valid = bool(rbx.creator) and any(creator.id == rbx.creator for creator in rbx.creators)
 
     failure_conditions = [
+        (not rbx.is_finished_installing_dependencies, "Install dependencies before uploading"),
+        (rbx.needs_restart, "Restart Blender to finish dependency installation"),
         (not is_logged_in, "Log in before uploading"),
         (is_processing_login_or_logout, "Wait for login or logout to finish"),
+        (is_logged_in and not creator_is_valid, "Select an upload creator"),
         (not is_object_selected, "Select at least one object to upload"),
         (rbx.num_objects_uploading != 0, "Wait for current upload process to finish"),
     ]

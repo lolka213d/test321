@@ -190,6 +190,80 @@ def _collect_mesh_objects_recursive(collection, result_list):
         _collect_mesh_objects_recursive(child_col, result_list)
 
 
+def _apply_rigid_weights(mesh_obj, bone_name):
+    if bone_name not in mesh_obj.vertex_groups:
+        vg = mesh_obj.vertex_groups.new(name=bone_name)
+    else:
+        vg = mesh_obj.vertex_groups[bone_name]
+    vg.add([v.index for v in mesh_obj.data.vertices], 1.0, 'REPLACE')
+
+
+def _create_rigid_armature_from_meshes(imported_meshes_data, asset_name, rbx_at_origin):
+    meshes = [info.get('object') for info in imported_meshes_data if info.get('object')]
+    meshes = [obj for obj in meshes if obj and obj.type == 'MESH']
+    if not meshes:
+        candidate_objects = []
+        if asset_name:
+            for col in bpy.data.collections:
+                col_base = _strip_blender_suffix(col.name)
+                if col_base == asset_name or asset_name in col.name:
+                    _collect_mesh_objects_recursive(col, candidate_objects)
+                    break
+        if not candidate_objects:
+            candidate_objects = [obj for obj in bpy.data.objects if obj.type == 'MESH']
+
+        mesh_names = [info.get('mesh_name') for info in imported_meshes_data]
+        meshes = []
+        for obj in candidate_objects:
+            obj_base_name = _strip_blender_suffix(obj.name)
+            if obj_base_name in mesh_names:
+                meshes.append(obj)
+
+    if not meshes:
+        print("No mesh objects found for rigid armature creation.")
+        return None
+
+    arm_col = func_blndr_api.blender_api_create_collection("Armature", asset_name)
+
+    if bpy.context.active_object:
+        bpy.ops.object.mode_set(mode='OBJECT')
+
+    bpy.ops.object.add(type='ARMATURE', enter_editmode=True)
+    arm_obj = bpy.context.object
+    arm = arm_obj.data
+    arm_obj.name = f"Armature_{asset_name}"
+
+    if arm_obj.name not in arm_col.objects:
+        arm_col.objects.link(arm_obj)
+    for col in arm_obj.users_collection:
+        if col != arm_col:
+            col.objects.unlink(arm_obj)
+
+    inv_arm_mtx = arm_obj.matrix_world.inverted()
+    for obj in meshes:
+        bone_name = _strip_blender_suffix(obj.name)
+        if bone_name not in arm.edit_bones.keys():
+            eb = arm.edit_bones.new(bone_name)
+            head = inv_arm_mtx @ obj.matrix_world.translation
+            tail = head + mathutils.Vector((0.0, 0.1, 0.0))
+            eb.head = head
+            eb.tail = tail
+
+    bpy.ops.object.mode_set(mode='OBJECT')
+
+    for obj in meshes:
+        bone_name = _strip_blender_suffix(obj.name)
+        _apply_rigid_weights(obj, bone_name)
+        if not any(mod.type == 'ARMATURE' for mod in obj.modifiers):
+            mod = obj.modifiers.new(name="Armature", type='ARMATURE')
+            mod.object = arm_obj
+
+    if rbx_at_origin and arm_obj not in glob_vars.rbx_spawn_tracker:
+        glob_vars.rbx_spawn_tracker.append(arm_obj)
+
+    return arm_obj
+
+
 def import_bones(imported_meshes_data, mesh_reader, funct, rbx_at_origin, asset_name="R15_Character", suffix="", link_meshes=True):
     """
     Creates an armature and applies skinning based on the imported mesh data.
@@ -222,6 +296,9 @@ def import_bones(imported_meshes_data, mesh_reader, funct, rbx_at_origin, asset_
         
     if not valid_meshes_data:
         print("No valid meshes with bone data found for armature generation.")
+        arm_obj = _create_rigid_armature_from_meshes(imported_meshes_data, asset_name, rbx_at_origin)
+        if arm_obj:
+            return
         return
 
 

@@ -210,3 +210,59 @@ def get_asset_and_bundle_img(rbx_asset_img_url):
         rbx_asset_error = f"Error downloading thumbnail: {str(e)}"
         
     return image_data, rbx_asset_error
+
+
+def get_user_id_from_username(username_or_id: str):
+    """Resolves a Roblox user ID from a username or numeric ID string."""
+    if not username_or_id:
+        return None, "Username or ID is empty"
+
+    user_id = None
+    if str(username_or_id).isdigit():
+        return int(username_or_id), None
+
+    url = "https://users.roblox.com/v1/usernames/users"
+    payload = {
+        "usernames": [str(username_or_id)],
+        "excludeBannedUsers": True,
+    }
+    try:
+        response = requests.post(url, json=payload)
+    except Exception as e:
+        return None, f"Error resolving username: {e}"
+
+    if response.status_code != 200:
+        return None, f"{response.status_code}: Error resolving username"
+
+    data = response.json()
+    entries = data.get("data", [])
+    if not entries:
+        return None, "Username not found"
+
+    user_id = entries[0].get("id")
+    if not user_id:
+        return None, "Username lookup failed"
+
+    return int(user_id), None
+
+
+def get_user_avatar_assets(user_id: int):
+    """Fetches avatar assets for a user via the Avatar API."""
+    if not user_id:
+        return None, "Invalid user ID"
+
+    url = f"https://avatar.roblox.com/v1/users/{user_id}/avatar"
+    try:
+        response = requests.get(url)
+    except Exception as e:
+        return None, f"Error contacting Avatar API: {e}"
+
+    if response.status_code != 200:
+        return None, f"{response.status_code}: Error getting avatar data"
+
+    data = response.json()
+    assets = data.get("assets", [])
+    if not assets:
+        return [], None
+
+    return assets, None

@@ -51,6 +51,13 @@ def __contains_uploadable_object(collection):
 
 def get_selected_objects(context):
     """Returns a list of selected objects across all OUTLINER and VIEW_3D contexts"""
+    if not hasattr(context, "temp_override"):
+        selected = []
+        for obj in context.selected_objects:
+            if __is_uploadable_object(obj) or __contains_uploadable_object(obj):
+                selected.append(obj)
+        return selected
+
     current_area = context.area
     objects = []
 

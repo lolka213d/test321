@@ -464,3 +464,74 @@ class RBX_OT_import_model_summary(bpy.types.Operator):
 
     def execute(self, context):
         return {'FINISHED'}
+
+
+class RBX_OT_import_avatar(bpy.types.Operator):
+    """Import a Roblox avatar by username/ID or current login"""
+
+    bl_idname = 'object.rbx_import_avatar'
+    bl_label = 'Import Avatar'
+    bl_options = {'REGISTER', 'UNDO'}
+
+    source: bpy.props.StringProperty(default='USER_INPUT')
+
+    def execute(self, context):
+        glob_vars.rbx_imp_error = None
+        from . import func_rbx_api, func_rbx_other
+        importlib.reload(func_rbx_api)
+        importlib.reload(func_rbx_other)
+
+        rbx_prefs = context.scene.rbx_prefs
+        username_or_id = rbx_prefs.rbx_username_entered
+        glob_vars.rbx_avatar_rig_type = rbx_prefs.rbx_avatar_rig_type
+
+        if self.source == 'SELF':
+            login_info = glob_vars.get_login_info()
+            username_or_id = login_info.get('user_id') or login_info.get('user_name')
+            if not username_or_id:
+                self.report({'ERROR'}, 'No logged-in user found')
+                return {'CANCELLED'}
+
+        user_id, user_id_error = func_rbx_api.get_user_id_from_username(username_or_id)
+        if user_id_error:
+            self.report({'ERROR'}, user_id_error)
+            return {'CANCELLED'}
+
+        assets, avatar_error = func_rbx_api.get_user_avatar_assets(user_id)
+        if avatar_error:
+            self.report({'ERROR'}, avatar_error)
+            return {'CANCELLED'}
+
+        if not assets:
+            self.report({'ERROR'}, 'Avatar has no assets to import')
+            return {'CANCELLED'}
+
+        glob_vars.rbx_asset_name = f"Avatar_{user_id}"
+        glob_vars.rbx_asset_creator = str(username_or_id)
+        glob_vars.rbx_asset_id = int(user_id)
+        glob_vars.rbx_asset_type = "Avatar"
+        glob_vars.rbx_default_head_used = False
+        glob_vars.rbx_asset_name_clean = func_rbx_other.replace_restricted_char(glob_vars.rbx_asset_name)
+        glob_vars.discovered_items_data = {cat: [] for cat in glob_vars.supported_assets_v2}
+
+        for asset in assets:
+            asset_id = asset.get('id')
+            asset_name = asset.get('name') or f"Asset {asset_id}"
+            asset_type = asset.get('assetType', {})
+            asset_type_id = asset_type.get('id')
+            if not asset_id or not asset_type_id:
+                continue
+
+            for (category, types) in glob_vars.supported_assets_v2.items():
+                if asset_type_id in types:
+                    glob_vars.discovered_items_data[category].append({'id': asset_id, 'name': asset_name})
+                    break
+
+        has_discovered = any((items for items in glob_vars.discovered_items_data.values()))
+        if not has_discovered:
+            glob_vars.rbx_imp_error = 'Avatar asset types are not supported'
+            self.report({'ERROR'}, glob_vars.rbx_imp_error)
+            return {'CANCELLED'}
+
+        rbx_prefs.rbx_import_beta_active = True
+        return {'FINISHED'}

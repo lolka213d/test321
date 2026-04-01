@@ -187,6 +187,8 @@ class RBX_OT_upload(Operator):
         from . import creator_details
 
         creator_data = creator_details.get_selected_creator_data(window_manager)
+        if not creator_data or not creator_data.id:
+            raise ValueError("Select an upload creator before uploading")
         rbx = window_manager.rbx
         oauth2_client = RbxOAuth2Client(rbx)
         await oauth2_client.refresh_login_if_needed()
@@ -287,8 +289,47 @@ class RBX_OT_upload(Operator):
             )
         except Exception as exception:
             traceback.print_exception(exception)
-            status_indicators.set_status(
-                window_manager, area, target_object, constants.ERROR_MESSAGES["ADD_ON_ERROR"], "ERROR"
-            )
+            message = str(exception).strip() or constants.ERROR_MESSAGES["ADD_ON_ERROR"]
+            status_indicators.set_status(window_manager, area, target_object, message, "ERROR")
         finally:
             RBX_OT_upload.upload_complete(window_manager, temporary_directory)
+
+
+class RBX_OT_upload_single(Operator):
+    """Uploads a single target object to Roblox"""
+
+    bl_idname = "rbx.upload_single"
+    bl_label = "Upload"
+    bl_description = "Upload the selected human model to Roblox"
+
+    target_object_name: bpy.props.StringProperty(name="Target Object Name")  # type: ignore
+
+    def execute(self, context):
+        from . import upload_blocking_issues
+        from . import status_indicators
+
+        target_object = bpy.data.objects.get(self.target_object_name)
+        if not target_object:
+            self.report({"ERROR"}, "Target object not found")
+            return {"CANCELLED"}
+
+        can_upload = upload_blocking_issues.get_can_upload(context)
+        if not can_upload:
+            issues_blocking_upload = upload_blocking_issues.get_issues_blocking_upload(context)
+            self.report({"ERROR"}, ".\n".join(issues_blocking_upload))
+            return {"CANCELLED"}
+
+        rbx = context.window_manager.rbx
+        rbx.num_objects_uploading = 1
+        status_indicators.clear_statuses(context.window_manager)
+
+        RBX_OT_upload.upload(
+            context.window_manager,
+            context.area,
+            context.scene,
+            context.view_layer,
+            context.preferences,
+            target_object,
+        )
+
+        return {"FINISHED"}

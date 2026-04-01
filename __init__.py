@@ -19,7 +19,7 @@ import traceback
 bl_info = {
     "name": "RBX Toolbox modified by Moon",
     "author": "Moon",
-    "version": (7, 4, 6),
+    "version": (7, 4, 7),
     "blender": (3, 6, 0),
     "location": "Operator",
     "description": "Roblox UGC models toolbox",
@@ -104,7 +104,7 @@ from .functions.menu_pie import RBX_MT_MENU2_3
 from .functions.menu_pie import RBX_MT_MENU3
 from .functions.menu_pie import RBX_MT_MENU4
 from .functions.menu_ui import TOOLBOX_MENU, RBX_OT_terms_of_use, RBX_OT_upload_skin, RBX_OT_separate_parts
-from .func_import_v2.rbx_import_discovery import RBX_OT_import_discovery, RBX_OT_import_reset, RBX_OT_import_discovery_download, RBX_OT_import_discovery_options, RBX_OT_import_discovery_open_folder, RBX_OT_open_tmp_folder, RBX_OT_import_model_summary, RBX_OT_import_discovery_info_popup
+from .func_import_v2.rbx_import_discovery import RBX_OT_import_discovery, RBX_OT_import_reset, RBX_OT_import_discovery_download, RBX_OT_import_discovery_options, RBX_OT_import_discovery_open_folder, RBX_OT_open_tmp_folder, RBX_OT_import_model_summary, RBX_OT_import_discovery_info_popup, RBX_OT_import_avatar
 from . import oauth
 import bpy
 from bpy.types import Scene
@@ -130,6 +130,7 @@ classes = (
     RBX_OT_open_tmp_folder,
     RBX_OT_import_model_summary,
     RBX_OT_import_discovery_info_popup,
+    RBX_OT_import_avatar,
     BUTTON_CMR,
     BUTTON_DMMY,
     BUTTON_WEAR,

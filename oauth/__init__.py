@@ -120,7 +120,7 @@ def get_classes():
         roblox_properties,
     )
     from .lib.install_dependencies import RBX_OT_install_dependencies
-    from .lib.upload_operator import RBX_OT_upload
+    from .lib.upload_operator import RBX_OT_upload, RBX_OT_upload_single
 
     return (
         event_loop.RBX_OT_event_loop,
@@ -130,6 +130,7 @@ def get_classes():
         oauth2_login_operators.RBX_OT_oauth2_cancel_login,
         oauth2_login_operators.RBX_OT_oauth2_logout,
         RBX_OT_upload,
+        RBX_OT_upload_single,
         roblox_properties.RbxStatusProperties,
         roblox_properties.RbxProperties,
 
